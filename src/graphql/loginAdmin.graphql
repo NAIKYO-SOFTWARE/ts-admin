@@ -1,0 +1,7 @@
+mutation loginAdmin($phone: String!, $password: String!) {
+  loginAdmin(phone: $phone, password: $password) {
+    token
+    name
+    role
+  }
+}

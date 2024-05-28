@@ -1,0 +1,62 @@
+{
+    "uid": "locations",
+    "layouts": {
+        "displayName": "Locations",
+        "creatable": true,
+        "editable": true,
+        "aggregateField": "locations_aggregate",
+        "filterable": [
+            [
+                {
+                    "label": "name",
+                    "placeholder": "Name",
+                    "name": "name",
+                    "size": 5,
+                    "type": "string"
+                },
+                {
+                    "label": "Created At",
+                    "name": "createdAt",
+                    "size": 6,
+                    "type": "date"
+                }
+            ]
+        ],
+        "list": [
+            {
+                "key": "name",
+                "dataIndex": "name",
+                "title": "Name",
+                "align": "left"
+            },
+            {
+                "key": "city",
+                "dataIndex": "city",
+                "title": "City",
+                "align": "left"
+            }
+        ],
+        "edit": [
+            [
+                {
+                    "label": "Name",
+                    "placeholder": "Name",
+                    "name": "name",
+                    "size": 6,
+                    "type": "string"
+                },
+                {
+                    "key": "city",
+                    "dataIndex": "city",
+                    "title": "City",
+                    "align": "left",
+                    "multiple": true,
+                    "type": "relation",
+                    "relation": "cities",
+                    "name": "city"
+                }
+            ]
+        ],
+        "defaultValue": {}
+    }
+}

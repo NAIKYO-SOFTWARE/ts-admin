@@ -1,0 +1,12 @@
+query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
+  cities(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    name
+    created_at
+  }
+  cities_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

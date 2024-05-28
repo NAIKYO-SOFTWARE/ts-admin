@@ -1,0 +1,42 @@
+query FindMany($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
+  users(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    email
+    name
+    phone_number
+    role
+    created_at
+  }
+  users_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query FindOne($id: Int!) {
+  users_by_pk(id: $id) {
+    name
+    id
+    phone_number
+    role
+    email
+    created_at
+    zalo_id
+  }
+}
+
+mutation DeleteUser($id: Int!) {
+  delete_users_by_pk(id: $id) {
+    id
+  }
+}
+
+mutation UpdateUser($id: Int!, $email: String!, $name: String!, $phone_number: String!, $role: String!) {
+  update_users_by_pk(
+    pk_columns: { id: $id }
+    _set: { email: $email, name: $name, phone_number: $phone_number, role: $role }
+  ) {
+    id
+  }
+}

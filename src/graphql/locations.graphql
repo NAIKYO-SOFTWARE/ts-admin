@@ -1,0 +1,39 @@
+query getLocations($where: locations_bool_exp!, $limit: Int!, $offset: Int!) {
+  locations(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    name
+    created_at
+    city {
+      name
+    }
+  }
+  locations_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+mutation deleteLocation($id: Int!) {
+  delete_locations_by_pk(id: $id) {
+    id
+  }
+}
+
+query getLocation($id: Int!) {
+  locations_by_pk(id: $id) {
+    name
+    id
+    city {
+      id
+      name
+    }
+    created_at
+  }
+}
+
+mutation updateLocation($id: Int!, $name: String!) {
+  update_locations_by_pk(pk_columns: { id: $id }, _set: { name: $name }) {
+    id
+  }
+}
