@@ -53,8 +53,8 @@ export default defineConfig({
           'vendor-util': vendorsUtil,
           'antd-notification': antNotification,
           'antd-select': antSelect,
-          'antd-pagination': antPagination,
-          ...renderChunks()
+          'antd-pagination': antPagination
+          // ...renderChunks()
         }
       }
     }

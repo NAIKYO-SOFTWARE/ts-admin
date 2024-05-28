@@ -420,6 +420,8 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
   const useCreateOne = queries[props.uid]?.createOne
 
   const [onUpdate] = useUpdateOne()
+  const [onCreate] = useCreateOne()
+
   const { loading } = useFindOne({
     variables: {
       id: Number(lastPath)
@@ -461,9 +463,8 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
               ...values
             } as any
           })
-        : useCreateOne({
+        : onCreate({
             variables: {
-              id: Number(lastPath),
               ...values
             } as any
           })
