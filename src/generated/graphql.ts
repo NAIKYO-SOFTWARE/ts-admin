@@ -518,6 +518,7 @@ export type Cities = {
   descr?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   img?: Maybe<Scalars['String']['output']>;
+  isactive?: Maybe<Scalars['Boolean']['output']>;
   /** An array relationship */
   locations: Array<Locations>;
   /** An aggregate relationship */
@@ -616,6 +617,7 @@ export type Cities_Bool_Exp = {
   descr?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   img?: InputMaybe<String_Comparison_Exp>;
+  isactive?: InputMaybe<Boolean_Comparison_Exp>;
   locations?: InputMaybe<Locations_Bool_Exp>;
   locations_aggregate?: InputMaybe<Locations_Aggregate_Bool_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
@@ -641,6 +643,7 @@ export type Cities_Insert_Input = {
   descr?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   locations?: InputMaybe<Locations_Arr_Rel_Insert_Input>;
   name?: InputMaybe<Scalars['String']['input']>;
   routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
@@ -701,6 +704,7 @@ export type Cities_Order_By = {
   descr?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   img?: InputMaybe<Order_By>;
+  isactive?: InputMaybe<Order_By>;
   locations_aggregate?: InputMaybe<Locations_Aggregate_Order_By>;
   name?: InputMaybe<Order_By>;
   routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
@@ -725,6 +729,8 @@ export type Cities_Select_Column =
   /** column name */
   | 'img'
   /** column name */
+  | 'isactive'
+  /** column name */
   | 'name'
   /** column name */
   | 'updated_at';
@@ -736,6 +742,7 @@ export type Cities_Set_Input = {
   descr?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -773,6 +780,7 @@ export type Cities_Stream_Cursor_Value_Input = {
   descr?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -795,6 +803,8 @@ export type Cities_Update_Column =
   | 'id'
   /** column name */
   | 'img'
+  /** column name */
+  | 'isactive'
   /** column name */
   | 'name'
   /** column name */
@@ -1374,6 +1384,7 @@ export type Locations = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id: Scalars['Int']['output'];
+  isactive?: Maybe<Scalars['Boolean']['output']>;
   name: Scalars['String']['output'];
   /** An array relationship */
   routes: Array<Routes>;
@@ -1434,7 +1445,23 @@ export type Locations_Aggregate = {
 };
 
 export type Locations_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_Or>;
   count?: InputMaybe<Locations_Aggregate_Bool_Exp_Count>;
+};
+
+export type Locations_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Locations_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Locations_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Locations_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
 };
 
 export type Locations_Aggregate_Bool_Exp_Count = {
@@ -1512,6 +1539,7 @@ export type Locations_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
+  isactive?: InputMaybe<Boolean_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   routes?: InputMaybe<Routes_Bool_Exp>;
   routesByStartLocation?: InputMaybe<Routes_Bool_Exp>;
@@ -1538,6 +1566,7 @@ export type Locations_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
   routesByStartLocation?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
@@ -1616,6 +1645,7 @@ export type Locations_Order_By = {
   created_at?: InputMaybe<Order_By>;
   deleted_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  isactive?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   routesByStartLocation_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
   routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
@@ -1638,9 +1668,21 @@ export type Locations_Select_Column =
   /** column name */
   | 'id'
   /** column name */
+  | 'isactive'
+  /** column name */
   | 'name'
   /** column name */
   | 'updated_at';
+
+/** select "locations_aggregate_bool_exp_bool_and_arguments_columns" columns of table "locations" */
+export type Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
+  /** column name */
+  | 'isactive';
+
+/** select "locations_aggregate_bool_exp_bool_or_arguments_columns" columns of table "locations" */
+export type Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
+  /** column name */
+  | 'isactive';
 
 /** input type for updating data in table "locations" */
 export type Locations_Set_Input = {
@@ -1648,6 +1690,7 @@ export type Locations_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -1705,6 +1748,7 @@ export type Locations_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -1732,6 +1776,8 @@ export type Locations_Update_Column =
   | 'deleted_at'
   /** column name */
   | 'id'
+  /** column name */
+  | 'isactive'
   /** column name */
   | 'name'
   /** column name */
@@ -4681,7 +4727,7 @@ export type GetLocationsQueryVariables = Exact<{
 }>;
 
 
-export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
+export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
 
 export type DeleteLocationMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -4695,11 +4741,21 @@ export type GetLocationQueryVariables = Exact<{
 }>;
 
 
-export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, city: { __typename?: 'cities', id: number, name: string } } | null };
+export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string } } | null };
+
+export type InsertLocationMutationVariables = Exact<{
+  city_id: Scalars['Int']['input'];
+  isactive: Scalars['Boolean']['input'];
+  name: Scalars['String']['input'];
+}>;
+
+
+export type InsertLocationMutation = { __typename?: 'mutation_root', insert_locations_one?: { __typename?: 'locations', id: number } | null };
 
 export type UpdateLocationMutationVariables = Exact<{
   id: Scalars['Int']['input'];
-  name: Scalars['String']['input'];
+  city_id: Scalars['Int']['input'];
+  isactive: Scalars['Boolean']['input'];
 }>;
 
 
@@ -4816,6 +4872,7 @@ export const GetLocationsDocument = gql`
     city {
       name
     }
+    isactive
   }
   locations_aggregate(where: $where) {
     aggregate {
@@ -4902,6 +4959,7 @@ export const GetLocationDocument = gql`
       name
     }
     created_at
+    isactive
   }
 }
     `;
@@ -4938,9 +4996,49 @@ export type GetLocationQueryHookResult = ReturnType<typeof useGetLocationQuery>;
 export type GetLocationLazyQueryHookResult = ReturnType<typeof useGetLocationLazyQuery>;
 export type GetLocationSuspenseQueryHookResult = ReturnType<typeof useGetLocationSuspenseQuery>;
 export type GetLocationQueryResult = Apollo.QueryResult<GetLocationQuery, GetLocationQueryVariables>;
+export const InsertLocationDocument = gql`
+    mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!) {
+  insert_locations_one(
+    object: {city_id: $city_id, isactive: $isactive, name: $name}
+  ) {
+    id
+  }
+}
+    `;
+export type InsertLocationMutationFn = Apollo.MutationFunction<InsertLocationMutation, InsertLocationMutationVariables>;
+
+/**
+ * __useInsertLocationMutation__
+ *
+ * To run a mutation, you first call `useInsertLocationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertLocationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertLocationMutation, { data, loading, error }] = useInsertLocationMutation({
+ *   variables: {
+ *      city_id: // value for 'city_id'
+ *      isactive: // value for 'isactive'
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useInsertLocationMutation(baseOptions?: Apollo.MutationHookOptions<InsertLocationMutation, InsertLocationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertLocationMutation, InsertLocationMutationVariables>(InsertLocationDocument, options);
+      }
+export type InsertLocationMutationHookResult = ReturnType<typeof useInsertLocationMutation>;
+export type InsertLocationMutationResult = Apollo.MutationResult<InsertLocationMutation>;
+export type InsertLocationMutationOptions = Apollo.BaseMutationOptions<InsertLocationMutation, InsertLocationMutationVariables>;
 export const UpdateLocationDocument = gql`
-    mutation updateLocation($id: Int!, $name: String!) {
-  update_locations_by_pk(pk_columns: {id: $id}, _set: {name: $name}) {
+    mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!) {
+  update_locations_by_pk(
+    pk_columns: {id: $id}
+    _set: {city_id: $city_id, isactive: $isactive}
+  ) {
     id
   }
 }
@@ -4961,7 +5059,8 @@ export type UpdateLocationMutationFn = Apollo.MutationFunction<UpdateLocationMut
  * const [updateLocationMutation, { data, loading, error }] = useUpdateLocationMutation({
  *   variables: {
  *      id: // value for 'id'
- *      name: // value for 'name'
+ *      city_id: // value for 'city_id'
+ *      isactive: // value for 'isactive'
  *   },
  * });
  */

@@ -34,6 +34,13 @@
                 "dataIndex": "city",
                 "title": "City",
                 "align": "left"
+            },
+            {
+                "key": "isactive",
+                "dataIndex": "isactive",
+                "title": "Enable",
+                "align": "left",
+                "note": "render-bool"
             }
         ],
         "edit": [
@@ -46,6 +53,7 @@
                     "type": "string"
                 },
                 {
+                    "label": "City",
                     "key": "city",
                     "dataIndex": "city",
                     "title": "City",
@@ -53,10 +61,18 @@
                     "multiple": true,
                     "type": "relation",
                     "relation": "cities",
-                    "name": "city"
+                    "name": "city_id"
+                },
+                {
+                    "label": "Enable",
+                    "name": "isactive",
+                    "size": 2,
+                    "type": "boolean"
                 }
             ]
         ],
-        "defaultValue": {}
+        "defaultValue": {
+            "isactive": true
+        }
     }
 }

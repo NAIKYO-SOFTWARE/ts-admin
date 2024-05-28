@@ -89,7 +89,7 @@
                 {
                     "label": "Phone",
                     "placeholder": "Phone",
-                    "name": "phone",
+                    "name": "phone_number",
                     "size": 6,
                     "type": "string",
                     "regex": [
