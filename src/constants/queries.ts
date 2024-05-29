@@ -6,6 +6,7 @@ import {
   useGetCitiesQuery,
   useGetLocationQuery,
   useGetLocationsQuery,
+  useInsertLocationMutation,
   useUpdateLocationMutation,
   useUpdateUserMutation
 } from '../generated/graphql'
@@ -20,7 +21,7 @@ const queries: Record<string, Record<string, any>> = {
   },
   locations: {
     findOne: useGetLocationQuery,
-    createOne: null,
+    createOne: useInsertLocationMutation,
     updateOne: useUpdateLocationMutation,
     findMany: useGetLocationsQuery,
     deleteOne: useDeleteLocationMutation
@@ -48,7 +49,7 @@ export const dataHandlers: Record<string, Props> = {
         city: location.city.name
       }))
     },
-    one: (data) => ({ ...data.locations_by_pk, city: data.locations_by_pk.city.id })
+    one: (data) => ({ ...data.locations_by_pk, city_id: data.locations_by_pk.city.id })
   },
   cities: {
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))

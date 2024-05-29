@@ -404,7 +404,7 @@ const bindErrorMessage = (data: { message: string[] }) => {
 }
 
 const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFunction }) => {
-  const { edit, displayName, defaultValue, editable = true } = props.layouts
+  const { edit, displayName, defaultValue, editable = true, creatable = false } = props.layouts
   const [notFound, setNotFound] = useState<boolean>(false)
   const [api, contextHolder] = Notification.useNotification()
   const form = useObservable<Record<string, any>>({})
@@ -419,7 +419,9 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
   const useUpdateOne = queries[props.uid]?.updateOne
   const useCreateOne = queries[props.uid]?.createOne
 
-  const [onUpdate] = useUpdateOne()
+  const [onUpdate] = editable ? useUpdateOne() : [null]
+  const [onCreate] = creatable ? useCreateOne() : [null]
+
   const { loading } = useFindOne({
     variables: {
       id: Number(lastPath)
@@ -461,9 +463,8 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
               ...values
             } as any
           })
-        : useCreateOne({
+        : onCreate({
             variables: {
-              id: Number(lastPath),
               ...values
             } as any
           })

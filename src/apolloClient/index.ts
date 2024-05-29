@@ -4,7 +4,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
 const httpLink = new HttpLink({
-  uri: import.meta.env.VITE_HASURA_ENDPOINT
+  uri: 'https://hasura-h6hk.onrender.com/v1/graphql'
 })
 
 // Cấu hình middleware để thêm header
