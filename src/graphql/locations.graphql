@@ -1,4 +1,4 @@
-query getLocations($where: locations_bool_exp!, $limit: Int!, $offset: Int!) {
+query getLocations($where: locations_bool_exp! = {}, $limit: Int! = 10, $offset: Int! = 0) {
   locations(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
     id
     name
@@ -40,8 +40,8 @@ mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!) {
   }
 }
 
-mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!) {
-  update_locations_by_pk(pk_columns: { id: $id }, _set: { city_id: $city_id, isactive: $isactive }) {
+mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!) {
+  update_locations_by_pk(pk_columns: { id: $id }, _set: { city_id: $city_id, isactive: $isactive, name: $name }) {
     id
   }
 }

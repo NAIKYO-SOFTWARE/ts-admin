@@ -25,7 +25,7 @@ import TextArea from 'antd/es/input/TextArea'
 import Notification from 'antd/es/notification'
 import Skeleton from 'antd/es/skeleton'
 import dayjs from 'dayjs'
-import queries, { dataHandlers } from '../../constants/queries'
+import queries, { dataHandlers, documentNodes } from '../../constants/queries'
 import Button from '../Button'
 import Checkbox from '../Checkbox'
 import Currencies from '../Currencies'
@@ -419,7 +419,12 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
   const useUpdateOne = queries[props.uid]?.updateOne
   const useCreateOne = queries[props.uid]?.createOne
 
-  const [onUpdate] = editable ? useUpdateOne() : [null]
+  const [onUpdate] = editable
+    ? useUpdateOne({
+        refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
+        awaitRefetchQueries: true
+      })
+    : [null]
   const [onCreate] = creatable ? useCreateOne() : [null]
 
   const { loading } = useFindOne({
