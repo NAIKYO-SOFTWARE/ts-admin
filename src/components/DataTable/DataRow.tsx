@@ -50,7 +50,7 @@ const DataPagination = memo(() => {
   )
 })
 
-const DeleteRow = (props: { onOk: () => void }) => {
+const DeleteRow = (props: { onOk: () => string | undefined }) => {
   const [open, setOpen] = useState(false)
   return (
     <>
@@ -58,7 +58,7 @@ const DeleteRow = (props: { onOk: () => void }) => {
         className='modal'
         title='Confirm Delete'
         open={open}
-        onOk={() => props.onOk()}
+        onOk={() => setOpen(!props.onOk())}
         onCancel={() => setOpen(false)}
         centered>
         <span>Are you sure you want to delete?</span>
@@ -70,7 +70,7 @@ const DeleteRow = (props: { onOk: () => void }) => {
   )
 }
 
-const DataRow = (props: { uid: string; columns: ColumnsType<any>; onDelete: (id: string) => void }) => {
+const DataRow = (props: { uid: string; columns: ColumnsType<any>; onDelete: (id: string) => string | undefined }) => {
   const loading = useTableStore((store) => store.loading)
   const dataSource = useTableStore((store) => store.dataSource)
   const id = `${props.uid}-${loading}`

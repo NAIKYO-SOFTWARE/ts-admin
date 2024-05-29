@@ -1,4 +1,6 @@
 import {
+  FindManyDocument,
+  GetLocationsDocument,
   useDeleteLocationMutation,
   useDeleteUserMutation,
   useFindManyQuery,
@@ -53,6 +55,21 @@ export const dataHandlers: Record<string, Props> = {
   },
   cities: {
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
+  }
+}
+
+export const queryStrings: Record<string, Record<string, any>> = {
+  users: {
+    role: { _eq: 'user' }
+  }
+}
+
+export const documentNodes: Record<string, Record<string, any>> = {
+  users: {
+    getDocument: FindManyDocument
+  },
+  locations: {
+    getDocument: GetLocationsDocument
   }
 }
 

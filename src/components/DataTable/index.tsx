@@ -8,7 +8,7 @@ import Button from '../Button'
 import DataRow from './DataRow'
 import Filter from './Filter'
 
-import queries, { dataHandlers } from '../../constants/queries'
+import queries, { dataHandlers, queryStrings } from '../../constants/queries'
 import './dataTable.scss'
 
 type Props = { title: ReactNode; uid: string; ssr?: boolean }
@@ -55,14 +55,14 @@ const parseQueryString = (queryString: string) => {
   return queryObject
 }
 
-const generateWhereClause = (queryParams: any, filterable: any) => {
-  const where: any = {}
+const generateWhereClause = (uid: string, queryParams: any, filterable: any) => {
+  const where: any = { ...queryStrings[uid] }
   filterable.flat().forEach((filter: any) => {
     const { name, type } = filter
     if (queryParams[name]) {
       switch (type) {
         case 'string':
-          where[name] = { _eq: queryParams[name] }
+          where[name] = { _ilike: `%${queryParams[name]}%` }
           break
         case 'date':
           where[name] = { _eq: new Date(queryParams[name]).toISOString() }
@@ -78,7 +78,7 @@ const generateWhereClause = (queryParams: any, filterable: any) => {
 const DataTable = (props: Props) => {
   const layouts = useAppStore((store) => (store.layouts?.has(props.uid) ? store.layouts?.get(props.uid) : null))
   const location = useLocation()
-  const { onSetDataSource, onRemoveRow, onSetNotification } = useTableStore()
+  const { setLoading, onSetDataSource, onRemoveRow, onSetNotification } = useTableStore()
 
   const [variables, setVariables] = useState({
     where: {},
@@ -116,6 +116,8 @@ const DataTable = (props: Props) => {
         ...prev,
         total
       }))
+    } else {
+      setLoading(true)
     }
 
     if (error) {
@@ -125,7 +127,7 @@ const DataTable = (props: Props) => {
 
   useEffect(() => {
     const queryParams = parseQueryString(location.search) as any
-    const where = generateWhereClause(queryParams, layouts?.filterable)
+    const where = generateWhereClause(props.uid, queryParams, layouts?.filterable)
 
     setVariables({
       where,
@@ -143,13 +145,14 @@ const DataTable = (props: Props) => {
 
   const handleDelete = (id: string) => {
     if (!id) return
-    onRemove({
+    return onRemove({
       variables: {
         id: Number(id)
       }
     })
       .then(() => {
         onRemoveRow?.(id)
+        return id
       })
       .catch((e: any) => {
         onSetNotification?.(
@@ -157,6 +160,7 @@ const DataTable = (props: Props) => {
           'Error',
           e?.response?.data?.message || 'Error! An error occurred. Please try again later'
         )
+        return
       })
   }
 

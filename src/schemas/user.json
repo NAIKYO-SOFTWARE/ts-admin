@@ -8,9 +8,9 @@
         "filterable": [
             [
                 {
-                    "label": "Email",
-                    "placeholder": "Email",
-                    "name": "email",
+                    "label": "Phone",
+                    "placeholder": "Enter phone number",
+                    "name": "phone_number",
                     "size": 5,
                     "type": "string"
                 },
@@ -26,7 +26,7 @@
                 {
                     "label": "Created At",
                     "name": "createdAt",
-                    "size": 6,
+                    "size": 5,
                     "type": "date"
                 }
             ]
@@ -71,7 +71,8 @@
                     "placeholder": "Name",
                     "name": "name",
                     "size": 6,
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                 },
                 {
                     "label": "Email",
@@ -82,7 +83,8 @@
                     "regex": [
                         "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
                         "i"
-                    ]
+                    ],
+                    "required": true
                 }
             ],
             [
@@ -95,7 +97,8 @@
                     "regex": [
                         "^\\d{8,16}$",
                         "i"
-                    ]
+                    ],
+                    "required": true
                 },
                 {
                     "label": "Role",

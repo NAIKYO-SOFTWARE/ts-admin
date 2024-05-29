@@ -9,7 +9,7 @@
             [
                 {
                     "label": "name",
-                    "placeholder": "Name",
+                    "placeholder": "Enter Name",
                     "name": "name",
                     "size": 5,
                     "type": "string"
@@ -47,10 +47,11 @@
             [
                 {
                     "label": "Name",
-                    "placeholder": "Name",
+                    "placeholder": "Enter Name",
                     "name": "name",
                     "size": 6,
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                 },
                 {
                     "label": "City",
@@ -61,7 +62,9 @@
                     "multiple": true,
                     "type": "relation",
                     "relation": "cities",
-                    "name": "city_id"
+                    "name": "city_id",
+                    "required": true,
+                    "placeholder": "Select City"
                 },
                 {
                     "label": "Enable",
