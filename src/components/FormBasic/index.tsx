@@ -432,8 +432,6 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
     },
     onCompleted(data: any) {
       const result = dataHandlers[props.uid].one?.(data)
-      console.log(result)
-
       form.set(result)
       form.isEdit.set(true)
     }
