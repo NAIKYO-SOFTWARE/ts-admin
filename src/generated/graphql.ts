@@ -30,6 +30,13 @@ export type AuthAdminOutput = {
   token: Scalars['String']['output'];
 };
 
+export type AuthOutput = {
+  __typename?: 'AuthOutput';
+  name: Scalars['String']['output'];
+  token: Scalars['String']['output'];
+  userId: Scalars['String']['output'];
+};
+
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1834,6 +1841,8 @@ export type Locations_Variance_Order_By = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** actionLogin */
+  actionLogin?: Maybe<AuthOutput>;
   /** delete data from the table: "bookings" */
   delete_bookings?: Maybe<Bookings_Mutation_Response>;
   /** delete single row from the table: "bookings" */
@@ -1962,6 +1971,13 @@ export type Mutation_Root = {
   update_vehicle_types_by_pk?: Maybe<Vehicle_Types>;
   /** update multiples rows of table: "vehicle_types" */
   update_vehicle_types_many?: Maybe<Array<Maybe<Vehicle_Types_Mutation_Response>>>;
+};
+
+
+/** mutation root */
+export type Mutation_RootActionLoginArgs = {
+  token: Scalars['String']['input'];
+  tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
 };
 
 
