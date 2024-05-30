@@ -1,0 +1,124 @@
+{
+  "uid": "providers",
+  "layouts": {
+    "displayName": "Providers",
+    "creatable": true,
+    "editable": true,
+    "deletable": false,
+    "aggregateField": "providers_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "Name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 5,
+          "type": "string"
+        },
+        {
+          "label": "Phone",
+          "placeholder": "Phone",
+          "name": "phone_number",
+          "size": 5,
+          "type": "string"
+        }
+      ],
+      [
+        {
+          "label": "Address",
+          "placeholder": "Address",
+          "name": "address",
+          "size": 5,
+          "type": "string"
+        },
+        {
+          "label": "Enable",
+          "placeholder": "Enable",
+          "name": "isactive",
+          "size": 5,
+          "type": "boolean"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "name",
+        "dataIndex": "name",
+        "title": "Name",
+        "align": "left"
+      },
+      {
+        "key": "phone_number",
+        "dataIndex": "phone_number",
+        "title": "Phone",
+        "align": "left"
+      },
+
+      {
+        "key": "isactive",
+        "dataIndex": "isactive",
+        "title": "Enable",
+        "align": "left",
+        "note": "render-bool"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created At",
+        "align": "center",
+        "note": "render-date"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "Name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 6,
+          "type": "string"
+        },
+        {
+          "label": "Phone",
+          "placeholder": "Phone",
+          "name": "phone_number",
+          "size": 6,
+          "type": "string",
+          "regex": ["^\\d{8,16}$", "i"]
+        }
+      ],
+      [
+        {
+          "label": "Note",
+          "placeholder": "Note",
+          "name": "note",
+          "size": 6,
+          "type": "string"
+        },
+        {
+          "label": "Address",
+          "placeholder": "Address",
+          "name": "address",
+          "size": 6,
+          "type": "string"
+        },
+        {
+          "label": "Telegram Id",
+          "placeholder": "Telegram Id",
+          "name": "telegram_id",
+          "size": 6,
+          "type": "string"
+        },
+        {
+          "label": "Enable",
+          "name": "isactive",
+          "size": 4,
+          "type": "boolean"
+        }
+      ]
+    ],
+    "defaultValue": {
+      "isactive": true
+    }
+  }
+}

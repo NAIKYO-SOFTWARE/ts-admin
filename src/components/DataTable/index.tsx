@@ -185,7 +185,12 @@ const DataTable = (props: Props) => {
       </div>
       {layouts?.filterable && <Filter filterable={layouts?.filterable} />}
       <div className='dataTable'>
-        <DataRow columns={layouts?.list as any} uid={props.uid} onDelete={handleDelete} />
+        <DataRow
+          columns={layouts?.list as any}
+          uid={props.uid}
+          onDelete={handleDelete}
+          deletable={!!layouts?.deletable}
+        />
       </div>
     </div>
   )

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import menu from '../../constants/menu'
 import locationSchema from '../../schemas/location.json'
+import providerSchema from '../../schemas/provider.json'
 import userSchema from '../../schemas/user.json'
 
 import { useAppStore } from '../../store/app-store'
@@ -50,7 +51,7 @@ const Authorized: FC = memo(
         }
       })
       setState({ isLoading: false, routes: routeItems })
-      setSchemas?.([userSchema as any, locationSchema as any])
+      setSchemas?.([userSchema as any, locationSchema as any, providerSchema as any])
     }, [])
 
     if (state.isLoading) {

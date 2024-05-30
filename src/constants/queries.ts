@@ -1,15 +1,21 @@
 import {
   FindManyDocument,
   GetLocationsDocument,
+  GetProvidersDocument,
   useDeleteLocationMutation,
   useDeleteUserMutation,
   useFindManyQuery,
+  useFindOneProviderQuery,
   useFindOneQuery,
   useGetCitiesQuery,
   useGetLocationQuery,
   useGetLocationsQuery,
+  useGetProvidersQuery,
   useInsertLocationMutation,
+  useInsertProviderMutation,
   useUpdateLocationMutation,
+  useUpdateProviderEnableMutation,
+  useUpdateProviderMutation,
   useUpdateUserMutation
 } from '../generated/graphql'
 
@@ -30,6 +36,13 @@ const queries: Record<string, Record<string, any>> = {
   },
   cities: {
     findMany: useGetCitiesQuery
+  },
+  providers: {
+    findOne: useFindOneProviderQuery,
+    createOne: useInsertProviderMutation,
+    updateOne: useUpdateProviderMutation,
+    findMany: useGetProvidersQuery,
+    deleteOne: useUpdateProviderEnableMutation
   }
 }
 
@@ -55,6 +68,10 @@ export const dataHandlers: Record<string, Props> = {
   },
   cities: {
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
+  },
+  providers: {
+    many: (data) => data,
+    one: (data) => ({ ...data.providers_by_pk })
   }
 }
 
@@ -70,6 +87,9 @@ export const documentNodes: Record<string, Record<string, any>> = {
   },
   locations: {
     getDocument: GetLocationsDocument
+  },
+  providers: {
+    getDocument: GetProvidersDocument
   }
 }
 
