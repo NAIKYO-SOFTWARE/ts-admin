@@ -4,7 +4,7 @@ import { setContext } from '@apollo/client/link/context'
 import { auth } from '../helper-plugin'
 
 const httpLink = new HttpLink({
-  uri: 'https://hasura-transfer-services-develop.onrender.com/v1/graphql'
+  uri: 'http://localhost:8080/v1/graphql'
 })
 
 const authLink = setContext((_, { headers }) => {

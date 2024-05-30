@@ -30,6 +30,13 @@ export type AuthAdminOutput = {
   token: Scalars['String']['output'];
 };
 
+export type AuthOutput = {
+  __typename?: 'AuthOutput';
+  name: Scalars['String']['output'];
+  token: Scalars['String']['output'];
+  userId: Scalars['String']['output'];
+};
+
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Boolean']['input']>;
@@ -518,6 +525,7 @@ export type Cities = {
   descr?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   img?: Maybe<Scalars['String']['output']>;
+  isactive?: Maybe<Scalars['Boolean']['output']>;
   /** An array relationship */
   locations: Array<Locations>;
   /** An aggregate relationship */
@@ -616,6 +624,7 @@ export type Cities_Bool_Exp = {
   descr?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   img?: InputMaybe<String_Comparison_Exp>;
+  isactive?: InputMaybe<Boolean_Comparison_Exp>;
   locations?: InputMaybe<Locations_Bool_Exp>;
   locations_aggregate?: InputMaybe<Locations_Aggregate_Bool_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
@@ -641,6 +650,7 @@ export type Cities_Insert_Input = {
   descr?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   locations?: InputMaybe<Locations_Arr_Rel_Insert_Input>;
   name?: InputMaybe<Scalars['String']['input']>;
   routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
@@ -701,6 +711,7 @@ export type Cities_Order_By = {
   descr?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   img?: InputMaybe<Order_By>;
+  isactive?: InputMaybe<Order_By>;
   locations_aggregate?: InputMaybe<Locations_Aggregate_Order_By>;
   name?: InputMaybe<Order_By>;
   routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
@@ -725,6 +736,8 @@ export type Cities_Select_Column =
   /** column name */
   | 'img'
   /** column name */
+  | 'isactive'
+  /** column name */
   | 'name'
   /** column name */
   | 'updated_at';
@@ -736,6 +749,7 @@ export type Cities_Set_Input = {
   descr?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -773,6 +787,7 @@ export type Cities_Stream_Cursor_Value_Input = {
   descr?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   img?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -795,6 +810,8 @@ export type Cities_Update_Column =
   | 'id'
   /** column name */
   | 'img'
+  /** column name */
+  | 'isactive'
   /** column name */
   | 'name'
   /** column name */
@@ -1824,6 +1841,8 @@ export type Locations_Variance_Order_By = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** actionLogin */
+  actionLogin?: Maybe<AuthOutput>;
   /** delete data from the table: "bookings" */
   delete_bookings?: Maybe<Bookings_Mutation_Response>;
   /** delete single row from the table: "bookings" */
@@ -1952,6 +1971,13 @@ export type Mutation_Root = {
   update_vehicle_types_by_pk?: Maybe<Vehicle_Types>;
   /** update multiples rows of table: "vehicle_types" */
   update_vehicle_types_many?: Maybe<Array<Maybe<Vehicle_Types_Mutation_Response>>>;
+};
+
+
+/** mutation root */
+export type Mutation_RootActionLoginArgs = {
+  token: Scalars['String']['input'];
+  tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
 };
 
 
