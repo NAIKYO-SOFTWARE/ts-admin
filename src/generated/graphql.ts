@@ -30,13 +30,6 @@ export type AuthAdminOutput = {
   token: Scalars['String']['output'];
 };
 
-export type AuthOutput = {
-  __typename?: 'AuthOutput';
-  name: Scalars['String']['output'];
-  token: Scalars['String']['output'];
-  userId: Scalars['String']['output'];
-};
-
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Boolean']['input']>;
@@ -121,6 +114,17 @@ export type Bookings_Aggregate = {
   nodes: Array<Bookings>;
 };
 
+export type Bookings_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Bookings_Aggregate_Bool_Exp_Count>;
+};
+
+export type Bookings_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Bookings_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Bookings_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "bookings" */
 export type Bookings_Aggregate_Fields = {
   __typename?: 'bookings_aggregate_fields';
@@ -162,7 +166,7 @@ export type Bookings_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "bookings" */
 export type Bookings_Arr_Rel_Insert_Input = {
   data: Array<Bookings_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Bookings_On_Conflict>;
 };
 
@@ -201,7 +205,7 @@ export type Bookings_Bool_Exp = {
 
 /** unique or primary key constraints on table "bookings" */
 export type Bookings_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'bookings_pkey';
 
 /** input type for incrementing numeric columns in table "bookings" */
@@ -289,7 +293,7 @@ export type Bookings_Mutation_Response = {
   returning: Array<Bookings>;
 };
 
-/** on conflict condition type for table "bookings" */
+/** on_conflict condition type for table "bookings" */
 export type Bookings_On_Conflict = {
   constraint: Bookings_Constraint;
   update_columns?: Array<Bookings_Update_Column>;
@@ -395,6 +399,27 @@ export type Bookings_Stddev_Samp_Order_By = {
   user_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "bookings" */
+export type Bookings_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Bookings_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Bookings_Stream_Cursor_Value_Input = {
+  booking_date?: InputMaybe<Scalars['timestamptz']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  itinerary_id?: InputMaybe<Scalars['Int']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  user_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Bookings_Sum_Fields = {
   __typename?: 'bookings_sum_fields';
@@ -430,6 +455,15 @@ export type Bookings_Update_Column =
   | 'updated_at'
   /** column name */
   | 'user_id';
+
+export type Bookings_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Bookings_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Bookings_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Bookings_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Bookings_Var_Pop_Fields = {
@@ -484,7 +518,7 @@ export type Cities = {
   descr?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   img?: Maybe<Scalars['String']['output']>;
-  /** fetch data from the table: "locations" */
+  /** An array relationship */
   locations: Array<Locations>;
   /** An aggregate relationship */
   locations_aggregate: Locations_Aggregate;
@@ -583,14 +617,16 @@ export type Cities_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   img?: InputMaybe<String_Comparison_Exp>;
   locations?: InputMaybe<Locations_Bool_Exp>;
+  locations_aggregate?: InputMaybe<Locations_Aggregate_Bool_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   routes?: InputMaybe<Routes_Bool_Exp>;
+  routes_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "cities" */
 export type Cities_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'cities_pkey';
 
 /** input type for incrementing numeric columns in table "cities" */
@@ -647,11 +683,11 @@ export type Cities_Mutation_Response = {
 /** input type for inserting object relation for remote table "cities" */
 export type Cities_Obj_Rel_Insert_Input = {
   data: Cities_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Cities_On_Conflict>;
 };
 
-/** on conflict condition type for table "cities" */
+/** on_conflict condition type for table "cities" */
 export type Cities_On_Conflict = {
   constraint: Cities_Constraint;
   update_columns?: Array<Cities_Update_Column>;
@@ -722,6 +758,25 @@ export type Cities_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** Streaming cursor of the table "cities" */
+export type Cities_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Cities_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Cities_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  descr?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  img?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Cities_Sum_Fields = {
   __typename?: 'cities_sum_fields';
@@ -745,6 +800,15 @@ export type Cities_Update_Column =
   /** column name */
   | 'updated_at';
 
+export type Cities_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Cities_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Cities_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Cities_Bool_Exp;
+};
+
 /** aggregate var_pop on columns */
 export type Cities_Var_Pop_Fields = {
   __typename?: 'cities_var_pop_fields';
@@ -762,6 +826,13 @@ export type Cities_Variance_Fields = {
   __typename?: 'cities_variance_fields';
   id?: Maybe<Scalars['Float']['output']>;
 };
+
+/** ordering argument of a cursor */
+export type Cursor_Ordering =
+  /** ascending ordering of the cursor */
+  | 'ASC'
+  /** descending ordering of the cursor */
+  | 'DESC';
 
 /** columns and relationships of "itinerary" */
 export type Itinerary = {
@@ -817,6 +888,17 @@ export type Itinerary_Aggregate = {
   nodes: Array<Itinerary>;
 };
 
+export type Itinerary_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Count>;
+};
+
+export type Itinerary_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Itinerary_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Itinerary_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "itinerary" */
 export type Itinerary_Aggregate_Fields = {
   __typename?: 'itinerary_aggregate_fields';
@@ -858,7 +940,7 @@ export type Itinerary_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "itinerary" */
 export type Itinerary_Arr_Rel_Insert_Input = {
   data: Array<Itinerary_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Itinerary_On_Conflict>;
 };
 
@@ -889,6 +971,7 @@ export type Itinerary_Bool_Exp = {
   _not?: InputMaybe<Itinerary_Bool_Exp>;
   _or?: InputMaybe<Array<Itinerary_Bool_Exp>>;
   bookings?: InputMaybe<Bookings_Bool_Exp>;
+  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Bool_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
@@ -907,7 +990,7 @@ export type Itinerary_Bool_Exp = {
 
 /** unique or primary key constraints on table "itinerary" */
 export type Itinerary_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'itinerary_pkey';
 
 /** input type for incrementing numeric columns in table "itinerary" */
@@ -1009,11 +1092,11 @@ export type Itinerary_Mutation_Response = {
 /** input type for inserting object relation for remote table "itinerary" */
 export type Itinerary_Obj_Rel_Insert_Input = {
   data: Itinerary_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Itinerary_On_Conflict>;
 };
 
-/** on conflict condition type for table "itinerary" */
+/** on_conflict condition type for table "itinerary" */
 export type Itinerary_On_Conflict = {
   constraint: Itinerary_Constraint;
   update_columns?: Array<Itinerary_Update_Column>;
@@ -1144,6 +1227,28 @@ export type Itinerary_Stddev_Samp_Order_By = {
   vehicle_types_id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "itinerary" */
+export type Itinerary_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Itinerary_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Itinerary_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  option_id?: InputMaybe<Scalars['Int']['input']>;
+  price?: InputMaybe<Scalars['numeric']['input']>;
+  provider_id?: InputMaybe<Scalars['Int']['input']>;
+  route_id?: InputMaybe<Scalars['Int']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Itinerary_Sum_Fields = {
   __typename?: 'itinerary_sum_fields';
@@ -1187,6 +1292,15 @@ export type Itinerary_Update_Column =
   | 'updated_at'
   /** column name */
   | 'vehicle_types_id';
+
+export type Itinerary_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Itinerary_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Itinerary_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Itinerary_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Itinerary_Var_Pop_Fields = {
@@ -1260,7 +1374,7 @@ export type Locations = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id: Scalars['Int']['output'];
-  isactive: Scalars['Boolean']['output'];
+  isactive?: Maybe<Scalars['Boolean']['output']>;
   name: Scalars['String']['output'];
   /** An array relationship */
   routes: Array<Routes>;
@@ -1320,6 +1434,33 @@ export type Locations_Aggregate = {
   nodes: Array<Locations>;
 };
 
+export type Locations_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Locations_Aggregate_Bool_Exp_Count>;
+};
+
+export type Locations_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Locations_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Locations_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Locations_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Locations_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Locations_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Locations_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "locations" */
 export type Locations_Aggregate_Fields = {
   __typename?: 'locations_aggregate_fields';
@@ -1361,7 +1502,7 @@ export type Locations_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "locations" */
 export type Locations_Arr_Rel_Insert_Input = {
   data: Array<Locations_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Locations_On_Conflict>;
 };
 
@@ -1392,12 +1533,14 @@ export type Locations_Bool_Exp = {
   name?: InputMaybe<String_Comparison_Exp>;
   routes?: InputMaybe<Routes_Bool_Exp>;
   routesByStartLocation?: InputMaybe<Routes_Bool_Exp>;
+  routesByStartLocation_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>;
+  routes_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "locations" */
 export type Locations_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'locations_pkey';
 
 /** input type for incrementing numeric columns in table "locations" */
@@ -1474,11 +1617,11 @@ export type Locations_Mutation_Response = {
 /** input type for inserting object relation for remote table "locations" */
 export type Locations_Obj_Rel_Insert_Input = {
   data: Locations_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Locations_On_Conflict>;
 };
 
-/** on conflict condition type for table "locations" */
+/** on_conflict condition type for table "locations" */
 export type Locations_On_Conflict = {
   constraint: Locations_Constraint;
   update_columns?: Array<Locations_Update_Column>;
@@ -1520,6 +1663,16 @@ export type Locations_Select_Column =
   | 'name'
   /** column name */
   | 'updated_at';
+
+/** select "locations_aggregate_bool_exp_bool_and_arguments_columns" columns of table "locations" */
+export type Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
+  /** column name */
+  | 'isactive';
+
+/** select "locations_aggregate_bool_exp_bool_or_arguments_columns" columns of table "locations" */
+export type Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
+  /** column name */
+  | 'isactive';
 
 /** input type for updating data in table "locations" */
 export type Locations_Set_Input = {
@@ -1571,6 +1724,25 @@ export type Locations_Stddev_Samp_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "locations" */
+export type Locations_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Locations_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Locations_Stream_Cursor_Value_Input = {
+  city_id?: InputMaybe<Scalars['Int']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Locations_Sum_Fields = {
   __typename?: 'locations_sum_fields';
@@ -1600,6 +1772,15 @@ export type Locations_Update_Column =
   | 'name'
   /** column name */
   | 'updated_at';
+
+export type Locations_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Locations_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Locations_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Locations_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Locations_Var_Pop_Fields = {
@@ -1643,8 +1824,6 @@ export type Locations_Variance_Order_By = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  /** actionLogin */
-  actionLogin?: Maybe<AuthOutput>;
   /** delete data from the table: "bookings" */
   delete_bookings?: Maybe<Bookings_Mutation_Response>;
   /** delete single row from the table: "bookings" */
@@ -1723,52 +1902,56 @@ export type Mutation_Root = {
   update_bookings?: Maybe<Bookings_Mutation_Response>;
   /** update single row of the table: "bookings" */
   update_bookings_by_pk?: Maybe<Bookings>;
+  /** update multiples rows of table: "bookings" */
+  update_bookings_many?: Maybe<Array<Maybe<Bookings_Mutation_Response>>>;
   /** update data of the table: "cities" */
   update_cities?: Maybe<Cities_Mutation_Response>;
   /** update single row of the table: "cities" */
   update_cities_by_pk?: Maybe<Cities>;
+  /** update multiples rows of table: "cities" */
+  update_cities_many?: Maybe<Array<Maybe<Cities_Mutation_Response>>>;
   /** update data of the table: "itinerary" */
   update_itinerary?: Maybe<Itinerary_Mutation_Response>;
   /** update single row of the table: "itinerary" */
   update_itinerary_by_pk?: Maybe<Itinerary>;
+  /** update multiples rows of table: "itinerary" */
+  update_itinerary_many?: Maybe<Array<Maybe<Itinerary_Mutation_Response>>>;
   /** update data of the table: "locations" */
   update_locations?: Maybe<Locations_Mutation_Response>;
   /** update single row of the table: "locations" */
   update_locations_by_pk?: Maybe<Locations>;
+  /** update multiples rows of table: "locations" */
+  update_locations_many?: Maybe<Array<Maybe<Locations_Mutation_Response>>>;
   /** update data of the table: "options" */
   update_options?: Maybe<Options_Mutation_Response>;
   /** update single row of the table: "options" */
   update_options_by_pk?: Maybe<Options>;
+  /** update multiples rows of table: "options" */
+  update_options_many?: Maybe<Array<Maybe<Options_Mutation_Response>>>;
   /** update data of the table: "providers" */
   update_providers?: Maybe<Providers_Mutation_Response>;
   /** update single row of the table: "providers" */
   update_providers_by_pk?: Maybe<Providers>;
+  /** update multiples rows of table: "providers" */
+  update_providers_many?: Maybe<Array<Maybe<Providers_Mutation_Response>>>;
   /** update data of the table: "routes" */
   update_routes?: Maybe<Routes_Mutation_Response>;
   /** update single row of the table: "routes" */
   update_routes_by_pk?: Maybe<Routes>;
+  /** update multiples rows of table: "routes" */
+  update_routes_many?: Maybe<Array<Maybe<Routes_Mutation_Response>>>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
+  /** update multiples rows of table: "users" */
+  update_users_many?: Maybe<Array<Maybe<Users_Mutation_Response>>>;
   /** update data of the table: "vehicle_types" */
   update_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>;
   /** update single row of the table: "vehicle_types" */
   update_vehicle_types_by_pk?: Maybe<Vehicle_Types>;
-};
-
-
-/** mutation root */
-export type Mutation_RootActionLoginArgs = {
-  token: Scalars['String']['input'];
-  tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** mutation root */
-export type Mutation_RootActionLoginArgs = {
-  token: Scalars['String']['input'];
-  tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
+  /** update multiples rows of table: "vehicle_types" */
+  update_vehicle_types_many?: Maybe<Array<Maybe<Vehicle_Types_Mutation_Response>>>;
 };
 
 
@@ -2030,6 +2213,12 @@ export type Mutation_RootUpdate_Bookings_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Bookings_ManyArgs = {
+  updates: Array<Bookings_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_CitiesArgs = {
   _inc?: InputMaybe<Cities_Inc_Input>;
   _set?: InputMaybe<Cities_Set_Input>;
@@ -2042,6 +2231,12 @@ export type Mutation_RootUpdate_Cities_By_PkArgs = {
   _inc?: InputMaybe<Cities_Inc_Input>;
   _set?: InputMaybe<Cities_Set_Input>;
   pk_columns: Cities_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Cities_ManyArgs = {
+  updates: Array<Cities_Updates>;
 };
 
 
@@ -2062,6 +2257,12 @@ export type Mutation_RootUpdate_Itinerary_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Itinerary_ManyArgs = {
+  updates: Array<Itinerary_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_LocationsArgs = {
   _inc?: InputMaybe<Locations_Inc_Input>;
   _set?: InputMaybe<Locations_Set_Input>;
@@ -2074,6 +2275,12 @@ export type Mutation_RootUpdate_Locations_By_PkArgs = {
   _inc?: InputMaybe<Locations_Inc_Input>;
   _set?: InputMaybe<Locations_Set_Input>;
   pk_columns: Locations_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Locations_ManyArgs = {
+  updates: Array<Locations_Updates>;
 };
 
 
@@ -2094,6 +2301,12 @@ export type Mutation_RootUpdate_Options_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Options_ManyArgs = {
+  updates: Array<Options_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_ProvidersArgs = {
   _inc?: InputMaybe<Providers_Inc_Input>;
   _set?: InputMaybe<Providers_Set_Input>;
@@ -2106,6 +2319,12 @@ export type Mutation_RootUpdate_Providers_By_PkArgs = {
   _inc?: InputMaybe<Providers_Inc_Input>;
   _set?: InputMaybe<Providers_Set_Input>;
   pk_columns: Providers_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Providers_ManyArgs = {
+  updates: Array<Providers_Updates>;
 };
 
 
@@ -2126,6 +2345,12 @@ export type Mutation_RootUpdate_Routes_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Routes_ManyArgs = {
+  updates: Array<Routes_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_UsersArgs = {
   _inc?: InputMaybe<Users_Inc_Input>;
   _set?: InputMaybe<Users_Set_Input>;
@@ -2142,6 +2367,12 @@ export type Mutation_RootUpdate_Users_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Users_ManyArgs = {
+  updates: Array<Users_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Vehicle_TypesArgs = {
   _inc?: InputMaybe<Vehicle_Types_Inc_Input>;
   _set?: InputMaybe<Vehicle_Types_Set_Input>;
@@ -2154,6 +2385,12 @@ export type Mutation_RootUpdate_Vehicle_Types_By_PkArgs = {
   _inc?: InputMaybe<Vehicle_Types_Inc_Input>;
   _set?: InputMaybe<Vehicle_Types_Set_Input>;
   pk_columns: Vehicle_Types_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Vehicle_Types_ManyArgs = {
+  updates: Array<Vehicle_Types_Updates>;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
@@ -2248,13 +2485,14 @@ export type Options_Bool_Exp = {
   deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   itineraries?: InputMaybe<Itinerary_Bool_Exp>;
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
   round_type?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "options" */
 export type Options_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'options_pkey';
 
 /** input type for incrementing numeric columns in table "options" */
@@ -2304,11 +2542,11 @@ export type Options_Mutation_Response = {
 /** input type for inserting object relation for remote table "options" */
 export type Options_Obj_Rel_Insert_Input = {
   data: Options_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Options_On_Conflict>;
 };
 
-/** on conflict condition type for table "options" */
+/** on_conflict condition type for table "options" */
 export type Options_On_Conflict = {
   constraint: Options_Constraint;
   update_columns?: Array<Options_Update_Column>;
@@ -2370,6 +2608,23 @@ export type Options_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** Streaming cursor of the table "options" */
+export type Options_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Options_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Options_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  round_type?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Options_Sum_Fields = {
   __typename?: 'options_sum_fields';
@@ -2388,6 +2643,15 @@ export type Options_Update_Column =
   | 'round_type'
   /** column name */
   | 'updated_at';
+
+export type Options_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Options_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Options_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Options_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Options_Var_Pop_Fields = {
@@ -2429,6 +2693,7 @@ export type Providers = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id: Scalars['Int']['output'];
+  isactive: Scalars['Boolean']['output'];
   /** An array relationship */
   itineraries: Array<Itinerary>;
   /** An aggregate relationship */
@@ -2505,7 +2770,9 @@ export type Providers_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
+  isactive?: InputMaybe<Boolean_Comparison_Exp>;
   itineraries?: InputMaybe<Itinerary_Bool_Exp>;
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   note?: InputMaybe<String_Comparison_Exp>;
   phone_number?: InputMaybe<String_Comparison_Exp>;
@@ -2515,7 +2782,7 @@ export type Providers_Bool_Exp = {
 
 /** unique or primary key constraints on table "providers" */
 export type Providers_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'providers_pkey';
 
 /** input type for incrementing numeric columns in table "providers" */
@@ -2529,6 +2796,7 @@ export type Providers_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>;
   name?: InputMaybe<Scalars['String']['input']>;
   note?: InputMaybe<Scalars['String']['input']>;
@@ -2577,11 +2845,11 @@ export type Providers_Mutation_Response = {
 /** input type for inserting object relation for remote table "providers" */
 export type Providers_Obj_Rel_Insert_Input = {
   data: Providers_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Providers_On_Conflict>;
 };
 
-/** on conflict condition type for table "providers" */
+/** on_conflict condition type for table "providers" */
 export type Providers_On_Conflict = {
   constraint: Providers_Constraint;
   update_columns?: Array<Providers_Update_Column>;
@@ -2594,6 +2862,7 @@ export type Providers_Order_By = {
   created_at?: InputMaybe<Order_By>;
   deleted_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  isactive?: InputMaybe<Order_By>;
   itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>;
   name?: InputMaybe<Order_By>;
   note?: InputMaybe<Order_By>;
@@ -2618,6 +2887,8 @@ export type Providers_Select_Column =
   /** column name */
   | 'id'
   /** column name */
+  | 'isactive'
+  /** column name */
   | 'name'
   /** column name */
   | 'note'
@@ -2634,6 +2905,7 @@ export type Providers_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   note?: InputMaybe<Scalars['String']['input']>;
   phone_number?: InputMaybe<Scalars['String']['input']>;
@@ -2659,6 +2931,28 @@ export type Providers_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** Streaming cursor of the table "providers" */
+export type Providers_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Providers_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Providers_Stream_Cursor_Value_Input = {
+  address?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+  telegram_id?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Providers_Sum_Fields = {
   __typename?: 'providers_sum_fields';
@@ -2676,6 +2970,8 @@ export type Providers_Update_Column =
   /** column name */
   | 'id'
   /** column name */
+  | 'isactive'
+  /** column name */
   | 'name'
   /** column name */
   | 'note'
@@ -2685,6 +2981,15 @@ export type Providers_Update_Column =
   | 'telegram_id'
   /** column name */
   | 'updated_at';
+
+export type Providers_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Providers_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Providers_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Providers_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Providers_Var_Pop_Fields = {
@@ -2724,7 +3029,7 @@ export type Query_Root = {
   itinerary_aggregate: Itinerary_Aggregate;
   /** fetch data from the table: "itinerary" using primary key columns */
   itinerary_by_pk?: Maybe<Itinerary>;
-  /** fetch data from the table: "locations" */
+  /** An array relationship */
   locations: Array<Locations>;
   /** An aggregate relationship */
   locations_aggregate: Locations_Aggregate;
@@ -3019,6 +3324,33 @@ export type Routes_Aggregate = {
   nodes: Array<Routes>;
 };
 
+export type Routes_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Routes_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Routes_Aggregate_Bool_Exp_Bool_Or>;
+  count?: InputMaybe<Routes_Aggregate_Bool_Exp_Count>;
+};
+
+export type Routes_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Routes_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Routes_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Routes_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Routes_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Routes_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Routes_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
 /** aggregate fields of "routes" */
 export type Routes_Aggregate_Fields = {
   __typename?: 'routes_aggregate_fields';
@@ -3060,7 +3392,7 @@ export type Routes_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "routes" */
 export type Routes_Arr_Rel_Insert_Input = {
   data: Array<Routes_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Routes_On_Conflict>;
 };
 
@@ -3094,6 +3426,7 @@ export type Routes_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   is_enable?: InputMaybe<Boolean_Comparison_Exp>;
   itineraries?: InputMaybe<Itinerary_Bool_Exp>;
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
   location?: InputMaybe<Locations_Bool_Exp>;
   locationByStartLocation?: InputMaybe<Locations_Bool_Exp>;
   start_location?: InputMaybe<Int_Comparison_Exp>;
@@ -3102,7 +3435,7 @@ export type Routes_Bool_Exp = {
 
 /** unique or primary key constraints on table "routes" */
 export type Routes_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'routes_pkey';
 
 /** input type for incrementing numeric columns in table "routes" */
@@ -3187,11 +3520,11 @@ export type Routes_Mutation_Response = {
 /** input type for inserting object relation for remote table "routes" */
 export type Routes_Obj_Rel_Insert_Input = {
   data: Routes_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Routes_On_Conflict>;
 };
 
-/** on conflict condition type for table "routes" */
+/** on_conflict condition type for table "routes" */
 export type Routes_On_Conflict = {
   constraint: Routes_Constraint;
   update_columns?: Array<Routes_Update_Column>;
@@ -3237,6 +3570,16 @@ export type Routes_Select_Column =
   | 'start_location'
   /** column name */
   | 'updated_at';
+
+/** select "routes_aggregate_bool_exp_bool_and_arguments_columns" columns of table "routes" */
+export type Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
+  /** column name */
+  | 'is_enable';
+
+/** select "routes_aggregate_bool_exp_bool_or_arguments_columns" columns of table "routes" */
+export type Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
+  /** column name */
+  | 'is_enable';
 
 /** input type for updating data in table "routes" */
 export type Routes_Set_Input = {
@@ -3301,6 +3644,26 @@ export type Routes_Stddev_Samp_Order_By = {
   start_location?: InputMaybe<Order_By>;
 };
 
+/** Streaming cursor of the table "routes" */
+export type Routes_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Routes_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Routes_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  end_location?: InputMaybe<Scalars['Int']['input']>;
+  from_city?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  is_enable?: InputMaybe<Scalars['Boolean']['input']>;
+  start_location?: InputMaybe<Scalars['Int']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Routes_Sum_Fields = {
   __typename?: 'routes_sum_fields';
@@ -3336,6 +3699,15 @@ export type Routes_Update_Column =
   | 'start_location'
   /** column name */
   | 'updated_at';
+
+export type Routes_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Routes_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Routes_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Routes_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Routes_Var_Pop_Fields = {
@@ -3396,54 +3768,72 @@ export type Subscription_Root = {
   bookings_aggregate: Bookings_Aggregate;
   /** fetch data from the table: "bookings" using primary key columns */
   bookings_by_pk?: Maybe<Bookings>;
+  /** fetch data from the table in a streaming manner: "bookings" */
+  bookings_stream: Array<Bookings>;
   /** fetch data from the table: "cities" */
   cities: Array<Cities>;
   /** fetch aggregated fields from the table: "cities" */
   cities_aggregate: Cities_Aggregate;
   /** fetch data from the table: "cities" using primary key columns */
   cities_by_pk?: Maybe<Cities>;
+  /** fetch data from the table in a streaming manner: "cities" */
+  cities_stream: Array<Cities>;
   /** fetch data from the table: "itinerary" */
   itinerary: Array<Itinerary>;
   /** fetch aggregated fields from the table: "itinerary" */
   itinerary_aggregate: Itinerary_Aggregate;
   /** fetch data from the table: "itinerary" using primary key columns */
   itinerary_by_pk?: Maybe<Itinerary>;
-  /** fetch data from the table: "locations" */
+  /** fetch data from the table in a streaming manner: "itinerary" */
+  itinerary_stream: Array<Itinerary>;
+  /** An array relationship */
   locations: Array<Locations>;
   /** An aggregate relationship */
   locations_aggregate: Locations_Aggregate;
   /** fetch data from the table: "locations" using primary key columns */
   locations_by_pk?: Maybe<Locations>;
+  /** fetch data from the table in a streaming manner: "locations" */
+  locations_stream: Array<Locations>;
   /** fetch data from the table: "options" */
   options: Array<Options>;
   /** fetch aggregated fields from the table: "options" */
   options_aggregate: Options_Aggregate;
   /** fetch data from the table: "options" using primary key columns */
   options_by_pk?: Maybe<Options>;
+  /** fetch data from the table in a streaming manner: "options" */
+  options_stream: Array<Options>;
   /** fetch data from the table: "providers" */
   providers: Array<Providers>;
   /** fetch aggregated fields from the table: "providers" */
   providers_aggregate: Providers_Aggregate;
   /** fetch data from the table: "providers" using primary key columns */
   providers_by_pk?: Maybe<Providers>;
+  /** fetch data from the table in a streaming manner: "providers" */
+  providers_stream: Array<Providers>;
   /** An array relationship */
   routes: Array<Routes>;
   /** An aggregate relationship */
   routes_aggregate: Routes_Aggregate;
   /** fetch data from the table: "routes" using primary key columns */
   routes_by_pk?: Maybe<Routes>;
+  /** fetch data from the table in a streaming manner: "routes" */
+  routes_stream: Array<Routes>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+  /** fetch data from the table in a streaming manner: "users" */
+  users_stream: Array<Users>;
   /** fetch data from the table: "vehicle_types" */
   vehicle_types: Array<Vehicle_Types>;
   /** fetch aggregated fields from the table: "vehicle_types" */
   vehicle_types_aggregate: Vehicle_Types_Aggregate;
   /** fetch data from the table: "vehicle_types" using primary key columns */
   vehicle_types_by_pk?: Maybe<Vehicle_Types>;
+  /** fetch data from the table in a streaming manner: "vehicle_types" */
+  vehicle_types_stream: Array<Vehicle_Types>;
 };
 
 
@@ -3470,6 +3860,13 @@ export type Subscription_RootBookings_By_PkArgs = {
 };
 
 
+export type Subscription_RootBookings_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Bookings_Stream_Cursor_Input>>;
+  where?: InputMaybe<Bookings_Bool_Exp>;
+};
+
+
 export type Subscription_RootCitiesArgs = {
   distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3490,6 +3887,13 @@ export type Subscription_RootCities_AggregateArgs = {
 
 export type Subscription_RootCities_By_PkArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootCities_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Cities_Stream_Cursor_Input>>;
+  where?: InputMaybe<Cities_Bool_Exp>;
 };
 
 
@@ -3516,6 +3920,13 @@ export type Subscription_RootItinerary_By_PkArgs = {
 };
 
 
+export type Subscription_RootItinerary_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Itinerary_Stream_Cursor_Input>>;
+  where?: InputMaybe<Itinerary_Bool_Exp>;
+};
+
+
 export type Subscription_RootLocationsArgs = {
   distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3536,6 +3947,13 @@ export type Subscription_RootLocations_AggregateArgs = {
 
 export type Subscription_RootLocations_By_PkArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootLocations_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Locations_Stream_Cursor_Input>>;
+  where?: InputMaybe<Locations_Bool_Exp>;
 };
 
 
@@ -3562,6 +3980,13 @@ export type Subscription_RootOptions_By_PkArgs = {
 };
 
 
+export type Subscription_RootOptions_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Options_Stream_Cursor_Input>>;
+  where?: InputMaybe<Options_Bool_Exp>;
+};
+
+
 export type Subscription_RootProvidersArgs = {
   distinct_on?: InputMaybe<Array<Providers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3582,6 +4007,13 @@ export type Subscription_RootProviders_AggregateArgs = {
 
 export type Subscription_RootProviders_By_PkArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootProviders_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Providers_Stream_Cursor_Input>>;
+  where?: InputMaybe<Providers_Bool_Exp>;
 };
 
 
@@ -3608,6 +4040,13 @@ export type Subscription_RootRoutes_By_PkArgs = {
 };
 
 
+export type Subscription_RootRoutes_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Routes_Stream_Cursor_Input>>;
+  where?: InputMaybe<Routes_Bool_Exp>;
+};
+
+
 export type Subscription_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3631,6 +4070,13 @@ export type Subscription_RootUsers_By_PkArgs = {
 };
 
 
+export type Subscription_RootUsers_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Users_Stream_Cursor_Input>>;
+  where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
 export type Subscription_RootVehicle_TypesArgs = {
   distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3651,6 +4097,13 @@ export type Subscription_RootVehicle_Types_AggregateArgs = {
 
 export type Subscription_RootVehicle_Types_By_PkArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootVehicle_Types_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Vehicle_Types_Stream_Cursor_Input>>;
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -3747,6 +4200,7 @@ export type Users_Bool_Exp = {
   _not?: InputMaybe<Users_Bool_Exp>;
   _or?: InputMaybe<Array<Users_Bool_Exp>>;
   bookings?: InputMaybe<Bookings_Bool_Exp>;
+  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Bool_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
@@ -3761,9 +4215,9 @@ export type Users_Bool_Exp = {
 
 /** unique or primary key constraints on table "users" */
 export type Users_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "email" */
   | 'users_email_key'
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'users_pkey';
 
 /** input type for incrementing numeric columns in table "users" */
@@ -3828,11 +4282,11 @@ export type Users_Mutation_Response = {
 /** input type for inserting object relation for remote table "users" */
 export type Users_Obj_Rel_Insert_Input = {
   data: Users_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Users_On_Conflict>;
 };
 
-/** on conflict condition type for table "users" */
+/** on_conflict condition type for table "users" */
 export type Users_On_Conflict = {
   constraint: Users_Constraint;
   update_columns?: Array<Users_Update_Column>;
@@ -3914,6 +4368,28 @@ export type Users_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** Streaming cursor of the table "users" */
+export type Users_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Users_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Users_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  zalo_id?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Users_Sum_Fields = {
   __typename?: 'users_sum_fields';
@@ -3942,6 +4418,15 @@ export type Users_Update_Column =
   | 'updated_at'
   /** column name */
   | 'zalo_id';
+
+export type Users_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Users_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Users_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Users_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Users_Var_Pop_Fields = {
@@ -4040,13 +4525,14 @@ export type Vehicle_Types_Bool_Exp = {
   deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   itineraries?: InputMaybe<Itinerary_Bool_Exp>;
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
   type?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "vehicle_types" */
 export type Vehicle_Types_Constraint =
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   | 'vehicle_types_pkey';
 
 /** input type for incrementing numeric columns in table "vehicle_types" */
@@ -4096,11 +4582,11 @@ export type Vehicle_Types_Mutation_Response = {
 /** input type for inserting object relation for remote table "vehicle_types" */
 export type Vehicle_Types_Obj_Rel_Insert_Input = {
   data: Vehicle_Types_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>;
 };
 
-/** on conflict condition type for table "vehicle_types" */
+/** on_conflict condition type for table "vehicle_types" */
 export type Vehicle_Types_On_Conflict = {
   constraint: Vehicle_Types_Constraint;
   update_columns?: Array<Vehicle_Types_Update_Column>;
@@ -4162,6 +4648,23 @@ export type Vehicle_Types_Stddev_Samp_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** Streaming cursor of the table "vehicle_types" */
+export type Vehicle_Types_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Vehicle_Types_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Vehicle_Types_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
 /** aggregate sum on columns */
 export type Vehicle_Types_Sum_Fields = {
   __typename?: 'vehicle_types_sum_fields';
@@ -4180,6 +4683,15 @@ export type Vehicle_Types_Update_Column =
   | 'type'
   /** column name */
   | 'updated_at';
+
+export type Vehicle_Types_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Vehicle_Types_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Vehicle_Types_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Vehicle_Types_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type Vehicle_Types_Var_Pop_Fields = {
@@ -4215,7 +4727,7 @@ export type GetLocationsQueryVariables = Exact<{
 }>;
 
 
-export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, isactive: boolean, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
+export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
 
 export type DeleteLocationMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -4229,7 +4741,7 @@ export type GetLocationQueryVariables = Exact<{
 }>;
 
 
-export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, isactive: boolean, city: { __typename?: 'cities', id: number, name: string } } | null };
+export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string } } | null };
 
 export type InsertLocationMutationVariables = Exact<{
   city_id: Scalars['Int']['input'];
@@ -4257,6 +4769,61 @@ export type LoginAdminMutationVariables = Exact<{
 
 
 export type LoginAdminMutation = { __typename?: 'mutation_root', loginAdmin: { __typename?: 'AuthAdminOutput', token: string, name: string, role: string } };
+
+export type GetProvidersQueryVariables = Exact<{
+  where?: InputMaybe<Providers_Bool_Exp>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetProvidersQuery = { __typename?: 'query_root', providers: Array<{ __typename?: 'providers', id: number, address?: string | null, created_at?: any | null, name: string, note?: string | null, phone_number?: string | null, telegram_id?: string | null, isactive: boolean }>, providers_aggregate: { __typename?: 'providers_aggregate', aggregate?: { __typename?: 'providers_aggregate_fields', count: number } | null } };
+
+export type InsertProviderMutationVariables = Exact<{
+  address?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+  telegram_id?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type InsertProviderMutation = { __typename?: 'mutation_root', insert_providers_one?: { __typename?: 'providers', id: number } | null };
+
+export type DeleteProviderMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DeleteProviderMutation = { __typename?: 'mutation_root', delete_providers_by_pk?: { __typename?: 'providers', id: number } | null };
+
+export type UpdateProviderMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  address?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  phone_number?: InputMaybe<Scalars['String']['input']>;
+  telegram_id?: InputMaybe<Scalars['String']['input']>;
+  isactive?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type UpdateProviderMutation = { __typename?: 'mutation_root', update_providers_by_pk?: { __typename?: 'providers', id: number } | null };
+
+export type UpdateProviderEnableMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type UpdateProviderEnableMutation = { __typename?: 'mutation_root', update_providers_by_pk?: { __typename?: 'providers', id: number } | null };
+
+export type FindOneProviderQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type FindOneProviderQuery = { __typename?: 'query_root', providers_by_pk?: { __typename?: 'providers', address?: string | null, created_at?: any | null, deleted_at?: any | null, id: number, isactive: boolean, name: string, note?: string | null, phone_number?: string | null, telegram_id?: string | null, updated_at?: any | null } | null };
 
 export type FindManyQueryVariables = Exact<{
   where: Users_Bool_Exp;
@@ -4597,6 +5164,262 @@ export function useLoginAdminMutation(baseOptions?: Apollo.MutationHookOptions<L
 export type LoginAdminMutationHookResult = ReturnType<typeof useLoginAdminMutation>;
 export type LoginAdminMutationResult = Apollo.MutationResult<LoginAdminMutation>;
 export type LoginAdminMutationOptions = Apollo.BaseMutationOptions<LoginAdminMutation, LoginAdminMutationVariables>;
+export const GetProvidersDocument = gql`
+    query GetProviders($where: providers_bool_exp, $limit: Int, $offset: Int) {
+  providers(
+    where: $where
+    limit: $limit
+    offset: $offset
+    order_by: {created_at: desc}
+  ) {
+    id
+    address
+    created_at
+    name
+    note
+    phone_number
+    telegram_id
+    isactive
+  }
+  providers_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetProvidersQuery__
+ *
+ * To run a query within a React component, call `useGetProvidersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProvidersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProvidersQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useGetProvidersQuery(baseOptions?: Apollo.QueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options);
+      }
+export function useGetProvidersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options);
+        }
+export function useGetProvidersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options);
+        }
+export type GetProvidersQueryHookResult = ReturnType<typeof useGetProvidersQuery>;
+export type GetProvidersLazyQueryHookResult = ReturnType<typeof useGetProvidersLazyQuery>;
+export type GetProvidersSuspenseQueryHookResult = ReturnType<typeof useGetProvidersSuspenseQuery>;
+export type GetProvidersQueryResult = Apollo.QueryResult<GetProvidersQuery, GetProvidersQueryVariables>;
+export const InsertProviderDocument = gql`
+    mutation InsertProvider($address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean) {
+  insert_providers_one(
+    object: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive}
+  ) {
+    id
+  }
+}
+    `;
+export type InsertProviderMutationFn = Apollo.MutationFunction<InsertProviderMutation, InsertProviderMutationVariables>;
+
+/**
+ * __useInsertProviderMutation__
+ *
+ * To run a mutation, you first call `useInsertProviderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertProviderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertProviderMutation, { data, loading, error }] = useInsertProviderMutation({
+ *   variables: {
+ *      address: // value for 'address'
+ *      name: // value for 'name'
+ *      note: // value for 'note'
+ *      phone_number: // value for 'phone_number'
+ *      telegram_id: // value for 'telegram_id'
+ *      isactive: // value for 'isactive'
+ *   },
+ * });
+ */
+export function useInsertProviderMutation(baseOptions?: Apollo.MutationHookOptions<InsertProviderMutation, InsertProviderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertProviderMutation, InsertProviderMutationVariables>(InsertProviderDocument, options);
+      }
+export type InsertProviderMutationHookResult = ReturnType<typeof useInsertProviderMutation>;
+export type InsertProviderMutationResult = Apollo.MutationResult<InsertProviderMutation>;
+export type InsertProviderMutationOptions = Apollo.BaseMutationOptions<InsertProviderMutation, InsertProviderMutationVariables>;
+export const DeleteProviderDocument = gql`
+    mutation DeleteProvider($id: Int!) {
+  delete_providers_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteProviderMutationFn = Apollo.MutationFunction<DeleteProviderMutation, DeleteProviderMutationVariables>;
+
+/**
+ * __useDeleteProviderMutation__
+ *
+ * To run a mutation, you first call `useDeleteProviderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteProviderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteProviderMutation, { data, loading, error }] = useDeleteProviderMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteProviderMutation(baseOptions?: Apollo.MutationHookOptions<DeleteProviderMutation, DeleteProviderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteProviderMutation, DeleteProviderMutationVariables>(DeleteProviderDocument, options);
+      }
+export type DeleteProviderMutationHookResult = ReturnType<typeof useDeleteProviderMutation>;
+export type DeleteProviderMutationResult = Apollo.MutationResult<DeleteProviderMutation>;
+export type DeleteProviderMutationOptions = Apollo.BaseMutationOptions<DeleteProviderMutation, DeleteProviderMutationVariables>;
+export const UpdateProviderDocument = gql`
+    mutation UpdateProvider($id: Int!, $address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean) {
+  update_providers_by_pk(
+    pk_columns: {id: $id}
+    _set: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive}
+  ) {
+    id
+  }
+}
+    `;
+export type UpdateProviderMutationFn = Apollo.MutationFunction<UpdateProviderMutation, UpdateProviderMutationVariables>;
+
+/**
+ * __useUpdateProviderMutation__
+ *
+ * To run a mutation, you first call `useUpdateProviderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProviderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProviderMutation, { data, loading, error }] = useUpdateProviderMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      address: // value for 'address'
+ *      name: // value for 'name'
+ *      note: // value for 'note'
+ *      phone_number: // value for 'phone_number'
+ *      telegram_id: // value for 'telegram_id'
+ *      isactive: // value for 'isactive'
+ *   },
+ * });
+ */
+export function useUpdateProviderMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProviderMutation, UpdateProviderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateProviderMutation, UpdateProviderMutationVariables>(UpdateProviderDocument, options);
+      }
+export type UpdateProviderMutationHookResult = ReturnType<typeof useUpdateProviderMutation>;
+export type UpdateProviderMutationResult = Apollo.MutationResult<UpdateProviderMutation>;
+export type UpdateProviderMutationOptions = Apollo.BaseMutationOptions<UpdateProviderMutation, UpdateProviderMutationVariables>;
+export const UpdateProviderEnableDocument = gql`
+    mutation UpdateProviderEnable($id: Int!) {
+  update_providers_by_pk(pk_columns: {id: $id}, _set: {isactive: false}) {
+    id
+  }
+}
+    `;
+export type UpdateProviderEnableMutationFn = Apollo.MutationFunction<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>;
+
+/**
+ * __useUpdateProviderEnableMutation__
+ *
+ * To run a mutation, you first call `useUpdateProviderEnableMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProviderEnableMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProviderEnableMutation, { data, loading, error }] = useUpdateProviderEnableMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUpdateProviderEnableMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>(UpdateProviderEnableDocument, options);
+      }
+export type UpdateProviderEnableMutationHookResult = ReturnType<typeof useUpdateProviderEnableMutation>;
+export type UpdateProviderEnableMutationResult = Apollo.MutationResult<UpdateProviderEnableMutation>;
+export type UpdateProviderEnableMutationOptions = Apollo.BaseMutationOptions<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>;
+export const FindOneProviderDocument = gql`
+    query FindOneProvider($id: Int!) {
+  providers_by_pk(id: $id) {
+    address
+    created_at
+    deleted_at
+    id
+    isactive
+    name
+    note
+    phone_number
+    telegram_id
+    updated_at
+  }
+}
+    `;
+
+/**
+ * __useFindOneProviderQuery__
+ *
+ * To run a query within a React component, call `useFindOneProviderQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindOneProviderQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindOneProviderQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFindOneProviderQuery(baseOptions: Apollo.QueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables> & ({ variables: FindOneProviderQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options);
+      }
+export function useFindOneProviderLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options);
+        }
+export function useFindOneProviderSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options);
+        }
+export type FindOneProviderQueryHookResult = ReturnType<typeof useFindOneProviderQuery>;
+export type FindOneProviderLazyQueryHookResult = ReturnType<typeof useFindOneProviderLazyQuery>;
+export type FindOneProviderSuspenseQueryHookResult = ReturnType<typeof useFindOneProviderSuspenseQuery>;
+export type FindOneProviderQueryResult = Apollo.QueryResult<FindOneProviderQuery, FindOneProviderQueryVariables>;
 export const FindManyDocument = gql`
     query FindMany($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
   users(

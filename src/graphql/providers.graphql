@@ -1,0 +1,89 @@
+query GetProviders($where: providers_bool_exp, $limit: Int, $offset: Int) {
+  providers(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    address
+    created_at
+    name
+    note
+    phone_number
+    telegram_id
+    isactive
+  }
+  providers_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+mutation InsertProvider(
+  $address: String
+  $name: String
+  $note: String
+  $phone_number: String
+  $telegram_id: String
+  $isactive: Boolean
+) {
+  insert_providers_one(
+    object: {
+      address: $address
+      name: $name
+      note: $note
+      phone_number: $phone_number
+      telegram_id: $telegram_id
+      isactive: $isactive
+    }
+  ) {
+    id
+  }
+}
+
+mutation DeleteProvider($id: Int!) {
+  delete_providers_by_pk(id: $id) {
+    id
+  }
+}
+
+mutation UpdateProvider(
+  $id: Int!
+  $address: String
+  $name: String
+  $note: String
+  $phone_number: String
+  $telegram_id: String
+  $isactive: Boolean
+) {
+  update_providers_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      address: $address
+      name: $name
+      note: $note
+      phone_number: $phone_number
+      telegram_id: $telegram_id
+      isactive: $isactive
+    }
+  ) {
+    id
+  }
+}
+
+mutation UpdateProviderEnable($id: Int!) {
+  update_providers_by_pk(pk_columns: { id: $id }, _set: { isactive: false }) {
+    id
+  }
+}
+query FindOneProvider($id: Int!) {
+  providers_by_pk(id: $id) {
+    address
+    created_at
+    deleted_at
+    id
+    isactive
+    name
+    note
+    phone_number
+    telegram_id
+    updated_at
+  }
+}

@@ -1,118 +1,109 @@
 {
-    "uid": "users",
-    "layouts": {
-        "displayName": "User",
-        "creatable": false,
-        "editable": true,
-        "aggregateField": "users_aggregate",
-        "filterable": [
-            [
-                {
-                    "label": "Phone",
-                    "placeholder": "Enter phone number",
-                    "name": "phone_number",
-                    "size": 5,
-                    "type": "string"
-                },
-                {
-                    "label": "name",
-                    "placeholder": "Name",
-                    "name": "name",
-                    "size": 5,
-                    "type": "string"
-                }
-            ],
-            [
-                {
-                    "label": "Created At",
-                    "name": "createdAt",
-                    "size": 5,
-                    "type": "date"
-                }
-            ]
-        ],
-        "list": [
-            {
-                "key": "name",
-                "dataIndex": "name",
-                "title": "Name",
-                "align": "left"
-            },
-            {
-                "key": "email",
-                "dataIndex": "email",
-                "title": "Email",
-                "align": "left"
-            },
-            {
-                "key": "phone_number",
-                "dataIndex": "phone_number",
-                "title": "Phone",
-                "align": "left"
-            },
-            {
-                "key": "role",
-                "dataIndex": "role",
-                "title": "role",
-                "align": "left"
-            },
-            {
-                "key": "created_at",
-                "dataIndex": "created_at",
-                "title": "Created At",
-                "align": "center",
-                "note": "render-date"
-            }
-        ],
-        "edit": [
-            [
-                {
-                    "label": "Name",
-                    "placeholder": "Name",
-                    "name": "name",
-                    "size": 6,
-                    "type": "string",
-                    "required": true
-                },
-                {
-                    "label": "Email",
-                    "placeholder": "Email",
-                    "name": "email",
-                    "size": 6,
-                    "type": "string",
-                    "regex": [
-                        "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-                        "i"
-                    ],
-                    "required": true
-                }
-            ],
-            [
-                {
-                    "label": "Phone",
-                    "placeholder": "Phone",
-                    "name": "phone_number",
-                    "size": 6,
-                    "type": "string",
-                    "regex": [
-                        "^\\d{8,16}$",
-                        "i"
-                    ],
-                    "required": true
-                },
-                {
-                    "label": "Role",
-                    "name": "role",
-                    "size": 6,
-                    "multiple": true,
-                    "type": "enumeration",
-                    "enum": [
-                        "user",
-                        "admin"
-                    ]
-                }
-            ]
-        ],
-        "defaultValue": {}
-    }
+  "uid": "users",
+  "layouts": {
+    "displayName": "User",
+    "creatable": false,
+    "editable": true,
+    "aggregateField": "users_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "Phone",
+          "placeholder": "Enter phone number",
+          "name": "phone_number",
+          "size": 5,
+          "type": "string"
+        },
+        {
+          "label": "name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 5,
+          "type": "string"
+        }
+      ],
+      [
+        {
+          "label": "Created At",
+          "name": "createdAt",
+          "size": 5,
+          "type": "date"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "name",
+        "dataIndex": "name",
+        "title": "Name",
+        "align": "left"
+      },
+      {
+        "key": "email",
+        "dataIndex": "email",
+        "title": "Email",
+        "align": "left"
+      },
+      {
+        "key": "phone_number",
+        "dataIndex": "phone_number",
+        "title": "Phone",
+        "align": "left"
+      },
+      {
+        "key": "role",
+        "dataIndex": "role",
+        "title": "role",
+        "align": "left"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created At",
+        "align": "center",
+        "note": "render-date"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "Name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 6,
+          "type": "string",
+          "required": true
+        },
+        {
+          "label": "Email",
+          "placeholder": "Email",
+          "name": "email",
+          "size": 6,
+          "type": "string",
+          "regex": ["^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "i"],
+          "required": true
+        }
+      ],
+      [
+        {
+          "label": "Phone",
+          "placeholder": "Phone",
+          "name": "phone_number",
+          "size": 6,
+          "type": "string",
+          "regex": ["^\\d{8,16}$", "i"],
+          "required": true
+        },
+        {
+          "label": "Role",
+          "name": "role",
+          "size": 6,
+          "multiple": true,
+          "type": "enumeration",
+          "enum": ["user", "admin"]
+        }
+      ]
+    ],
+    "defaultValue": {}
+  }
 }

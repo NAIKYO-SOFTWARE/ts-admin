@@ -70,7 +70,12 @@ const DeleteRow = (props: { onOk: () => string | undefined }) => {
   )
 }
 
-const DataRow = (props: { uid: string; columns: ColumnsType<any>; onDelete: (id: string) => string | undefined }) => {
+const DataRow = (props: {
+  uid: string
+  columns: ColumnsType<any>
+  onDelete: (id: string) => string | undefined
+  deletable: boolean
+}) => {
   const loading = useTableStore((store) => store.loading)
   const dataSource = useTableStore((store) => store.dataSource)
   const id = `${props.uid}-${loading}`
@@ -103,7 +108,7 @@ const DataRow = (props: { uid: string; columns: ColumnsType<any>; onDelete: (id:
                 </Link>
               )}
 
-              {!record.deletable && <DeleteRow onOk={() => props.onDelete(record.id)} />}
+              {props.deletable && <DeleteRow onOk={() => props.onDelete(record.id)} />}
             </div>
           )
         }
