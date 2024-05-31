@@ -419,13 +419,14 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
   const useUpdateOne = queries[props.uid]?.updateOne
   const useCreateOne = queries[props.uid]?.createOne
 
-  const [onUpdate] = editable
-    ? useUpdateOne({
-        refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
-        awaitRefetchQueries: true
-      })
-    : [null]
-  const [onCreate] = creatable ? useCreateOne() : [null]
+  const [onUpdate] =
+    editable && useUpdateOne
+      ? useUpdateOne({
+          refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
+          awaitRefetchQueries: true
+        })
+      : [null]
+  const [onCreate] = creatable && useCreateOne ? useCreateOne() : [null]
 
   const { loading } = useFindOne({
     variables: {

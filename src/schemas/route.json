@@ -1,0 +1,143 @@
+{
+  "uid": "routes",
+  "layouts": {
+    "displayName": "Routes",
+    "creatable": true,
+    "editable": true,
+    "deletable": true,
+    "aggregateField": "routes_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "City",
+          "placeholder": "City",
+          "name": "city",
+          "size": 10,
+          "type": "string"
+        },
+        {
+          "label": "Enable",
+          "placeholder": "Enable",
+          "name": "is_enable",
+          "size": 2,
+          "type": "boolean"
+        },
+        {
+          "label": "Start",
+          "placeholder": "Start",
+          "name": "start_location",
+          "size": 5,
+          "type": "string"
+        },
+        {
+          "label": "End",
+          "placeholder": "End",
+          "name": "end",
+          "size": 5,
+          "type": "string"
+        }
+      ],
+      [
+        {
+          "label": "Created At",
+          "name": "createdAt",
+          "size": 10,
+          "type": "date"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "city",
+        "dataIndex": "city",
+        "title": "City",
+        "align": "left"
+      },
+      {
+        "key": "start_location",
+        "dataIndex": "start_location",
+        "title": "Start",
+        "align": "left"
+      },
+      {
+        "key": "end_location",
+        "dataIndex": "end_location",
+        "title": "End",
+        "align": "left"
+      },
+      {
+        "key": "is_enable",
+        "dataIndex": "is_enable",
+        "title": "Enable",
+        "align": "left",
+        "note": "render-bool"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created",
+        "align": "left",
+        "note": "render-date"
+      },
+      {
+        "key": "updated_at",
+        "dataIndex": "updated_at",
+        "title": "Updated",
+        "align": "left",
+        "note": "render-date"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "City",
+          "key": "city",
+          "dataIndex": "from_city",
+          "title": "City",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "cities",
+          "name": "from_city",
+          "size": 10,
+          "required": true
+        },
+        {
+          "label": "Enable",
+          "name": "is_enable",
+          "size": 2,
+          "type": "boolean"
+        },
+        {
+          "label": "Start",
+          "key": "start",
+          "dataIndex": "start",
+          "title": "Start",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "locations",
+          "name": "start_location",
+          "size": 5,
+          "required": true
+        },
+        {
+          "label": "End",
+          "key": "end",
+          "dataIndex": "end",
+          "title": "end",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "locations",
+          "name": "end_location",
+          "size": 5,
+          "required": true
+        }
+      ]
+    ],
+    "defaultValue": {
+      "isactive": true
+    }
+  }
+}

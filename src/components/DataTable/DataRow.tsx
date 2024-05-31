@@ -75,6 +75,7 @@ const DataRow = (props: {
   columns: ColumnsType<any>
   onDelete: (id: string) => string | undefined
   deletable: boolean
+  editable: boolean
 }) => {
   const loading = useTableStore((store) => store.loading)
   const dataSource = useTableStore((store) => store.dataSource)
@@ -102,7 +103,7 @@ const DataRow = (props: {
         render: (_, record) => {
           return (
             <div className='action'>
-              {!record.editable && (
+              {props.editable && (
                 <Link to={`/${props.uid}/${record.id}`}>
                   <img src='/view.svg' alt='' />
                 </Link>

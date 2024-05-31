@@ -70,6 +70,65 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "AuthOutput",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "token",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "SCALAR",
         "name": "Boolean",
         "description": "The `Boolean` scalar type represents `true` or `false`.",
@@ -4665,6 +4724,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "locations",
             "description": "An array relationship",
             "args": [
@@ -5455,6 +5526,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "locations",
             "description": null,
             "type": {
@@ -5631,6 +5714,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -6100,6 +6195,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "locations_aggregate",
             "description": null,
             "type": {
@@ -6218,6 +6325,12 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": "column name",
             "isDeprecated": false,
@@ -6292,6 +6405,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -6502,6 +6627,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -6587,6 +6724,12 @@
           },
           {
             "name": "img",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -6989,6 +7132,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "note",
             "description": null,
             "args": [],
@@ -7216,12 +7371,170 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "bool_and",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "itinerary_aggregate_bool_exp_bool_and",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bool_or",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "itinerary_aggregate_bool_exp_bool_or",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "count",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "itinerary_aggregate_bool_exp_count",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "itinerary_aggregate_bool_exp_bool_and",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "arguments",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "itinerary_select_column_itinerary_aggregate_bool_exp_bool_and_arguments_columns",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "distinct",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "filter",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "itinerary_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "predicate",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "Boolean_comparison_exp",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "itinerary_aggregate_bool_exp_bool_or",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "arguments",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "itinerary_select_column_itinerary_aggregate_bool_exp_bool_or_arguments_columns",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "distinct",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "filter",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "itinerary_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "predicate",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "Boolean_comparison_exp",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -7958,6 +8271,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "note",
             "description": null,
             "type": {
@@ -8242,6 +8567,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -9117,6 +9454,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "note",
             "description": null,
             "type": {
@@ -9307,6 +9656,12 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "note",
             "description": "column name",
             "isDeprecated": false,
@@ -9352,6 +9707,40 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "itinerary_select_column_itinerary_aggregate_bool_exp_bool_and_arguments_columns",
+        "description": "select \"itinerary_aggregate_bool_exp_bool_and_arguments_columns\" columns of table \"itinerary\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "itinerary_select_column_itinerary_aggregate_bool_exp_bool_or_arguments_columns",
+        "description": "select \"itinerary_aggregate_bool_exp_bool_or_arguments_columns\" columns of table \"itinerary\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "itinerary_set_input",
         "description": "input type for updating data in table \"itinerary\"",
@@ -9387,6 +9776,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -10062,6 +10463,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "note",
             "description": null,
             "type": {
@@ -10338,6 +10751,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -14135,6 +14554,47 @@
         "description": "mutation root",
         "fields": [
           {
+            "name": "actionLogin",
+            "description": "actionLogin",
+            "args": [
+              {
+                "name": "token",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "tokenGetPhone",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AuthOutput",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "delete_bookings",
             "description": "delete data from the table: \"bookings\"",
             "args": [
@@ -17027,6 +17487,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "itineraries",
             "description": "An array relationship",
             "args": [
@@ -17599,6 +18071,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "itineraries",
             "description": null,
             "type": {
@@ -17727,6 +18211,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -18112,6 +18608,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "itineraries_aggregate",
             "description": null,
             "type": {
@@ -18206,6 +18714,12 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "round_type",
             "description": "column name",
             "isDeprecated": false,
@@ -18256,6 +18770,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -18442,6 +18968,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "round_type",
             "description": null,
             "type": {
@@ -18515,6 +19053,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -22974,6 +23518,22 @@
             "deprecationReason": null
           },
           {
+            "name": "endlocation",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "locations",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "from_city",
             "description": null,
             "args": [],
@@ -23006,7 +23566,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": null,
             "args": [],
             "type": {
@@ -23212,38 +23772,6 @@
             "deprecationReason": null
           },
           {
-            "name": "location",
-            "description": "An object relationship",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "locations",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "locationByStartLocation",
-            "description": "An object relationship",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "locations",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "start_location",
             "description": null,
             "args": [],
@@ -23253,6 +23781,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "startlocation",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "locations",
                 "ofType": null
               }
             },
@@ -24171,6 +24715,18 @@
             "deprecationReason": null
           },
           {
+            "name": "endlocation",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "locations_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "from_city",
             "description": null,
             "type": {
@@ -24195,7 +24751,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -24231,35 +24787,23 @@
             "deprecationReason": null
           },
           {
-            "name": "location",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "locations_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "locationByStartLocation",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "locations_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "start_location",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "Int_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "startlocation",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "locations_bool_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -24414,6 +24958,18 @@
             "deprecationReason": null
           },
           {
+            "name": "endlocation",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "locations_obj_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "from_city",
             "description": null,
             "type": {
@@ -24438,7 +24994,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24462,35 +25018,23 @@
             "deprecationReason": null
           },
           {
-            "name": "location",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "locations_obj_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "locationByStartLocation",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "locations_obj_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "start_location",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "startlocation",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "locations_obj_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null,
@@ -25102,6 +25646,18 @@
             "deprecationReason": null
           },
           {
+            "name": "endlocation",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "locations_order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "from_city",
             "description": null,
             "type": {
@@ -25126,7 +25682,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -25150,35 +25706,23 @@
             "deprecationReason": null
           },
           {
-            "name": "location",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "locations_order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "locationByStartLocation",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "locations_order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "start_location",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "startlocation",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "locations_order_by",
               "ofType": null
             },
             "defaultValue": null,
@@ -25268,7 +25812,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -25297,7 +25841,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -25314,7 +25858,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -25389,7 +25933,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -25889,7 +26433,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26086,7 +26630,7 @@
             "deprecationReason": null
           },
           {
-            "name": "is_enable",
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -29583,6 +30127,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": null,
             "args": [],
@@ -30041,6 +30597,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -30223,6 +30791,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -30788,6 +31368,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -30924,6 +31516,12 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": "column name",
             "isDeprecated": false,
@@ -31010,6 +31608,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -31256,6 +31866,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -31383,6 +32005,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -31587,6 +32215,18 @@
                 "name": "Int",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -32164,6 +32804,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "itineraries",
             "description": null,
             "type": {
@@ -32292,6 +32944,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -32677,6 +33341,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "itineraries_aggregate",
             "description": null,
             "type": {
@@ -32771,6 +33447,12 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "column name",
             "isDeprecated": false,
@@ -32821,6 +33503,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -33007,6 +33701,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isactive",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": null,
             "type": {
@@ -33080,6 +33786,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isactive",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null

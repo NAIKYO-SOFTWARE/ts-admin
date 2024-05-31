@@ -190,6 +190,7 @@ const DataTable = (props: Props) => {
           uid={props.uid}
           onDelete={handleDelete}
           deletable={!!layouts?.deletable}
+          editable={!!layouts?.editable}
         />
       </div>
     </div>
