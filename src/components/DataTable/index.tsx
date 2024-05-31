@@ -5,10 +5,10 @@ import { useTableStore } from './table-store'
 
 import Notification from 'antd/es/notification'
 import Button from '../Button'
-import DataRow from './DataRow'
 import Filter from './Filter'
 
 import queries, { dataHandlers, queryStrings } from '../../constants/queries'
+import DataRow from './DataRow'
 import './dataTable.scss'
 
 type Props = { title: ReactNode; uid: string; ssr?: boolean }

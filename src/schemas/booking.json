@@ -1,0 +1,209 @@
+{
+  "uid": "bookings",
+  "layouts": {
+    "displayName": "bookings",
+    "creatable": false,
+    "editable": true,
+    "deletable": false,
+    "aggregateField": "bookings_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "Name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 5,
+          "type": "string"
+        },
+        {
+          "label": "User phone number",
+          "placeholder": "User phone number",
+          "name": "userPhoneNumber",
+          "size": 5,
+          "type": "string",
+          "regex": ["^\\d{8,16}$", "i"]
+        }
+      ],
+      [
+        {
+          "label": "Status",
+          "placeholder": "Status",
+          "name": "status",
+          "size": 5,
+          "multiple": true,
+          "type": "enumeration",
+          "enum": ["Pending", "Cancelled", "Completed", "Confirmed"]
+        },
+        {
+          "label": "Price",
+          "placeholder": "Price",
+          "name": "price",
+          "size": 5,
+          "type": "string"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "id",
+        "dataIndex": "id",
+        "title": "Id",
+        "align": "left"
+      },
+      {
+        "key": "name",
+        "dataIndex": "name",
+        "title": "Name",
+        "align": "left"
+      },
+      {
+        "key": "userPhoneNumber",
+        "dataIndex": "userPhoneNumber",
+        "title": "User phone number",
+        "align": "left"
+      },
+      {
+        "key": "booking_date",
+        "dataIndex": "booking_date",
+        "title": "Booking date",
+        "align": "center",
+        "note": "render-date"
+      },
+
+      {
+        "key": "status",
+        "dataIndex": "status",
+        "title": "Status",
+        "align": "left"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created at",
+        "align": "center",
+        "note": "render-date"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "User name",
+          "placeholder": "User name",
+          "name": "userName",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "User phone number",
+          "placeholder": "User phone number",
+          "name": "userPhoneNumber",
+          "size": 4,
+          "type": "string",
+          "regex": ["^\\d{8,16}$", "i"],
+          "disabled": true
+        }
+      ],
+      [
+        {
+          "label": "City",
+          "placeholder": "City",
+          "name": "city",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "Start location",
+          "placeholder": "Start location",
+          "name": "startLocation",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "End location",
+          "placeholder": "End location",
+          "name": "endLocation",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        }
+      ],
+      [
+        {
+          "label": "Option",
+          "placeholder": "Option",
+          "name": "option",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "Vehicle type",
+          "placeholder": "Vehicle type",
+          "name": "vehicleType",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "Price",
+          "placeholder": "Price",
+          "name": "price",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        }
+      ],
+      [
+        {
+          "label": "Provider name",
+          "placeholder": "Provider name",
+          "name": "providerName",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "Provider phone number",
+          "placeholder": "Provider phone number",
+          "name": "providerPhoneNumber",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        }
+      ],
+      [
+        {
+          "label": "Order note",
+          "placeholder": "Order note",
+          "name": "orderNote",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "Order status",
+          "placeholder": "Order status",
+          "name": "status",
+          "size": 4,
+          "multiple": true,
+          "type": "enumeration",
+          "enum": ["Pending", "Cancelled", "Completed", "Confirmed"]
+        },
+        {
+          "label": "Booking date",
+          "placeholder": "Booking date",
+          "name": "bookingDate",
+          "size": 4,
+          "type": "string",
+          "disabled": true
+        }
+      ]
+    ],
+    "defaultValue": {
+      "isactive": true
+    }
+  }
+}
