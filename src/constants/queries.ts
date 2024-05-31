@@ -2,7 +2,9 @@ import {
   FindManyDocument,
   GetLocationsDocument,
   GetProvidersDocument,
+  GetRoutesDocument,
   useDeleteLocationMutation,
+  useDeleteRouteMutation,
   useDeleteUserMutation,
   useFindManyQuery,
   useFindOneProviderQuery,
@@ -11,11 +13,15 @@ import {
   useGetLocationQuery,
   useGetLocationsQuery,
   useGetProvidersQuery,
+  useGetRouteQuery,
+  useGetRoutesQuery,
   useInsertLocationMutation,
   useInsertProviderMutation,
+  useInsertRouteMutation,
   useUpdateLocationMutation,
   useUpdateProviderEnableMutation,
   useUpdateProviderMutation,
+  useUpdateRouteMutation,
   useUpdateUserMutation
 } from '../generated/graphql'
 
@@ -43,6 +49,13 @@ const queries: Record<string, Record<string, any>> = {
     updateOne: useUpdateProviderMutation,
     findMany: useGetProvidersQuery,
     deleteOne: useUpdateProviderEnableMutation
+  },
+  routes: {
+    findOne: useGetRouteQuery,
+    createOne: useInsertRouteMutation,
+    updateOne: useUpdateRouteMutation,
+    findMany: useGetRoutesQuery,
+    deleteOne: useDeleteRouteMutation
   }
 }
 
@@ -57,6 +70,23 @@ export const dataHandlers: Record<string, Props> = {
     many: (data) => data,
     one: (data) => ({ ...data.users_by_pk })
   },
+  routes: {
+    many: (data) => {
+      return data.map((location: any) => ({
+        ...location,
+        city: location.city.name,
+        start_location: location.startlocation.name,
+        end_location: location.endlocation.name
+      }))
+    },
+    one: (data) => {
+      return {
+        ...data.routes_by_pk,
+        start_location: data.routes_by_pk.startlocation.id,
+        end_location: data.routes_by_pk.endlocation.id
+      }
+    }
+  },
   locations: {
     many: (data) => {
       return data.map((location: any) => ({
@@ -64,7 +94,8 @@ export const dataHandlers: Record<string, Props> = {
         city: location.city.name
       }))
     },
-    one: (data) => ({ ...data.locations_by_pk, city_id: data.locations_by_pk.city.id })
+    one: (data) => ({ ...data.locations_by_pk, city_id: data.locations_by_pk.city.id }),
+    select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
   },
   cities: {
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
@@ -90,6 +121,9 @@ export const documentNodes: Record<string, Record<string, any>> = {
   },
   providers: {
     getDocument: GetProvidersDocument
+  },
+  routes: {
+    getDocument: GetRoutesDocument
   }
 }
 

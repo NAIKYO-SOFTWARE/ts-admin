@@ -1,81 +1,81 @@
 {
-    "uid": "locations",
-    "layouts": {
-        "displayName": "Locations",
-        "creatable": true,
-        "editable": true,
-        "aggregateField": "locations_aggregate",
-        "filterable": [
-            [
-                {
-                    "label": "name",
-                    "placeholder": "Enter Name",
-                    "name": "name",
-                    "size": 5,
-                    "type": "string"
-                },
-                {
-                    "label": "Created At",
-                    "name": "createdAt",
-                    "size": 6,
-                    "type": "date"
-                }
-            ]
-        ],
-        "list": [
-            {
-                "key": "name",
-                "dataIndex": "name",
-                "title": "Name",
-                "align": "left"
-            },
-            {
-                "key": "city",
-                "dataIndex": "city",
-                "title": "City",
-                "align": "left"
-            },
-            {
-                "key": "isactive",
-                "dataIndex": "isactive",
-                "title": "Enable",
-                "align": "left",
-                "note": "render-bool"
-            }
-        ],
-        "edit": [
-            [
-                {
-                    "label": "Name",
-                    "placeholder": "Enter Name",
-                    "name": "name",
-                    "size": 6,
-                    "type": "string",
-                    "required": true
-                },
-                {
-                    "label": "City",
-                    "key": "city",
-                    "dataIndex": "city",
-                    "title": "City",
-                    "align": "left",
-                    "multiple": true,
-                    "type": "relation",
-                    "relation": "cities",
-                    "name": "city_id",
-                    "required": true,
-                    "placeholder": "Select City"
-                },
-                {
-                    "label": "Enable",
-                    "name": "isactive",
-                    "size": 2,
-                    "type": "boolean"
-                }
-            ]
-        ],
-        "defaultValue": {
-            "isactive": true
+  "uid": "locations",
+  "layouts": {
+    "displayName": "Locations",
+    "creatable": true,
+    "editable": true,
+    "aggregateField": "locations_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 5,
+          "type": "string"
+        },
+        {
+          "label": "Created At",
+          "name": "createdAt",
+          "size": 6,
+          "type": "date"
         }
+      ]
+    ],
+    "list": [
+      {
+        "key": "name",
+        "dataIndex": "name",
+        "title": "Name",
+        "align": "left"
+      },
+      {
+        "key": "city",
+        "dataIndex": "city",
+        "title": "City",
+        "align": "left"
+      },
+      {
+        "key": "isactive",
+        "dataIndex": "isactive",
+        "title": "Enable",
+        "align": "left",
+        "note": "render-bool"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "Name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 6,
+          "type": "string",
+          "required": true
+        },
+        {
+          "label": "City",
+          "key": "city",
+          "dataIndex": "city",
+          "title": "City",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "cities",
+          "name": "city_id",
+          "required": true,
+          "placeholder": "Select City"
+        },
+        {
+          "label": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        }
+      ]
+    ],
+    "defaultValue": {
+      "isactive": true
     }
+  }
 }
