@@ -1,343 +1,363 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import * as Apollo from '@apollo/client'
+import { gql } from '@apollo/client'
 {/* prettier-ignore */}
 // THIS FILE IS GENERATED WITH `pnpm generate`
-import "graphql/language/ast";
-import * as Scalar from './scalars';
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-const defaultOptions = {} as const;
+import 'graphql/language/ast'
+export type Maybe<T> = T | null
+export type InputMaybe<T> = Maybe<T>
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never }
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never }
+const defaultOptions = {} as const
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  bpchar: { input: any; output: any; }
-  numeric: { input: any; output: any; }
-  timestamptz: { input: any; output: any; }
-};
-
-export type AuthAdminOutput = {
-  __typename?: 'AuthAdminOutput';
-  name: Scalars['String']['output'];
-  role: Scalars['String']['output'];
-  token: Scalars['String']['output'];
-};
+  ID: { input: string; output: string }
+  String: { input: string; output: string }
+  Boolean: { input: boolean; output: boolean }
+  Int: { input: number; output: number }
+  Float: { input: number; output: number }
+  numeric: { input: any; output: any }
+  timestamptz: { input: any; output: any }
+}
 
 export type AuthOutput = {
-  __typename?: 'AuthOutput';
-  name: Scalars['String']['output'];
-  token: Scalars['String']['output'];
-  userId: Scalars['String']['output'];
-};
+  __typename?: 'AuthOutput'
+  name: Scalars['String']['output']
+  token: Scalars['String']['output']
+  userId: Scalars['String']['output']
+}
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['Boolean']['input']>;
-  _gt?: InputMaybe<Scalars['Boolean']['input']>;
-  _gte?: InputMaybe<Scalars['Boolean']['input']>;
-  _in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['Boolean']['input']>;
-  _lte?: InputMaybe<Scalars['Boolean']['input']>;
-  _neq?: InputMaybe<Scalars['Boolean']['input']>;
-  _nin?: InputMaybe<Array<Scalars['Boolean']['input']>>;
-};
+  _eq?: InputMaybe<Scalars['Boolean']['input']>
+  _gt?: InputMaybe<Scalars['Boolean']['input']>
+  _gte?: InputMaybe<Scalars['Boolean']['input']>
+  _in?: InputMaybe<Array<Scalars['Boolean']['input']>>
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>
+  _lt?: InputMaybe<Scalars['Boolean']['input']>
+  _lte?: InputMaybe<Scalars['Boolean']['input']>
+  _neq?: InputMaybe<Scalars['Boolean']['input']>
+  _nin?: InputMaybe<Array<Scalars['Boolean']['input']>>
+}
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['Int']['input']>;
-  _gt?: InputMaybe<Scalars['Int']['input']>;
-  _gte?: InputMaybe<Scalars['Int']['input']>;
-  _in?: InputMaybe<Array<Scalars['Int']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['Int']['input']>;
-  _lte?: InputMaybe<Scalars['Int']['input']>;
-  _neq?: InputMaybe<Scalars['Int']['input']>;
-  _nin?: InputMaybe<Array<Scalars['Int']['input']>>;
-};
+  _eq?: InputMaybe<Scalars['Int']['input']>
+  _gt?: InputMaybe<Scalars['Int']['input']>
+  _gte?: InputMaybe<Scalars['Int']['input']>
+  _in?: InputMaybe<Array<Scalars['Int']['input']>>
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>
+  _lt?: InputMaybe<Scalars['Int']['input']>
+  _lte?: InputMaybe<Scalars['Int']['input']>
+  _neq?: InputMaybe<Scalars['Int']['input']>
+  _nin?: InputMaybe<Array<Scalars['Int']['input']>>
+}
+
+export type SampleOutput = {
+  __typename?: 'SampleOutput'
+  token: Scalars['String']['output']
+}
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type String_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['String']['input']>;
-  _gt?: InputMaybe<Scalars['String']['input']>;
-  _gte?: InputMaybe<Scalars['String']['input']>;
+  _eq?: InputMaybe<Scalars['String']['input']>
+  _gt?: InputMaybe<Scalars['String']['input']>
+  _gte?: InputMaybe<Scalars['String']['input']>
   /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['String']['input']>;
-  _in?: InputMaybe<Array<Scalars['String']['input']>>;
+  _ilike?: InputMaybe<Scalars['String']['input']>
+  _in?: InputMaybe<Array<Scalars['String']['input']>>
   /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['String']['input']>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _iregex?: InputMaybe<Scalars['String']['input']>
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>
   /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['String']['input']>;
-  _lt?: InputMaybe<Scalars['String']['input']>;
-  _lte?: InputMaybe<Scalars['String']['input']>;
-  _neq?: InputMaybe<Scalars['String']['input']>;
+  _like?: InputMaybe<Scalars['String']['input']>
+  _lt?: InputMaybe<Scalars['String']['input']>
+  _lte?: InputMaybe<Scalars['String']['input']>
+  _neq?: InputMaybe<Scalars['String']['input']>
   /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['String']['input']>;
-  _nin?: InputMaybe<Array<Scalars['String']['input']>>;
+  _nilike?: InputMaybe<Scalars['String']['input']>
+  _nin?: InputMaybe<Array<Scalars['String']['input']>>
   /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['String']['input']>;
+  _niregex?: InputMaybe<Scalars['String']['input']>
   /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['String']['input']>;
+  _nlike?: InputMaybe<Scalars['String']['input']>
   /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['String']['input']>;
+  _nregex?: InputMaybe<Scalars['String']['input']>
   /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['String']['input']>;
+  _nsimilar?: InputMaybe<Scalars['String']['input']>
   /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['String']['input']>;
+  _regex?: InputMaybe<Scalars['String']['input']>
   /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateBookingOutput = {
-  __typename?: 'UpdateBookingOutput';
-  message?: Maybe<Scalars['String']['output']>;
-  success?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type UserUpdateData = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-};
+  _similar?: InputMaybe<Scalars['String']['input']>
+}
 
 /** columns and relationships of "bookings" */
 export type Bookings = {
-  __typename?: 'bookings';
-  booking_date: Scalars['timestamptz']['output'];
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id: Scalars['Int']['output'];
+  __typename?: 'bookings'
   /** An object relationship */
-  itinerary: Itinerary;
-  itinerary_id: Scalars['Int']['output'];
-  note?: Maybe<Scalars['bpchar']['output']>;
-  status: Scalars['String']['output'];
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  User?: Maybe<Users>
   /** An object relationship */
-  user: Users;
-  user_id: Scalars['Int']['output'];
-};
+  UserName?: Maybe<Users>
+  booking_date: Scalars['timestamptz']['output']
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id: Scalars['Int']['output']
+  /** An object relationship */
+  itinerary: Itinerary
+  itinerary_id: Scalars['Int']['output']
+  /** An array relationship */
+  name: Array<Users>
+  /** An aggregate relationship */
+  name_aggregate: Users_Aggregate
+  note?: Maybe<Scalars['String']['output']>
+  status: Scalars['String']['output']
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  /** An object relationship */
+  user: Users
+  user_id: Scalars['Int']['output']
+}
+
+/** columns and relationships of "bookings" */
+export type BookingsNameArgs = {
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Users_Order_By>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
+
+/** columns and relationships of "bookings" */
+export type BookingsName_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Users_Order_By>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 /** aggregated selection of "bookings" */
 export type Bookings_Aggregate = {
-  __typename?: 'bookings_aggregate';
-  aggregate?: Maybe<Bookings_Aggregate_Fields>;
-  nodes: Array<Bookings>;
-};
+  __typename?: 'bookings_aggregate'
+  aggregate?: Maybe<Bookings_Aggregate_Fields>
+  nodes: Array<Bookings>
+}
 
 export type Bookings_Aggregate_Bool_Exp = {
-  count?: InputMaybe<Bookings_Aggregate_Bool_Exp_Count>;
-};
+  count?: InputMaybe<Bookings_Aggregate_Bool_Exp_Count>
+}
 
 export type Bookings_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Bookings_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Bookings_Bool_Exp>;
-  predicate: Int_Comparison_Exp;
-};
+  arguments?: InputMaybe<Array<Bookings_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Bookings_Bool_Exp>
+  predicate: Int_Comparison_Exp
+}
 
 /** aggregate fields of "bookings" */
 export type Bookings_Aggregate_Fields = {
-  __typename?: 'bookings_aggregate_fields';
-  avg?: Maybe<Bookings_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Bookings_Max_Fields>;
-  min?: Maybe<Bookings_Min_Fields>;
-  stddev?: Maybe<Bookings_Stddev_Fields>;
-  stddev_pop?: Maybe<Bookings_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Bookings_Stddev_Samp_Fields>;
-  sum?: Maybe<Bookings_Sum_Fields>;
-  var_pop?: Maybe<Bookings_Var_Pop_Fields>;
-  var_samp?: Maybe<Bookings_Var_Samp_Fields>;
-  variance?: Maybe<Bookings_Variance_Fields>;
-};
-
+  __typename?: 'bookings_aggregate_fields'
+  avg?: Maybe<Bookings_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Bookings_Max_Fields>
+  min?: Maybe<Bookings_Min_Fields>
+  stddev?: Maybe<Bookings_Stddev_Fields>
+  stddev_pop?: Maybe<Bookings_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Bookings_Stddev_Samp_Fields>
+  sum?: Maybe<Bookings_Sum_Fields>
+  var_pop?: Maybe<Bookings_Var_Pop_Fields>
+  var_samp?: Maybe<Bookings_Var_Samp_Fields>
+  variance?: Maybe<Bookings_Variance_Fields>
+}
 
 /** aggregate fields of "bookings" */
 export type Bookings_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Bookings_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Bookings_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** order by aggregate values of table "bookings" */
 export type Bookings_Aggregate_Order_By = {
-  avg?: InputMaybe<Bookings_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Bookings_Max_Order_By>;
-  min?: InputMaybe<Bookings_Min_Order_By>;
-  stddev?: InputMaybe<Bookings_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Bookings_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Bookings_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Bookings_Sum_Order_By>;
-  var_pop?: InputMaybe<Bookings_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Bookings_Var_Samp_Order_By>;
-  variance?: InputMaybe<Bookings_Variance_Order_By>;
-};
+  avg?: InputMaybe<Bookings_Avg_Order_By>
+  count?: InputMaybe<Order_By>
+  max?: InputMaybe<Bookings_Max_Order_By>
+  min?: InputMaybe<Bookings_Min_Order_By>
+  stddev?: InputMaybe<Bookings_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Bookings_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Bookings_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Bookings_Sum_Order_By>
+  var_pop?: InputMaybe<Bookings_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Bookings_Var_Samp_Order_By>
+  variance?: InputMaybe<Bookings_Variance_Order_By>
+}
 
 /** input type for inserting array relation for remote table "bookings" */
 export type Bookings_Arr_Rel_Insert_Input = {
-  data: Array<Bookings_Insert_Input>;
+  data: Array<Bookings_Insert_Input>
   /** upsert condition */
-  on_conflict?: InputMaybe<Bookings_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Bookings_On_Conflict>
+}
 
 /** aggregate avg on columns */
 export type Bookings_Avg_Fields = {
-  __typename?: 'bookings_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by avg() on columns of table "bookings" */
 export type Bookings_Avg_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** Boolean expression to filter rows from the table "bookings". All fields are combined with a logical 'AND'. */
 export type Bookings_Bool_Exp = {
-  _and?: InputMaybe<Array<Bookings_Bool_Exp>>;
-  _not?: InputMaybe<Bookings_Bool_Exp>;
-  _or?: InputMaybe<Array<Bookings_Bool_Exp>>;
-  booking_date?: InputMaybe<Timestamptz_Comparison_Exp>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  itinerary?: InputMaybe<Itinerary_Bool_Exp>;
-  itinerary_id?: InputMaybe<Int_Comparison_Exp>;
-  note?: InputMaybe<Bpchar_Comparison_Exp>;
-  status?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  user?: InputMaybe<Users_Bool_Exp>;
-  user_id?: InputMaybe<Int_Comparison_Exp>;
-};
+  User?: InputMaybe<Users_Bool_Exp>
+  UserName?: InputMaybe<Users_Bool_Exp>
+  _and?: InputMaybe<Array<Bookings_Bool_Exp>>
+  _not?: InputMaybe<Bookings_Bool_Exp>
+  _or?: InputMaybe<Array<Bookings_Bool_Exp>>
+  booking_date?: InputMaybe<Timestamptz_Comparison_Exp>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  itinerary?: InputMaybe<Itinerary_Bool_Exp>
+  itinerary_id?: InputMaybe<Int_Comparison_Exp>
+  name?: InputMaybe<Users_Bool_Exp>
+  name_aggregate?: InputMaybe<Users_Aggregate_Bool_Exp>
+  note?: InputMaybe<String_Comparison_Exp>
+  status?: InputMaybe<String_Comparison_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  user?: InputMaybe<Users_Bool_Exp>
+  user_id?: InputMaybe<Int_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "bookings" */
 export type Bookings_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'bookings_pkey';
+  'bookings_pkey'
 
 /** input type for incrementing numeric columns in table "bookings" */
 export type Bookings_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  user_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+  itinerary_id?: InputMaybe<Scalars['Int']['input']>
+  user_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "bookings" */
 export type Bookings_Insert_Input = {
-  booking_date?: InputMaybe<Scalars['timestamptz']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  itinerary?: InputMaybe<Itinerary_Obj_Rel_Insert_Input>;
-  itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['bpchar']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
-  user_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  User?: InputMaybe<Users_Obj_Rel_Insert_Input>
+  UserName?: InputMaybe<Users_Obj_Rel_Insert_Input>
+  booking_date?: InputMaybe<Scalars['timestamptz']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  itinerary?: InputMaybe<Itinerary_Obj_Rel_Insert_Input>
+  itinerary_id?: InputMaybe<Scalars['Int']['input']>
+  name?: InputMaybe<Users_Arr_Rel_Insert_Input>
+  note?: InputMaybe<Scalars['String']['input']>
+  status?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>
+  user_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** aggregate max on columns */
 export type Bookings_Max_Fields = {
-  __typename?: 'bookings_max_fields';
-  booking_date?: Maybe<Scalars['timestamptz']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  itinerary_id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['bpchar']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  user_id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'bookings_max_fields'
+  booking_date?: Maybe<Scalars['timestamptz']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  itinerary_id?: Maybe<Scalars['Int']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  status?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  user_id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by max() on columns of table "bookings" */
 export type Bookings_Max_Order_By = {
-  booking_date?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  status?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  booking_date?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  note?: InputMaybe<Order_By>
+  status?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** aggregate min on columns */
 export type Bookings_Min_Fields = {
-  __typename?: 'bookings_min_fields';
-  booking_date?: Maybe<Scalars['timestamptz']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  itinerary_id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['bpchar']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  user_id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'bookings_min_fields'
+  booking_date?: Maybe<Scalars['timestamptz']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  itinerary_id?: Maybe<Scalars['Int']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  status?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  user_id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by min() on columns of table "bookings" */
 export type Bookings_Min_Order_By = {
-  booking_date?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  status?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  booking_date?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  note?: InputMaybe<Order_By>
+  status?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** response of any mutation on the table "bookings" */
 export type Bookings_Mutation_Response = {
-  __typename?: 'bookings_mutation_response';
+  __typename?: 'bookings_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Bookings>;
-};
+  returning: Array<Bookings>
+}
 
 /** on_conflict condition type for table "bookings" */
 export type Bookings_On_Conflict = {
-  constraint: Bookings_Constraint;
-  update_columns?: Array<Bookings_Update_Column>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
+  constraint: Bookings_Constraint
+  update_columns?: Array<Bookings_Update_Column>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "bookings". */
 export type Bookings_Order_By = {
-  booking_date?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  itinerary?: InputMaybe<Itinerary_Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  status?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  user?: InputMaybe<Users_Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  User?: InputMaybe<Users_Order_By>
+  UserName?: InputMaybe<Users_Order_By>
+  booking_date?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  itinerary?: InputMaybe<Itinerary_Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  name_aggregate?: InputMaybe<Users_Aggregate_Order_By>
+  note?: InputMaybe<Order_By>
+  status?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  user?: InputMaybe<Users_Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: bookings */
 export type Bookings_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "bookings" */
 export type Bookings_Select_Column =
@@ -358,101 +378,101 @@ export type Bookings_Select_Column =
   /** column name */
   | 'updated_at'
   /** column name */
-  | 'user_id';
+  | 'user_id'
 
 /** input type for updating data in table "bookings" */
 export type Bookings_Set_Input = {
-  booking_date?: InputMaybe<Scalars['timestamptz']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['bpchar']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  user_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  booking_date?: InputMaybe<Scalars['timestamptz']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  itinerary_id?: InputMaybe<Scalars['Int']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  status?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  user_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Bookings_Stddev_Fields = {
-  __typename?: 'bookings_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev() on columns of table "bookings" */
 export type Bookings_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_pop on columns */
 export type Bookings_Stddev_Pop_Fields = {
-  __typename?: 'bookings_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_pop() on columns of table "bookings" */
 export type Bookings_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_samp on columns */
 export type Bookings_Stddev_Samp_Fields = {
-  __typename?: 'bookings_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_samp() on columns of table "bookings" */
 export type Bookings_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** Streaming cursor of the table "bookings" */
 export type Bookings_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Bookings_Stream_Cursor_Value_Input;
+  initial_value: Bookings_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Bookings_Stream_Cursor_Value_Input = {
-  booking_date?: InputMaybe<Scalars['timestamptz']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['bpchar']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  user_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  booking_date?: InputMaybe<Scalars['timestamptz']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  itinerary_id?: InputMaybe<Scalars['Int']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  status?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  user_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** aggregate sum on columns */
 export type Bookings_Sum_Fields = {
-  __typename?: 'bookings_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  itinerary_id?: Maybe<Scalars['Int']['output']>;
-  user_id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'bookings_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+  itinerary_id?: Maybe<Scalars['Int']['output']>
+  user_id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by sum() on columns of table "bookings" */
 export type Bookings_Sum_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** update columns of table "bookings" */
 export type Bookings_Update_Column =
@@ -473,300 +493,262 @@ export type Bookings_Update_Column =
   /** column name */
   | 'updated_at'
   /** column name */
-  | 'user_id';
+  | 'user_id'
 
 export type Bookings_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Bookings_Inc_Input>;
+  _inc?: InputMaybe<Bookings_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Bookings_Set_Input>;
+  _set?: InputMaybe<Bookings_Set_Input>
   /** filter the rows which have to be updated */
-  where: Bookings_Bool_Exp;
-};
+  where: Bookings_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Bookings_Var_Pop_Fields = {
-  __typename?: 'bookings_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_pop() on columns of table "bookings" */
 export type Bookings_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** aggregate var_samp on columns */
 export type Bookings_Var_Samp_Fields = {
-  __typename?: 'bookings_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_samp() on columns of table "bookings" */
 export type Bookings_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** aggregate variance on columns */
 export type Bookings_Variance_Fields = {
-  __typename?: 'bookings_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  itinerary_id?: Maybe<Scalars['Float']['output']>;
-  user_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'bookings_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  itinerary_id?: Maybe<Scalars['Float']['output']>
+  user_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by variance() on columns of table "bookings" */
 export type Bookings_Variance_Order_By = {
-  id?: InputMaybe<Order_By>;
-  itinerary_id?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
-
-/** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
-export type Bpchar_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['bpchar']['input']>;
-  _gt?: InputMaybe<Scalars['bpchar']['input']>;
-  _gte?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['bpchar']['input']>;
-  _in?: InputMaybe<Array<Scalars['bpchar']['input']>>;
-  /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['bpchar']['input']>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['bpchar']['input']>;
-  _lt?: InputMaybe<Scalars['bpchar']['input']>;
-  _lte?: InputMaybe<Scalars['bpchar']['input']>;
-  _neq?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['bpchar']['input']>;
-  _nin?: InputMaybe<Array<Scalars['bpchar']['input']>>;
-  /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['bpchar']['input']>;
-};
+  id?: InputMaybe<Order_By>
+  itinerary_id?: InputMaybe<Order_By>
+  user_id?: InputMaybe<Order_By>
+}
 
 /** columns and relationships of "cities" */
 export type Cities = {
-  __typename?: 'cities';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  descr?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
-  img?: Maybe<Scalars['String']['output']>;
-  isactive?: Maybe<Scalars['Boolean']['output']>;
+  __typename?: 'cities'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  descr?: Maybe<Scalars['String']['output']>
+  id: Scalars['Int']['output']
+  img?: Maybe<Scalars['String']['output']>
+  isactive?: Maybe<Scalars['Boolean']['output']>
   /** An array relationship */
-  locations: Array<Locations>;
+  locations: Array<Locations>
   /** An aggregate relationship */
-  locations_aggregate: Locations_Aggregate;
-  name: Scalars['String']['output'];
+  locations_aggregate: Locations_Aggregate
+  name: Scalars['String']['output']
   /** An array relationship */
-  routes: Array<Routes>;
+  routes: Array<Routes>
   /** An aggregate relationship */
-  routes_aggregate: Routes_Aggregate;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
-
+  routes_aggregate: Routes_Aggregate
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** columns and relationships of "cities" */
 export type CitiesLocationsArgs = {
-  distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Locations_Order_By>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Locations_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Locations_Order_By>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 /** columns and relationships of "cities" */
 export type CitiesLocations_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Locations_Order_By>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Locations_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Locations_Order_By>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 /** columns and relationships of "cities" */
 export type CitiesRoutesArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** columns and relationships of "cities" */
 export type CitiesRoutes_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** aggregated selection of "cities" */
 export type Cities_Aggregate = {
-  __typename?: 'cities_aggregate';
-  aggregate?: Maybe<Cities_Aggregate_Fields>;
-  nodes: Array<Cities>;
-};
+  __typename?: 'cities_aggregate'
+  aggregate?: Maybe<Cities_Aggregate_Fields>
+  nodes: Array<Cities>
+}
 
 /** aggregate fields of "cities" */
 export type Cities_Aggregate_Fields = {
-  __typename?: 'cities_aggregate_fields';
-  avg?: Maybe<Cities_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Cities_Max_Fields>;
-  min?: Maybe<Cities_Min_Fields>;
-  stddev?: Maybe<Cities_Stddev_Fields>;
-  stddev_pop?: Maybe<Cities_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Cities_Stddev_Samp_Fields>;
-  sum?: Maybe<Cities_Sum_Fields>;
-  var_pop?: Maybe<Cities_Var_Pop_Fields>;
-  var_samp?: Maybe<Cities_Var_Samp_Fields>;
-  variance?: Maybe<Cities_Variance_Fields>;
-};
-
+  __typename?: 'cities_aggregate_fields'
+  avg?: Maybe<Cities_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Cities_Max_Fields>
+  min?: Maybe<Cities_Min_Fields>
+  stddev?: Maybe<Cities_Stddev_Fields>
+  stddev_pop?: Maybe<Cities_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Cities_Stddev_Samp_Fields>
+  sum?: Maybe<Cities_Sum_Fields>
+  var_pop?: Maybe<Cities_Var_Pop_Fields>
+  var_samp?: Maybe<Cities_Var_Samp_Fields>
+  variance?: Maybe<Cities_Variance_Fields>
+}
 
 /** aggregate fields of "cities" */
 export type Cities_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Cities_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Cities_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** aggregate avg on columns */
 export type Cities_Avg_Fields = {
-  __typename?: 'cities_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Boolean expression to filter rows from the table "cities". All fields are combined with a logical 'AND'. */
 export type Cities_Bool_Exp = {
-  _and?: InputMaybe<Array<Cities_Bool_Exp>>;
-  _not?: InputMaybe<Cities_Bool_Exp>;
-  _or?: InputMaybe<Array<Cities_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  descr?: InputMaybe<String_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  img?: InputMaybe<String_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  locations?: InputMaybe<Locations_Bool_Exp>;
-  locations_aggregate?: InputMaybe<Locations_Aggregate_Bool_Exp>;
-  name?: InputMaybe<String_Comparison_Exp>;
-  routes?: InputMaybe<Routes_Bool_Exp>;
-  routes_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Cities_Bool_Exp>>
+  _not?: InputMaybe<Cities_Bool_Exp>
+  _or?: InputMaybe<Array<Cities_Bool_Exp>>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  descr?: InputMaybe<String_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  img?: InputMaybe<String_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  locations?: InputMaybe<Locations_Bool_Exp>
+  locations_aggregate?: InputMaybe<Locations_Aggregate_Bool_Exp>
+  name?: InputMaybe<String_Comparison_Exp>
+  routes?: InputMaybe<Routes_Bool_Exp>
+  routes_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "cities" */
 export type Cities_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'cities_pkey';
+  'cities_pkey'
 
 /** input type for incrementing numeric columns in table "cities" */
 export type Cities_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "cities" */
 export type Cities_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  descr?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  img?: InputMaybe<Scalars['String']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  locations?: InputMaybe<Locations_Arr_Rel_Insert_Input>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  descr?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  img?: InputMaybe<Scalars['String']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  locations?: InputMaybe<Locations_Arr_Rel_Insert_Input>
+  name?: InputMaybe<Scalars['String']['input']>
+  routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate max on columns */
 export type Cities_Max_Fields = {
-  __typename?: 'cities_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  descr?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  img?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'cities_max_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  descr?: Maybe<Scalars['String']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  img?: Maybe<Scalars['String']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** aggregate min on columns */
 export type Cities_Min_Fields = {
-  __typename?: 'cities_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  descr?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  img?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'cities_min_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  descr?: Maybe<Scalars['String']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  img?: Maybe<Scalars['String']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** response of any mutation on the table "cities" */
 export type Cities_Mutation_Response = {
-  __typename?: 'cities_mutation_response';
+  __typename?: 'cities_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Cities>;
-};
+  returning: Array<Cities>
+}
 
 /** input type for inserting object relation for remote table "cities" */
 export type Cities_Obj_Rel_Insert_Input = {
-  data: Cities_Insert_Input;
+  data: Cities_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Cities_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Cities_On_Conflict>
+}
 
 /** on_conflict condition type for table "cities" */
 export type Cities_On_Conflict = {
-  constraint: Cities_Constraint;
-  update_columns?: Array<Cities_Update_Column>;
-  where?: InputMaybe<Cities_Bool_Exp>;
-};
+  constraint: Cities_Constraint
+  update_columns?: Array<Cities_Update_Column>
+  where?: InputMaybe<Cities_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "cities". */
 export type Cities_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  descr?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  img?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  locations_aggregate?: InputMaybe<Locations_Aggregate_Order_By>;
-  name?: InputMaybe<Order_By>;
-  routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  descr?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  img?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  locations_aggregate?: InputMaybe<Locations_Aggregate_Order_By>
+  name?: InputMaybe<Order_By>
+  routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: cities */
 export type Cities_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "cities" */
 export type Cities_Select_Column =
@@ -785,63 +767,63 @@ export type Cities_Select_Column =
   /** column name */
   | 'name'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 /** input type for updating data in table "cities" */
 export type Cities_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  descr?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  img?: InputMaybe<Scalars['String']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  descr?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  img?: InputMaybe<Scalars['String']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Cities_Stddev_Fields = {
-  __typename?: 'cities_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_pop on columns */
 export type Cities_Stddev_Pop_Fields = {
-  __typename?: 'cities_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_samp on columns */
 export type Cities_Stddev_Samp_Fields = {
-  __typename?: 'cities_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Streaming cursor of the table "cities" */
 export type Cities_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Cities_Stream_Cursor_Value_Input;
+  initial_value: Cities_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Cities_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  descr?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  img?: InputMaybe<Scalars['String']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  descr?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  img?: InputMaybe<Scalars['String']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate sum on columns */
 export type Cities_Sum_Fields = {
-  __typename?: 'cities_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'cities_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+}
 
 /** update columns of table "cities" */
 export type Cities_Update_Column =
@@ -860,354 +842,351 @@ export type Cities_Update_Column =
   /** column name */
   | 'name'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 export type Cities_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Cities_Inc_Input>;
+  _inc?: InputMaybe<Cities_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Cities_Set_Input>;
+  _set?: InputMaybe<Cities_Set_Input>
   /** filter the rows which have to be updated */
-  where: Cities_Bool_Exp;
-};
+  where: Cities_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Cities_Var_Pop_Fields = {
-  __typename?: 'cities_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate var_samp on columns */
 export type Cities_Var_Samp_Fields = {
-  __typename?: 'cities_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate variance on columns */
 export type Cities_Variance_Fields = {
-  __typename?: 'cities_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'cities_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** ordering argument of a cursor */
 export type Cursor_Ordering =
   /** ascending ordering of the cursor */
   | 'ASC'
   /** descending ordering of the cursor */
-  | 'DESC';
+  | 'DESC'
 
 /** columns and relationships of "itinerary" */
 export type Itinerary = {
-  __typename?: 'itinerary';
+  __typename?: 'itinerary'
   /** An array relationship */
-  bookings: Array<Bookings>;
+  bookings: Array<Bookings>
   /** An aggregate relationship */
-  bookings_aggregate: Bookings_Aggregate;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id: Scalars['Int']['output'];
-  isactive?: Maybe<Scalars['Boolean']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
+  bookings_aggregate: Bookings_Aggregate
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id: Scalars['Int']['output']
+  isactive?: Maybe<Scalars['Boolean']['output']>
+  note?: Maybe<Scalars['String']['output']>
   /** An object relationship */
-  option: Options;
-  option_id: Scalars['Int']['output'];
-  price: Scalars['numeric']['output'];
+  option: Options
+  option_id: Scalars['Int']['output']
+  price: Scalars['numeric']['output']
   /** An object relationship */
-  provider: Providers;
-  provider_id: Scalars['Int']['output'];
+  provider: Providers
+  provider_id: Scalars['Int']['output']
   /** An object relationship */
-  route: Routes;
-  route_id: Scalars['Int']['output'];
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  route: Routes
+  route_id: Scalars['Int']['output']
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
   /** An object relationship */
-  vehicle_type: Vehicle_Types;
-  vehicle_types_id: Scalars['Int']['output'];
-};
-
+  vehicle_type: Vehicle_Types
+  vehicle_types_id: Scalars['Int']['output']
+}
 
 /** columns and relationships of "itinerary" */
 export type ItineraryBookingsArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 /** columns and relationships of "itinerary" */
 export type ItineraryBookings_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 /** aggregated selection of "itinerary" */
 export type Itinerary_Aggregate = {
-  __typename?: 'itinerary_aggregate';
-  aggregate?: Maybe<Itinerary_Aggregate_Fields>;
-  nodes: Array<Itinerary>;
-};
+  __typename?: 'itinerary_aggregate'
+  aggregate?: Maybe<Itinerary_Aggregate_Fields>
+  nodes: Array<Itinerary>
+}
 
 export type Itinerary_Aggregate_Bool_Exp = {
-  bool_and?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Bool_And>;
-  bool_or?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Bool_Or>;
-  count?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Count>;
-};
+  bool_and?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Bool_And>
+  bool_or?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Bool_Or>
+  count?: InputMaybe<Itinerary_Aggregate_Bool_Exp_Count>
+}
 
 export type Itinerary_Aggregate_Bool_Exp_Bool_And = {
-  arguments: Itinerary_Select_Column_Itinerary_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Itinerary_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
+  arguments: Itinerary_Select_Column_Itinerary_Aggregate_Bool_Exp_Bool_And_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Itinerary_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
 
 export type Itinerary_Aggregate_Bool_Exp_Bool_Or = {
-  arguments: Itinerary_Select_Column_Itinerary_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Itinerary_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
+  arguments: Itinerary_Select_Column_Itinerary_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Itinerary_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
 
 export type Itinerary_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Itinerary_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Itinerary_Bool_Exp>;
-  predicate: Int_Comparison_Exp;
-};
+  arguments?: InputMaybe<Array<Itinerary_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Itinerary_Bool_Exp>
+  predicate: Int_Comparison_Exp
+}
 
 /** aggregate fields of "itinerary" */
 export type Itinerary_Aggregate_Fields = {
-  __typename?: 'itinerary_aggregate_fields';
-  avg?: Maybe<Itinerary_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Itinerary_Max_Fields>;
-  min?: Maybe<Itinerary_Min_Fields>;
-  stddev?: Maybe<Itinerary_Stddev_Fields>;
-  stddev_pop?: Maybe<Itinerary_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Itinerary_Stddev_Samp_Fields>;
-  sum?: Maybe<Itinerary_Sum_Fields>;
-  var_pop?: Maybe<Itinerary_Var_Pop_Fields>;
-  var_samp?: Maybe<Itinerary_Var_Samp_Fields>;
-  variance?: Maybe<Itinerary_Variance_Fields>;
-};
-
+  __typename?: 'itinerary_aggregate_fields'
+  avg?: Maybe<Itinerary_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Itinerary_Max_Fields>
+  min?: Maybe<Itinerary_Min_Fields>
+  stddev?: Maybe<Itinerary_Stddev_Fields>
+  stddev_pop?: Maybe<Itinerary_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Itinerary_Stddev_Samp_Fields>
+  sum?: Maybe<Itinerary_Sum_Fields>
+  var_pop?: Maybe<Itinerary_Var_Pop_Fields>
+  var_samp?: Maybe<Itinerary_Var_Samp_Fields>
+  variance?: Maybe<Itinerary_Variance_Fields>
+}
 
 /** aggregate fields of "itinerary" */
 export type Itinerary_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Itinerary_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Itinerary_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** order by aggregate values of table "itinerary" */
 export type Itinerary_Aggregate_Order_By = {
-  avg?: InputMaybe<Itinerary_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Itinerary_Max_Order_By>;
-  min?: InputMaybe<Itinerary_Min_Order_By>;
-  stddev?: InputMaybe<Itinerary_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Itinerary_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Itinerary_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Itinerary_Sum_Order_By>;
-  var_pop?: InputMaybe<Itinerary_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Itinerary_Var_Samp_Order_By>;
-  variance?: InputMaybe<Itinerary_Variance_Order_By>;
-};
+  avg?: InputMaybe<Itinerary_Avg_Order_By>
+  count?: InputMaybe<Order_By>
+  max?: InputMaybe<Itinerary_Max_Order_By>
+  min?: InputMaybe<Itinerary_Min_Order_By>
+  stddev?: InputMaybe<Itinerary_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Itinerary_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Itinerary_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Itinerary_Sum_Order_By>
+  var_pop?: InputMaybe<Itinerary_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Itinerary_Var_Samp_Order_By>
+  variance?: InputMaybe<Itinerary_Variance_Order_By>
+}
 
 /** input type for inserting array relation for remote table "itinerary" */
 export type Itinerary_Arr_Rel_Insert_Input = {
-  data: Array<Itinerary_Insert_Input>;
+  data: Array<Itinerary_Insert_Input>
   /** upsert condition */
-  on_conflict?: InputMaybe<Itinerary_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Itinerary_On_Conflict>
+}
 
 /** aggregate avg on columns */
 export type Itinerary_Avg_Fields = {
-  __typename?: 'itinerary_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by avg() on columns of table "itinerary" */
 export type Itinerary_Avg_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** Boolean expression to filter rows from the table "itinerary". All fields are combined with a logical 'AND'. */
 export type Itinerary_Bool_Exp = {
-  _and?: InputMaybe<Array<Itinerary_Bool_Exp>>;
-  _not?: InputMaybe<Itinerary_Bool_Exp>;
-  _or?: InputMaybe<Array<Itinerary_Bool_Exp>>;
-  bookings?: InputMaybe<Bookings_Bool_Exp>;
-  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Bool_Exp>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  note?: InputMaybe<String_Comparison_Exp>;
-  option?: InputMaybe<Options_Bool_Exp>;
-  option_id?: InputMaybe<Int_Comparison_Exp>;
-  price?: InputMaybe<Numeric_Comparison_Exp>;
-  provider?: InputMaybe<Providers_Bool_Exp>;
-  provider_id?: InputMaybe<Int_Comparison_Exp>;
-  route?: InputMaybe<Routes_Bool_Exp>;
-  route_id?: InputMaybe<Int_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  vehicle_type?: InputMaybe<Vehicle_Types_Bool_Exp>;
-  vehicle_types_id?: InputMaybe<Int_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Itinerary_Bool_Exp>>
+  _not?: InputMaybe<Itinerary_Bool_Exp>
+  _or?: InputMaybe<Array<Itinerary_Bool_Exp>>
+  bookings?: InputMaybe<Bookings_Bool_Exp>
+  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Bool_Exp>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  note?: InputMaybe<String_Comparison_Exp>
+  option?: InputMaybe<Options_Bool_Exp>
+  option_id?: InputMaybe<Int_Comparison_Exp>
+  price?: InputMaybe<Numeric_Comparison_Exp>
+  provider?: InputMaybe<Providers_Bool_Exp>
+  provider_id?: InputMaybe<Int_Comparison_Exp>
+  route?: InputMaybe<Routes_Bool_Exp>
+  route_id?: InputMaybe<Int_Comparison_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  vehicle_type?: InputMaybe<Vehicle_Types_Bool_Exp>
+  vehicle_types_id?: InputMaybe<Int_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "itinerary" */
 export type Itinerary_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'itinerary_pkey';
+  'itinerary_pkey'
 
 /** input type for incrementing numeric columns in table "itinerary" */
 export type Itinerary_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  option_id?: InputMaybe<Scalars['Int']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
-  provider_id?: InputMaybe<Scalars['Int']['input']>;
-  route_id?: InputMaybe<Scalars['Int']['input']>;
-  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+  option_id?: InputMaybe<Scalars['Int']['input']>
+  price?: InputMaybe<Scalars['numeric']['input']>
+  provider_id?: InputMaybe<Scalars['Int']['input']>
+  route_id?: InputMaybe<Scalars['Int']['input']>
+  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "itinerary" */
 export type Itinerary_Insert_Input = {
-  bookings?: InputMaybe<Bookings_Arr_Rel_Insert_Input>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  option?: InputMaybe<Options_Obj_Rel_Insert_Input>;
-  option_id?: InputMaybe<Scalars['Int']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
-  provider?: InputMaybe<Providers_Obj_Rel_Insert_Input>;
-  provider_id?: InputMaybe<Scalars['Int']['input']>;
-  route?: InputMaybe<Routes_Obj_Rel_Insert_Input>;
-  route_id?: InputMaybe<Scalars['Int']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  vehicle_type?: InputMaybe<Vehicle_Types_Obj_Rel_Insert_Input>;
-  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  bookings?: InputMaybe<Bookings_Arr_Rel_Insert_Input>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  option?: InputMaybe<Options_Obj_Rel_Insert_Input>
+  option_id?: InputMaybe<Scalars['Int']['input']>
+  price?: InputMaybe<Scalars['numeric']['input']>
+  provider?: InputMaybe<Providers_Obj_Rel_Insert_Input>
+  provider_id?: InputMaybe<Scalars['Int']['input']>
+  route?: InputMaybe<Routes_Obj_Rel_Insert_Input>
+  route_id?: InputMaybe<Scalars['Int']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  vehicle_type?: InputMaybe<Vehicle_Types_Obj_Rel_Insert_Input>
+  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** aggregate max on columns */
 export type Itinerary_Max_Fields = {
-  __typename?: 'itinerary_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
-  option_id?: Maybe<Scalars['Int']['output']>;
-  price?: Maybe<Scalars['numeric']['output']>;
-  provider_id?: Maybe<Scalars['Int']['output']>;
-  route_id?: Maybe<Scalars['Int']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'itinerary_max_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  option_id?: Maybe<Scalars['Int']['output']>
+  price?: Maybe<Scalars['numeric']['output']>
+  provider_id?: Maybe<Scalars['Int']['output']>
+  route_id?: Maybe<Scalars['Int']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  vehicle_types_id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by max() on columns of table "itinerary" */
 export type Itinerary_Max_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  note?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** aggregate min on columns */
 export type Itinerary_Min_Fields = {
-  __typename?: 'itinerary_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
-  option_id?: Maybe<Scalars['Int']['output']>;
-  price?: Maybe<Scalars['numeric']['output']>;
-  provider_id?: Maybe<Scalars['Int']['output']>;
-  route_id?: Maybe<Scalars['Int']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'itinerary_min_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  option_id?: Maybe<Scalars['Int']['output']>
+  price?: Maybe<Scalars['numeric']['output']>
+  provider_id?: Maybe<Scalars['Int']['output']>
+  route_id?: Maybe<Scalars['Int']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  vehicle_types_id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by min() on columns of table "itinerary" */
 export type Itinerary_Min_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  note?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** response of any mutation on the table "itinerary" */
 export type Itinerary_Mutation_Response = {
-  __typename?: 'itinerary_mutation_response';
+  __typename?: 'itinerary_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Itinerary>;
-};
+  returning: Array<Itinerary>
+}
 
 /** input type for inserting object relation for remote table "itinerary" */
 export type Itinerary_Obj_Rel_Insert_Input = {
-  data: Itinerary_Insert_Input;
+  data: Itinerary_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Itinerary_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Itinerary_On_Conflict>
+}
 
 /** on_conflict condition type for table "itinerary" */
 export type Itinerary_On_Conflict = {
-  constraint: Itinerary_Constraint;
-  update_columns?: Array<Itinerary_Update_Column>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
+  constraint: Itinerary_Constraint
+  update_columns?: Array<Itinerary_Update_Column>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "itinerary". */
 export type Itinerary_Order_By = {
-  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  option?: InputMaybe<Options_Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider?: InputMaybe<Providers_Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route?: InputMaybe<Routes_Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  vehicle_type?: InputMaybe<Vehicle_Types_Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  note?: InputMaybe<Order_By>
+  option?: InputMaybe<Options_Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider?: InputMaybe<Providers_Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route?: InputMaybe<Routes_Order_By>
+  route_id?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  vehicle_type?: InputMaybe<Vehicle_Types_Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: itinerary */
 export type Itinerary_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "itinerary" */
 export type Itinerary_Select_Column =
@@ -1232,139 +1211,139 @@ export type Itinerary_Select_Column =
   /** column name */
   | 'updated_at'
   /** column name */
-  | 'vehicle_types_id';
+  | 'vehicle_types_id'
 
 /** select "itinerary_aggregate_bool_exp_bool_and_arguments_columns" columns of table "itinerary" */
 export type Itinerary_Select_Column_Itinerary_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
   /** column name */
-  | 'isactive';
+  'isactive'
 
 /** select "itinerary_aggregate_bool_exp_bool_or_arguments_columns" columns of table "itinerary" */
 export type Itinerary_Select_Column_Itinerary_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
   /** column name */
-  | 'isactive';
+  'isactive'
 
 /** input type for updating data in table "itinerary" */
 export type Itinerary_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  option_id?: InputMaybe<Scalars['Int']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
-  provider_id?: InputMaybe<Scalars['Int']['input']>;
-  route_id?: InputMaybe<Scalars['Int']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  option_id?: InputMaybe<Scalars['Int']['input']>
+  price?: InputMaybe<Scalars['numeric']['input']>
+  provider_id?: InputMaybe<Scalars['Int']['input']>
+  route_id?: InputMaybe<Scalars['Int']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Itinerary_Stddev_Fields = {
-  __typename?: 'itinerary_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev() on columns of table "itinerary" */
 export type Itinerary_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_pop on columns */
 export type Itinerary_Stddev_Pop_Fields = {
-  __typename?: 'itinerary_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_pop() on columns of table "itinerary" */
 export type Itinerary_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_samp on columns */
 export type Itinerary_Stddev_Samp_Fields = {
-  __typename?: 'itinerary_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_samp() on columns of table "itinerary" */
 export type Itinerary_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** Streaming cursor of the table "itinerary" */
 export type Itinerary_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Itinerary_Stream_Cursor_Value_Input;
+  initial_value: Itinerary_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Itinerary_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  option_id?: InputMaybe<Scalars['Int']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
-  provider_id?: InputMaybe<Scalars['Int']['input']>;
-  route_id?: InputMaybe<Scalars['Int']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  option_id?: InputMaybe<Scalars['Int']['input']>
+  price?: InputMaybe<Scalars['numeric']['input']>
+  provider_id?: InputMaybe<Scalars['Int']['input']>
+  route_id?: InputMaybe<Scalars['Int']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  vehicle_types_id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** aggregate sum on columns */
 export type Itinerary_Sum_Fields = {
-  __typename?: 'itinerary_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  option_id?: Maybe<Scalars['Int']['output']>;
-  price?: Maybe<Scalars['numeric']['output']>;
-  provider_id?: Maybe<Scalars['Int']['output']>;
-  route_id?: Maybe<Scalars['Int']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'itinerary_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+  option_id?: Maybe<Scalars['Int']['output']>
+  price?: Maybe<Scalars['numeric']['output']>
+  provider_id?: Maybe<Scalars['Int']['output']>
+  route_id?: Maybe<Scalars['Int']['output']>
+  vehicle_types_id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by sum() on columns of table "itinerary" */
 export type Itinerary_Sum_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** update columns of table "itinerary" */
 export type Itinerary_Update_Column =
@@ -1389,361 +1368,356 @@ export type Itinerary_Update_Column =
   /** column name */
   | 'updated_at'
   /** column name */
-  | 'vehicle_types_id';
+  | 'vehicle_types_id'
 
 export type Itinerary_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Itinerary_Inc_Input>;
+  _inc?: InputMaybe<Itinerary_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Itinerary_Set_Input>;
+  _set?: InputMaybe<Itinerary_Set_Input>
   /** filter the rows which have to be updated */
-  where: Itinerary_Bool_Exp;
-};
+  where: Itinerary_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Itinerary_Var_Pop_Fields = {
-  __typename?: 'itinerary_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_pop() on columns of table "itinerary" */
 export type Itinerary_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** aggregate var_samp on columns */
 export type Itinerary_Var_Samp_Fields = {
-  __typename?: 'itinerary_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_samp() on columns of table "itinerary" */
 export type Itinerary_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** aggregate variance on columns */
 export type Itinerary_Variance_Fields = {
-  __typename?: 'itinerary_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-  option_id?: Maybe<Scalars['Float']['output']>;
-  price?: Maybe<Scalars['Float']['output']>;
-  provider_id?: Maybe<Scalars['Float']['output']>;
-  route_id?: Maybe<Scalars['Float']['output']>;
-  vehicle_types_id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'itinerary_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+  option_id?: Maybe<Scalars['Float']['output']>
+  price?: Maybe<Scalars['Float']['output']>
+  provider_id?: Maybe<Scalars['Float']['output']>
+  route_id?: Maybe<Scalars['Float']['output']>
+  vehicle_types_id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by variance() on columns of table "itinerary" */
 export type Itinerary_Variance_Order_By = {
-  id?: InputMaybe<Order_By>;
-  option_id?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
-  provider_id?: InputMaybe<Order_By>;
-  route_id?: InputMaybe<Order_By>;
-  vehicle_types_id?: InputMaybe<Order_By>;
-};
+  id?: InputMaybe<Order_By>
+  option_id?: InputMaybe<Order_By>
+  price?: InputMaybe<Order_By>
+  provider_id?: InputMaybe<Order_By>
+  route_id?: InputMaybe<Order_By>
+  vehicle_types_id?: InputMaybe<Order_By>
+}
 
 /** columns and relationships of "locations" */
 export type Locations = {
-  __typename?: 'locations';
+  __typename?: 'locations'
   /** An object relationship */
-  city: Cities;
-  city_id: Scalars['Int']['output'];
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id: Scalars['Int']['output'];
-  isactive?: Maybe<Scalars['Boolean']['output']>;
-  name: Scalars['String']['output'];
+  city: Cities
+  city_id: Scalars['Int']['output']
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id: Scalars['Int']['output']
+  isactive?: Maybe<Scalars['Boolean']['output']>
+  name: Scalars['String']['output']
   /** An array relationship */
-  routes: Array<Routes>;
+  routes: Array<Routes>
   /** An array relationship */
-  routesByStartLocation: Array<Routes>;
+  routesByStartLocation: Array<Routes>
   /** An aggregate relationship */
-  routesByStartLocation_aggregate: Routes_Aggregate;
+  routesByStartLocation_aggregate: Routes_Aggregate
   /** An aggregate relationship */
-  routes_aggregate: Routes_Aggregate;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
-
+  routes_aggregate: Routes_Aggregate
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** columns and relationships of "locations" */
 export type LocationsRoutesArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** columns and relationships of "locations" */
 export type LocationsRoutesByStartLocationArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** columns and relationships of "locations" */
 export type LocationsRoutesByStartLocation_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** columns and relationships of "locations" */
 export type LocationsRoutes_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** aggregated selection of "locations" */
 export type Locations_Aggregate = {
-  __typename?: 'locations_aggregate';
-  aggregate?: Maybe<Locations_Aggregate_Fields>;
-  nodes: Array<Locations>;
-};
+  __typename?: 'locations_aggregate'
+  aggregate?: Maybe<Locations_Aggregate_Fields>
+  nodes: Array<Locations>
+}
 
 export type Locations_Aggregate_Bool_Exp = {
-  bool_and?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_And>;
-  bool_or?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_Or>;
-  count?: InputMaybe<Locations_Aggregate_Bool_Exp_Count>;
-};
+  bool_and?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_And>
+  bool_or?: InputMaybe<Locations_Aggregate_Bool_Exp_Bool_Or>
+  count?: InputMaybe<Locations_Aggregate_Bool_Exp_Count>
+}
 
 export type Locations_Aggregate_Bool_Exp_Bool_And = {
-  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Locations_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
+  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Locations_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
 
 export type Locations_Aggregate_Bool_Exp_Bool_Or = {
-  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Locations_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
+  arguments: Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Locations_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
 
 export type Locations_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Locations_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Locations_Bool_Exp>;
-  predicate: Int_Comparison_Exp;
-};
+  arguments?: InputMaybe<Array<Locations_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Locations_Bool_Exp>
+  predicate: Int_Comparison_Exp
+}
 
 /** aggregate fields of "locations" */
 export type Locations_Aggregate_Fields = {
-  __typename?: 'locations_aggregate_fields';
-  avg?: Maybe<Locations_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Locations_Max_Fields>;
-  min?: Maybe<Locations_Min_Fields>;
-  stddev?: Maybe<Locations_Stddev_Fields>;
-  stddev_pop?: Maybe<Locations_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Locations_Stddev_Samp_Fields>;
-  sum?: Maybe<Locations_Sum_Fields>;
-  var_pop?: Maybe<Locations_Var_Pop_Fields>;
-  var_samp?: Maybe<Locations_Var_Samp_Fields>;
-  variance?: Maybe<Locations_Variance_Fields>;
-};
-
+  __typename?: 'locations_aggregate_fields'
+  avg?: Maybe<Locations_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Locations_Max_Fields>
+  min?: Maybe<Locations_Min_Fields>
+  stddev?: Maybe<Locations_Stddev_Fields>
+  stddev_pop?: Maybe<Locations_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Locations_Stddev_Samp_Fields>
+  sum?: Maybe<Locations_Sum_Fields>
+  var_pop?: Maybe<Locations_Var_Pop_Fields>
+  var_samp?: Maybe<Locations_Var_Samp_Fields>
+  variance?: Maybe<Locations_Variance_Fields>
+}
 
 /** aggregate fields of "locations" */
 export type Locations_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Locations_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Locations_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** order by aggregate values of table "locations" */
 export type Locations_Aggregate_Order_By = {
-  avg?: InputMaybe<Locations_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Locations_Max_Order_By>;
-  min?: InputMaybe<Locations_Min_Order_By>;
-  stddev?: InputMaybe<Locations_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Locations_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Locations_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Locations_Sum_Order_By>;
-  var_pop?: InputMaybe<Locations_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Locations_Var_Samp_Order_By>;
-  variance?: InputMaybe<Locations_Variance_Order_By>;
-};
+  avg?: InputMaybe<Locations_Avg_Order_By>
+  count?: InputMaybe<Order_By>
+  max?: InputMaybe<Locations_Max_Order_By>
+  min?: InputMaybe<Locations_Min_Order_By>
+  stddev?: InputMaybe<Locations_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Locations_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Locations_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Locations_Sum_Order_By>
+  var_pop?: InputMaybe<Locations_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Locations_Var_Samp_Order_By>
+  variance?: InputMaybe<Locations_Variance_Order_By>
+}
 
 /** input type for inserting array relation for remote table "locations" */
 export type Locations_Arr_Rel_Insert_Input = {
-  data: Array<Locations_Insert_Input>;
+  data: Array<Locations_Insert_Input>
   /** upsert condition */
-  on_conflict?: InputMaybe<Locations_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Locations_On_Conflict>
+}
 
 /** aggregate avg on columns */
 export type Locations_Avg_Fields = {
-  __typename?: 'locations_avg_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_avg_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by avg() on columns of table "locations" */
 export type Locations_Avg_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** Boolean expression to filter rows from the table "locations". All fields are combined with a logical 'AND'. */
 export type Locations_Bool_Exp = {
-  _and?: InputMaybe<Array<Locations_Bool_Exp>>;
-  _not?: InputMaybe<Locations_Bool_Exp>;
-  _or?: InputMaybe<Array<Locations_Bool_Exp>>;
-  city?: InputMaybe<Cities_Bool_Exp>;
-  city_id?: InputMaybe<Int_Comparison_Exp>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  name?: InputMaybe<String_Comparison_Exp>;
-  routes?: InputMaybe<Routes_Bool_Exp>;
-  routesByStartLocation?: InputMaybe<Routes_Bool_Exp>;
-  routesByStartLocation_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>;
-  routes_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Locations_Bool_Exp>>
+  _not?: InputMaybe<Locations_Bool_Exp>
+  _or?: InputMaybe<Array<Locations_Bool_Exp>>
+  city?: InputMaybe<Cities_Bool_Exp>
+  city_id?: InputMaybe<Int_Comparison_Exp>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  name?: InputMaybe<String_Comparison_Exp>
+  routes?: InputMaybe<Routes_Bool_Exp>
+  routesByStartLocation?: InputMaybe<Routes_Bool_Exp>
+  routesByStartLocation_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>
+  routes_aggregate?: InputMaybe<Routes_Aggregate_Bool_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "locations" */
 export type Locations_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'locations_pkey';
+  'locations_pkey'
 
 /** input type for incrementing numeric columns in table "locations" */
 export type Locations_Inc_Input = {
-  city_id?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
+  city_id?: InputMaybe<Scalars['Int']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "locations" */
 export type Locations_Insert_Input = {
-  city?: InputMaybe<Cities_Obj_Rel_Insert_Input>;
-  city_id?: InputMaybe<Scalars['Int']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
-  routesByStartLocation?: InputMaybe<Routes_Arr_Rel_Insert_Input>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  city?: InputMaybe<Cities_Obj_Rel_Insert_Input>
+  city_id?: InputMaybe<Scalars['Int']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  routes?: InputMaybe<Routes_Arr_Rel_Insert_Input>
+  routesByStartLocation?: InputMaybe<Routes_Arr_Rel_Insert_Input>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate max on columns */
 export type Locations_Max_Fields = {
-  __typename?: 'locations_max_fields';
-  city_id?: Maybe<Scalars['Int']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'locations_max_fields'
+  city_id?: Maybe<Scalars['Int']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** order by max() on columns of table "locations" */
 export type Locations_Max_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  name?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** aggregate min on columns */
 export type Locations_Min_Fields = {
-  __typename?: 'locations_min_fields';
-  city_id?: Maybe<Scalars['Int']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'locations_min_fields'
+  city_id?: Maybe<Scalars['Int']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** order by min() on columns of table "locations" */
 export type Locations_Min_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  name?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** response of any mutation on the table "locations" */
 export type Locations_Mutation_Response = {
-  __typename?: 'locations_mutation_response';
+  __typename?: 'locations_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Locations>;
-};
+  returning: Array<Locations>
+}
 
 /** input type for inserting object relation for remote table "locations" */
 export type Locations_Obj_Rel_Insert_Input = {
-  data: Locations_Insert_Input;
+  data: Locations_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Locations_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Locations_On_Conflict>
+}
 
 /** on_conflict condition type for table "locations" */
 export type Locations_On_Conflict = {
-  constraint: Locations_Constraint;
-  update_columns?: Array<Locations_Update_Column>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
+  constraint: Locations_Constraint
+  update_columns?: Array<Locations_Update_Column>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "locations". */
 export type Locations_Order_By = {
-  city?: InputMaybe<Cities_Order_By>;
-  city_id?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  routesByStartLocation_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
-  routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  city?: InputMaybe<Cities_Order_By>
+  city_id?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  name?: InputMaybe<Order_By>
+  routesByStartLocation_aggregate?: InputMaybe<Routes_Aggregate_Order_By>
+  routes_aggregate?: InputMaybe<Routes_Aggregate_Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: locations */
 export type Locations_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "locations" */
 export type Locations_Select_Column =
@@ -1760,99 +1734,99 @@ export type Locations_Select_Column =
   /** column name */
   | 'name'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 /** select "locations_aggregate_bool_exp_bool_and_arguments_columns" columns of table "locations" */
 export type Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
   /** column name */
-  | 'isactive';
+  'isactive'
 
 /** select "locations_aggregate_bool_exp_bool_or_arguments_columns" columns of table "locations" */
 export type Locations_Select_Column_Locations_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
   /** column name */
-  | 'isactive';
+  'isactive'
 
 /** input type for updating data in table "locations" */
 export type Locations_Set_Input = {
-  city_id?: InputMaybe<Scalars['Int']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  city_id?: InputMaybe<Scalars['Int']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Locations_Stddev_Fields = {
-  __typename?: 'locations_stddev_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_stddev_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev() on columns of table "locations" */
 export type Locations_Stddev_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_pop on columns */
 export type Locations_Stddev_Pop_Fields = {
-  __typename?: 'locations_stddev_pop_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_stddev_pop_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_pop() on columns of table "locations" */
 export type Locations_Stddev_Pop_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_samp on columns */
 export type Locations_Stddev_Samp_Fields = {
-  __typename?: 'locations_stddev_samp_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_stddev_samp_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_samp() on columns of table "locations" */
 export type Locations_Stddev_Samp_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** Streaming cursor of the table "locations" */
 export type Locations_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Locations_Stream_Cursor_Value_Input;
+  initial_value: Locations_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Locations_Stream_Cursor_Value_Input = {
-  city_id?: InputMaybe<Scalars['Int']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  city_id?: InputMaybe<Scalars['Int']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate sum on columns */
 export type Locations_Sum_Fields = {
-  __typename?: 'locations_sum_fields';
-  city_id?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'locations_sum_fields'
+  city_id?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by sum() on columns of table "locations" */
 export type Locations_Sum_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** update columns of table "locations" */
 export type Locations_Update_Column =
@@ -1869,822 +1843,747 @@ export type Locations_Update_Column =
   /** column name */
   | 'name'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 export type Locations_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Locations_Inc_Input>;
+  _inc?: InputMaybe<Locations_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Locations_Set_Input>;
+  _set?: InputMaybe<Locations_Set_Input>
   /** filter the rows which have to be updated */
-  where: Locations_Bool_Exp;
-};
+  where: Locations_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Locations_Var_Pop_Fields = {
-  __typename?: 'locations_var_pop_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_var_pop_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_pop() on columns of table "locations" */
 export type Locations_Var_Pop_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate var_samp on columns */
 export type Locations_Var_Samp_Fields = {
-  __typename?: 'locations_var_samp_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_var_samp_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_samp() on columns of table "locations" */
 export type Locations_Var_Samp_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate variance on columns */
 export type Locations_Variance_Fields = {
-  __typename?: 'locations_variance_fields';
-  city_id?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'locations_variance_fields'
+  city_id?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by variance() on columns of table "locations" */
 export type Locations_Variance_Order_By = {
-  city_id?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-};
+  city_id?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+}
 
 /** mutation root */
 export type Mutation_Root = {
-  __typename?: 'mutation_root';
+  __typename?: 'mutation_root'
   /** actionLogin */
-  actionLogin?: Maybe<AuthOutput>;
+  actionLogin?: Maybe<AuthOutput>
+  /** actionAdminLogin */
+  actionLoginAdmin?: Maybe<SampleOutput>
   /** delete data from the table: "bookings" */
-  delete_bookings?: Maybe<Bookings_Mutation_Response>;
+  delete_bookings?: Maybe<Bookings_Mutation_Response>
   /** delete single row from the table: "bookings" */
-  delete_bookings_by_pk?: Maybe<Bookings>;
+  delete_bookings_by_pk?: Maybe<Bookings>
   /** delete data from the table: "cities" */
-  delete_cities?: Maybe<Cities_Mutation_Response>;
+  delete_cities?: Maybe<Cities_Mutation_Response>
   /** delete single row from the table: "cities" */
-  delete_cities_by_pk?: Maybe<Cities>;
+  delete_cities_by_pk?: Maybe<Cities>
   /** delete data from the table: "itinerary" */
-  delete_itinerary?: Maybe<Itinerary_Mutation_Response>;
+  delete_itinerary?: Maybe<Itinerary_Mutation_Response>
   /** delete single row from the table: "itinerary" */
-  delete_itinerary_by_pk?: Maybe<Itinerary>;
+  delete_itinerary_by_pk?: Maybe<Itinerary>
   /** delete data from the table: "locations" */
-  delete_locations?: Maybe<Locations_Mutation_Response>;
+  delete_locations?: Maybe<Locations_Mutation_Response>
   /** delete single row from the table: "locations" */
-  delete_locations_by_pk?: Maybe<Locations>;
+  delete_locations_by_pk?: Maybe<Locations>
   /** delete data from the table: "options" */
-  delete_options?: Maybe<Options_Mutation_Response>;
+  delete_options?: Maybe<Options_Mutation_Response>
   /** delete single row from the table: "options" */
-  delete_options_by_pk?: Maybe<Options>;
+  delete_options_by_pk?: Maybe<Options>
   /** delete data from the table: "providers" */
-  delete_providers?: Maybe<Providers_Mutation_Response>;
+  delete_providers?: Maybe<Providers_Mutation_Response>
   /** delete single row from the table: "providers" */
-  delete_providers_by_pk?: Maybe<Providers>;
+  delete_providers_by_pk?: Maybe<Providers>
   /** delete data from the table: "routes" */
-  delete_routes?: Maybe<Routes_Mutation_Response>;
+  delete_routes?: Maybe<Routes_Mutation_Response>
   /** delete single row from the table: "routes" */
-  delete_routes_by_pk?: Maybe<Routes>;
+  delete_routes_by_pk?: Maybe<Routes>
   /** delete data from the table: "users" */
-  delete_users?: Maybe<Users_Mutation_Response>;
+  delete_users?: Maybe<Users_Mutation_Response>
   /** delete single row from the table: "users" */
-  delete_users_by_pk?: Maybe<Users>;
+  delete_users_by_pk?: Maybe<Users>
   /** delete data from the table: "vehicle_types" */
-  delete_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>;
+  delete_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>
   /** delete single row from the table: "vehicle_types" */
-  delete_vehicle_types_by_pk?: Maybe<Vehicle_Types>;
+  delete_vehicle_types_by_pk?: Maybe<Vehicle_Types>
   /** insert data into the table: "bookings" */
-  insert_bookings?: Maybe<Bookings_Mutation_Response>;
+  insert_bookings?: Maybe<Bookings_Mutation_Response>
   /** insert a single row into the table: "bookings" */
-  insert_bookings_one?: Maybe<Bookings>;
+  insert_bookings_one?: Maybe<Bookings>
   /** insert data into the table: "cities" */
-  insert_cities?: Maybe<Cities_Mutation_Response>;
+  insert_cities?: Maybe<Cities_Mutation_Response>
   /** insert a single row into the table: "cities" */
-  insert_cities_one?: Maybe<Cities>;
+  insert_cities_one?: Maybe<Cities>
   /** insert data into the table: "itinerary" */
-  insert_itinerary?: Maybe<Itinerary_Mutation_Response>;
+  insert_itinerary?: Maybe<Itinerary_Mutation_Response>
   /** insert a single row into the table: "itinerary" */
-  insert_itinerary_one?: Maybe<Itinerary>;
+  insert_itinerary_one?: Maybe<Itinerary>
   /** insert data into the table: "locations" */
-  insert_locations?: Maybe<Locations_Mutation_Response>;
+  insert_locations?: Maybe<Locations_Mutation_Response>
   /** insert a single row into the table: "locations" */
-  insert_locations_one?: Maybe<Locations>;
+  insert_locations_one?: Maybe<Locations>
   /** insert data into the table: "options" */
-  insert_options?: Maybe<Options_Mutation_Response>;
+  insert_options?: Maybe<Options_Mutation_Response>
   /** insert a single row into the table: "options" */
-  insert_options_one?: Maybe<Options>;
+  insert_options_one?: Maybe<Options>
   /** insert data into the table: "providers" */
-  insert_providers?: Maybe<Providers_Mutation_Response>;
+  insert_providers?: Maybe<Providers_Mutation_Response>
   /** insert a single row into the table: "providers" */
-  insert_providers_one?: Maybe<Providers>;
+  insert_providers_one?: Maybe<Providers>
   /** insert data into the table: "routes" */
-  insert_routes?: Maybe<Routes_Mutation_Response>;
+  insert_routes?: Maybe<Routes_Mutation_Response>
   /** insert a single row into the table: "routes" */
-  insert_routes_one?: Maybe<Routes>;
+  insert_routes_one?: Maybe<Routes>
   /** insert data into the table: "users" */
-  insert_users?: Maybe<Users_Mutation_Response>;
+  insert_users?: Maybe<Users_Mutation_Response>
   /** insert a single row into the table: "users" */
-  insert_users_one?: Maybe<Users>;
+  insert_users_one?: Maybe<Users>
   /** insert data into the table: "vehicle_types" */
-  insert_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>;
+  insert_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>
   /** insert a single row into the table: "vehicle_types" */
-  insert_vehicle_types_one?: Maybe<Vehicle_Types>;
-  /** loginAdmin */
-  loginAdmin: AuthAdminOutput;
-  updateBookingAction?: Maybe<UpdateBookingOutput>;
+  insert_vehicle_types_one?: Maybe<Vehicle_Types>
   /** update data of the table: "bookings" */
-  update_bookings?: Maybe<Bookings_Mutation_Response>;
+  update_bookings?: Maybe<Bookings_Mutation_Response>
   /** update single row of the table: "bookings" */
-  update_bookings_by_pk?: Maybe<Bookings>;
+  update_bookings_by_pk?: Maybe<Bookings>
   /** update multiples rows of table: "bookings" */
-  update_bookings_many?: Maybe<Array<Maybe<Bookings_Mutation_Response>>>;
+  update_bookings_many?: Maybe<Array<Maybe<Bookings_Mutation_Response>>>
   /** update data of the table: "cities" */
-  update_cities?: Maybe<Cities_Mutation_Response>;
+  update_cities?: Maybe<Cities_Mutation_Response>
   /** update single row of the table: "cities" */
-  update_cities_by_pk?: Maybe<Cities>;
+  update_cities_by_pk?: Maybe<Cities>
   /** update multiples rows of table: "cities" */
-  update_cities_many?: Maybe<Array<Maybe<Cities_Mutation_Response>>>;
+  update_cities_many?: Maybe<Array<Maybe<Cities_Mutation_Response>>>
   /** update data of the table: "itinerary" */
-  update_itinerary?: Maybe<Itinerary_Mutation_Response>;
+  update_itinerary?: Maybe<Itinerary_Mutation_Response>
   /** update single row of the table: "itinerary" */
-  update_itinerary_by_pk?: Maybe<Itinerary>;
+  update_itinerary_by_pk?: Maybe<Itinerary>
   /** update multiples rows of table: "itinerary" */
-  update_itinerary_many?: Maybe<Array<Maybe<Itinerary_Mutation_Response>>>;
+  update_itinerary_many?: Maybe<Array<Maybe<Itinerary_Mutation_Response>>>
   /** update data of the table: "locations" */
-  update_locations?: Maybe<Locations_Mutation_Response>;
+  update_locations?: Maybe<Locations_Mutation_Response>
   /** update single row of the table: "locations" */
-  update_locations_by_pk?: Maybe<Locations>;
+  update_locations_by_pk?: Maybe<Locations>
   /** update multiples rows of table: "locations" */
-  update_locations_many?: Maybe<Array<Maybe<Locations_Mutation_Response>>>;
+  update_locations_many?: Maybe<Array<Maybe<Locations_Mutation_Response>>>
   /** update data of the table: "options" */
-  update_options?: Maybe<Options_Mutation_Response>;
+  update_options?: Maybe<Options_Mutation_Response>
   /** update single row of the table: "options" */
-  update_options_by_pk?: Maybe<Options>;
+  update_options_by_pk?: Maybe<Options>
   /** update multiples rows of table: "options" */
-  update_options_many?: Maybe<Array<Maybe<Options_Mutation_Response>>>;
+  update_options_many?: Maybe<Array<Maybe<Options_Mutation_Response>>>
   /** update data of the table: "providers" */
-  update_providers?: Maybe<Providers_Mutation_Response>;
+  update_providers?: Maybe<Providers_Mutation_Response>
   /** update single row of the table: "providers" */
-  update_providers_by_pk?: Maybe<Providers>;
+  update_providers_by_pk?: Maybe<Providers>
   /** update multiples rows of table: "providers" */
-  update_providers_many?: Maybe<Array<Maybe<Providers_Mutation_Response>>>;
+  update_providers_many?: Maybe<Array<Maybe<Providers_Mutation_Response>>>
   /** update data of the table: "routes" */
-  update_routes?: Maybe<Routes_Mutation_Response>;
+  update_routes?: Maybe<Routes_Mutation_Response>
   /** update single row of the table: "routes" */
-  update_routes_by_pk?: Maybe<Routes>;
+  update_routes_by_pk?: Maybe<Routes>
   /** update multiples rows of table: "routes" */
-  update_routes_many?: Maybe<Array<Maybe<Routes_Mutation_Response>>>;
+  update_routes_many?: Maybe<Array<Maybe<Routes_Mutation_Response>>>
   /** update data of the table: "users" */
-  update_users?: Maybe<Users_Mutation_Response>;
+  update_users?: Maybe<Users_Mutation_Response>
   /** update single row of the table: "users" */
-  update_users_by_pk?: Maybe<Users>;
+  update_users_by_pk?: Maybe<Users>
   /** update multiples rows of table: "users" */
-  update_users_many?: Maybe<Array<Maybe<Users_Mutation_Response>>>;
+  update_users_many?: Maybe<Array<Maybe<Users_Mutation_Response>>>
   /** update data of the table: "vehicle_types" */
-  update_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>;
+  update_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>
   /** update single row of the table: "vehicle_types" */
-  update_vehicle_types_by_pk?: Maybe<Vehicle_Types>;
+  update_vehicle_types_by_pk?: Maybe<Vehicle_Types>
   /** update multiples rows of table: "vehicle_types" */
-  update_vehicle_types_many?: Maybe<Array<Maybe<Vehicle_Types_Mutation_Response>>>;
-};
-
+  update_vehicle_types_many?: Maybe<Array<Maybe<Vehicle_Types_Mutation_Response>>>
+}
 
 /** mutation root */
 export type Mutation_RootActionLoginArgs = {
-  token: Scalars['String']['input'];
-  tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
-};
+  token: Scalars['String']['input']
+  tokenGetPhone?: InputMaybe<Scalars['String']['input']>
+}
 
+/** mutation root */
+export type Mutation_RootActionLoginAdminArgs = {
+  password?: InputMaybe<Scalars['String']['input']>
+  phone?: InputMaybe<Scalars['String']['input']>
+}
 
 /** mutation root */
 export type Mutation_RootDelete_BookingsArgs = {
-  where: Bookings_Bool_Exp;
-};
-
+  where: Bookings_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Bookings_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_CitiesArgs = {
-  where: Cities_Bool_Exp;
-};
-
+  where: Cities_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Cities_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_ItineraryArgs = {
-  where: Itinerary_Bool_Exp;
-};
-
+  where: Itinerary_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Itinerary_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_LocationsArgs = {
-  where: Locations_Bool_Exp;
-};
-
+  where: Locations_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Locations_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_OptionsArgs = {
-  where: Options_Bool_Exp;
-};
-
+  where: Options_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Options_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_ProvidersArgs = {
-  where: Providers_Bool_Exp;
-};
-
+  where: Providers_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Providers_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_RoutesArgs = {
-  where: Routes_Bool_Exp;
-};
-
+  where: Routes_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Routes_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_UsersArgs = {
-  where: Users_Bool_Exp;
-};
-
+  where: Users_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Users_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Vehicle_TypesArgs = {
-  where: Vehicle_Types_Bool_Exp;
-};
-
+  where: Vehicle_Types_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootDelete_Vehicle_Types_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 /** mutation root */
 export type Mutation_RootInsert_BookingsArgs = {
-  objects: Array<Bookings_Insert_Input>;
-  on_conflict?: InputMaybe<Bookings_On_Conflict>;
-};
-
+  objects: Array<Bookings_Insert_Input>
+  on_conflict?: InputMaybe<Bookings_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Bookings_OneArgs = {
-  object: Bookings_Insert_Input;
-  on_conflict?: InputMaybe<Bookings_On_Conflict>;
-};
-
+  object: Bookings_Insert_Input
+  on_conflict?: InputMaybe<Bookings_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_CitiesArgs = {
-  objects: Array<Cities_Insert_Input>;
-  on_conflict?: InputMaybe<Cities_On_Conflict>;
-};
-
+  objects: Array<Cities_Insert_Input>
+  on_conflict?: InputMaybe<Cities_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Cities_OneArgs = {
-  object: Cities_Insert_Input;
-  on_conflict?: InputMaybe<Cities_On_Conflict>;
-};
-
+  object: Cities_Insert_Input
+  on_conflict?: InputMaybe<Cities_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_ItineraryArgs = {
-  objects: Array<Itinerary_Insert_Input>;
-  on_conflict?: InputMaybe<Itinerary_On_Conflict>;
-};
-
+  objects: Array<Itinerary_Insert_Input>
+  on_conflict?: InputMaybe<Itinerary_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Itinerary_OneArgs = {
-  object: Itinerary_Insert_Input;
-  on_conflict?: InputMaybe<Itinerary_On_Conflict>;
-};
-
+  object: Itinerary_Insert_Input
+  on_conflict?: InputMaybe<Itinerary_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_LocationsArgs = {
-  objects: Array<Locations_Insert_Input>;
-  on_conflict?: InputMaybe<Locations_On_Conflict>;
-};
-
+  objects: Array<Locations_Insert_Input>
+  on_conflict?: InputMaybe<Locations_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Locations_OneArgs = {
-  object: Locations_Insert_Input;
-  on_conflict?: InputMaybe<Locations_On_Conflict>;
-};
-
+  object: Locations_Insert_Input
+  on_conflict?: InputMaybe<Locations_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_OptionsArgs = {
-  objects: Array<Options_Insert_Input>;
-  on_conflict?: InputMaybe<Options_On_Conflict>;
-};
-
+  objects: Array<Options_Insert_Input>
+  on_conflict?: InputMaybe<Options_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Options_OneArgs = {
-  object: Options_Insert_Input;
-  on_conflict?: InputMaybe<Options_On_Conflict>;
-};
-
+  object: Options_Insert_Input
+  on_conflict?: InputMaybe<Options_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_ProvidersArgs = {
-  objects: Array<Providers_Insert_Input>;
-  on_conflict?: InputMaybe<Providers_On_Conflict>;
-};
-
+  objects: Array<Providers_Insert_Input>
+  on_conflict?: InputMaybe<Providers_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Providers_OneArgs = {
-  object: Providers_Insert_Input;
-  on_conflict?: InputMaybe<Providers_On_Conflict>;
-};
-
+  object: Providers_Insert_Input
+  on_conflict?: InputMaybe<Providers_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_RoutesArgs = {
-  objects: Array<Routes_Insert_Input>;
-  on_conflict?: InputMaybe<Routes_On_Conflict>;
-};
-
+  objects: Array<Routes_Insert_Input>
+  on_conflict?: InputMaybe<Routes_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Routes_OneArgs = {
-  object: Routes_Insert_Input;
-  on_conflict?: InputMaybe<Routes_On_Conflict>;
-};
-
+  object: Routes_Insert_Input
+  on_conflict?: InputMaybe<Routes_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_UsersArgs = {
-  objects: Array<Users_Insert_Input>;
-  on_conflict?: InputMaybe<Users_On_Conflict>;
-};
-
+  objects: Array<Users_Insert_Input>
+  on_conflict?: InputMaybe<Users_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Users_OneArgs = {
-  object: Users_Insert_Input;
-  on_conflict?: InputMaybe<Users_On_Conflict>;
-};
-
+  object: Users_Insert_Input
+  on_conflict?: InputMaybe<Users_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Vehicle_TypesArgs = {
-  objects: Array<Vehicle_Types_Insert_Input>;
-  on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>;
-};
-
+  objects: Array<Vehicle_Types_Insert_Input>
+  on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootInsert_Vehicle_Types_OneArgs = {
-  object: Vehicle_Types_Insert_Input;
-  on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootLoginAdminArgs = {
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdateBookingActionArgs = {
-  userUpdateData: UserUpdateData;
-};
-
+  object: Vehicle_Types_Insert_Input
+  on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_BookingsArgs = {
-  _inc?: InputMaybe<Bookings_Inc_Input>;
-  _set?: InputMaybe<Bookings_Set_Input>;
-  where: Bookings_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Bookings_Inc_Input>
+  _set?: InputMaybe<Bookings_Set_Input>
+  where: Bookings_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Bookings_By_PkArgs = {
-  _inc?: InputMaybe<Bookings_Inc_Input>;
-  _set?: InputMaybe<Bookings_Set_Input>;
-  pk_columns: Bookings_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Bookings_Inc_Input>
+  _set?: InputMaybe<Bookings_Set_Input>
+  pk_columns: Bookings_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Bookings_ManyArgs = {
-  updates: Array<Bookings_Updates>;
-};
-
+  updates: Array<Bookings_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_CitiesArgs = {
-  _inc?: InputMaybe<Cities_Inc_Input>;
-  _set?: InputMaybe<Cities_Set_Input>;
-  where: Cities_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Cities_Inc_Input>
+  _set?: InputMaybe<Cities_Set_Input>
+  where: Cities_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Cities_By_PkArgs = {
-  _inc?: InputMaybe<Cities_Inc_Input>;
-  _set?: InputMaybe<Cities_Set_Input>;
-  pk_columns: Cities_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Cities_Inc_Input>
+  _set?: InputMaybe<Cities_Set_Input>
+  pk_columns: Cities_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Cities_ManyArgs = {
-  updates: Array<Cities_Updates>;
-};
-
+  updates: Array<Cities_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_ItineraryArgs = {
-  _inc?: InputMaybe<Itinerary_Inc_Input>;
-  _set?: InputMaybe<Itinerary_Set_Input>;
-  where: Itinerary_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Itinerary_Inc_Input>
+  _set?: InputMaybe<Itinerary_Set_Input>
+  where: Itinerary_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Itinerary_By_PkArgs = {
-  _inc?: InputMaybe<Itinerary_Inc_Input>;
-  _set?: InputMaybe<Itinerary_Set_Input>;
-  pk_columns: Itinerary_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Itinerary_Inc_Input>
+  _set?: InputMaybe<Itinerary_Set_Input>
+  pk_columns: Itinerary_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Itinerary_ManyArgs = {
-  updates: Array<Itinerary_Updates>;
-};
-
+  updates: Array<Itinerary_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_LocationsArgs = {
-  _inc?: InputMaybe<Locations_Inc_Input>;
-  _set?: InputMaybe<Locations_Set_Input>;
-  where: Locations_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Locations_Inc_Input>
+  _set?: InputMaybe<Locations_Set_Input>
+  where: Locations_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Locations_By_PkArgs = {
-  _inc?: InputMaybe<Locations_Inc_Input>;
-  _set?: InputMaybe<Locations_Set_Input>;
-  pk_columns: Locations_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Locations_Inc_Input>
+  _set?: InputMaybe<Locations_Set_Input>
+  pk_columns: Locations_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Locations_ManyArgs = {
-  updates: Array<Locations_Updates>;
-};
-
+  updates: Array<Locations_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_OptionsArgs = {
-  _inc?: InputMaybe<Options_Inc_Input>;
-  _set?: InputMaybe<Options_Set_Input>;
-  where: Options_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Options_Inc_Input>
+  _set?: InputMaybe<Options_Set_Input>
+  where: Options_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Options_By_PkArgs = {
-  _inc?: InputMaybe<Options_Inc_Input>;
-  _set?: InputMaybe<Options_Set_Input>;
-  pk_columns: Options_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Options_Inc_Input>
+  _set?: InputMaybe<Options_Set_Input>
+  pk_columns: Options_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Options_ManyArgs = {
-  updates: Array<Options_Updates>;
-};
-
+  updates: Array<Options_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_ProvidersArgs = {
-  _inc?: InputMaybe<Providers_Inc_Input>;
-  _set?: InputMaybe<Providers_Set_Input>;
-  where: Providers_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Providers_Inc_Input>
+  _set?: InputMaybe<Providers_Set_Input>
+  where: Providers_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Providers_By_PkArgs = {
-  _inc?: InputMaybe<Providers_Inc_Input>;
-  _set?: InputMaybe<Providers_Set_Input>;
-  pk_columns: Providers_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Providers_Inc_Input>
+  _set?: InputMaybe<Providers_Set_Input>
+  pk_columns: Providers_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Providers_ManyArgs = {
-  updates: Array<Providers_Updates>;
-};
-
+  updates: Array<Providers_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_RoutesArgs = {
-  _inc?: InputMaybe<Routes_Inc_Input>;
-  _set?: InputMaybe<Routes_Set_Input>;
-  where: Routes_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Routes_Inc_Input>
+  _set?: InputMaybe<Routes_Set_Input>
+  where: Routes_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Routes_By_PkArgs = {
-  _inc?: InputMaybe<Routes_Inc_Input>;
-  _set?: InputMaybe<Routes_Set_Input>;
-  pk_columns: Routes_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Routes_Inc_Input>
+  _set?: InputMaybe<Routes_Set_Input>
+  pk_columns: Routes_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Routes_ManyArgs = {
-  updates: Array<Routes_Updates>;
-};
-
+  updates: Array<Routes_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_UsersArgs = {
-  _inc?: InputMaybe<Users_Inc_Input>;
-  _set?: InputMaybe<Users_Set_Input>;
-  where: Users_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Users_Inc_Input>
+  _set?: InputMaybe<Users_Set_Input>
+  where: Users_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Users_By_PkArgs = {
-  _inc?: InputMaybe<Users_Inc_Input>;
-  _set?: InputMaybe<Users_Set_Input>;
-  pk_columns: Users_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Users_Inc_Input>
+  _set?: InputMaybe<Users_Set_Input>
+  pk_columns: Users_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Users_ManyArgs = {
-  updates: Array<Users_Updates>;
-};
-
+  updates: Array<Users_Updates>
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Vehicle_TypesArgs = {
-  _inc?: InputMaybe<Vehicle_Types_Inc_Input>;
-  _set?: InputMaybe<Vehicle_Types_Set_Input>;
-  where: Vehicle_Types_Bool_Exp;
-};
-
+  _inc?: InputMaybe<Vehicle_Types_Inc_Input>
+  _set?: InputMaybe<Vehicle_Types_Set_Input>
+  where: Vehicle_Types_Bool_Exp
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Vehicle_Types_By_PkArgs = {
-  _inc?: InputMaybe<Vehicle_Types_Inc_Input>;
-  _set?: InputMaybe<Vehicle_Types_Set_Input>;
-  pk_columns: Vehicle_Types_Pk_Columns_Input;
-};
-
+  _inc?: InputMaybe<Vehicle_Types_Inc_Input>
+  _set?: InputMaybe<Vehicle_Types_Set_Input>
+  pk_columns: Vehicle_Types_Pk_Columns_Input
+}
 
 /** mutation root */
 export type Mutation_RootUpdate_Vehicle_Types_ManyArgs = {
-  updates: Array<Vehicle_Types_Updates>;
-};
+  updates: Array<Vehicle_Types_Updates>
+}
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type Numeric_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['numeric']['input']>;
-  _gt?: InputMaybe<Scalars['numeric']['input']>;
-  _gte?: InputMaybe<Scalars['numeric']['input']>;
-  _in?: InputMaybe<Array<Scalars['numeric']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['numeric']['input']>;
-  _lte?: InputMaybe<Scalars['numeric']['input']>;
-  _neq?: InputMaybe<Scalars['numeric']['input']>;
-  _nin?: InputMaybe<Array<Scalars['numeric']['input']>>;
-};
+  _eq?: InputMaybe<Scalars['numeric']['input']>
+  _gt?: InputMaybe<Scalars['numeric']['input']>
+  _gte?: InputMaybe<Scalars['numeric']['input']>
+  _in?: InputMaybe<Array<Scalars['numeric']['input']>>
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>
+  _lt?: InputMaybe<Scalars['numeric']['input']>
+  _lte?: InputMaybe<Scalars['numeric']['input']>
+  _neq?: InputMaybe<Scalars['numeric']['input']>
+  _nin?: InputMaybe<Array<Scalars['numeric']['input']>>
+}
 
 /** columns and relationships of "options" */
 export type Options = {
-  __typename?: 'options';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id: Scalars['Int']['output'];
-  isactive?: Maybe<Scalars['Boolean']['output']>;
+  __typename?: 'options'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id: Scalars['Int']['output']
+  isactive?: Maybe<Scalars['Boolean']['output']>
   /** An array relationship */
-  itineraries: Array<Itinerary>;
+  itineraries: Array<Itinerary>
   /** An aggregate relationship */
-  itineraries_aggregate: Itinerary_Aggregate;
-  round_type: Scalars['String']['output'];
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
-
+  itineraries_aggregate: Itinerary_Aggregate
+  round_type: Scalars['String']['output']
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** columns and relationships of "options" */
 export type OptionsItinerariesArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** columns and relationships of "options" */
 export type OptionsItineraries_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** aggregated selection of "options" */
 export type Options_Aggregate = {
-  __typename?: 'options_aggregate';
-  aggregate?: Maybe<Options_Aggregate_Fields>;
-  nodes: Array<Options>;
-};
+  __typename?: 'options_aggregate'
+  aggregate?: Maybe<Options_Aggregate_Fields>
+  nodes: Array<Options>
+}
 
 /** aggregate fields of "options" */
 export type Options_Aggregate_Fields = {
-  __typename?: 'options_aggregate_fields';
-  avg?: Maybe<Options_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Options_Max_Fields>;
-  min?: Maybe<Options_Min_Fields>;
-  stddev?: Maybe<Options_Stddev_Fields>;
-  stddev_pop?: Maybe<Options_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Options_Stddev_Samp_Fields>;
-  sum?: Maybe<Options_Sum_Fields>;
-  var_pop?: Maybe<Options_Var_Pop_Fields>;
-  var_samp?: Maybe<Options_Var_Samp_Fields>;
-  variance?: Maybe<Options_Variance_Fields>;
-};
-
+  __typename?: 'options_aggregate_fields'
+  avg?: Maybe<Options_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Options_Max_Fields>
+  min?: Maybe<Options_Min_Fields>
+  stddev?: Maybe<Options_Stddev_Fields>
+  stddev_pop?: Maybe<Options_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Options_Stddev_Samp_Fields>
+  sum?: Maybe<Options_Sum_Fields>
+  var_pop?: Maybe<Options_Var_Pop_Fields>
+  var_samp?: Maybe<Options_Var_Samp_Fields>
+  variance?: Maybe<Options_Variance_Fields>
+}
 
 /** aggregate fields of "options" */
 export type Options_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Options_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Options_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** aggregate avg on columns */
 export type Options_Avg_Fields = {
-  __typename?: 'options_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Boolean expression to filter rows from the table "options". All fields are combined with a logical 'AND'. */
 export type Options_Bool_Exp = {
-  _and?: InputMaybe<Array<Options_Bool_Exp>>;
-  _not?: InputMaybe<Options_Bool_Exp>;
-  _or?: InputMaybe<Array<Options_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  itineraries?: InputMaybe<Itinerary_Bool_Exp>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
-  round_type?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Options_Bool_Exp>>
+  _not?: InputMaybe<Options_Bool_Exp>
+  _or?: InputMaybe<Array<Options_Bool_Exp>>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  itineraries?: InputMaybe<Itinerary_Bool_Exp>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>
+  round_type?: InputMaybe<String_Comparison_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "options" */
 export type Options_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'options_pkey';
+  'options_pkey'
 
 /** input type for incrementing numeric columns in table "options" */
 export type Options_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "options" */
 export type Options_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>;
-  round_type?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>
+  round_type?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate max on columns */
 export type Options_Max_Fields = {
-  __typename?: 'options_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  round_type?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'options_max_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  round_type?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** aggregate min on columns */
 export type Options_Min_Fields = {
-  __typename?: 'options_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  round_type?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'options_min_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  round_type?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** response of any mutation on the table "options" */
 export type Options_Mutation_Response = {
-  __typename?: 'options_mutation_response';
+  __typename?: 'options_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Options>;
-};
+  returning: Array<Options>
+}
 
 /** input type for inserting object relation for remote table "options" */
 export type Options_Obj_Rel_Insert_Input = {
-  data: Options_Insert_Input;
+  data: Options_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Options_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Options_On_Conflict>
+}
 
 /** on_conflict condition type for table "options" */
 export type Options_On_Conflict = {
-  constraint: Options_Constraint;
-  update_columns?: Array<Options_Update_Column>;
-  where?: InputMaybe<Options_Bool_Exp>;
-};
+  constraint: Options_Constraint
+  update_columns?: Array<Options_Update_Column>
+  where?: InputMaybe<Options_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "options". */
 export type Options_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>;
-  round_type?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>
+  round_type?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: options */
 export type Options_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "options" */
 export type Options_Select_Column =
@@ -2699,59 +2598,59 @@ export type Options_Select_Column =
   /** column name */
   | 'round_type'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 /** input type for updating data in table "options" */
 export type Options_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  round_type?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  round_type?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Options_Stddev_Fields = {
-  __typename?: 'options_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_pop on columns */
 export type Options_Stddev_Pop_Fields = {
-  __typename?: 'options_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_samp on columns */
 export type Options_Stddev_Samp_Fields = {
-  __typename?: 'options_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Streaming cursor of the table "options" */
 export type Options_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Options_Stream_Cursor_Value_Input;
+  initial_value: Options_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Options_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  round_type?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  round_type?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate sum on columns */
 export type Options_Sum_Fields = {
-  __typename?: 'options_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'options_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+}
 
 /** update columns of table "options" */
 export type Options_Update_Column =
@@ -2766,34 +2665,34 @@ export type Options_Update_Column =
   /** column name */
   | 'round_type'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 export type Options_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Options_Inc_Input>;
+  _inc?: InputMaybe<Options_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Options_Set_Input>;
+  _set?: InputMaybe<Options_Set_Input>
   /** filter the rows which have to be updated */
-  where: Options_Bool_Exp;
-};
+  where: Options_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Options_Var_Pop_Fields = {
-  __typename?: 'options_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate var_samp on columns */
 export type Options_Var_Samp_Fields = {
-  __typename?: 'options_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate variance on columns */
 export type Options_Variance_Fields = {
-  __typename?: 'options_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'options_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** column ordering options */
 export type Order_By =
@@ -2808,197 +2707,194 @@ export type Order_By =
   /** in descending order, nulls first */
   | 'desc_nulls_first'
   /** in descending order, nulls last */
-  | 'desc_nulls_last';
+  | 'desc_nulls_last'
 
 /** columns and relationships of "providers" */
 export type Providers = {
-  __typename?: 'providers';
-  address?: Maybe<Scalars['String']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id: Scalars['Int']['output'];
-  isactive: Scalars['Boolean']['output'];
+  __typename?: 'providers'
+  address?: Maybe<Scalars['String']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id: Scalars['Int']['output']
+  isactive: Scalars['Boolean']['output']
   /** An array relationship */
-  itineraries: Array<Itinerary>;
+  itineraries: Array<Itinerary>
   /** An aggregate relationship */
-  itineraries_aggregate: Itinerary_Aggregate;
-  name: Scalars['String']['output'];
-  note?: Maybe<Scalars['String']['output']>;
-  phone_number?: Maybe<Scalars['String']['output']>;
-  telegram_id?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
-
+  itineraries_aggregate: Itinerary_Aggregate
+  name: Scalars['String']['output']
+  note?: Maybe<Scalars['String']['output']>
+  phone_number?: Maybe<Scalars['String']['output']>
+  telegram_id?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** columns and relationships of "providers" */
 export type ProvidersItinerariesArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** columns and relationships of "providers" */
 export type ProvidersItineraries_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** aggregated selection of "providers" */
 export type Providers_Aggregate = {
-  __typename?: 'providers_aggregate';
-  aggregate?: Maybe<Providers_Aggregate_Fields>;
-  nodes: Array<Providers>;
-};
+  __typename?: 'providers_aggregate'
+  aggregate?: Maybe<Providers_Aggregate_Fields>
+  nodes: Array<Providers>
+}
 
 /** aggregate fields of "providers" */
 export type Providers_Aggregate_Fields = {
-  __typename?: 'providers_aggregate_fields';
-  avg?: Maybe<Providers_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Providers_Max_Fields>;
-  min?: Maybe<Providers_Min_Fields>;
-  stddev?: Maybe<Providers_Stddev_Fields>;
-  stddev_pop?: Maybe<Providers_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Providers_Stddev_Samp_Fields>;
-  sum?: Maybe<Providers_Sum_Fields>;
-  var_pop?: Maybe<Providers_Var_Pop_Fields>;
-  var_samp?: Maybe<Providers_Var_Samp_Fields>;
-  variance?: Maybe<Providers_Variance_Fields>;
-};
-
+  __typename?: 'providers_aggregate_fields'
+  avg?: Maybe<Providers_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Providers_Max_Fields>
+  min?: Maybe<Providers_Min_Fields>
+  stddev?: Maybe<Providers_Stddev_Fields>
+  stddev_pop?: Maybe<Providers_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Providers_Stddev_Samp_Fields>
+  sum?: Maybe<Providers_Sum_Fields>
+  var_pop?: Maybe<Providers_Var_Pop_Fields>
+  var_samp?: Maybe<Providers_Var_Samp_Fields>
+  variance?: Maybe<Providers_Variance_Fields>
+}
 
 /** aggregate fields of "providers" */
 export type Providers_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Providers_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Providers_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** aggregate avg on columns */
 export type Providers_Avg_Fields = {
-  __typename?: 'providers_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Boolean expression to filter rows from the table "providers". All fields are combined with a logical 'AND'. */
 export type Providers_Bool_Exp = {
-  _and?: InputMaybe<Array<Providers_Bool_Exp>>;
-  _not?: InputMaybe<Providers_Bool_Exp>;
-  _or?: InputMaybe<Array<Providers_Bool_Exp>>;
-  address?: InputMaybe<String_Comparison_Exp>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  itineraries?: InputMaybe<Itinerary_Bool_Exp>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
-  name?: InputMaybe<String_Comparison_Exp>;
-  note?: InputMaybe<String_Comparison_Exp>;
-  phone_number?: InputMaybe<String_Comparison_Exp>;
-  telegram_id?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Providers_Bool_Exp>>
+  _not?: InputMaybe<Providers_Bool_Exp>
+  _or?: InputMaybe<Array<Providers_Bool_Exp>>
+  address?: InputMaybe<String_Comparison_Exp>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  itineraries?: InputMaybe<Itinerary_Bool_Exp>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>
+  name?: InputMaybe<String_Comparison_Exp>
+  note?: InputMaybe<String_Comparison_Exp>
+  phone_number?: InputMaybe<String_Comparison_Exp>
+  telegram_id?: InputMaybe<String_Comparison_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "providers" */
 export type Providers_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'providers_pkey';
+  'providers_pkey'
 
 /** input type for incrementing numeric columns in table "providers" */
 export type Providers_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "providers" */
 export type Providers_Insert_Input = {
-  address?: InputMaybe<Scalars['String']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  telegram_id?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  address?: InputMaybe<Scalars['String']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>
+  name?: InputMaybe<Scalars['String']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  telegram_id?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate max on columns */
 export type Providers_Max_Fields = {
-  __typename?: 'providers_max_fields';
-  address?: Maybe<Scalars['String']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
-  phone_number?: Maybe<Scalars['String']['output']>;
-  telegram_id?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'providers_max_fields'
+  address?: Maybe<Scalars['String']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  phone_number?: Maybe<Scalars['String']['output']>
+  telegram_id?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** aggregate min on columns */
 export type Providers_Min_Fields = {
-  __typename?: 'providers_min_fields';
-  address?: Maybe<Scalars['String']['output']>;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
-  phone_number?: Maybe<Scalars['String']['output']>;
-  telegram_id?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'providers_min_fields'
+  address?: Maybe<Scalars['String']['output']>
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  phone_number?: Maybe<Scalars['String']['output']>
+  telegram_id?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** response of any mutation on the table "providers" */
 export type Providers_Mutation_Response = {
-  __typename?: 'providers_mutation_response';
+  __typename?: 'providers_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Providers>;
-};
+  returning: Array<Providers>
+}
 
 /** input type for inserting object relation for remote table "providers" */
 export type Providers_Obj_Rel_Insert_Input = {
-  data: Providers_Insert_Input;
+  data: Providers_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Providers_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Providers_On_Conflict>
+}
 
 /** on_conflict condition type for table "providers" */
 export type Providers_On_Conflict = {
-  constraint: Providers_Constraint;
-  update_columns?: Array<Providers_Update_Column>;
-  where?: InputMaybe<Providers_Bool_Exp>;
-};
+  constraint: Providers_Constraint
+  update_columns?: Array<Providers_Update_Column>
+  where?: InputMaybe<Providers_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "providers". */
 export type Providers_Order_By = {
-  address?: InputMaybe<Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>;
-  name?: InputMaybe<Order_By>;
-  note?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-  telegram_id?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  address?: InputMaybe<Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>
+  name?: InputMaybe<Order_By>
+  note?: InputMaybe<Order_By>
+  phone_number?: InputMaybe<Order_By>
+  telegram_id?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: providers */
 export type Providers_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "providers" */
 export type Providers_Select_Column =
@@ -3021,67 +2917,67 @@ export type Providers_Select_Column =
   /** column name */
   | 'telegram_id'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 /** input type for updating data in table "providers" */
 export type Providers_Set_Input = {
-  address?: InputMaybe<Scalars['String']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  telegram_id?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  address?: InputMaybe<Scalars['String']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  telegram_id?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Providers_Stddev_Fields = {
-  __typename?: 'providers_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_pop on columns */
 export type Providers_Stddev_Pop_Fields = {
-  __typename?: 'providers_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_samp on columns */
 export type Providers_Stddev_Samp_Fields = {
-  __typename?: 'providers_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Streaming cursor of the table "providers" */
 export type Providers_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Providers_Stream_Cursor_Value_Input;
+  initial_value: Providers_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Providers_Stream_Cursor_Value_Input = {
-  address?: InputMaybe<Scalars['String']['input']>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  telegram_id?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  address?: InputMaybe<Scalars['String']['input']>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  telegram_id?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate sum on columns */
 export type Providers_Sum_Fields = {
-  __typename?: 'providers_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'providers_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+}
 
 /** update columns of table "providers" */
 export type Providers_Update_Column =
@@ -3104,577 +3000,557 @@ export type Providers_Update_Column =
   /** column name */
   | 'telegram_id'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 export type Providers_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Providers_Inc_Input>;
+  _inc?: InputMaybe<Providers_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Providers_Set_Input>;
+  _set?: InputMaybe<Providers_Set_Input>
   /** filter the rows which have to be updated */
-  where: Providers_Bool_Exp;
-};
+  where: Providers_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Providers_Var_Pop_Fields = {
-  __typename?: 'providers_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate var_samp on columns */
 export type Providers_Var_Samp_Fields = {
-  __typename?: 'providers_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate variance on columns */
 export type Providers_Variance_Fields = {
-  __typename?: 'providers_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'providers_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 export type Query_Root = {
-  __typename?: 'query_root';
+  __typename?: 'query_root'
   /** An array relationship */
-  bookings: Array<Bookings>;
+  bookings: Array<Bookings>
   /** An aggregate relationship */
-  bookings_aggregate: Bookings_Aggregate;
+  bookings_aggregate: Bookings_Aggregate
   /** fetch data from the table: "bookings" using primary key columns */
-  bookings_by_pk?: Maybe<Bookings>;
+  bookings_by_pk?: Maybe<Bookings>
   /** fetch data from the table: "cities" */
-  cities: Array<Cities>;
+  cities: Array<Cities>
   /** fetch aggregated fields from the table: "cities" */
-  cities_aggregate: Cities_Aggregate;
+  cities_aggregate: Cities_Aggregate
   /** fetch data from the table: "cities" using primary key columns */
-  cities_by_pk?: Maybe<Cities>;
+  cities_by_pk?: Maybe<Cities>
   /** fetch data from the table: "itinerary" */
-  itinerary: Array<Itinerary>;
+  itinerary: Array<Itinerary>
   /** fetch aggregated fields from the table: "itinerary" */
-  itinerary_aggregate: Itinerary_Aggregate;
+  itinerary_aggregate: Itinerary_Aggregate
   /** fetch data from the table: "itinerary" using primary key columns */
-  itinerary_by_pk?: Maybe<Itinerary>;
+  itinerary_by_pk?: Maybe<Itinerary>
   /** An array relationship */
-  locations: Array<Locations>;
+  locations: Array<Locations>
   /** An aggregate relationship */
-  locations_aggregate: Locations_Aggregate;
+  locations_aggregate: Locations_Aggregate
   /** fetch data from the table: "locations" using primary key columns */
-  locations_by_pk?: Maybe<Locations>;
+  locations_by_pk?: Maybe<Locations>
   /** fetch data from the table: "options" */
-  options: Array<Options>;
+  options: Array<Options>
   /** fetch aggregated fields from the table: "options" */
-  options_aggregate: Options_Aggregate;
+  options_aggregate: Options_Aggregate
   /** fetch data from the table: "options" using primary key columns */
-  options_by_pk?: Maybe<Options>;
+  options_by_pk?: Maybe<Options>
   /** fetch data from the table: "providers" */
-  providers: Array<Providers>;
+  providers: Array<Providers>
   /** fetch aggregated fields from the table: "providers" */
-  providers_aggregate: Providers_Aggregate;
+  providers_aggregate: Providers_Aggregate
   /** fetch data from the table: "providers" using primary key columns */
-  providers_by_pk?: Maybe<Providers>;
+  providers_by_pk?: Maybe<Providers>
   /** An array relationship */
-  routes: Array<Routes>;
+  routes: Array<Routes>
   /** An aggregate relationship */
-  routes_aggregate: Routes_Aggregate;
+  routes_aggregate: Routes_Aggregate
   /** fetch data from the table: "routes" using primary key columns */
-  routes_by_pk?: Maybe<Routes>;
+  routes_by_pk?: Maybe<Routes>
   /** fetch data from the table: "users" */
-  users: Array<Users>;
+  users: Array<Users>
   /** fetch aggregated fields from the table: "users" */
-  users_aggregate: Users_Aggregate;
+  users_aggregate: Users_Aggregate
   /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+  users_by_pk?: Maybe<Users>
   /** fetch data from the table: "vehicle_types" */
-  vehicle_types: Array<Vehicle_Types>;
+  vehicle_types: Array<Vehicle_Types>
   /** fetch aggregated fields from the table: "vehicle_types" */
-  vehicle_types_aggregate: Vehicle_Types_Aggregate;
+  vehicle_types_aggregate: Vehicle_Types_Aggregate
   /** fetch data from the table: "vehicle_types" using primary key columns */
-  vehicle_types_by_pk?: Maybe<Vehicle_Types>;
-};
-
+  vehicle_types_by_pk?: Maybe<Vehicle_Types>
+}
 
 export type Query_RootBookingsArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 export type Query_RootBookings_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 export type Query_RootBookings_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootCitiesArgs = {
-  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Cities_Order_By>>;
-  where?: InputMaybe<Cities_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Cities_Order_By>>
+  where?: InputMaybe<Cities_Bool_Exp>
+}
 
 export type Query_RootCities_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Cities_Order_By>>;
-  where?: InputMaybe<Cities_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Cities_Order_By>>
+  where?: InputMaybe<Cities_Bool_Exp>
+}
 
 export type Query_RootCities_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootItineraryArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 export type Query_RootItinerary_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 export type Query_RootItinerary_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootLocationsArgs = {
-  distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Locations_Order_By>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Locations_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Locations_Order_By>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 export type Query_RootLocations_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Locations_Order_By>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Locations_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Locations_Order_By>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 export type Query_RootLocations_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootOptionsArgs = {
-  distinct_on?: InputMaybe<Array<Options_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Options_Order_By>>;
-  where?: InputMaybe<Options_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Options_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Options_Order_By>>
+  where?: InputMaybe<Options_Bool_Exp>
+}
 
 export type Query_RootOptions_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Options_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Options_Order_By>>;
-  where?: InputMaybe<Options_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Options_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Options_Order_By>>
+  where?: InputMaybe<Options_Bool_Exp>
+}
 
 export type Query_RootOptions_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootProvidersArgs = {
-  distinct_on?: InputMaybe<Array<Providers_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Providers_Order_By>>;
-  where?: InputMaybe<Providers_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Providers_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Providers_Order_By>>
+  where?: InputMaybe<Providers_Bool_Exp>
+}
 
 export type Query_RootProviders_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Providers_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Providers_Order_By>>;
-  where?: InputMaybe<Providers_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Providers_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Providers_Order_By>>
+  where?: InputMaybe<Providers_Bool_Exp>
+}
 
 export type Query_RootProviders_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootRoutesArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 export type Query_RootRoutes_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 export type Query_RootRoutes_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootUsersArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Users_Order_By>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 export type Query_RootUsers_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Users_Order_By>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 export type Query_RootUsers_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Query_RootVehicle_TypesArgs = {
-  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>;
-  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>
+}
 
 export type Query_RootVehicle_Types_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>;
-  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>
+}
 
 export type Query_RootVehicle_Types_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** columns and relationships of "routes" */
 export type Routes = {
-  __typename?: 'routes';
+  __typename?: 'routes'
   /** An object relationship */
-  city: Cities;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  end_location: Scalars['Int']['output'];
+  city: Cities
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  end_location: Scalars['Int']['output']
   /** An object relationship */
-  endlocation: Locations;
-  from_city: Scalars['Int']['output'];
-  id: Scalars['Int']['output'];
-  isactive: Scalars['Boolean']['output'];
+  endlocation?: Maybe<Locations>
+  from_city: Scalars['Int']['output']
+  id: Scalars['Int']['output']
+  isactive?: Maybe<Scalars['Boolean']['output']>
   /** An array relationship */
-  itineraries: Array<Itinerary>;
+  itineraries: Array<Itinerary>
   /** An aggregate relationship */
-  itineraries_aggregate: Itinerary_Aggregate;
-  start_location: Scalars['Int']['output'];
+  itineraries_aggregate: Itinerary_Aggregate
   /** An object relationship */
-  startlocation: Locations;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
-
+  location: Locations
+  /** An object relationship */
+  locationByStartLocation: Locations
+  start_location: Scalars['Int']['output']
+  /** An object relationship */
+  startlocation?: Maybe<Locations>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** columns and relationships of "routes" */
 export type RoutesItinerariesArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** columns and relationships of "routes" */
 export type RoutesItineraries_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** aggregated selection of "routes" */
 export type Routes_Aggregate = {
-  __typename?: 'routes_aggregate';
-  aggregate?: Maybe<Routes_Aggregate_Fields>;
-  nodes: Array<Routes>;
-};
+  __typename?: 'routes_aggregate'
+  aggregate?: Maybe<Routes_Aggregate_Fields>
+  nodes: Array<Routes>
+}
 
 export type Routes_Aggregate_Bool_Exp = {
-  bool_and?: InputMaybe<Routes_Aggregate_Bool_Exp_Bool_And>;
-  bool_or?: InputMaybe<Routes_Aggregate_Bool_Exp_Bool_Or>;
-  count?: InputMaybe<Routes_Aggregate_Bool_Exp_Count>;
-};
+  bool_and?: InputMaybe<Routes_Aggregate_Bool_Exp_Bool_And>
+  bool_or?: InputMaybe<Routes_Aggregate_Bool_Exp_Bool_Or>
+  count?: InputMaybe<Routes_Aggregate_Bool_Exp_Count>
+}
 
 export type Routes_Aggregate_Bool_Exp_Bool_And = {
-  arguments: Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Routes_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
+  arguments: Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_And_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Routes_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
 
 export type Routes_Aggregate_Bool_Exp_Bool_Or = {
-  arguments: Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Routes_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
+  arguments: Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Routes_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
 
 export type Routes_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Routes_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Routes_Bool_Exp>;
-  predicate: Int_Comparison_Exp;
-};
+  arguments?: InputMaybe<Array<Routes_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Routes_Bool_Exp>
+  predicate: Int_Comparison_Exp
+}
 
 /** aggregate fields of "routes" */
 export type Routes_Aggregate_Fields = {
-  __typename?: 'routes_aggregate_fields';
-  avg?: Maybe<Routes_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Routes_Max_Fields>;
-  min?: Maybe<Routes_Min_Fields>;
-  stddev?: Maybe<Routes_Stddev_Fields>;
-  stddev_pop?: Maybe<Routes_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Routes_Stddev_Samp_Fields>;
-  sum?: Maybe<Routes_Sum_Fields>;
-  var_pop?: Maybe<Routes_Var_Pop_Fields>;
-  var_samp?: Maybe<Routes_Var_Samp_Fields>;
-  variance?: Maybe<Routes_Variance_Fields>;
-};
-
+  __typename?: 'routes_aggregate_fields'
+  avg?: Maybe<Routes_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Routes_Max_Fields>
+  min?: Maybe<Routes_Min_Fields>
+  stddev?: Maybe<Routes_Stddev_Fields>
+  stddev_pop?: Maybe<Routes_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Routes_Stddev_Samp_Fields>
+  sum?: Maybe<Routes_Sum_Fields>
+  var_pop?: Maybe<Routes_Var_Pop_Fields>
+  var_samp?: Maybe<Routes_Var_Samp_Fields>
+  variance?: Maybe<Routes_Variance_Fields>
+}
 
 /** aggregate fields of "routes" */
 export type Routes_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Routes_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Routes_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** order by aggregate values of table "routes" */
 export type Routes_Aggregate_Order_By = {
-  avg?: InputMaybe<Routes_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Routes_Max_Order_By>;
-  min?: InputMaybe<Routes_Min_Order_By>;
-  stddev?: InputMaybe<Routes_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Routes_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Routes_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Routes_Sum_Order_By>;
-  var_pop?: InputMaybe<Routes_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Routes_Var_Samp_Order_By>;
-  variance?: InputMaybe<Routes_Variance_Order_By>;
-};
+  avg?: InputMaybe<Routes_Avg_Order_By>
+  count?: InputMaybe<Order_By>
+  max?: InputMaybe<Routes_Max_Order_By>
+  min?: InputMaybe<Routes_Min_Order_By>
+  stddev?: InputMaybe<Routes_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Routes_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Routes_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Routes_Sum_Order_By>
+  var_pop?: InputMaybe<Routes_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Routes_Var_Samp_Order_By>
+  variance?: InputMaybe<Routes_Variance_Order_By>
+}
 
 /** input type for inserting array relation for remote table "routes" */
 export type Routes_Arr_Rel_Insert_Input = {
-  data: Array<Routes_Insert_Input>;
+  data: Array<Routes_Insert_Input>
   /** upsert condition */
-  on_conflict?: InputMaybe<Routes_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Routes_On_Conflict>
+}
 
 /** aggregate avg on columns */
 export type Routes_Avg_Fields = {
-  __typename?: 'routes_avg_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_avg_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by avg() on columns of table "routes" */
 export type Routes_Avg_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** Boolean expression to filter rows from the table "routes". All fields are combined with a logical 'AND'. */
 export type Routes_Bool_Exp = {
-  _and?: InputMaybe<Array<Routes_Bool_Exp>>;
-  _not?: InputMaybe<Routes_Bool_Exp>;
-  _or?: InputMaybe<Array<Routes_Bool_Exp>>;
-  city?: InputMaybe<Cities_Bool_Exp>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  end_location?: InputMaybe<Int_Comparison_Exp>;
-  endlocation?: InputMaybe<Locations_Bool_Exp>;
-  from_city?: InputMaybe<Int_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  itineraries?: InputMaybe<Itinerary_Bool_Exp>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
-  start_location?: InputMaybe<Int_Comparison_Exp>;
-  startlocation?: InputMaybe<Locations_Bool_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Routes_Bool_Exp>>
+  _not?: InputMaybe<Routes_Bool_Exp>
+  _or?: InputMaybe<Array<Routes_Bool_Exp>>
+  city?: InputMaybe<Cities_Bool_Exp>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  end_location?: InputMaybe<Int_Comparison_Exp>
+  endlocation?: InputMaybe<Locations_Bool_Exp>
+  from_city?: InputMaybe<Int_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  itineraries?: InputMaybe<Itinerary_Bool_Exp>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>
+  location?: InputMaybe<Locations_Bool_Exp>
+  locationByStartLocation?: InputMaybe<Locations_Bool_Exp>
+  start_location?: InputMaybe<Int_Comparison_Exp>
+  startlocation?: InputMaybe<Locations_Bool_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "routes" */
 export type Routes_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'routes_pkey';
+  'routes_pkey'
 
 /** input type for incrementing numeric columns in table "routes" */
 export type Routes_Inc_Input = {
-  end_location?: InputMaybe<Scalars['Int']['input']>;
-  from_city?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  start_location?: InputMaybe<Scalars['Int']['input']>;
-};
+  end_location?: InputMaybe<Scalars['Int']['input']>
+  from_city?: InputMaybe<Scalars['Int']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  start_location?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "routes" */
 export type Routes_Insert_Input = {
-  city?: InputMaybe<Cities_Obj_Rel_Insert_Input>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  end_location?: InputMaybe<Scalars['Int']['input']>;
-  endlocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>;
-  from_city?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>;
-  start_location?: InputMaybe<Scalars['Int']['input']>;
-  startlocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  city?: InputMaybe<Cities_Obj_Rel_Insert_Input>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  end_location?: InputMaybe<Scalars['Int']['input']>
+  endlocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>
+  from_city?: InputMaybe<Scalars['Int']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>
+  location?: InputMaybe<Locations_Obj_Rel_Insert_Input>
+  locationByStartLocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>
+  start_location?: InputMaybe<Scalars['Int']['input']>
+  startlocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate max on columns */
 export type Routes_Max_Fields = {
-  __typename?: 'routes_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  end_location?: Maybe<Scalars['Int']['output']>;
-  from_city?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  start_location?: Maybe<Scalars['Int']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'routes_max_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  end_location?: Maybe<Scalars['Int']['output']>
+  from_city?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  start_location?: Maybe<Scalars['Int']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** order by max() on columns of table "routes" */
 export type Routes_Max_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** aggregate min on columns */
 export type Routes_Min_Fields = {
-  __typename?: 'routes_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  end_location?: Maybe<Scalars['Int']['output']>;
-  from_city?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  start_location?: Maybe<Scalars['Int']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'routes_min_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  end_location?: Maybe<Scalars['Int']['output']>
+  from_city?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  start_location?: Maybe<Scalars['Int']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** order by min() on columns of table "routes" */
 export type Routes_Min_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** response of any mutation on the table "routes" */
 export type Routes_Mutation_Response = {
-  __typename?: 'routes_mutation_response';
+  __typename?: 'routes_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Routes>;
-};
+  returning: Array<Routes>
+}
 
 /** input type for inserting object relation for remote table "routes" */
 export type Routes_Obj_Rel_Insert_Input = {
-  data: Routes_Insert_Input;
+  data: Routes_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Routes_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Routes_On_Conflict>
+}
 
 /** on_conflict condition type for table "routes" */
 export type Routes_On_Conflict = {
-  constraint: Routes_Constraint;
-  update_columns?: Array<Routes_Update_Column>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
+  constraint: Routes_Constraint
+  update_columns?: Array<Routes_Update_Column>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "routes". */
 export type Routes_Order_By = {
-  city?: InputMaybe<Cities_Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  end_location?: InputMaybe<Order_By>;
-  endlocation?: InputMaybe<Locations_Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>;
-  start_location?: InputMaybe<Order_By>;
-  startlocation?: InputMaybe<Locations_Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  city?: InputMaybe<Cities_Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  end_location?: InputMaybe<Order_By>
+  endlocation?: InputMaybe<Locations_Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>
+  location?: InputMaybe<Locations_Order_By>
+  locationByStartLocation?: InputMaybe<Locations_Order_By>
+  start_location?: InputMaybe<Order_By>
+  startlocation?: InputMaybe<Locations_Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: routes */
 export type Routes_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "routes" */
 export type Routes_Select_Column =
@@ -3693,117 +3569,117 @@ export type Routes_Select_Column =
   /** column name */
   | 'start_location'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 /** select "routes_aggregate_bool_exp_bool_and_arguments_columns" columns of table "routes" */
 export type Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
   /** column name */
-  | 'isactive';
+  'isactive'
 
 /** select "routes_aggregate_bool_exp_bool_or_arguments_columns" columns of table "routes" */
 export type Routes_Select_Column_Routes_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
   /** column name */
-  | 'isactive';
+  'isactive'
 
 /** input type for updating data in table "routes" */
 export type Routes_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  end_location?: InputMaybe<Scalars['Int']['input']>;
-  from_city?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  start_location?: InputMaybe<Scalars['Int']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  end_location?: InputMaybe<Scalars['Int']['input']>
+  from_city?: InputMaybe<Scalars['Int']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  start_location?: InputMaybe<Scalars['Int']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Routes_Stddev_Fields = {
-  __typename?: 'routes_stddev_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_stddev_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev() on columns of table "routes" */
 export type Routes_Stddev_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_pop on columns */
 export type Routes_Stddev_Pop_Fields = {
-  __typename?: 'routes_stddev_pop_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_stddev_pop_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_pop() on columns of table "routes" */
 export type Routes_Stddev_Pop_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_samp on columns */
 export type Routes_Stddev_Samp_Fields = {
-  __typename?: 'routes_stddev_samp_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_stddev_samp_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by stddev_samp() on columns of table "routes" */
 export type Routes_Stddev_Samp_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** Streaming cursor of the table "routes" */
 export type Routes_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Routes_Stream_Cursor_Value_Input;
+  initial_value: Routes_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Routes_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  end_location?: InputMaybe<Scalars['Int']['input']>;
-  from_city?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  start_location?: InputMaybe<Scalars['Int']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  end_location?: InputMaybe<Scalars['Int']['input']>
+  from_city?: InputMaybe<Scalars['Int']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  start_location?: InputMaybe<Scalars['Int']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate sum on columns */
 export type Routes_Sum_Fields = {
-  __typename?: 'routes_sum_fields';
-  end_location?: Maybe<Scalars['Int']['output']>;
-  from_city?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  start_location?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'routes_sum_fields'
+  end_location?: Maybe<Scalars['Int']['output']>
+  from_city?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  start_location?: Maybe<Scalars['Int']['output']>
+}
 
 /** order by sum() on columns of table "routes" */
 export type Routes_Sum_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** update columns of table "routes" */
 export type Routes_Update_Column =
@@ -3822,624 +3698,667 @@ export type Routes_Update_Column =
   /** column name */
   | 'start_location'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 export type Routes_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Routes_Inc_Input>;
+  _inc?: InputMaybe<Routes_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Routes_Set_Input>;
+  _set?: InputMaybe<Routes_Set_Input>
   /** filter the rows which have to be updated */
-  where: Routes_Bool_Exp;
-};
+  where: Routes_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Routes_Var_Pop_Fields = {
-  __typename?: 'routes_var_pop_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_var_pop_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_pop() on columns of table "routes" */
 export type Routes_Var_Pop_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** aggregate var_samp on columns */
 export type Routes_Var_Samp_Fields = {
-  __typename?: 'routes_var_samp_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_var_samp_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by var_samp() on columns of table "routes" */
 export type Routes_Var_Samp_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 /** aggregate variance on columns */
 export type Routes_Variance_Fields = {
-  __typename?: 'routes_variance_fields';
-  end_location?: Maybe<Scalars['Float']['output']>;
-  from_city?: Maybe<Scalars['Float']['output']>;
-  id?: Maybe<Scalars['Float']['output']>;
-  start_location?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'routes_variance_fields'
+  end_location?: Maybe<Scalars['Float']['output']>
+  from_city?: Maybe<Scalars['Float']['output']>
+  id?: Maybe<Scalars['Float']['output']>
+  start_location?: Maybe<Scalars['Float']['output']>
+}
 
 /** order by variance() on columns of table "routes" */
 export type Routes_Variance_Order_By = {
-  end_location?: InputMaybe<Order_By>;
-  from_city?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  start_location?: InputMaybe<Order_By>;
-};
+  end_location?: InputMaybe<Order_By>
+  from_city?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  start_location?: InputMaybe<Order_By>
+}
 
 export type Subscription_Root = {
-  __typename?: 'subscription_root';
+  __typename?: 'subscription_root'
   /** An array relationship */
-  bookings: Array<Bookings>;
+  bookings: Array<Bookings>
   /** An aggregate relationship */
-  bookings_aggregate: Bookings_Aggregate;
+  bookings_aggregate: Bookings_Aggregate
   /** fetch data from the table: "bookings" using primary key columns */
-  bookings_by_pk?: Maybe<Bookings>;
+  bookings_by_pk?: Maybe<Bookings>
   /** fetch data from the table in a streaming manner: "bookings" */
-  bookings_stream: Array<Bookings>;
+  bookings_stream: Array<Bookings>
   /** fetch data from the table: "cities" */
-  cities: Array<Cities>;
+  cities: Array<Cities>
   /** fetch aggregated fields from the table: "cities" */
-  cities_aggregate: Cities_Aggregate;
+  cities_aggregate: Cities_Aggregate
   /** fetch data from the table: "cities" using primary key columns */
-  cities_by_pk?: Maybe<Cities>;
+  cities_by_pk?: Maybe<Cities>
   /** fetch data from the table in a streaming manner: "cities" */
-  cities_stream: Array<Cities>;
+  cities_stream: Array<Cities>
   /** fetch data from the table: "itinerary" */
-  itinerary: Array<Itinerary>;
+  itinerary: Array<Itinerary>
   /** fetch aggregated fields from the table: "itinerary" */
-  itinerary_aggregate: Itinerary_Aggregate;
+  itinerary_aggregate: Itinerary_Aggregate
   /** fetch data from the table: "itinerary" using primary key columns */
-  itinerary_by_pk?: Maybe<Itinerary>;
+  itinerary_by_pk?: Maybe<Itinerary>
   /** fetch data from the table in a streaming manner: "itinerary" */
-  itinerary_stream: Array<Itinerary>;
+  itinerary_stream: Array<Itinerary>
   /** An array relationship */
-  locations: Array<Locations>;
+  locations: Array<Locations>
   /** An aggregate relationship */
-  locations_aggregate: Locations_Aggregate;
+  locations_aggregate: Locations_Aggregate
   /** fetch data from the table: "locations" using primary key columns */
-  locations_by_pk?: Maybe<Locations>;
+  locations_by_pk?: Maybe<Locations>
   /** fetch data from the table in a streaming manner: "locations" */
-  locations_stream: Array<Locations>;
+  locations_stream: Array<Locations>
   /** fetch data from the table: "options" */
-  options: Array<Options>;
+  options: Array<Options>
   /** fetch aggregated fields from the table: "options" */
-  options_aggregate: Options_Aggregate;
+  options_aggregate: Options_Aggregate
   /** fetch data from the table: "options" using primary key columns */
-  options_by_pk?: Maybe<Options>;
+  options_by_pk?: Maybe<Options>
   /** fetch data from the table in a streaming manner: "options" */
-  options_stream: Array<Options>;
+  options_stream: Array<Options>
   /** fetch data from the table: "providers" */
-  providers: Array<Providers>;
+  providers: Array<Providers>
   /** fetch aggregated fields from the table: "providers" */
-  providers_aggregate: Providers_Aggregate;
+  providers_aggregate: Providers_Aggregate
   /** fetch data from the table: "providers" using primary key columns */
-  providers_by_pk?: Maybe<Providers>;
+  providers_by_pk?: Maybe<Providers>
   /** fetch data from the table in a streaming manner: "providers" */
-  providers_stream: Array<Providers>;
+  providers_stream: Array<Providers>
   /** An array relationship */
-  routes: Array<Routes>;
+  routes: Array<Routes>
   /** An aggregate relationship */
-  routes_aggregate: Routes_Aggregate;
+  routes_aggregate: Routes_Aggregate
   /** fetch data from the table: "routes" using primary key columns */
-  routes_by_pk?: Maybe<Routes>;
+  routes_by_pk?: Maybe<Routes>
   /** fetch data from the table in a streaming manner: "routes" */
-  routes_stream: Array<Routes>;
+  routes_stream: Array<Routes>
   /** fetch data from the table: "users" */
-  users: Array<Users>;
+  users: Array<Users>
   /** fetch aggregated fields from the table: "users" */
-  users_aggregate: Users_Aggregate;
+  users_aggregate: Users_Aggregate
   /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+  users_by_pk?: Maybe<Users>
   /** fetch data from the table in a streaming manner: "users" */
-  users_stream: Array<Users>;
+  users_stream: Array<Users>
   /** fetch data from the table: "vehicle_types" */
-  vehicle_types: Array<Vehicle_Types>;
+  vehicle_types: Array<Vehicle_Types>
   /** fetch aggregated fields from the table: "vehicle_types" */
-  vehicle_types_aggregate: Vehicle_Types_Aggregate;
+  vehicle_types_aggregate: Vehicle_Types_Aggregate
   /** fetch data from the table: "vehicle_types" using primary key columns */
-  vehicle_types_by_pk?: Maybe<Vehicle_Types>;
+  vehicle_types_by_pk?: Maybe<Vehicle_Types>
   /** fetch data from the table in a streaming manner: "vehicle_types" */
-  vehicle_types_stream: Array<Vehicle_Types>;
-};
-
+  vehicle_types_stream: Array<Vehicle_Types>
+}
 
 export type Subscription_RootBookingsArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 export type Subscription_RootBookings_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 export type Subscription_RootBookings_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootBookings_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Bookings_Stream_Cursor_Input>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Bookings_Stream_Cursor_Input>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 export type Subscription_RootCitiesArgs = {
-  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Cities_Order_By>>;
-  where?: InputMaybe<Cities_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Cities_Order_By>>
+  where?: InputMaybe<Cities_Bool_Exp>
+}
 
 export type Subscription_RootCities_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Cities_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Cities_Order_By>>;
-  where?: InputMaybe<Cities_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Cities_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Cities_Order_By>>
+  where?: InputMaybe<Cities_Bool_Exp>
+}
 
 export type Subscription_RootCities_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootCities_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Cities_Stream_Cursor_Input>>;
-  where?: InputMaybe<Cities_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Cities_Stream_Cursor_Input>>
+  where?: InputMaybe<Cities_Bool_Exp>
+}
 
 export type Subscription_RootItineraryArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 export type Subscription_RootItinerary_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 export type Subscription_RootItinerary_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootItinerary_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Itinerary_Stream_Cursor_Input>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Itinerary_Stream_Cursor_Input>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 export type Subscription_RootLocationsArgs = {
-  distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Locations_Order_By>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Locations_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Locations_Order_By>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 export type Subscription_RootLocations_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Locations_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Locations_Order_By>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Locations_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Locations_Order_By>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 export type Subscription_RootLocations_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootLocations_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Locations_Stream_Cursor_Input>>;
-  where?: InputMaybe<Locations_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Locations_Stream_Cursor_Input>>
+  where?: InputMaybe<Locations_Bool_Exp>
+}
 
 export type Subscription_RootOptionsArgs = {
-  distinct_on?: InputMaybe<Array<Options_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Options_Order_By>>;
-  where?: InputMaybe<Options_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Options_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Options_Order_By>>
+  where?: InputMaybe<Options_Bool_Exp>
+}
 
 export type Subscription_RootOptions_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Options_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Options_Order_By>>;
-  where?: InputMaybe<Options_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Options_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Options_Order_By>>
+  where?: InputMaybe<Options_Bool_Exp>
+}
 
 export type Subscription_RootOptions_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootOptions_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Options_Stream_Cursor_Input>>;
-  where?: InputMaybe<Options_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Options_Stream_Cursor_Input>>
+  where?: InputMaybe<Options_Bool_Exp>
+}
 
 export type Subscription_RootProvidersArgs = {
-  distinct_on?: InputMaybe<Array<Providers_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Providers_Order_By>>;
-  where?: InputMaybe<Providers_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Providers_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Providers_Order_By>>
+  where?: InputMaybe<Providers_Bool_Exp>
+}
 
 export type Subscription_RootProviders_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Providers_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Providers_Order_By>>;
-  where?: InputMaybe<Providers_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Providers_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Providers_Order_By>>
+  where?: InputMaybe<Providers_Bool_Exp>
+}
 
 export type Subscription_RootProviders_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootProviders_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Providers_Stream_Cursor_Input>>;
-  where?: InputMaybe<Providers_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Providers_Stream_Cursor_Input>>
+  where?: InputMaybe<Providers_Bool_Exp>
+}
 
 export type Subscription_RootRoutesArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 export type Subscription_RootRoutes_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Routes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Routes_Order_By>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Routes_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Routes_Order_By>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 export type Subscription_RootRoutes_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootRoutes_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Routes_Stream_Cursor_Input>>;
-  where?: InputMaybe<Routes_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Routes_Stream_Cursor_Input>>
+  where?: InputMaybe<Routes_Bool_Exp>
+}
 
 export type Subscription_RootUsersArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Users_Order_By>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 export type Subscription_RootUsers_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Users_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Users_Order_By>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 export type Subscription_RootUsers_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootUsers_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Users_Stream_Cursor_Input>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Users_Stream_Cursor_Input>>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 export type Subscription_RootVehicle_TypesArgs = {
-  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>;
-  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>
+}
 
 export type Subscription_RootVehicle_Types_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>;
-  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Vehicle_Types_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Vehicle_Types_Order_By>>
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>
+}
 
 export type Subscription_RootVehicle_Types_By_PkArgs = {
-  id: Scalars['Int']['input'];
-};
-
+  id: Scalars['Int']['input']
+}
 
 export type Subscription_RootVehicle_Types_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Vehicle_Types_Stream_Cursor_Input>>;
-  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
-};
+  batch_size: Scalars['Int']['input']
+  cursor: Array<InputMaybe<Vehicle_Types_Stream_Cursor_Input>>
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>
+}
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['timestamptz']['input']>;
-  _gt?: InputMaybe<Scalars['timestamptz']['input']>;
-  _gte?: InputMaybe<Scalars['timestamptz']['input']>;
-  _in?: InputMaybe<Array<Scalars['timestamptz']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['timestamptz']['input']>;
-  _lte?: InputMaybe<Scalars['timestamptz']['input']>;
-  _neq?: InputMaybe<Scalars['timestamptz']['input']>;
-  _nin?: InputMaybe<Array<Scalars['timestamptz']['input']>>;
-};
+  _eq?: InputMaybe<Scalars['timestamptz']['input']>
+  _gt?: InputMaybe<Scalars['timestamptz']['input']>
+  _gte?: InputMaybe<Scalars['timestamptz']['input']>
+  _in?: InputMaybe<Array<Scalars['timestamptz']['input']>>
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>
+  _lt?: InputMaybe<Scalars['timestamptz']['input']>
+  _lte?: InputMaybe<Scalars['timestamptz']['input']>
+  _neq?: InputMaybe<Scalars['timestamptz']['input']>
+  _nin?: InputMaybe<Array<Scalars['timestamptz']['input']>>
+}
 
 /** columns and relationships of "users" */
 export type Users = {
-  __typename?: 'users';
+  __typename?: 'users'
   /** An array relationship */
-  bookings: Array<Bookings>;
+  bookings: Array<Bookings>
   /** An aggregate relationship */
-  bookings_aggregate: Bookings_Aggregate;
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
-  isactive?: Maybe<Scalars['Boolean']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  password?: Maybe<Scalars['String']['output']>;
-  phone_number?: Maybe<Scalars['String']['output']>;
-  role?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  zalo_id?: Maybe<Scalars['String']['output']>;
-};
-
+  bookings_aggregate: Bookings_Aggregate
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  id: Scalars['Int']['output']
+  isactive?: Maybe<Scalars['Boolean']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  password?: Maybe<Scalars['String']['output']>
+  phone_number?: Maybe<Scalars['String']['output']>
+  role?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  zalo_id?: Maybe<Scalars['String']['output']>
+}
 
 /** columns and relationships of "users" */
 export type UsersBookingsArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 /** columns and relationships of "users" */
 export type UsersBookings_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Bookings_Order_By>>;
-  where?: InputMaybe<Bookings_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Bookings_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Bookings_Order_By>>
+  where?: InputMaybe<Bookings_Bool_Exp>
+}
 
 /** aggregated selection of "users" */
 export type Users_Aggregate = {
-  __typename?: 'users_aggregate';
-  aggregate?: Maybe<Users_Aggregate_Fields>;
-  nodes: Array<Users>;
-};
+  __typename?: 'users_aggregate'
+  aggregate?: Maybe<Users_Aggregate_Fields>
+  nodes: Array<Users>
+}
+
+export type Users_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Users_Aggregate_Bool_Exp_Bool_And>
+  bool_or?: InputMaybe<Users_Aggregate_Bool_Exp_Bool_Or>
+  count?: InputMaybe<Users_Aggregate_Bool_Exp_Count>
+}
+
+export type Users_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_And_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Users_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
+
+export type Users_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Users_Bool_Exp>
+  predicate: Boolean_Comparison_Exp
+}
+
+export type Users_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Users_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+  filter?: InputMaybe<Users_Bool_Exp>
+  predicate: Int_Comparison_Exp
+}
 
 /** aggregate fields of "users" */
 export type Users_Aggregate_Fields = {
-  __typename?: 'users_aggregate_fields';
-  avg?: Maybe<Users_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Users_Max_Fields>;
-  min?: Maybe<Users_Min_Fields>;
-  stddev?: Maybe<Users_Stddev_Fields>;
-  stddev_pop?: Maybe<Users_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Users_Stddev_Samp_Fields>;
-  sum?: Maybe<Users_Sum_Fields>;
-  var_pop?: Maybe<Users_Var_Pop_Fields>;
-  var_samp?: Maybe<Users_Var_Samp_Fields>;
-  variance?: Maybe<Users_Variance_Fields>;
-};
-
+  __typename?: 'users_aggregate_fields'
+  avg?: Maybe<Users_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Users_Max_Fields>
+  min?: Maybe<Users_Min_Fields>
+  stddev?: Maybe<Users_Stddev_Fields>
+  stddev_pop?: Maybe<Users_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Users_Stddev_Samp_Fields>
+  sum?: Maybe<Users_Sum_Fields>
+  var_pop?: Maybe<Users_Var_Pop_Fields>
+  var_samp?: Maybe<Users_Var_Samp_Fields>
+  variance?: Maybe<Users_Variance_Fields>
+}
 
 /** aggregate fields of "users" */
 export type Users_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Users_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Users_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** order by aggregate values of table "users" */
+export type Users_Aggregate_Order_By = {
+  avg?: InputMaybe<Users_Avg_Order_By>
+  count?: InputMaybe<Order_By>
+  max?: InputMaybe<Users_Max_Order_By>
+  min?: InputMaybe<Users_Min_Order_By>
+  stddev?: InputMaybe<Users_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Users_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Users_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Users_Sum_Order_By>
+  var_pop?: InputMaybe<Users_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Users_Var_Samp_Order_By>
+  variance?: InputMaybe<Users_Variance_Order_By>
+}
+
+/** input type for inserting array relation for remote table "users" */
+export type Users_Arr_Rel_Insert_Input = {
+  data: Array<Users_Insert_Input>
+  /** upsert condition */
+  on_conflict?: InputMaybe<Users_On_Conflict>
+}
 
 /** aggregate avg on columns */
 export type Users_Avg_Fields = {
-  __typename?: 'users_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by avg() on columns of table "users" */
+export type Users_Avg_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
 export type Users_Bool_Exp = {
-  _and?: InputMaybe<Array<Users_Bool_Exp>>;
-  _not?: InputMaybe<Users_Bool_Exp>;
-  _or?: InputMaybe<Array<Users_Bool_Exp>>;
-  bookings?: InputMaybe<Bookings_Bool_Exp>;
-  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Bool_Exp>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  email?: InputMaybe<String_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  name?: InputMaybe<String_Comparison_Exp>;
-  password?: InputMaybe<String_Comparison_Exp>;
-  phone_number?: InputMaybe<String_Comparison_Exp>;
-  role?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  zalo_id?: InputMaybe<String_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Users_Bool_Exp>>
+  _not?: InputMaybe<Users_Bool_Exp>
+  _or?: InputMaybe<Array<Users_Bool_Exp>>
+  bookings?: InputMaybe<Bookings_Bool_Exp>
+  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Bool_Exp>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  email?: InputMaybe<String_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  name?: InputMaybe<String_Comparison_Exp>
+  password?: InputMaybe<String_Comparison_Exp>
+  phone_number?: InputMaybe<String_Comparison_Exp>
+  role?: InputMaybe<String_Comparison_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  zalo_id?: InputMaybe<String_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "users" */
 export type Users_Constraint =
   /** unique or primary key constraint on columns "email" */
   | 'users_email_key'
   /** unique or primary key constraint on columns "id" */
-  | 'users_pkey';
+  | 'users_pkey'
 
 /** input type for incrementing numeric columns in table "users" */
 export type Users_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "users" */
 export type Users_Insert_Input = {
-  bookings?: InputMaybe<Bookings_Arr_Rel_Insert_Input>;
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  role?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  zalo_id?: InputMaybe<Scalars['String']['input']>;
-};
+  bookings?: InputMaybe<Bookings_Arr_Rel_Insert_Input>
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  email?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  password?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  role?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  zalo_id?: InputMaybe<Scalars['String']['input']>
+}
 
 /** aggregate max on columns */
 export type Users_Max_Fields = {
-  __typename?: 'users_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  password?: Maybe<Scalars['String']['output']>;
-  phone_number?: Maybe<Scalars['String']['output']>;
-  role?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  zalo_id?: Maybe<Scalars['String']['output']>;
-};
+  __typename?: 'users_max_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  password?: Maybe<Scalars['String']['output']>
+  phone_number?: Maybe<Scalars['String']['output']>
+  role?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  zalo_id?: Maybe<Scalars['String']['output']>
+}
+
+/** order by max() on columns of table "users" */
+export type Users_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  email?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  name?: InputMaybe<Order_By>
+  password?: InputMaybe<Order_By>
+  phone_number?: InputMaybe<Order_By>
+  role?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  zalo_id?: InputMaybe<Order_By>
+}
 
 /** aggregate min on columns */
 export type Users_Min_Fields = {
-  __typename?: 'users_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  password?: Maybe<Scalars['String']['output']>;
-  phone_number?: Maybe<Scalars['String']['output']>;
-  role?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-  zalo_id?: Maybe<Scalars['String']['output']>;
-};
+  __typename?: 'users_min_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  password?: Maybe<Scalars['String']['output']>
+  phone_number?: Maybe<Scalars['String']['output']>
+  role?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+  zalo_id?: Maybe<Scalars['String']['output']>
+}
+
+/** order by min() on columns of table "users" */
+export type Users_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  email?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  name?: InputMaybe<Order_By>
+  password?: InputMaybe<Order_By>
+  phone_number?: InputMaybe<Order_By>
+  role?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  zalo_id?: InputMaybe<Order_By>
+}
 
 /** response of any mutation on the table "users" */
 export type Users_Mutation_Response = {
-  __typename?: 'users_mutation_response';
+  __typename?: 'users_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Users>;
-};
+  returning: Array<Users>
+}
 
 /** input type for inserting object relation for remote table "users" */
 export type Users_Obj_Rel_Insert_Input = {
-  data: Users_Insert_Input;
+  data: Users_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Users_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Users_On_Conflict>
+}
 
 /** on_conflict condition type for table "users" */
 export type Users_On_Conflict = {
-  constraint: Users_Constraint;
-  update_columns?: Array<Users_Update_Column>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
+  constraint: Users_Constraint
+  update_columns?: Array<Users_Update_Column>
+  where?: InputMaybe<Users_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "users". */
 export type Users_Order_By = {
-  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Order_By>;
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  password?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-  role?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  zalo_id?: InputMaybe<Order_By>;
-};
+  bookings_aggregate?: InputMaybe<Bookings_Aggregate_Order_By>
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  email?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  name?: InputMaybe<Order_By>
+  password?: InputMaybe<Order_By>
+  phone_number?: InputMaybe<Order_By>
+  role?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+  zalo_id?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: users */
 export type Users_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "users" */
 export type Users_Select_Column =
@@ -4464,69 +4383,99 @@ export type Users_Select_Column =
   /** column name */
   | 'updated_at'
   /** column name */
-  | 'zalo_id';
+  | 'zalo_id'
+
+/** select "users_aggregate_bool_exp_bool_and_arguments_columns" columns of table "users" */
+export type Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
+  /** column name */
+  'isactive'
+
+/** select "users_aggregate_bool_exp_bool_or_arguments_columns" columns of table "users" */
+export type Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
+  /** column name */
+  'isactive'
 
 /** input type for updating data in table "users" */
 export type Users_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  role?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  zalo_id?: InputMaybe<Scalars['String']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  email?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  password?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  role?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  zalo_id?: InputMaybe<Scalars['String']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Users_Stddev_Fields = {
-  __typename?: 'users_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by stddev() on columns of table "users" */
+export type Users_Stddev_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_pop on columns */
 export type Users_Stddev_Pop_Fields = {
-  __typename?: 'users_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by stddev_pop() on columns of table "users" */
+export type Users_Stddev_Pop_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate stddev_samp on columns */
 export type Users_Stddev_Samp_Fields = {
-  __typename?: 'users_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by stddev_samp() on columns of table "users" */
+export type Users_Stddev_Samp_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** Streaming cursor of the table "users" */
 export type Users_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Users_Stream_Cursor_Value_Input;
+  initial_value: Users_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Users_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  role?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  zalo_id?: InputMaybe<Scalars['String']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  email?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  password?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  role?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+  zalo_id?: InputMaybe<Scalars['String']['input']>
+}
 
 /** aggregate sum on columns */
 export type Users_Sum_Fields = {
-  __typename?: 'users_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'users_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+}
+
+/** order by sum() on columns of table "users" */
+export type Users_Sum_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** update columns of table "users" */
 export type Users_Update_Column =
@@ -4551,200 +4500,212 @@ export type Users_Update_Column =
   /** column name */
   | 'updated_at'
   /** column name */
-  | 'zalo_id';
+  | 'zalo_id'
 
 export type Users_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Users_Inc_Input>;
+  _inc?: InputMaybe<Users_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Users_Set_Input>;
+  _set?: InputMaybe<Users_Set_Input>
   /** filter the rows which have to be updated */
-  where: Users_Bool_Exp;
-};
+  where: Users_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Users_Var_Pop_Fields = {
-  __typename?: 'users_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by var_pop() on columns of table "users" */
+export type Users_Var_Pop_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate var_samp on columns */
 export type Users_Var_Samp_Fields = {
-  __typename?: 'users_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by var_samp() on columns of table "users" */
+export type Users_Var_Samp_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** aggregate variance on columns */
 export type Users_Variance_Fields = {
-  __typename?: 'users_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'users_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
+
+/** order by variance() on columns of table "users" */
+export type Users_Variance_Order_By = {
+  id?: InputMaybe<Order_By>
+}
 
 /** columns and relationships of "vehicle_types" */
 export type Vehicle_Types = {
-  __typename?: 'vehicle_types';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id: Scalars['Int']['output'];
-  isactive?: Maybe<Scalars['Boolean']['output']>;
+  __typename?: 'vehicle_types'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id: Scalars['Int']['output']
+  isactive?: Maybe<Scalars['Boolean']['output']>
   /** An array relationship */
-  itineraries: Array<Itinerary>;
+  itineraries: Array<Itinerary>
   /** An aggregate relationship */
-  itineraries_aggregate: Itinerary_Aggregate;
-  type: Scalars['String']['output'];
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
-
+  itineraries_aggregate: Itinerary_Aggregate
+  type: Scalars['String']['output']
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** columns and relationships of "vehicle_types" */
 export type Vehicle_TypesItinerariesArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
-
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** columns and relationships of "vehicle_types" */
 export type Vehicle_TypesItineraries_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Itinerary_Order_By>>;
-  where?: InputMaybe<Itinerary_Bool_Exp>;
-};
+  distinct_on?: InputMaybe<Array<Itinerary_Select_Column>>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  order_by?: InputMaybe<Array<Itinerary_Order_By>>
+  where?: InputMaybe<Itinerary_Bool_Exp>
+}
 
 /** aggregated selection of "vehicle_types" */
 export type Vehicle_Types_Aggregate = {
-  __typename?: 'vehicle_types_aggregate';
-  aggregate?: Maybe<Vehicle_Types_Aggregate_Fields>;
-  nodes: Array<Vehicle_Types>;
-};
+  __typename?: 'vehicle_types_aggregate'
+  aggregate?: Maybe<Vehicle_Types_Aggregate_Fields>
+  nodes: Array<Vehicle_Types>
+}
 
 /** aggregate fields of "vehicle_types" */
 export type Vehicle_Types_Aggregate_Fields = {
-  __typename?: 'vehicle_types_aggregate_fields';
-  avg?: Maybe<Vehicle_Types_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Vehicle_Types_Max_Fields>;
-  min?: Maybe<Vehicle_Types_Min_Fields>;
-  stddev?: Maybe<Vehicle_Types_Stddev_Fields>;
-  stddev_pop?: Maybe<Vehicle_Types_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Vehicle_Types_Stddev_Samp_Fields>;
-  sum?: Maybe<Vehicle_Types_Sum_Fields>;
-  var_pop?: Maybe<Vehicle_Types_Var_Pop_Fields>;
-  var_samp?: Maybe<Vehicle_Types_Var_Samp_Fields>;
-  variance?: Maybe<Vehicle_Types_Variance_Fields>;
-};
-
+  __typename?: 'vehicle_types_aggregate_fields'
+  avg?: Maybe<Vehicle_Types_Avg_Fields>
+  count: Scalars['Int']['output']
+  max?: Maybe<Vehicle_Types_Max_Fields>
+  min?: Maybe<Vehicle_Types_Min_Fields>
+  stddev?: Maybe<Vehicle_Types_Stddev_Fields>
+  stddev_pop?: Maybe<Vehicle_Types_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Vehicle_Types_Stddev_Samp_Fields>
+  sum?: Maybe<Vehicle_Types_Sum_Fields>
+  var_pop?: Maybe<Vehicle_Types_Var_Pop_Fields>
+  var_samp?: Maybe<Vehicle_Types_Var_Samp_Fields>
+  variance?: Maybe<Vehicle_Types_Variance_Fields>
+}
 
 /** aggregate fields of "vehicle_types" */
 export type Vehicle_Types_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Vehicle_Types_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
+  columns?: InputMaybe<Array<Vehicle_Types_Select_Column>>
+  distinct?: InputMaybe<Scalars['Boolean']['input']>
+}
 
 /** aggregate avg on columns */
 export type Vehicle_Types_Avg_Fields = {
-  __typename?: 'vehicle_types_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_avg_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Boolean expression to filter rows from the table "vehicle_types". All fields are combined with a logical 'AND'. */
 export type Vehicle_Types_Bool_Exp = {
-  _and?: InputMaybe<Array<Vehicle_Types_Bool_Exp>>;
-  _not?: InputMaybe<Vehicle_Types_Bool_Exp>;
-  _or?: InputMaybe<Array<Vehicle_Types_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  isactive?: InputMaybe<Boolean_Comparison_Exp>;
-  itineraries?: InputMaybe<Itinerary_Bool_Exp>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
-  type?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
+  _and?: InputMaybe<Array<Vehicle_Types_Bool_Exp>>
+  _not?: InputMaybe<Vehicle_Types_Bool_Exp>
+  _or?: InputMaybe<Array<Vehicle_Types_Bool_Exp>>
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  deleted_at?: InputMaybe<Timestamptz_Comparison_Exp>
+  id?: InputMaybe<Int_Comparison_Exp>
+  isactive?: InputMaybe<Boolean_Comparison_Exp>
+  itineraries?: InputMaybe<Itinerary_Bool_Exp>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>
+  type?: InputMaybe<String_Comparison_Exp>
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>
+}
 
 /** unique or primary key constraints on table "vehicle_types" */
 export type Vehicle_Types_Constraint =
   /** unique or primary key constraint on columns "id" */
-  | 'vehicle_types_pkey';
+  'vehicle_types_pkey'
 
 /** input type for incrementing numeric columns in table "vehicle_types" */
 export type Vehicle_Types_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
+  id?: InputMaybe<Scalars['Int']['input']>
+}
 
 /** input type for inserting data into table "vehicle_types" */
 export type Vehicle_Types_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>;
-  type?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>
+  type?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate max on columns */
 export type Vehicle_Types_Max_Fields = {
-  __typename?: 'vehicle_types_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'vehicle_types_max_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  type?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** aggregate min on columns */
 export type Vehicle_Types_Min_Fields = {
-  __typename?: 'vehicle_types_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deleted_at?: Maybe<Scalars['timestamptz']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamptz']['output']>;
-};
+  __typename?: 'vehicle_types_min_fields'
+  created_at?: Maybe<Scalars['timestamptz']['output']>
+  deleted_at?: Maybe<Scalars['timestamptz']['output']>
+  id?: Maybe<Scalars['Int']['output']>
+  type?: Maybe<Scalars['String']['output']>
+  updated_at?: Maybe<Scalars['timestamptz']['output']>
+}
 
 /** response of any mutation on the table "vehicle_types" */
 export type Vehicle_Types_Mutation_Response = {
-  __typename?: 'vehicle_types_mutation_response';
+  __typename?: 'vehicle_types_mutation_response'
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
+  affected_rows: Scalars['Int']['output']
   /** data from the rows affected by the mutation */
-  returning: Array<Vehicle_Types>;
-};
+  returning: Array<Vehicle_Types>
+}
 
 /** input type for inserting object relation for remote table "vehicle_types" */
 export type Vehicle_Types_Obj_Rel_Insert_Input = {
-  data: Vehicle_Types_Insert_Input;
+  data: Vehicle_Types_Insert_Input
   /** upsert condition */
-  on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>;
-};
+  on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>
+}
 
 /** on_conflict condition type for table "vehicle_types" */
 export type Vehicle_Types_On_Conflict = {
-  constraint: Vehicle_Types_Constraint;
-  update_columns?: Array<Vehicle_Types_Update_Column>;
-  where?: InputMaybe<Vehicle_Types_Bool_Exp>;
-};
+  constraint: Vehicle_Types_Constraint
+  update_columns?: Array<Vehicle_Types_Update_Column>
+  where?: InputMaybe<Vehicle_Types_Bool_Exp>
+}
 
 /** Ordering options when selecting data from "vehicle_types". */
 export type Vehicle_Types_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  isactive?: InputMaybe<Order_By>;
-  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>;
-  type?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
+  created_at?: InputMaybe<Order_By>
+  deleted_at?: InputMaybe<Order_By>
+  id?: InputMaybe<Order_By>
+  isactive?: InputMaybe<Order_By>
+  itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>
+  type?: InputMaybe<Order_By>
+  updated_at?: InputMaybe<Order_By>
+}
 
 /** primary key columns input for table: vehicle_types */
 export type Vehicle_Types_Pk_Columns_Input = {
-  id: Scalars['Int']['input'];
-};
+  id: Scalars['Int']['input']
+}
 
 /** select columns of table "vehicle_types" */
 export type Vehicle_Types_Select_Column =
@@ -4759,59 +4720,59 @@ export type Vehicle_Types_Select_Column =
   /** column name */
   | 'type'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 /** input type for updating data in table "vehicle_types" */
 export type Vehicle_Types_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  type?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate stddev on columns */
 export type Vehicle_Types_Stddev_Fields = {
-  __typename?: 'vehicle_types_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_stddev_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_pop on columns */
 export type Vehicle_Types_Stddev_Pop_Fields = {
-  __typename?: 'vehicle_types_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate stddev_samp on columns */
 export type Vehicle_Types_Stddev_Samp_Fields = {
-  __typename?: 'vehicle_types_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** Streaming cursor of the table "vehicle_types" */
 export type Vehicle_Types_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Vehicle_Types_Stream_Cursor_Value_Input;
+  initial_value: Vehicle_Types_Stream_Cursor_Value_Input
   /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
+  ordering?: InputMaybe<Cursor_Ordering>
+}
 
 /** Initial value of the column from where the streaming should start */
 export type Vehicle_Types_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>
+  deleted_at?: InputMaybe<Scalars['timestamptz']['input']>
+  id?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+  type?: InputMaybe<Scalars['String']['input']>
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>
+}
 
 /** aggregate sum on columns */
 export type Vehicle_Types_Sum_Fields = {
-  __typename?: 'vehicle_types_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
+  __typename?: 'vehicle_types_sum_fields'
+  id?: Maybe<Scalars['Int']['output']>
+}
 
 /** update columns of table "vehicle_types" */
 export type Vehicle_Types_Update_Column =
@@ -4826,282 +4787,504 @@ export type Vehicle_Types_Update_Column =
   /** column name */
   | 'type'
   /** column name */
-  | 'updated_at';
+  | 'updated_at'
 
 export type Vehicle_Types_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Vehicle_Types_Inc_Input>;
+  _inc?: InputMaybe<Vehicle_Types_Inc_Input>
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Vehicle_Types_Set_Input>;
+  _set?: InputMaybe<Vehicle_Types_Set_Input>
   /** filter the rows which have to be updated */
-  where: Vehicle_Types_Bool_Exp;
-};
+  where: Vehicle_Types_Bool_Exp
+}
 
 /** aggregate var_pop on columns */
 export type Vehicle_Types_Var_Pop_Fields = {
-  __typename?: 'vehicle_types_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_var_pop_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate var_samp on columns */
 export type Vehicle_Types_Var_Samp_Fields = {
-  __typename?: 'vehicle_types_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_var_samp_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 /** aggregate variance on columns */
 export type Vehicle_Types_Variance_Fields = {
-  __typename?: 'vehicle_types_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
+  __typename?: 'vehicle_types_variance_fields'
+  id?: Maybe<Scalars['Float']['output']>
+}
 
 export type GetBookingsQueryVariables = Exact<{
-  where?: Bookings_Bool_Exp;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-}>;
-
-
-export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: any | null, status: string, user_id: number, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
-
-export type GetBookingQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type GetBookingQuery = { __typename?: 'query_root', bookings_by_pk?: { __typename?: 'bookings', booking_date: any, created_at?: any | null, deleted_at?: any | null, id: number, itinerary_id: number, note?: any | null, status: string, updated_at?: any | null, itinerary: { __typename?: 'itinerary', created_at?: any | null, deleted_at?: any | null, id: number, isactive?: boolean | null, note?: string | null, price: any, provider_id: number, route_id: number, updated_at?: any | null, vehicle_types_id: number, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', name: string, note?: string | null, phone_number?: string | null }, route: { __typename?: 'routes', city: { __typename?: 'cities', name: string, routes: Array<{ __typename?: 'routes', id: number, end_location: number, start_location: number, from_city: number, startlocation: { __typename?: 'locations', name: string }, endlocation: { __typename?: 'locations', name: string } }> } }, vehicle_type: { __typename?: 'vehicle_types', type: string } }, user: { __typename?: 'users', name?: string | null, phone_number?: string | null } } | null };
-
-export type UpdateBookingMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  status?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type UpdateBookingMutation = { __typename?: 'mutation_root', update_bookings_by_pk?: { __typename?: 'bookings', id: number } | null };
-
-export type GetCitiesQueryVariables = Exact<{
-  where?: Cities_Bool_Exp;
-  limit?: Scalars['Int']['input'];
-  offset?: Scalars['Int']['input'];
-}>;
-
-
-export type GetCitiesQuery = { __typename?: 'query_root', cities: Array<{ __typename?: 'cities', id: number, name: string, created_at?: any | null }>, cities_aggregate: { __typename?: 'cities_aggregate', aggregate?: { __typename?: 'cities_aggregate_fields', count: number } | null } };
-
-export type GetLocationsQueryVariables = Exact<{
-  where?: Locations_Bool_Exp;
-  limit?: Scalars['Int']['input'];
-  offset?: Scalars['Int']['input'];
-}>;
-
-
-export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
-
-export type DeleteLocationMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type DeleteLocationMutation = { __typename?: 'mutation_root', delete_locations_by_pk?: { __typename?: 'locations', id: number } | null };
-
-export type GetLocationQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string } } | null };
-
-export type InsertLocationMutationVariables = Exact<{
-  city_id: Scalars['Int']['input'];
-  isactive: Scalars['Boolean']['input'];
-  name: Scalars['String']['input'];
-}>;
-
-
-export type InsertLocationMutation = { __typename?: 'mutation_root', insert_locations_one?: { __typename?: 'locations', id: number } | null };
-
-export type UpdateLocationMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  city_id: Scalars['Int']['input'];
-  isactive: Scalars['Boolean']['input'];
-  name: Scalars['String']['input'];
-}>;
-
-
-export type UpdateLocationMutation = { __typename?: 'mutation_root', update_locations_by_pk?: { __typename?: 'locations', id: number } | null };
-
-export type LoginAdminMutationVariables = Exact<{
-  phone: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-}>;
-
-
-export type LoginAdminMutation = { __typename?: 'mutation_root', loginAdmin: { __typename?: 'AuthAdminOutput', token: string, name: string, role: string } };
-
-export type GetProvidersQueryVariables = Exact<{
-  where?: InputMaybe<Providers_Bool_Exp>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-}>;
-
-
-export type GetProvidersQuery = { __typename?: 'query_root', providers: Array<{ __typename?: 'providers', id: number, address?: string | null, created_at?: any | null, name: string, note?: string | null, phone_number?: string | null, telegram_id?: string | null, isactive: boolean }>, providers_aggregate: { __typename?: 'providers_aggregate', aggregate?: { __typename?: 'providers_aggregate_fields', count: number } | null } };
-
-export type InsertProviderMutationVariables = Exact<{
-  address?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  telegram_id?: InputMaybe<Scalars['String']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type InsertProviderMutation = { __typename?: 'mutation_root', insert_providers_one?: { __typename?: 'providers', id: number } | null };
-
-export type DeleteProviderMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type DeleteProviderMutation = { __typename?: 'mutation_root', delete_providers_by_pk?: { __typename?: 'providers', id: number } | null };
-
-export type UpdateProviderMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  address?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
-  phone_number?: InputMaybe<Scalars['String']['input']>;
-  telegram_id?: InputMaybe<Scalars['String']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type UpdateProviderMutation = { __typename?: 'mutation_root', update_providers_by_pk?: { __typename?: 'providers', id: number } | null };
-
-export type UpdateProviderEnableMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type UpdateProviderEnableMutation = { __typename?: 'mutation_root', update_providers_by_pk?: { __typename?: 'providers', id: number } | null };
-
-export type FindOneProviderQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type FindOneProviderQuery = { __typename?: 'query_root', providers_by_pk?: { __typename?: 'providers', address?: string | null, created_at?: any | null, deleted_at?: any | null, id: number, isactive: boolean, name: string, note?: string | null, phone_number?: string | null, telegram_id?: string | null, updated_at?: any | null } | null };
-
-export type GetRoutesQueryVariables = Exact<{
-  where?: InputMaybe<Routes_Bool_Exp>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-}>;
-
-
-export type GetRoutesQuery = { __typename?: 'query_root', routes: Array<{ __typename?: 'routes', id: number, from_city: number, start_location: number, end_location: number, updated_at?: any | null, created_at?: any | null, deleted_at?: any | null, isactive: boolean, city: { __typename?: 'cities', name: string }, startlocation: { __typename?: 'locations', name: string, id: number }, endlocation: { __typename?: 'locations', name: string, id: number } }>, routes_aggregate: { __typename?: 'routes_aggregate', aggregate?: { __typename?: 'routes_aggregate_fields', count: number } | null } };
-
-export type GetRouteQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive: boolean, city: { __typename?: 'cities', id: number, name: string }, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number } } | null };
-
-export type UpdateRouteMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  from_city?: InputMaybe<Scalars['Int']['input']>;
-  start_location?: InputMaybe<Scalars['Int']['input']>;
-  end_location?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type UpdateRouteMutation = { __typename?: 'mutation_root', update_routes_by_pk?: { __typename?: 'routes', id: number } | null };
-
-export type DeleteRouteMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type DeleteRouteMutation = { __typename?: 'mutation_root', delete_routes_by_pk?: { __typename?: 'routes', id: number } | null };
-
-export type InsertRouteMutationVariables = Exact<{
-  from_city?: InputMaybe<Scalars['Int']['input']>;
-  start_location?: InputMaybe<Scalars['Int']['input']>;
-  end_location?: InputMaybe<Scalars['Int']['input']>;
-  isactive?: InputMaybe<Scalars['Boolean']['input']>;
-}>;
-
-
-export type InsertRouteMutation = { __typename?: 'mutation_root', insert_routes_one?: { __typename?: 'routes', id: number, isactive: boolean, from_city: number, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, city: { __typename?: 'cities', name: string } } | null };
-
-export type GetUsersQueryVariables = Exact<{
-  where: Users_Bool_Exp;
-  limit: Scalars['Int']['input'];
-  offset: Scalars['Int']['input'];
-}>;
-
-
-export type GetUsersQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', id: number, email?: string | null, name?: string | null, phone_number?: string | null, role?: string | null, created_at?: any | null }>, users_aggregate: { __typename?: 'users_aggregate', aggregate?: { __typename?: 'users_aggregate_fields', count: number } | null } };
-
-export type FindOneQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type FindOneQuery = { __typename?: 'query_root', users_by_pk?: { __typename?: 'users', name?: string | null, id: number, phone_number?: string | null, role?: string | null, email?: string | null, created_at?: any | null, zalo_id?: string | null } | null };
-
-export type DeleteUserMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type DeleteUserMutation = { __typename?: 'mutation_root', delete_users_by_pk?: { __typename?: 'users', id: number } | null };
-
-export type UpdateUserMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  email: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  phone_number: Scalars['String']['input'];
-  role: Scalars['String']['input'];
-}>;
-
-
-export type UpdateUserMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', id: number } | null };
-
-
-export const GetBookingsDocument = gql`
-    query getBookings($where: bookings_bool_exp! = {}, $limit: Int = 10, $offset: Int = 0) {
-  bookings(
-    where: $where
-    limit: $limit
-    offset: $offset
-    order_by: {created_at: desc}
-  ) {
-    booking_date
-    id
-    created_at
-    itinerary_id
-    note
-    status
-    user_id
-    user {
-      name
-      phone_number
-    }
-    itinerary {
-      price
-    }
-  }
-  bookings_aggregate(where: $where) {
-    aggregate {
-      count
-    }
+  where?: Bookings_Bool_Exp
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+}>
+
+export type GetBookingsQuery = {
+  __typename?: 'query_root'
+  bookings: Array<{
+    __typename?: 'bookings'
+    booking_date: any
+    id: number
+    created_at?: any | null
+    itinerary_id: number
+    note?: string | null
+    status: string
+    user_id: number
+    user: { __typename?: 'users'; name?: string | null; phone_number?: string | null }
+    itinerary: { __typename?: 'itinerary'; price: any }
+  }>
+  bookings_aggregate: {
+    __typename?: 'bookings_aggregate'
+    aggregate?: { __typename?: 'bookings_aggregate_fields'; count: number } | null
   }
 }
-    `;
+
+export type GetBookingQueryVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type GetBookingQuery = {
+  __typename?: 'query_root'
+  bookings_by_pk?: {
+    __typename?: 'bookings'
+    booking_date: any
+    created_at?: any | null
+    deleted_at?: any | null
+    id: number
+    itinerary_id: number
+    note?: string | null
+    status: string
+    updated_at?: any | null
+    itinerary: {
+      __typename?: 'itinerary'
+      created_at?: any | null
+      deleted_at?: any | null
+      id: number
+      isactive?: boolean | null
+      note?: string | null
+      price: any
+      provider_id: number
+      route_id: number
+      updated_at?: any | null
+      vehicle_types_id: number
+      option: { __typename?: 'options'; round_type: string }
+      provider: { __typename?: 'providers'; name: string; note?: string | null; phone_number?: string | null }
+      route: {
+        __typename?: 'routes'
+        city: {
+          __typename?: 'cities'
+          name: string
+          routes: Array<{
+            __typename?: 'routes'
+            id: number
+            end_location: number
+            start_location: number
+            from_city: number
+            startlocation?: { __typename?: 'locations'; name: string } | null
+            endlocation?: { __typename?: 'locations'; name: string } | null
+          }>
+        }
+      }
+      vehicle_type: { __typename?: 'vehicle_types'; type: string }
+    }
+    user: { __typename?: 'users'; name?: string | null; phone_number?: string | null }
+  } | null
+}
+
+export type UpdateBookingMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+  status?: InputMaybe<Scalars['String']['input']>
+}>
+
+export type UpdateBookingMutation = {
+  __typename?: 'mutation_root'
+  update_bookings_by_pk?: { __typename?: 'bookings'; id: number } | null
+}
+
+export type GetCitiesQueryVariables = Exact<{
+  where?: Cities_Bool_Exp
+  limit?: Scalars['Int']['input']
+  offset?: Scalars['Int']['input']
+}>
+
+export type GetCitiesQuery = {
+  __typename?: 'query_root'
+  cities: Array<{ __typename?: 'cities'; id: number; name: string; created_at?: any | null; isactive?: boolean | null }>
+  cities_aggregate: {
+    __typename?: 'cities_aggregate'
+    aggregate?: { __typename?: 'cities_aggregate_fields'; count: number } | null
+  }
+}
+
+export type GetCityQueryVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type GetCityQuery = {
+  __typename?: 'query_root'
+  cities_by_pk?: {
+    __typename?: 'cities'
+    id: number
+    created_at?: any | null
+    isactive?: boolean | null
+    deleted_at?: any | null
+    name: string
+    updated_at?: any | null
+  } | null
+}
+
+export type UpdateCityMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+}>
+
+export type UpdateCityMutation = {
+  __typename?: 'mutation_root'
+  update_cities_by_pk?: { __typename?: 'cities'; id: number } | null
+}
+
+export type GetLocationsQueryVariables = Exact<{
+  where?: Locations_Bool_Exp
+  limit?: Scalars['Int']['input']
+  offset?: Scalars['Int']['input']
+}>
+
+export type GetLocationsQuery = {
+  __typename?: 'query_root'
+  locations: Array<{
+    __typename?: 'locations'
+    id: number
+    name: string
+    created_at?: any | null
+    isactive?: boolean | null
+    city: { __typename?: 'cities'; name: string }
+  }>
+  locations_aggregate: {
+    __typename?: 'locations_aggregate'
+    aggregate?: { __typename?: 'locations_aggregate_fields'; count: number } | null
+  }
+}
+
+export type DeleteLocationMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type DeleteLocationMutation = {
+  __typename?: 'mutation_root'
+  delete_locations_by_pk?: { __typename?: 'locations'; id: number } | null
+}
+
+export type GetLocationQueryVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type GetLocationQuery = {
+  __typename?: 'query_root'
+  locations_by_pk?: {
+    __typename?: 'locations'
+    name: string
+    id: number
+    created_at?: any | null
+    isactive?: boolean | null
+    city: { __typename?: 'cities'; id: number; name: string }
+  } | null
+}
+
+export type InsertLocationMutationVariables = Exact<{
+  city_id: Scalars['Int']['input']
+  isactive: Scalars['Boolean']['input']
+  name: Scalars['String']['input']
+}>
+
+export type InsertLocationMutation = {
+  __typename?: 'mutation_root'
+  insert_locations_one?: { __typename?: 'locations'; id: number } | null
+}
+
+export type UpdateLocationMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+  city_id: Scalars['Int']['input']
+  isactive: Scalars['Boolean']['input']
+  name: Scalars['String']['input']
+}>
+
+export type UpdateLocationMutation = {
+  __typename?: 'mutation_root'
+  update_locations_by_pk?: { __typename?: 'locations'; id: number } | null
+}
+
+export type GetProvidersQueryVariables = Exact<{
+  where?: InputMaybe<Providers_Bool_Exp>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+}>
+
+export type GetProvidersQuery = {
+  __typename?: 'query_root'
+  providers: Array<{
+    __typename?: 'providers'
+    id: number
+    address?: string | null
+    created_at?: any | null
+    name: string
+    note?: string | null
+    phone_number?: string | null
+    telegram_id?: string | null
+    isactive: boolean
+  }>
+  providers_aggregate: {
+    __typename?: 'providers_aggregate'
+    aggregate?: { __typename?: 'providers_aggregate_fields'; count: number } | null
+  }
+}
+
+export type InsertProviderMutationVariables = Exact<{
+  address?: InputMaybe<Scalars['String']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  telegram_id?: InputMaybe<Scalars['String']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+}>
+
+export type InsertProviderMutation = {
+  __typename?: 'mutation_root'
+  insert_providers_one?: { __typename?: 'providers'; id: number } | null
+}
+
+export type DeleteProviderMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type DeleteProviderMutation = {
+  __typename?: 'mutation_root'
+  delete_providers_by_pk?: { __typename?: 'providers'; id: number } | null
+}
+
+export type UpdateProviderMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+  address?: InputMaybe<Scalars['String']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  phone_number?: InputMaybe<Scalars['String']['input']>
+  telegram_id?: InputMaybe<Scalars['String']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+}>
+
+export type UpdateProviderMutation = {
+  __typename?: 'mutation_root'
+  update_providers_by_pk?: { __typename?: 'providers'; id: number } | null
+}
+
+export type UpdateProviderEnableMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type UpdateProviderEnableMutation = {
+  __typename?: 'mutation_root'
+  update_providers_by_pk?: { __typename?: 'providers'; id: number } | null
+}
+
+export type FindOneProviderQueryVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type FindOneProviderQuery = {
+  __typename?: 'query_root'
+  providers_by_pk?: {
+    __typename?: 'providers'
+    address?: string | null
+    created_at?: any | null
+    deleted_at?: any | null
+    id: number
+    isactive: boolean
+    name: string
+    note?: string | null
+    phone_number?: string | null
+    telegram_id?: string | null
+    updated_at?: any | null
+  } | null
+}
+
+export type GetRoutesQueryVariables = Exact<{
+  where?: InputMaybe<Routes_Bool_Exp>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+}>
+
+export type GetRoutesQuery = {
+  __typename?: 'query_root'
+  routes: Array<{
+    __typename?: 'routes'
+    id: number
+    from_city: number
+    start_location: number
+    end_location: number
+    updated_at?: any | null
+    created_at?: any | null
+    deleted_at?: any | null
+    isactive?: boolean | null
+    city: { __typename?: 'cities'; name: string }
+    startlocation?: { __typename?: 'locations'; name: string; id: number } | null
+    endlocation?: { __typename?: 'locations'; name: string; id: number } | null
+  }>
+  routes_aggregate: {
+    __typename?: 'routes_aggregate'
+    aggregate?: { __typename?: 'routes_aggregate_fields'; count: number } | null
+  }
+}
+
+export type GetRouteQueryVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type GetRouteQuery = {
+  __typename?: 'query_root'
+  routes_by_pk?: {
+    __typename?: 'routes'
+    id: number
+    created_at?: any | null
+    from_city: number
+    isactive?: boolean | null
+    city: { __typename?: 'cities'; id: number; name: string }
+    endlocation?: { __typename?: 'locations'; name: string; id: number } | null
+    startlocation?: { __typename?: 'locations'; name: string; id: number } | null
+  } | null
+}
+
+export type UpdateRouteMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+  from_city?: InputMaybe<Scalars['Int']['input']>
+  start_location?: InputMaybe<Scalars['Int']['input']>
+  end_location?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+}>
+
+export type UpdateRouteMutation = {
+  __typename?: 'mutation_root'
+  update_routes_by_pk?: { __typename?: 'routes'; id: number } | null
+}
+
+export type DeleteRouteMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type DeleteRouteMutation = {
+  __typename?: 'mutation_root'
+  delete_routes_by_pk?: { __typename?: 'routes'; id: number } | null
+}
+
+export type InsertRouteMutationVariables = Exact<{
+  from_city?: InputMaybe<Scalars['Int']['input']>
+  start_location?: InputMaybe<Scalars['Int']['input']>
+  end_location?: InputMaybe<Scalars['Int']['input']>
+  isactive?: InputMaybe<Scalars['Boolean']['input']>
+}>
+
+export type InsertRouteMutation = {
+  __typename?: 'mutation_root'
+  insert_routes_one?: {
+    __typename?: 'routes'
+    id: number
+    isactive?: boolean | null
+    from_city: number
+    endlocation?: { __typename?: 'locations'; name: string; id: number } | null
+    startlocation?: { __typename?: 'locations'; name: string; id: number } | null
+    city: { __typename?: 'cities'; name: string }
+  } | null
+}
+
+export type GetUsersQueryVariables = Exact<{
+  where: Users_Bool_Exp
+  limit: Scalars['Int']['input']
+  offset: Scalars['Int']['input']
+}>
+
+export type GetUsersQuery = {
+  __typename?: 'query_root'
+  users: Array<{
+    __typename?: 'users'
+    id: number
+    email?: string | null
+    name?: string | null
+    phone_number?: string | null
+    role?: string | null
+    created_at?: any | null
+  }>
+  users_aggregate: {
+    __typename?: 'users_aggregate'
+    aggregate?: { __typename?: 'users_aggregate_fields'; count: number } | null
+  }
+}
+
+export type FindOneQueryVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type FindOneQuery = {
+  __typename?: 'query_root'
+  users_by_pk?: {
+    __typename?: 'users'
+    name?: string | null
+    id: number
+    phone_number?: string | null
+    role?: string | null
+    email?: string | null
+    created_at?: any | null
+    zalo_id?: string | null
+  } | null
+}
+
+export type DeleteUserMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+}>
+
+export type DeleteUserMutation = {
+  __typename?: 'mutation_root'
+  delete_users_by_pk?: { __typename?: 'users'; id: number } | null
+}
+
+export type UpdateUserMutationVariables = Exact<{
+  id: Scalars['Int']['input']
+  email: Scalars['String']['input']
+  name: Scalars['String']['input']
+  phone_number: Scalars['String']['input']
+  role: Scalars['String']['input']
+}>
+
+export type UpdateUserMutation = {
+  __typename?: 'mutation_root'
+  update_users_by_pk?: { __typename?: 'users'; id: number } | null
+}
+
+export const GetBookingsDocument = gql`
+  query getBookings($where: bookings_bool_exp! = {}, $limit: Int = 10, $offset: Int = 0) {
+    bookings(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+      booking_date
+      id
+      created_at
+      itinerary_id
+      note
+      status
+      user_id
+      user {
+        name
+        phone_number
+      }
+      itinerary {
+        price
+      }
+    }
+    bookings_aggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
 
 /**
  * __useGetBookingsQuery__
@@ -5121,80 +5304,86 @@ export const GetBookingsDocument = gql`
  *   },
  * });
  */
-export function useGetBookingsQuery(baseOptions?: Apollo.QueryHookOptions<GetBookingsQuery, GetBookingsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetBookingsQuery, GetBookingsQueryVariables>(GetBookingsDocument, options);
-      }
-export function useGetBookingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBookingsQuery, GetBookingsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetBookingsQuery, GetBookingsQueryVariables>(GetBookingsDocument, options);
-        }
-export function useGetBookingsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetBookingsQuery, GetBookingsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetBookingsQuery, GetBookingsQueryVariables>(GetBookingsDocument, options);
-        }
-export type GetBookingsQueryHookResult = ReturnType<typeof useGetBookingsQuery>;
-export type GetBookingsLazyQueryHookResult = ReturnType<typeof useGetBookingsLazyQuery>;
-export type GetBookingsSuspenseQueryHookResult = ReturnType<typeof useGetBookingsSuspenseQuery>;
-export type GetBookingsQueryResult = Apollo.QueryResult<GetBookingsQuery, GetBookingsQueryVariables>;
+export function useGetBookingsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetBookingsQuery, GetBookingsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetBookingsQuery, GetBookingsQueryVariables>(GetBookingsDocument, options)
+}
+export function useGetBookingsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetBookingsQuery, GetBookingsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetBookingsQuery, GetBookingsQueryVariables>(GetBookingsDocument, options)
+}
+export function useGetBookingsSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetBookingsQuery, GetBookingsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetBookingsQuery, GetBookingsQueryVariables>(GetBookingsDocument, options)
+}
+export type GetBookingsQueryHookResult = ReturnType<typeof useGetBookingsQuery>
+export type GetBookingsLazyQueryHookResult = ReturnType<typeof useGetBookingsLazyQuery>
+export type GetBookingsSuspenseQueryHookResult = ReturnType<typeof useGetBookingsSuspenseQuery>
+export type GetBookingsQueryResult = Apollo.QueryResult<GetBookingsQuery, GetBookingsQueryVariables>
 export const GetBookingDocument = gql`
-    query getBooking($id: Int!) {
-  bookings_by_pk(id: $id) {
-    booking_date
-    created_at
-    deleted_at
-    id
-    itinerary_id
-    note
-    status
-    updated_at
-    itinerary {
+  query getBooking($id: Int!) {
+    bookings_by_pk(id: $id) {
+      booking_date
       created_at
       deleted_at
       id
-      isactive
+      itinerary_id
       note
-      price
-      provider_id
-      route_id
+      status
       updated_at
-      vehicle_types_id
-      option {
-        round_type
-      }
-      provider {
-        name
+      itinerary {
+        created_at
+        deleted_at
+        id
+        isactive
         note
-        phone_number
-      }
-      route {
-        city {
+        price
+        provider_id
+        route_id
+        updated_at
+        vehicle_types_id
+        option {
+          round_type
+        }
+        provider {
           name
-          routes {
-            id
-            end_location
-            start_location
-            from_city
-            startlocation {
-              name
-            }
-            endlocation {
-              name
+          note
+          phone_number
+        }
+        route {
+          city {
+            name
+            routes {
+              id
+              end_location
+              start_location
+              from_city
+              startlocation {
+                name
+              }
+              endlocation {
+                name
+              }
             }
           }
         }
+        vehicle_type {
+          type
+        }
       }
-      vehicle_type {
-        type
+      user {
+        name
+        phone_number
       }
-    }
-    user {
-      name
-      phone_number
     }
   }
-}
-    `;
+`
 
 /**
  * __useGetBookingQuery__
@@ -5212,30 +5401,37 @@ export const GetBookingDocument = gql`
  *   },
  * });
  */
-export function useGetBookingQuery(baseOptions: Apollo.QueryHookOptions<GetBookingQuery, GetBookingQueryVariables> & ({ variables: GetBookingQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetBookingQuery, GetBookingQueryVariables>(GetBookingDocument, options);
-      }
-export function useGetBookingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBookingQuery, GetBookingQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetBookingQuery, GetBookingQueryVariables>(GetBookingDocument, options);
-        }
-export function useGetBookingSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetBookingQuery, GetBookingQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetBookingQuery, GetBookingQueryVariables>(GetBookingDocument, options);
-        }
-export type GetBookingQueryHookResult = ReturnType<typeof useGetBookingQuery>;
-export type GetBookingLazyQueryHookResult = ReturnType<typeof useGetBookingLazyQuery>;
-export type GetBookingSuspenseQueryHookResult = ReturnType<typeof useGetBookingSuspenseQuery>;
-export type GetBookingQueryResult = Apollo.QueryResult<GetBookingQuery, GetBookingQueryVariables>;
-export const UpdateBookingDocument = gql`
-    mutation updateBooking($id: Int!, $status: String) {
-  update_bookings_by_pk(pk_columns: {id: $id}, _set: {status: $status}) {
-    id
-  }
+export function useGetBookingQuery(
+  baseOptions: Apollo.QueryHookOptions<GetBookingQuery, GetBookingQueryVariables> &
+    ({ variables: GetBookingQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetBookingQuery, GetBookingQueryVariables>(GetBookingDocument, options)
 }
-    `;
-export type UpdateBookingMutationFn = Apollo.MutationFunction<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export function useGetBookingLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetBookingQuery, GetBookingQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetBookingQuery, GetBookingQueryVariables>(GetBookingDocument, options)
+}
+export function useGetBookingSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetBookingQuery, GetBookingQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetBookingQuery, GetBookingQueryVariables>(GetBookingDocument, options)
+}
+export type GetBookingQueryHookResult = ReturnType<typeof useGetBookingQuery>
+export type GetBookingLazyQueryHookResult = ReturnType<typeof useGetBookingLazyQuery>
+export type GetBookingSuspenseQueryHookResult = ReturnType<typeof useGetBookingSuspenseQuery>
+export type GetBookingQueryResult = Apollo.QueryResult<GetBookingQuery, GetBookingQueryVariables>
+export const UpdateBookingDocument = gql`
+  mutation updateBooking($id: Int!, $status: String) {
+    update_bookings_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
+      id
+    }
+  }
+`
+export type UpdateBookingMutationFn = Apollo.MutationFunction<UpdateBookingMutation, UpdateBookingMutationVariables>
 
 /**
  * __useUpdateBookingMutation__
@@ -5255,32 +5451,33 @@ export type UpdateBookingMutationFn = Apollo.MutationFunction<UpdateBookingMutat
  *   },
  * });
  */
-export function useUpdateBookingMutation(baseOptions?: Apollo.MutationHookOptions<UpdateBookingMutation, UpdateBookingMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateBookingMutation, UpdateBookingMutationVariables>(UpdateBookingDocument, options);
-      }
-export type UpdateBookingMutationHookResult = ReturnType<typeof useUpdateBookingMutation>;
-export type UpdateBookingMutationResult = Apollo.MutationResult<UpdateBookingMutation>;
-export type UpdateBookingMutationOptions = Apollo.BaseMutationOptions<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export function useUpdateBookingMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateBookingMutation, UpdateBookingMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateBookingMutation, UpdateBookingMutationVariables>(UpdateBookingDocument, options)
+}
+export type UpdateBookingMutationHookResult = ReturnType<typeof useUpdateBookingMutation>
+export type UpdateBookingMutationResult = Apollo.MutationResult<UpdateBookingMutation>
+export type UpdateBookingMutationOptions = Apollo.BaseMutationOptions<
+  UpdateBookingMutation,
+  UpdateBookingMutationVariables
+>
 export const GetCitiesDocument = gql`
-    query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
-  cities(
-    where: $where
-    limit: $limit
-    offset: $offset
-    order_by: {created_at: desc}
-  ) {
-    id
-    name
-    created_at
-  }
-  cities_aggregate(where: $where) {
-    aggregate {
-      count
+  query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
+    cities(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+      id
+      name
+      created_at
+      isactive
+    }
+    cities_aggregate(where: $where) {
+      aggregate {
+        count
+      }
     }
   }
-}
-    `;
+`
 
 /**
  * __useGetCitiesQuery__
@@ -5301,44 +5498,129 @@ export const GetCitiesDocument = gql`
  * });
  */
 export function useGetCitiesQuery(baseOptions?: Apollo.QueryHookOptions<GetCitiesQuery, GetCitiesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCitiesQuery, GetCitiesQueryVariables>(GetCitiesDocument, options);
-      }
-export function useGetCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCitiesQuery, GetCitiesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCitiesQuery, GetCitiesQueryVariables>(GetCitiesDocument, options);
-        }
-export function useGetCitiesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetCitiesQuery, GetCitiesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetCitiesQuery, GetCitiesQueryVariables>(GetCitiesDocument, options);
-        }
-export type GetCitiesQueryHookResult = ReturnType<typeof useGetCitiesQuery>;
-export type GetCitiesLazyQueryHookResult = ReturnType<typeof useGetCitiesLazyQuery>;
-export type GetCitiesSuspenseQueryHookResult = ReturnType<typeof useGetCitiesSuspenseQuery>;
-export type GetCitiesQueryResult = Apollo.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>;
-export const GetLocationsDocument = gql`
-    query getLocations($where: locations_bool_exp! = {}, $limit: Int! = 10, $offset: Int! = 0) {
-  locations(
-    where: $where
-    limit: $limit
-    offset: $offset
-    order_by: {created_at: desc}
-  ) {
-    id
-    name
-    created_at
-    city {
-      name
-    }
-    isactive
-  }
-  locations_aggregate(where: $where) {
-    aggregate {
-      count
-    }
-  }
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetCitiesQuery, GetCitiesQueryVariables>(GetCitiesDocument, options)
 }
-    `;
+export function useGetCitiesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetCitiesQuery, GetCitiesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetCitiesQuery, GetCitiesQueryVariables>(GetCitiesDocument, options)
+}
+export function useGetCitiesSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetCitiesQuery, GetCitiesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetCitiesQuery, GetCitiesQueryVariables>(GetCitiesDocument, options)
+}
+export type GetCitiesQueryHookResult = ReturnType<typeof useGetCitiesQuery>
+export type GetCitiesLazyQueryHookResult = ReturnType<typeof useGetCitiesLazyQuery>
+export type GetCitiesSuspenseQueryHookResult = ReturnType<typeof useGetCitiesSuspenseQuery>
+export type GetCitiesQueryResult = Apollo.QueryResult<GetCitiesQuery, GetCitiesQueryVariables>
+export const GetCityDocument = gql`
+  query getCity($id: Int!) {
+    cities_by_pk(id: $id) {
+      id
+      created_at
+      isactive
+      deleted_at
+      name
+      updated_at
+    }
+  }
+`
+
+/**
+ * __useGetCityQuery__
+ *
+ * To run a query within a React component, call `useGetCityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCityQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetCityQuery(
+  baseOptions: Apollo.QueryHookOptions<GetCityQuery, GetCityQueryVariables> &
+    ({ variables: GetCityQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetCityQuery, GetCityQueryVariables>(GetCityDocument, options)
+}
+export function useGetCityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCityQuery, GetCityQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetCityQuery, GetCityQueryVariables>(GetCityDocument, options)
+}
+export function useGetCitySuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetCityQuery, GetCityQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetCityQuery, GetCityQueryVariables>(GetCityDocument, options)
+}
+export type GetCityQueryHookResult = ReturnType<typeof useGetCityQuery>
+export type GetCityLazyQueryHookResult = ReturnType<typeof useGetCityLazyQuery>
+export type GetCitySuspenseQueryHookResult = ReturnType<typeof useGetCitySuspenseQuery>
+export type GetCityQueryResult = Apollo.QueryResult<GetCityQuery, GetCityQueryVariables>
+export const UpdateCityDocument = gql`
+  mutation updateCity($id: Int!, $isactive: Boolean) {
+    update_cities_by_pk(pk_columns: { id: $id }, _set: { isactive: $isactive }) {
+      id
+    }
+  }
+`
+export type UpdateCityMutationFn = Apollo.MutationFunction<UpdateCityMutation, UpdateCityMutationVariables>
+
+/**
+ * __useUpdateCityMutation__
+ *
+ * To run a mutation, you first call `useUpdateCityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCityMutation, { data, loading, error }] = useUpdateCityMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      isactive: // value for 'isactive'
+ *   },
+ * });
+ */
+export function useUpdateCityMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateCityMutation, UpdateCityMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateCityMutation, UpdateCityMutationVariables>(UpdateCityDocument, options)
+}
+export type UpdateCityMutationHookResult = ReturnType<typeof useUpdateCityMutation>
+export type UpdateCityMutationResult = Apollo.MutationResult<UpdateCityMutation>
+export type UpdateCityMutationOptions = Apollo.BaseMutationOptions<UpdateCityMutation, UpdateCityMutationVariables>
+export const GetLocationsDocument = gql`
+  query getLocations($where: locations_bool_exp! = {}, $limit: Int! = 10, $offset: Int! = 0) {
+    locations(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+      id
+      name
+      created_at
+      city {
+        name
+      }
+      isactive
+    }
+    locations_aggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
 
 /**
  * __useGetLocationsQuery__
@@ -5358,30 +5640,36 @@ export const GetLocationsDocument = gql`
  *   },
  * });
  */
-export function useGetLocationsQuery(baseOptions?: Apollo.QueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options);
-      }
-export function useGetLocationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options);
-        }
-export function useGetLocationsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options);
-        }
-export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery>;
-export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>;
-export type GetLocationsSuspenseQueryHookResult = ReturnType<typeof useGetLocationsSuspenseQuery>;
-export type GetLocationsQueryResult = Apollo.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>;
-export const DeleteLocationDocument = gql`
-    mutation deleteLocation($id: Int!) {
-  delete_locations_by_pk(id: $id) {
-    id
-  }
+export function useGetLocationsQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options)
 }
-    `;
-export type DeleteLocationMutationFn = Apollo.MutationFunction<DeleteLocationMutation, DeleteLocationMutationVariables>;
+export function useGetLocationsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options)
+}
+export function useGetLocationsSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetLocationsQuery, GetLocationsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetLocationsQuery, GetLocationsQueryVariables>(GetLocationsDocument, options)
+}
+export type GetLocationsQueryHookResult = ReturnType<typeof useGetLocationsQuery>
+export type GetLocationsLazyQueryHookResult = ReturnType<typeof useGetLocationsLazyQuery>
+export type GetLocationsSuspenseQueryHookResult = ReturnType<typeof useGetLocationsSuspenseQuery>
+export type GetLocationsQueryResult = Apollo.QueryResult<GetLocationsQuery, GetLocationsQueryVariables>
+export const DeleteLocationDocument = gql`
+  mutation deleteLocation($id: Int!) {
+    delete_locations_by_pk(id: $id) {
+      id
+    }
+  }
+`
+export type DeleteLocationMutationFn = Apollo.MutationFunction<DeleteLocationMutation, DeleteLocationMutationVariables>
 
 /**
  * __useDeleteLocationMutation__
@@ -5400,27 +5688,32 @@ export type DeleteLocationMutationFn = Apollo.MutationFunction<DeleteLocationMut
  *   },
  * });
  */
-export function useDeleteLocationMutation(baseOptions?: Apollo.MutationHookOptions<DeleteLocationMutation, DeleteLocationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteLocationMutation, DeleteLocationMutationVariables>(DeleteLocationDocument, options);
-      }
-export type DeleteLocationMutationHookResult = ReturnType<typeof useDeleteLocationMutation>;
-export type DeleteLocationMutationResult = Apollo.MutationResult<DeleteLocationMutation>;
-export type DeleteLocationMutationOptions = Apollo.BaseMutationOptions<DeleteLocationMutation, DeleteLocationMutationVariables>;
-export const GetLocationDocument = gql`
-    query getLocation($id: Int!) {
-  locations_by_pk(id: $id) {
-    name
-    id
-    city {
-      id
-      name
-    }
-    created_at
-    isactive
-  }
+export function useDeleteLocationMutation(
+  baseOptions?: Apollo.MutationHookOptions<DeleteLocationMutation, DeleteLocationMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<DeleteLocationMutation, DeleteLocationMutationVariables>(DeleteLocationDocument, options)
 }
-    `;
+export type DeleteLocationMutationHookResult = ReturnType<typeof useDeleteLocationMutation>
+export type DeleteLocationMutationResult = Apollo.MutationResult<DeleteLocationMutation>
+export type DeleteLocationMutationOptions = Apollo.BaseMutationOptions<
+  DeleteLocationMutation,
+  DeleteLocationMutationVariables
+>
+export const GetLocationDocument = gql`
+  query getLocation($id: Int!) {
+    locations_by_pk(id: $id) {
+      name
+      id
+      city {
+        id
+        name
+      }
+      created_at
+      isactive
+    }
+  }
+`
 
 /**
  * __useGetLocationQuery__
@@ -5438,32 +5731,37 @@ export const GetLocationDocument = gql`
  *   },
  * });
  */
-export function useGetLocationQuery(baseOptions: Apollo.QueryHookOptions<GetLocationQuery, GetLocationQueryVariables> & ({ variables: GetLocationQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options);
-      }
-export function useGetLocationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options);
-        }
-export function useGetLocationSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options);
-        }
-export type GetLocationQueryHookResult = ReturnType<typeof useGetLocationQuery>;
-export type GetLocationLazyQueryHookResult = ReturnType<typeof useGetLocationLazyQuery>;
-export type GetLocationSuspenseQueryHookResult = ReturnType<typeof useGetLocationSuspenseQuery>;
-export type GetLocationQueryResult = Apollo.QueryResult<GetLocationQuery, GetLocationQueryVariables>;
-export const InsertLocationDocument = gql`
-    mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!) {
-  insert_locations_one(
-    object: {city_id: $city_id, isactive: $isactive, name: $name}
-  ) {
-    id
-  }
+export function useGetLocationQuery(
+  baseOptions: Apollo.QueryHookOptions<GetLocationQuery, GetLocationQueryVariables> &
+    ({ variables: GetLocationQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options)
 }
-    `;
-export type InsertLocationMutationFn = Apollo.MutationFunction<InsertLocationMutation, InsertLocationMutationVariables>;
+export function useGetLocationLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options)
+}
+export function useGetLocationSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetLocationQuery, GetLocationQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetLocationQuery, GetLocationQueryVariables>(GetLocationDocument, options)
+}
+export type GetLocationQueryHookResult = ReturnType<typeof useGetLocationQuery>
+export type GetLocationLazyQueryHookResult = ReturnType<typeof useGetLocationLazyQuery>
+export type GetLocationSuspenseQueryHookResult = ReturnType<typeof useGetLocationSuspenseQuery>
+export type GetLocationQueryResult = Apollo.QueryResult<GetLocationQuery, GetLocationQueryVariables>
+export const InsertLocationDocument = gql`
+  mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!) {
+    insert_locations_one(object: { city_id: $city_id, isactive: $isactive, name: $name }) {
+      id
+    }
+  }
+`
+export type InsertLocationMutationFn = Apollo.MutationFunction<InsertLocationMutation, InsertLocationMutationVariables>
 
 /**
  * __useInsertLocationMutation__
@@ -5484,24 +5782,26 @@ export type InsertLocationMutationFn = Apollo.MutationFunction<InsertLocationMut
  *   },
  * });
  */
-export function useInsertLocationMutation(baseOptions?: Apollo.MutationHookOptions<InsertLocationMutation, InsertLocationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<InsertLocationMutation, InsertLocationMutationVariables>(InsertLocationDocument, options);
-      }
-export type InsertLocationMutationHookResult = ReturnType<typeof useInsertLocationMutation>;
-export type InsertLocationMutationResult = Apollo.MutationResult<InsertLocationMutation>;
-export type InsertLocationMutationOptions = Apollo.BaseMutationOptions<InsertLocationMutation, InsertLocationMutationVariables>;
-export const UpdateLocationDocument = gql`
-    mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!) {
-  update_locations_by_pk(
-    pk_columns: {id: $id}
-    _set: {city_id: $city_id, isactive: $isactive, name: $name}
-  ) {
-    id
-  }
+export function useInsertLocationMutation(
+  baseOptions?: Apollo.MutationHookOptions<InsertLocationMutation, InsertLocationMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<InsertLocationMutation, InsertLocationMutationVariables>(InsertLocationDocument, options)
 }
-    `;
-export type UpdateLocationMutationFn = Apollo.MutationFunction<UpdateLocationMutation, UpdateLocationMutationVariables>;
+export type InsertLocationMutationHookResult = ReturnType<typeof useInsertLocationMutation>
+export type InsertLocationMutationResult = Apollo.MutationResult<InsertLocationMutation>
+export type InsertLocationMutationOptions = Apollo.BaseMutationOptions<
+  InsertLocationMutation,
+  InsertLocationMutationVariables
+>
+export const UpdateLocationDocument = gql`
+  mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!) {
+    update_locations_by_pk(pk_columns: { id: $id }, _set: { city_id: $city_id, isactive: $isactive, name: $name }) {
+      id
+    }
+  }
+`
+export type UpdateLocationMutationFn = Apollo.MutationFunction<UpdateLocationMutation, UpdateLocationMutationVariables>
 
 /**
  * __useUpdateLocationMutation__
@@ -5523,73 +5823,37 @@ export type UpdateLocationMutationFn = Apollo.MutationFunction<UpdateLocationMut
  *   },
  * });
  */
-export function useUpdateLocationMutation(baseOptions?: Apollo.MutationHookOptions<UpdateLocationMutation, UpdateLocationMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateLocationMutation, UpdateLocationMutationVariables>(UpdateLocationDocument, options);
-      }
-export type UpdateLocationMutationHookResult = ReturnType<typeof useUpdateLocationMutation>;
-export type UpdateLocationMutationResult = Apollo.MutationResult<UpdateLocationMutation>;
-export type UpdateLocationMutationOptions = Apollo.BaseMutationOptions<UpdateLocationMutation, UpdateLocationMutationVariables>;
-export const LoginAdminDocument = gql`
-    mutation loginAdmin($phone: String!, $password: String!) {
-  loginAdmin(phone: $phone, password: $password) {
-    token
-    name
-    role
-  }
+export function useUpdateLocationMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateLocationMutation, UpdateLocationMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateLocationMutation, UpdateLocationMutationVariables>(UpdateLocationDocument, options)
 }
-    `;
-export type LoginAdminMutationFn = Apollo.MutationFunction<LoginAdminMutation, LoginAdminMutationVariables>;
-
-/**
- * __useLoginAdminMutation__
- *
- * To run a mutation, you first call `useLoginAdminMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useLoginAdminMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [loginAdminMutation, { data, loading, error }] = useLoginAdminMutation({
- *   variables: {
- *      phone: // value for 'phone'
- *      password: // value for 'password'
- *   },
- * });
- */
-export function useLoginAdminMutation(baseOptions?: Apollo.MutationHookOptions<LoginAdminMutation, LoginAdminMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<LoginAdminMutation, LoginAdminMutationVariables>(LoginAdminDocument, options);
-      }
-export type LoginAdminMutationHookResult = ReturnType<typeof useLoginAdminMutation>;
-export type LoginAdminMutationResult = Apollo.MutationResult<LoginAdminMutation>;
-export type LoginAdminMutationOptions = Apollo.BaseMutationOptions<LoginAdminMutation, LoginAdminMutationVariables>;
+export type UpdateLocationMutationHookResult = ReturnType<typeof useUpdateLocationMutation>
+export type UpdateLocationMutationResult = Apollo.MutationResult<UpdateLocationMutation>
+export type UpdateLocationMutationOptions = Apollo.BaseMutationOptions<
+  UpdateLocationMutation,
+  UpdateLocationMutationVariables
+>
 export const GetProvidersDocument = gql`
-    query GetProviders($where: providers_bool_exp, $limit: Int, $offset: Int) {
-  providers(
-    where: $where
-    limit: $limit
-    offset: $offset
-    order_by: {created_at: desc}
-  ) {
-    id
-    address
-    created_at
-    name
-    note
-    phone_number
-    telegram_id
-    isactive
-  }
-  providers_aggregate(where: $where) {
-    aggregate {
-      count
+  query GetProviders($where: providers_bool_exp, $limit: Int, $offset: Int) {
+    providers(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+      id
+      address
+      created_at
+      name
+      note
+      phone_number
+      telegram_id
+      isactive
+    }
+    providers_aggregate(where: $where) {
+      aggregate {
+        count
+      }
     }
   }
-}
-    `;
+`
 
 /**
  * __useGetProvidersQuery__
@@ -5609,32 +5873,52 @@ export const GetProvidersDocument = gql`
  *   },
  * });
  */
-export function useGetProvidersQuery(baseOptions?: Apollo.QueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options);
-      }
-export function useGetProvidersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options);
-        }
-export function useGetProvidersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options);
-        }
-export type GetProvidersQueryHookResult = ReturnType<typeof useGetProvidersQuery>;
-export type GetProvidersLazyQueryHookResult = ReturnType<typeof useGetProvidersLazyQuery>;
-export type GetProvidersSuspenseQueryHookResult = ReturnType<typeof useGetProvidersSuspenseQuery>;
-export type GetProvidersQueryResult = Apollo.QueryResult<GetProvidersQuery, GetProvidersQueryVariables>;
-export const InsertProviderDocument = gql`
-    mutation InsertProvider($address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean) {
-  insert_providers_one(
-    object: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive}
-  ) {
-    id
-  }
+export function useGetProvidersQuery(
+  baseOptions?: Apollo.QueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options)
 }
-    `;
-export type InsertProviderMutationFn = Apollo.MutationFunction<InsertProviderMutation, InsertProviderMutationVariables>;
+export function useGetProvidersLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options)
+}
+export function useGetProvidersSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetProvidersQuery, GetProvidersQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetProvidersQuery, GetProvidersQueryVariables>(GetProvidersDocument, options)
+}
+export type GetProvidersQueryHookResult = ReturnType<typeof useGetProvidersQuery>
+export type GetProvidersLazyQueryHookResult = ReturnType<typeof useGetProvidersLazyQuery>
+export type GetProvidersSuspenseQueryHookResult = ReturnType<typeof useGetProvidersSuspenseQuery>
+export type GetProvidersQueryResult = Apollo.QueryResult<GetProvidersQuery, GetProvidersQueryVariables>
+export const InsertProviderDocument = gql`
+  mutation InsertProvider(
+    $address: String
+    $name: String
+    $note: String
+    $phone_number: String
+    $telegram_id: String
+    $isactive: Boolean
+  ) {
+    insert_providers_one(
+      object: {
+        address: $address
+        name: $name
+        note: $note
+        phone_number: $phone_number
+        telegram_id: $telegram_id
+        isactive: $isactive
+      }
+    ) {
+      id
+    }
+  }
+`
+export type InsertProviderMutationFn = Apollo.MutationFunction<InsertProviderMutation, InsertProviderMutationVariables>
 
 /**
  * __useInsertProviderMutation__
@@ -5658,21 +5942,26 @@ export type InsertProviderMutationFn = Apollo.MutationFunction<InsertProviderMut
  *   },
  * });
  */
-export function useInsertProviderMutation(baseOptions?: Apollo.MutationHookOptions<InsertProviderMutation, InsertProviderMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<InsertProviderMutation, InsertProviderMutationVariables>(InsertProviderDocument, options);
-      }
-export type InsertProviderMutationHookResult = ReturnType<typeof useInsertProviderMutation>;
-export type InsertProviderMutationResult = Apollo.MutationResult<InsertProviderMutation>;
-export type InsertProviderMutationOptions = Apollo.BaseMutationOptions<InsertProviderMutation, InsertProviderMutationVariables>;
-export const DeleteProviderDocument = gql`
-    mutation DeleteProvider($id: Int!) {
-  delete_providers_by_pk(id: $id) {
-    id
-  }
+export function useInsertProviderMutation(
+  baseOptions?: Apollo.MutationHookOptions<InsertProviderMutation, InsertProviderMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<InsertProviderMutation, InsertProviderMutationVariables>(InsertProviderDocument, options)
 }
-    `;
-export type DeleteProviderMutationFn = Apollo.MutationFunction<DeleteProviderMutation, DeleteProviderMutationVariables>;
+export type InsertProviderMutationHookResult = ReturnType<typeof useInsertProviderMutation>
+export type InsertProviderMutationResult = Apollo.MutationResult<InsertProviderMutation>
+export type InsertProviderMutationOptions = Apollo.BaseMutationOptions<
+  InsertProviderMutation,
+  InsertProviderMutationVariables
+>
+export const DeleteProviderDocument = gql`
+  mutation DeleteProvider($id: Int!) {
+    delete_providers_by_pk(id: $id) {
+      id
+    }
+  }
+`
+export type DeleteProviderMutationFn = Apollo.MutationFunction<DeleteProviderMutation, DeleteProviderMutationVariables>
 
 /**
  * __useDeleteProviderMutation__
@@ -5691,24 +5980,44 @@ export type DeleteProviderMutationFn = Apollo.MutationFunction<DeleteProviderMut
  *   },
  * });
  */
-export function useDeleteProviderMutation(baseOptions?: Apollo.MutationHookOptions<DeleteProviderMutation, DeleteProviderMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteProviderMutation, DeleteProviderMutationVariables>(DeleteProviderDocument, options);
-      }
-export type DeleteProviderMutationHookResult = ReturnType<typeof useDeleteProviderMutation>;
-export type DeleteProviderMutationResult = Apollo.MutationResult<DeleteProviderMutation>;
-export type DeleteProviderMutationOptions = Apollo.BaseMutationOptions<DeleteProviderMutation, DeleteProviderMutationVariables>;
-export const UpdateProviderDocument = gql`
-    mutation UpdateProvider($id: Int!, $address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean) {
-  update_providers_by_pk(
-    pk_columns: {id: $id}
-    _set: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive}
-  ) {
-    id
-  }
+export function useDeleteProviderMutation(
+  baseOptions?: Apollo.MutationHookOptions<DeleteProviderMutation, DeleteProviderMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<DeleteProviderMutation, DeleteProviderMutationVariables>(DeleteProviderDocument, options)
 }
-    `;
-export type UpdateProviderMutationFn = Apollo.MutationFunction<UpdateProviderMutation, UpdateProviderMutationVariables>;
+export type DeleteProviderMutationHookResult = ReturnType<typeof useDeleteProviderMutation>
+export type DeleteProviderMutationResult = Apollo.MutationResult<DeleteProviderMutation>
+export type DeleteProviderMutationOptions = Apollo.BaseMutationOptions<
+  DeleteProviderMutation,
+  DeleteProviderMutationVariables
+>
+export const UpdateProviderDocument = gql`
+  mutation UpdateProvider(
+    $id: Int!
+    $address: String
+    $name: String
+    $note: String
+    $phone_number: String
+    $telegram_id: String
+    $isactive: Boolean
+  ) {
+    update_providers_by_pk(
+      pk_columns: { id: $id }
+      _set: {
+        address: $address
+        name: $name
+        note: $note
+        phone_number: $phone_number
+        telegram_id: $telegram_id
+        isactive: $isactive
+      }
+    ) {
+      id
+    }
+  }
+`
+export type UpdateProviderMutationFn = Apollo.MutationFunction<UpdateProviderMutation, UpdateProviderMutationVariables>
 
 /**
  * __useUpdateProviderMutation__
@@ -5733,21 +6042,29 @@ export type UpdateProviderMutationFn = Apollo.MutationFunction<UpdateProviderMut
  *   },
  * });
  */
-export function useUpdateProviderMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProviderMutation, UpdateProviderMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateProviderMutation, UpdateProviderMutationVariables>(UpdateProviderDocument, options);
-      }
-export type UpdateProviderMutationHookResult = ReturnType<typeof useUpdateProviderMutation>;
-export type UpdateProviderMutationResult = Apollo.MutationResult<UpdateProviderMutation>;
-export type UpdateProviderMutationOptions = Apollo.BaseMutationOptions<UpdateProviderMutation, UpdateProviderMutationVariables>;
-export const UpdateProviderEnableDocument = gql`
-    mutation UpdateProviderEnable($id: Int!) {
-  update_providers_by_pk(pk_columns: {id: $id}, _set: {isactive: false}) {
-    id
-  }
+export function useUpdateProviderMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateProviderMutation, UpdateProviderMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateProviderMutation, UpdateProviderMutationVariables>(UpdateProviderDocument, options)
 }
-    `;
-export type UpdateProviderEnableMutationFn = Apollo.MutationFunction<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>;
+export type UpdateProviderMutationHookResult = ReturnType<typeof useUpdateProviderMutation>
+export type UpdateProviderMutationResult = Apollo.MutationResult<UpdateProviderMutation>
+export type UpdateProviderMutationOptions = Apollo.BaseMutationOptions<
+  UpdateProviderMutation,
+  UpdateProviderMutationVariables
+>
+export const UpdateProviderEnableDocument = gql`
+  mutation UpdateProviderEnable($id: Int!) {
+    update_providers_by_pk(pk_columns: { id: $id }, _set: { isactive: false }) {
+      id
+    }
+  }
+`
+export type UpdateProviderEnableMutationFn = Apollo.MutationFunction<
+  UpdateProviderEnableMutation,
+  UpdateProviderEnableMutationVariables
+>
 
 /**
  * __useUpdateProviderEnableMutation__
@@ -5766,29 +6083,37 @@ export type UpdateProviderEnableMutationFn = Apollo.MutationFunction<UpdateProvi
  *   },
  * });
  */
-export function useUpdateProviderEnableMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>(UpdateProviderEnableDocument, options);
-      }
-export type UpdateProviderEnableMutationHookResult = ReturnType<typeof useUpdateProviderEnableMutation>;
-export type UpdateProviderEnableMutationResult = Apollo.MutationResult<UpdateProviderEnableMutation>;
-export type UpdateProviderEnableMutationOptions = Apollo.BaseMutationOptions<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>;
-export const FindOneProviderDocument = gql`
-    query FindOneProvider($id: Int!) {
-  providers_by_pk(id: $id) {
-    address
-    created_at
-    deleted_at
-    id
-    isactive
-    name
-    note
-    phone_number
-    telegram_id
-    updated_at
-  }
+export function useUpdateProviderEnableMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateProviderEnableMutation, UpdateProviderEnableMutationVariables>(
+    UpdateProviderEnableDocument,
+    options
+  )
 }
-    `;
+export type UpdateProviderEnableMutationHookResult = ReturnType<typeof useUpdateProviderEnableMutation>
+export type UpdateProviderEnableMutationResult = Apollo.MutationResult<UpdateProviderEnableMutation>
+export type UpdateProviderEnableMutationOptions = Apollo.BaseMutationOptions<
+  UpdateProviderEnableMutation,
+  UpdateProviderEnableMutationVariables
+>
+export const FindOneProviderDocument = gql`
+  query FindOneProvider($id: Int!) {
+    providers_by_pk(id: $id) {
+      address
+      created_at
+      deleted_at
+      id
+      isactive
+      name
+      note
+      phone_number
+      telegram_id
+      updated_at
+    }
+  }
+`
 
 /**
  * __useFindOneProviderQuery__
@@ -5806,57 +6131,59 @@ export const FindOneProviderDocument = gql`
  *   },
  * });
  */
-export function useFindOneProviderQuery(baseOptions: Apollo.QueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables> & ({ variables: FindOneProviderQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options);
-      }
-export function useFindOneProviderLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options);
-        }
-export function useFindOneProviderSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options);
-        }
-export type FindOneProviderQueryHookResult = ReturnType<typeof useFindOneProviderQuery>;
-export type FindOneProviderLazyQueryHookResult = ReturnType<typeof useFindOneProviderLazyQuery>;
-export type FindOneProviderSuspenseQueryHookResult = ReturnType<typeof useFindOneProviderSuspenseQuery>;
-export type FindOneProviderQueryResult = Apollo.QueryResult<FindOneProviderQuery, FindOneProviderQueryVariables>;
-export const GetRoutesDocument = gql`
-    query getRoutes($where: routes_bool_exp, $limit: Int, $offset: Int) {
-  routes(
-    where: $where
-    limit: $limit
-    offset: $offset
-    order_by: {created_at: desc}
-  ) {
-    id
-    from_city
-    start_location
-    end_location
-    updated_at
-    created_at
-    deleted_at
-    isactive
-    city {
-      name
-    }
-    startlocation {
-      name
-      id
-    }
-    endlocation {
-      name
-      id
-    }
-  }
-  routes_aggregate(where: $where) {
-    aggregate {
-      count
-    }
-  }
+export function useFindOneProviderQuery(
+  baseOptions: Apollo.QueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables> &
+    ({ variables: FindOneProviderQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options)
 }
-    `;
+export function useFindOneProviderLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options)
+}
+export function useFindOneProviderSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<FindOneProviderQuery, FindOneProviderQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<FindOneProviderQuery, FindOneProviderQueryVariables>(FindOneProviderDocument, options)
+}
+export type FindOneProviderQueryHookResult = ReturnType<typeof useFindOneProviderQuery>
+export type FindOneProviderLazyQueryHookResult = ReturnType<typeof useFindOneProviderLazyQuery>
+export type FindOneProviderSuspenseQueryHookResult = ReturnType<typeof useFindOneProviderSuspenseQuery>
+export type FindOneProviderQueryResult = Apollo.QueryResult<FindOneProviderQuery, FindOneProviderQueryVariables>
+export const GetRoutesDocument = gql`
+  query getRoutes($where: routes_bool_exp, $limit: Int, $offset: Int) {
+    routes(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+      id
+      from_city
+      start_location
+      end_location
+      updated_at
+      created_at
+      deleted_at
+      isactive
+      city {
+        name
+      }
+      startlocation {
+        name
+        id
+      }
+      endlocation {
+        name
+        id
+      }
+    }
+    routes_aggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
 
 /**
  * __useGetRoutesQuery__
@@ -5877,43 +6204,47 @@ export const GetRoutesDocument = gql`
  * });
  */
 export function useGetRoutesQuery(baseOptions?: Apollo.QueryHookOptions<GetRoutesQuery, GetRoutesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetRoutesQuery, GetRoutesQueryVariables>(GetRoutesDocument, options);
-      }
-export function useGetRoutesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRoutesQuery, GetRoutesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetRoutesQuery, GetRoutesQueryVariables>(GetRoutesDocument, options);
-        }
-export function useGetRoutesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetRoutesQuery, GetRoutesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetRoutesQuery, GetRoutesQueryVariables>(GetRoutesDocument, options);
-        }
-export type GetRoutesQueryHookResult = ReturnType<typeof useGetRoutesQuery>;
-export type GetRoutesLazyQueryHookResult = ReturnType<typeof useGetRoutesLazyQuery>;
-export type GetRoutesSuspenseQueryHookResult = ReturnType<typeof useGetRoutesSuspenseQuery>;
-export type GetRoutesQueryResult = Apollo.QueryResult<GetRoutesQuery, GetRoutesQueryVariables>;
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetRoutesQuery, GetRoutesQueryVariables>(GetRoutesDocument, options)
+}
+export function useGetRoutesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetRoutesQuery, GetRoutesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetRoutesQuery, GetRoutesQueryVariables>(GetRoutesDocument, options)
+}
+export function useGetRoutesSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetRoutesQuery, GetRoutesQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetRoutesQuery, GetRoutesQueryVariables>(GetRoutesDocument, options)
+}
+export type GetRoutesQueryHookResult = ReturnType<typeof useGetRoutesQuery>
+export type GetRoutesLazyQueryHookResult = ReturnType<typeof useGetRoutesLazyQuery>
+export type GetRoutesSuspenseQueryHookResult = ReturnType<typeof useGetRoutesSuspenseQuery>
+export type GetRoutesQueryResult = Apollo.QueryResult<GetRoutesQuery, GetRoutesQueryVariables>
 export const GetRouteDocument = gql`
-    query getRoute($id: Int!) {
-  routes_by_pk(id: $id) {
-    id
-    city {
+  query getRoute($id: Int!) {
+    routes_by_pk(id: $id) {
       id
-      name
-    }
-    created_at
-    from_city
-    isactive
-    endlocation {
-      name
-      id
-    }
-    startlocation {
-      name
-      id
+      city {
+        id
+        name
+      }
+      created_at
+      from_city
+      isactive
+      endlocation {
+        name
+        id
+      }
+      startlocation {
+        name
+        id
+      }
     }
   }
-}
-    `;
+`
 
 /**
  * __useGetRouteQuery__
@@ -5931,33 +6262,38 @@ export const GetRouteDocument = gql`
  *   },
  * });
  */
-export function useGetRouteQuery(baseOptions: Apollo.QueryHookOptions<GetRouteQuery, GetRouteQueryVariables> & ({ variables: GetRouteQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetRouteQuery, GetRouteQueryVariables>(GetRouteDocument, options);
-      }
-export function useGetRouteLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRouteQuery, GetRouteQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetRouteQuery, GetRouteQueryVariables>(GetRouteDocument, options);
-        }
-export function useGetRouteSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetRouteQuery, GetRouteQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetRouteQuery, GetRouteQueryVariables>(GetRouteDocument, options);
-        }
-export type GetRouteQueryHookResult = ReturnType<typeof useGetRouteQuery>;
-export type GetRouteLazyQueryHookResult = ReturnType<typeof useGetRouteLazyQuery>;
-export type GetRouteSuspenseQueryHookResult = ReturnType<typeof useGetRouteSuspenseQuery>;
-export type GetRouteQueryResult = Apollo.QueryResult<GetRouteQuery, GetRouteQueryVariables>;
-export const UpdateRouteDocument = gql`
-    mutation updateRoute($id: Int!, $from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
-  update_routes_by_pk(
-    pk_columns: {id: $id}
-    _set: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive}
-  ) {
-    id
-  }
+export function useGetRouteQuery(
+  baseOptions: Apollo.QueryHookOptions<GetRouteQuery, GetRouteQueryVariables> &
+    ({ variables: GetRouteQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetRouteQuery, GetRouteQueryVariables>(GetRouteDocument, options)
 }
-    `;
-export type UpdateRouteMutationFn = Apollo.MutationFunction<UpdateRouteMutation, UpdateRouteMutationVariables>;
+export function useGetRouteLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRouteQuery, GetRouteQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetRouteQuery, GetRouteQueryVariables>(GetRouteDocument, options)
+}
+export function useGetRouteSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetRouteQuery, GetRouteQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetRouteQuery, GetRouteQueryVariables>(GetRouteDocument, options)
+}
+export type GetRouteQueryHookResult = ReturnType<typeof useGetRouteQuery>
+export type GetRouteLazyQueryHookResult = ReturnType<typeof useGetRouteLazyQuery>
+export type GetRouteSuspenseQueryHookResult = ReturnType<typeof useGetRouteSuspenseQuery>
+export type GetRouteQueryResult = Apollo.QueryResult<GetRouteQuery, GetRouteQueryVariables>
+export const UpdateRouteDocument = gql`
+  mutation updateRoute($id: Int!, $from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
+    update_routes_by_pk(
+      pk_columns: { id: $id }
+      _set: { from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive }
+    ) {
+      id
+    }
+  }
+`
+export type UpdateRouteMutationFn = Apollo.MutationFunction<UpdateRouteMutation, UpdateRouteMutationVariables>
 
 /**
  * __useUpdateRouteMutation__
@@ -5980,21 +6316,23 @@ export type UpdateRouteMutationFn = Apollo.MutationFunction<UpdateRouteMutation,
  *   },
  * });
  */
-export function useUpdateRouteMutation(baseOptions?: Apollo.MutationHookOptions<UpdateRouteMutation, UpdateRouteMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateRouteMutation, UpdateRouteMutationVariables>(UpdateRouteDocument, options);
-      }
-export type UpdateRouteMutationHookResult = ReturnType<typeof useUpdateRouteMutation>;
-export type UpdateRouteMutationResult = Apollo.MutationResult<UpdateRouteMutation>;
-export type UpdateRouteMutationOptions = Apollo.BaseMutationOptions<UpdateRouteMutation, UpdateRouteMutationVariables>;
-export const DeleteRouteDocument = gql`
-    mutation DeleteRoute($id: Int!) {
-  delete_routes_by_pk(id: $id) {
-    id
-  }
+export function useUpdateRouteMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateRouteMutation, UpdateRouteMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateRouteMutation, UpdateRouteMutationVariables>(UpdateRouteDocument, options)
 }
-    `;
-export type DeleteRouteMutationFn = Apollo.MutationFunction<DeleteRouteMutation, DeleteRouteMutationVariables>;
+export type UpdateRouteMutationHookResult = ReturnType<typeof useUpdateRouteMutation>
+export type UpdateRouteMutationResult = Apollo.MutationResult<UpdateRouteMutation>
+export type UpdateRouteMutationOptions = Apollo.BaseMutationOptions<UpdateRouteMutation, UpdateRouteMutationVariables>
+export const DeleteRouteDocument = gql`
+  mutation DeleteRoute($id: Int!) {
+    delete_routes_by_pk(id: $id) {
+      id
+    }
+  }
+`
+export type DeleteRouteMutationFn = Apollo.MutationFunction<DeleteRouteMutation, DeleteRouteMutationVariables>
 
 /**
  * __useDeleteRouteMutation__
@@ -6013,36 +6351,43 @@ export type DeleteRouteMutationFn = Apollo.MutationFunction<DeleteRouteMutation,
  *   },
  * });
  */
-export function useDeleteRouteMutation(baseOptions?: Apollo.MutationHookOptions<DeleteRouteMutation, DeleteRouteMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteRouteMutation, DeleteRouteMutationVariables>(DeleteRouteDocument, options);
-      }
-export type DeleteRouteMutationHookResult = ReturnType<typeof useDeleteRouteMutation>;
-export type DeleteRouteMutationResult = Apollo.MutationResult<DeleteRouteMutation>;
-export type DeleteRouteMutationOptions = Apollo.BaseMutationOptions<DeleteRouteMutation, DeleteRouteMutationVariables>;
+export function useDeleteRouteMutation(
+  baseOptions?: Apollo.MutationHookOptions<DeleteRouteMutation, DeleteRouteMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<DeleteRouteMutation, DeleteRouteMutationVariables>(DeleteRouteDocument, options)
+}
+export type DeleteRouteMutationHookResult = ReturnType<typeof useDeleteRouteMutation>
+export type DeleteRouteMutationResult = Apollo.MutationResult<DeleteRouteMutation>
+export type DeleteRouteMutationOptions = Apollo.BaseMutationOptions<DeleteRouteMutation, DeleteRouteMutationVariables>
 export const InsertRouteDocument = gql`
-    mutation InsertRoute($from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
-  insert_routes_one(
-    object: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive}
-  ) {
-    id
-    isactive
-    from_city
-    endlocation {
-      name
+  mutation InsertRoute($from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
+    insert_routes_one(
+      object: {
+        from_city: $from_city
+        start_location: $start_location
+        end_location: $end_location
+        isactive: $isactive
+      }
+    ) {
       id
-    }
-    startlocation {
-      name
-      id
-    }
-    city {
-      name
+      isactive
+      from_city
+      endlocation {
+        name
+        id
+      }
+      startlocation {
+        name
+        id
+      }
+      city {
+        name
+      }
     }
   }
-}
-    `;
-export type InsertRouteMutationFn = Apollo.MutationFunction<InsertRouteMutation, InsertRouteMutationVariables>;
+`
+export type InsertRouteMutationFn = Apollo.MutationFunction<InsertRouteMutation, InsertRouteMutationVariables>
 
 /**
  * __useInsertRouteMutation__
@@ -6064,35 +6409,32 @@ export type InsertRouteMutationFn = Apollo.MutationFunction<InsertRouteMutation,
  *   },
  * });
  */
-export function useInsertRouteMutation(baseOptions?: Apollo.MutationHookOptions<InsertRouteMutation, InsertRouteMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<InsertRouteMutation, InsertRouteMutationVariables>(InsertRouteDocument, options);
-      }
-export type InsertRouteMutationHookResult = ReturnType<typeof useInsertRouteMutation>;
-export type InsertRouteMutationResult = Apollo.MutationResult<InsertRouteMutation>;
-export type InsertRouteMutationOptions = Apollo.BaseMutationOptions<InsertRouteMutation, InsertRouteMutationVariables>;
+export function useInsertRouteMutation(
+  baseOptions?: Apollo.MutationHookOptions<InsertRouteMutation, InsertRouteMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<InsertRouteMutation, InsertRouteMutationVariables>(InsertRouteDocument, options)
+}
+export type InsertRouteMutationHookResult = ReturnType<typeof useInsertRouteMutation>
+export type InsertRouteMutationResult = Apollo.MutationResult<InsertRouteMutation>
+export type InsertRouteMutationOptions = Apollo.BaseMutationOptions<InsertRouteMutation, InsertRouteMutationVariables>
 export const GetUsersDocument = gql`
-    query getUsers($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
-  users(
-    where: $where
-    limit: $limit
-    offset: $offset
-    order_by: {created_at: desc}
-  ) {
-    id
-    email
-    name
-    phone_number
-    role
-    created_at
-  }
-  users_aggregate(where: $where) {
-    aggregate {
-      count
+  query getUsers($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
+    users(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+      id
+      email
+      name
+      phone_number
+      role
+      created_at
+    }
+    users_aggregate(where: $where) {
+      aggregate {
+        count
+      }
     }
   }
-}
-    `;
+`
 
 /**
  * __useGetUsersQuery__
@@ -6112,35 +6454,40 @@ export const GetUsersDocument = gql`
  *   },
  * });
  */
-export function useGetUsersQuery(baseOptions: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables> & ({ variables: GetUsersQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
-      }
-export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
-        }
-export function useGetUsersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
-        }
-export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
-export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
-export type GetUsersSuspenseQueryHookResult = ReturnType<typeof useGetUsersSuspenseQuery>;
-export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
-export const FindOneDocument = gql`
-    query FindOne($id: Int!) {
-  users_by_pk(id: $id) {
-    name
-    id
-    phone_number
-    role
-    email
-    created_at
-    zalo_id
-  }
+export function useGetUsersQuery(
+  baseOptions: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables> &
+    ({ variables: GetUsersQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options)
 }
-    `;
+export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options)
+}
+export function useGetUsersSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options)
+}
+export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>
+export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>
+export type GetUsersSuspenseQueryHookResult = ReturnType<typeof useGetUsersSuspenseQuery>
+export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>
+export const FindOneDocument = gql`
+  query FindOne($id: Int!) {
+    users_by_pk(id: $id) {
+      name
+      id
+      phone_number
+      role
+      email
+      created_at
+      zalo_id
+    }
+  }
+`
 
 /**
  * __useFindOneQuery__
@@ -6158,30 +6505,35 @@ export const FindOneDocument = gql`
  *   },
  * });
  */
-export function useFindOneQuery(baseOptions: Apollo.QueryHookOptions<FindOneQuery, FindOneQueryVariables> & ({ variables: FindOneQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneQuery, FindOneQueryVariables>(FindOneDocument, options);
-      }
-export function useFindOneLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneQuery, FindOneQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneQuery, FindOneQueryVariables>(FindOneDocument, options);
-        }
-export function useFindOneSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindOneQuery, FindOneQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FindOneQuery, FindOneQueryVariables>(FindOneDocument, options);
-        }
-export type FindOneQueryHookResult = ReturnType<typeof useFindOneQuery>;
-export type FindOneLazyQueryHookResult = ReturnType<typeof useFindOneLazyQuery>;
-export type FindOneSuspenseQueryHookResult = ReturnType<typeof useFindOneSuspenseQuery>;
-export type FindOneQueryResult = Apollo.QueryResult<FindOneQuery, FindOneQueryVariables>;
-export const DeleteUserDocument = gql`
-    mutation DeleteUser($id: Int!) {
-  delete_users_by_pk(id: $id) {
-    id
-  }
+export function useFindOneQuery(
+  baseOptions: Apollo.QueryHookOptions<FindOneQuery, FindOneQueryVariables> &
+    ({ variables: FindOneQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<FindOneQuery, FindOneQueryVariables>(FindOneDocument, options)
 }
-    `;
-export type DeleteUserMutationFn = Apollo.MutationFunction<DeleteUserMutation, DeleteUserMutationVariables>;
+export function useFindOneLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneQuery, FindOneQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<FindOneQuery, FindOneQueryVariables>(FindOneDocument, options)
+}
+export function useFindOneSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<FindOneQuery, FindOneQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<FindOneQuery, FindOneQueryVariables>(FindOneDocument, options)
+}
+export type FindOneQueryHookResult = ReturnType<typeof useFindOneQuery>
+export type FindOneLazyQueryHookResult = ReturnType<typeof useFindOneLazyQuery>
+export type FindOneSuspenseQueryHookResult = ReturnType<typeof useFindOneSuspenseQuery>
+export type FindOneQueryResult = Apollo.QueryResult<FindOneQuery, FindOneQueryVariables>
+export const DeleteUserDocument = gql`
+  mutation DeleteUser($id: Int!) {
+    delete_users_by_pk(id: $id) {
+      id
+    }
+  }
+`
+export type DeleteUserMutationFn = Apollo.MutationFunction<DeleteUserMutation, DeleteUserMutationVariables>
 
 /**
  * __useDeleteUserMutation__
@@ -6200,24 +6552,26 @@ export type DeleteUserMutationFn = Apollo.MutationFunction<DeleteUserMutation, D
  *   },
  * });
  */
-export function useDeleteUserMutation(baseOptions?: Apollo.MutationHookOptions<DeleteUserMutation, DeleteUserMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteUserMutation, DeleteUserMutationVariables>(DeleteUserDocument, options);
-      }
-export type DeleteUserMutationHookResult = ReturnType<typeof useDeleteUserMutation>;
-export type DeleteUserMutationResult = Apollo.MutationResult<DeleteUserMutation>;
-export type DeleteUserMutationOptions = Apollo.BaseMutationOptions<DeleteUserMutation, DeleteUserMutationVariables>;
-export const UpdateUserDocument = gql`
-    mutation UpdateUser($id: Int!, $email: String!, $name: String!, $phone_number: String!, $role: String!) {
-  update_users_by_pk(
-    pk_columns: {id: $id}
-    _set: {email: $email, name: $name, phone_number: $phone_number, role: $role}
-  ) {
-    id
-  }
+export function useDeleteUserMutation(
+  baseOptions?: Apollo.MutationHookOptions<DeleteUserMutation, DeleteUserMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<DeleteUserMutation, DeleteUserMutationVariables>(DeleteUserDocument, options)
 }
-    `;
-export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
+export type DeleteUserMutationHookResult = ReturnType<typeof useDeleteUserMutation>
+export type DeleteUserMutationResult = Apollo.MutationResult<DeleteUserMutation>
+export type DeleteUserMutationOptions = Apollo.BaseMutationOptions<DeleteUserMutation, DeleteUserMutationVariables>
+export const UpdateUserDocument = gql`
+  mutation UpdateUser($id: Int!, $email: String!, $name: String!, $phone_number: String!, $role: String!) {
+    update_users_by_pk(
+      pk_columns: { id: $id }
+      _set: { email: $email, name: $name, phone_number: $phone_number, role: $role }
+    ) {
+      id
+    }
+  }
+`
+export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>
 
 /**
  * __useUpdateUserMutation__
@@ -6240,10 +6594,12 @@ export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, U
  *   },
  * });
  */
-export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, options);
-      }
-export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
-export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
-export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
+export function useUpdateUserMutation(
+  baseOptions?: Apollo.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, options)
+}
+export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>
+export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>
+export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>

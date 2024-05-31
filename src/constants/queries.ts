@@ -1,5 +1,6 @@
 import {
   GetBookingsDocument,
+  GetCitiesDocument,
   GetLocationsDocument,
   GetProvidersDocument,
   GetRoutesDocument,
@@ -12,6 +13,7 @@ import {
   useGetBookingQuery,
   useGetBookingsQuery,
   useGetCitiesQuery,
+  useGetCityQuery,
   useGetLocationQuery,
   useGetLocationsQuery,
   useGetProvidersQuery,
@@ -22,6 +24,7 @@ import {
   useInsertProviderMutation,
   useInsertRouteMutation,
   useUpdateBookingMutation,
+  useUpdateCityMutation,
   useUpdateLocationMutation,
   useUpdateProviderEnableMutation,
   useUpdateProviderMutation,
@@ -44,7 +47,11 @@ const queries: Record<string, Record<string, any>> = {
     deleteOne: useDeleteLocationMutation
   },
   cities: {
-    findMany: useGetCitiesQuery
+    findOne: useGetCityQuery,
+    createOne: null,
+    updateOne: useUpdateCityMutation,
+    findMany: useGetCitiesQuery,
+    deleteOne: useDeleteUserMutation
   },
   providers: {
     findOne: useFindOneProviderQuery,
@@ -125,7 +132,14 @@ export const dataHandlers: Record<string, Props> = {
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
   },
   cities: {
-    select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
+    select: (data) => data.map((data: any) => ({ label: data.name, value: data.id })),
+    many: (data) => {
+      console.log(data)
+      return data
+    },
+    one: (data) => {
+      return { ...data.cities_by_pk, name: data.cities_by_pk.name, isactive: data.cities_by_pk.isactive }
+    }
   },
   providers: {
     many: (data) => data,
@@ -179,6 +193,9 @@ export const documentNodes: Record<string, Record<string, any>> = {
   },
   bookings: {
     getDocument: GetBookingsDocument
+  },
+  cities: {
+    getDocument: GetCitiesDocument
   }
 }
 
