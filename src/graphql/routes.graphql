@@ -13,9 +13,11 @@ query getRoutes($where: routes_bool_exp, $limit: Int, $offset: Int) {
     }
     startlocation {
       name
+      id
     }
     endlocation {
       name
+      id
     }
   }
   routes_aggregate(where: $where) {
@@ -65,5 +67,18 @@ mutation InsertRoute($from_city: Int, $start_location: Int, $end_location: Int, 
     object: { from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive }
   ) {
     id
+    isactive
+    from_city
+    endlocation {
+      name
+      id
+    }
+    startlocation {
+      name
+      id
+    }
+    city {
+      name
+    }
   }
 }

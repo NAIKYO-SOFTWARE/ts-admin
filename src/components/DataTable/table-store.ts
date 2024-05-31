@@ -23,6 +23,7 @@ interface ITableState extends ITableProps {
   setLoading: (loading: boolean) => void
   onPaginationChange?: (pagination: IPagination) => void
   onRemoveRow?: (id: string) => void
+  onCopyRow?: (data: any) => void
   onSetDataSource?: (data: ITableProps) => void
   onSetNotification?: (type: 'success' | 'error', description: string, message: string) => void
   onClearNotification?: () => void
@@ -75,6 +76,14 @@ export const useTableStore = create(
         produce<ITableState>((state) => {
           state.notification = { type: 'success', message: 'Success', description: 'Deleted item successful.' }
           state.dataSource = state.dataSource?.filter((x) => x.id !== id)
+        })
+      )
+    },
+    onCopyRow(data) {
+      set(
+        produce<ITableState>((state) => {
+          state.notification = { type: 'success', message: 'Success', description: 'Coped item successful.' }
+          state.dataSource = state.dataSource && [data, ...state.dataSource]
         })
       )
     },

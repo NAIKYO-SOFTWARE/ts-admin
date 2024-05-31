@@ -5,6 +5,7 @@
     "creatable": true,
     "editable": true,
     "deletable": true,
+    "copyable": true,
     "aggregateField": "routes_aggregate",
     "filterable": [
       [
@@ -18,7 +19,7 @@
         {
           "label": "Enable",
           "placeholder": "Enable",
-          "name": "is_enable",
+          "name": "isactive",
           "size": 2,
           "type": "boolean"
         },
@@ -66,8 +67,8 @@
         "align": "left"
       },
       {
-        "key": "is_enable",
-        "dataIndex": "is_enable",
+        "key": "isactive",
+        "dataIndex": "isactive",
         "title": "Enable",
         "align": "left",
         "note": "render-bool"
@@ -104,7 +105,7 @@
         },
         {
           "label": "Enable",
-          "name": "is_enable",
+          "name": "isactive",
           "size": 2,
           "type": "boolean"
         },
