@@ -1,0 +1,86 @@
+query getBookings($where: bookings_bool_exp! = {}, $limit: Int = 10, $offset: Int = 0) {
+  bookings(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    booking_date
+    id
+    created_at
+    itinerary_id
+    note
+    status
+    user_id
+    user {
+      name
+      phone_number
+    }
+    itinerary {
+      price
+    }
+  }
+  bookings_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query getBooking($id: Int!) {
+  bookings_by_pk(id: $id) {
+    booking_date
+    created_at
+    deleted_at
+    id
+    itinerary_id
+    note
+    status
+    updated_at
+    itinerary {
+      created_at
+      deleted_at
+      id
+      isactive
+      note
+      price
+      provider_id
+      route_id
+      updated_at
+      vehicle_types_id
+      option {
+        round_type
+      }
+      provider {
+        name
+        note
+        phone_number
+      }
+      route {
+        city {
+          name
+          routes {
+            id
+            end_location
+            start_location
+            from_city
+            startlocation {
+              name
+            }
+            endlocation {
+              name
+            }
+          }
+        }
+      }
+      vehicle_type {
+        type
+      }
+    }
+    user {
+      name
+      phone_number
+    }
+  }
+}
+
+mutation updateBooking($id: Int!, $status: String) {
+  update_bookings_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
+    id
+  }
+}

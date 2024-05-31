@@ -1,5 +1,6 @@
 import {
   FindManyDocument,
+  GetBookingsDocument,
   GetLocationsDocument,
   GetProvidersDocument,
   GetRoutesDocument,
@@ -9,6 +10,8 @@ import {
   useFindManyQuery,
   useFindOneProviderQuery,
   useFindOneQuery,
+  useGetBookingQuery,
+  useGetBookingsQuery,
   useGetCitiesQuery,
   useGetLocationQuery,
   useGetLocationsQuery,
@@ -18,6 +21,7 @@ import {
   useInsertLocationMutation,
   useInsertProviderMutation,
   useInsertRouteMutation,
+  useUpdateBookingMutation,
   useUpdateLocationMutation,
   useUpdateProviderEnableMutation,
   useUpdateProviderMutation,
@@ -56,6 +60,13 @@ const queries: Record<string, Record<string, any>> = {
     updateOne: useUpdateRouteMutation,
     findMany: useGetRoutesQuery,
     deleteOne: useDeleteRouteMutation
+  },
+  bookings: {
+    findOne: useGetBookingQuery,
+    createOne: null,
+    updateOne: useUpdateBookingMutation,
+    findMany: useGetBookingsQuery,
+    deleteOne: useUpdateProviderEnableMutation
   }
 }
 
@@ -103,6 +114,31 @@ export const dataHandlers: Record<string, Props> = {
   providers: {
     many: (data) => data,
     one: (data) => ({ ...data.providers_by_pk })
+  },
+  bookings: {
+    many: (data) => {
+      return data.map((booking: any) => ({
+        ...booking,
+        name: booking.user.name,
+        price: booking.itinerary.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }),
+        userPhoneNumber: booking.user.phone_number
+      }))
+    },
+    one: (data) => ({
+      ...data.bookings_by_pk,
+      userName: data.bookings_by_pk.user.name,
+      userPhoneNumber: data.bookings_by_pk.user.phone_number,
+      city: data.bookings_by_pk.itinerary.route.city.name,
+      startLocation: data.bookings_by_pk.itinerary.route.city.routes[0].startlocation.name,
+      endLocation: data.bookings_by_pk.itinerary.route.city.routes[0].endlocation.name,
+      option: data.bookings_by_pk.itinerary.option.round_type,
+      vehicleType: data.bookings_by_pk.itinerary.vehicle_type.type,
+      price: data.bookings_by_pk.itinerary.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }),
+      providerName: data.bookings_by_pk.itinerary.provider.name,
+      providerPhoneNumber: data.bookings_by_pk.itinerary.provider.phone_number,
+      orderNote: data.bookings_by_pk.note,
+      bookingDate: data.bookings_by_pk.booking_date
+    })
   }
 }
 
@@ -124,6 +160,9 @@ export const documentNodes: Record<string, Record<string, any>> = {
   },
   routes: {
     getDocument: GetRoutesDocument
+  },
+  bookings: {
+    getDocument: GetBookingsDocument
   }
 }
 
