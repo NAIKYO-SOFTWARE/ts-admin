@@ -1,4 +1,12 @@
-import { mdiAccountGroup, mdiCupcake, mdiHelpBoxMultiple, mdiHome, mdiQuadcopter, mdiSitemapOutline } from '@mdi/js'
+import {
+  mdiAccountGroup,
+  mdiCupcake,
+  mdiHelpBoxMultiple,
+  mdiHome,
+  mdiInboxMultiple,
+  mdiQuadcopter,
+  mdiSitemapOutline
+} from '@mdi/js'
 
 const SidebarData = [
   { label: 'Menu', children: [{ icon: mdiHome, key: '/' }] },
@@ -7,6 +15,7 @@ const SidebarData = [
     isMainMenu: true,
     children: [
       { icon: mdiAccountGroup, key: 'users' },
+      { icon: mdiInboxMultiple, key: 'cities' },
       { icon: mdiSitemapOutline, key: 'locations' },
       { icon: mdiQuadcopter, key: 'providers' },
       { icon: mdiCupcake, key: 'routes' },
@@ -15,7 +24,6 @@ const SidebarData = [
       // { icon: mdiStar, key: 'balance-transactions' },
       // { icon: mdiCartVariant, key: 'transactions' },
       // { icon: mdiInboxArrowDown, key: 'investments' },
-      // { icon: mdiInboxMultiple, key: 'ticket-vips' }
     ]
   }
   // {

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import menu from '../../constants/menu'
 import bookingSchema from '../../schemas/booking.json'
+import citySchema from '../../schemas/city.json'
 import locationSchema from '../../schemas/location.json'
 import providerSchema from '../../schemas/provider.json'
 import routeSchema from '../../schemas/route.json'
@@ -53,13 +54,16 @@ const Authorized: FC = memo(
         }
       })
       setState({ isLoading: false, routes: routeItems })
-      setSchemas?.([
-        userSchema as any,
-        locationSchema as any,
-        providerSchema as any,
-        bookingSchema as any,
-        routeSchema as any
-      ])
+      const shemas: any = [
+        providerSchema,
+        userSchema,
+        locationSchema,
+        citySchema,
+        routeSchema,
+        providerSchema,
+        bookingSchema
+      ]
+      setSchemas?.(shemas)
     }, [])
 
     if (state.isLoading) {

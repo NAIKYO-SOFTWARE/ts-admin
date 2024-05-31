@@ -1,0 +1,69 @@
+{
+  "uid": "cities",
+  "layouts": {
+    "displayName": "Cities",
+    "creatable": false,
+    "editable": true,
+    "aggregateField": "cities_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "City",
+          "placeholder": "City",
+          "name": "name",
+          "size": 10,
+          "type": "string"
+        },
+        {
+          "label": "Enable",
+          "placeholder": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        }
+      ],
+      [
+        {
+          "label": "Created At",
+          "name": "createdAt",
+          "size": 10,
+          "type": "date"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "name",
+        "dataIndex": "name",
+        "title": "Name",
+        "align": "left"
+      },
+      {
+        "key": "isactive",
+        "dataIndex": "isactive",
+        "title": "Enable",
+        "align": "left",
+        "note": "render-bool"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "Name",
+          "placeholder": "Name",
+          "name": "name",
+          "size": 6,
+          "type": "string",
+          "disabled": true
+        },
+        {
+          "label": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        }
+      ]
+    ],
+    "defaultValue": {}
+  }
+}
