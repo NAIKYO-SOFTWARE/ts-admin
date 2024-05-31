@@ -19,8 +19,16 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  bpchar: { input: any; output: any; }
   numeric: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
+};
+
+export type AuthAdminOutput = {
+  __typename?: 'AuthAdminOutput';
+  name: Scalars['String']['output'];
+  role: Scalars['String']['output'];
+  token: Scalars['String']['output'];
 };
 
 export type AuthOutput = {
@@ -56,11 +64,6 @@ export type Int_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
-export type SampleOutput = {
-  __typename?: 'SampleOutput';
-  token: Scalars['String']['output'];
-};
-
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type String_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['String']['input']>;
@@ -94,13 +97,20 @@ export type String_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type UpdateBookingOutput = {
+  __typename?: 'UpdateBookingOutput';
+  message?: Maybe<Scalars['String']['output']>;
+  success?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type UserUpdateData = {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** columns and relationships of "bookings" */
 export type Bookings = {
   __typename?: 'bookings';
-  /** An object relationship */
-  User?: Maybe<Users>;
-  /** An object relationship */
-  UserName?: Maybe<Users>;
   booking_date: Scalars['timestamptz']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -108,36 +118,12 @@ export type Bookings = {
   /** An object relationship */
   itinerary: Itinerary;
   itinerary_id: Scalars['Int']['output'];
-  /** An array relationship */
-  name: Array<Users>;
-  /** An aggregate relationship */
-  name_aggregate: Users_Aggregate;
-  note?: Maybe<Scalars['String']['output']>;
+  note?: Maybe<Scalars['bpchar']['output']>;
   status: Scalars['String']['output'];
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   /** An object relationship */
   user: Users;
   user_id: Scalars['Int']['output'];
-};
-
-
-/** columns and relationships of "bookings" */
-export type BookingsNameArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
-};
-
-
-/** columns and relationships of "bookings" */
-export type BookingsName_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Users_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Users_Order_By>>;
-  where?: InputMaybe<Users_Bool_Exp>;
 };
 
 /** aggregated selection of "bookings" */
@@ -220,8 +206,6 @@ export type Bookings_Avg_Order_By = {
 
 /** Boolean expression to filter rows from the table "bookings". All fields are combined with a logical 'AND'. */
 export type Bookings_Bool_Exp = {
-  User?: InputMaybe<Users_Bool_Exp>;
-  UserName?: InputMaybe<Users_Bool_Exp>;
   _and?: InputMaybe<Array<Bookings_Bool_Exp>>;
   _not?: InputMaybe<Bookings_Bool_Exp>;
   _or?: InputMaybe<Array<Bookings_Bool_Exp>>;
@@ -231,9 +215,7 @@ export type Bookings_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   itinerary?: InputMaybe<Itinerary_Bool_Exp>;
   itinerary_id?: InputMaybe<Int_Comparison_Exp>;
-  name?: InputMaybe<Users_Bool_Exp>;
-  name_aggregate?: InputMaybe<Users_Aggregate_Bool_Exp>;
-  note?: InputMaybe<String_Comparison_Exp>;
+  note?: InputMaybe<Bpchar_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
@@ -254,16 +236,13 @@ export type Bookings_Inc_Input = {
 
 /** input type for inserting data into table "bookings" */
 export type Bookings_Insert_Input = {
-  User?: InputMaybe<Users_Obj_Rel_Insert_Input>;
-  UserName?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   booking_date?: InputMaybe<Scalars['timestamptz']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   itinerary?: InputMaybe<Itinerary_Obj_Rel_Insert_Input>;
   itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  name?: InputMaybe<Users_Arr_Rel_Insert_Input>;
-  note?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['bpchar']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
@@ -278,7 +257,7 @@ export type Bookings_Max_Fields = {
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   itinerary_id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
+  note?: Maybe<Scalars['bpchar']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   user_id?: Maybe<Scalars['Int']['output']>;
@@ -305,7 +284,7 @@ export type Bookings_Min_Fields = {
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   itinerary_id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['String']['output']>;
+  note?: Maybe<Scalars['bpchar']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   user_id?: Maybe<Scalars['Int']['output']>;
@@ -342,15 +321,12 @@ export type Bookings_On_Conflict = {
 
 /** Ordering options when selecting data from "bookings". */
 export type Bookings_Order_By = {
-  User?: InputMaybe<Users_Order_By>;
-  UserName?: InputMaybe<Users_Order_By>;
   booking_date?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   deleted_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   itinerary?: InputMaybe<Itinerary_Order_By>;
   itinerary_id?: InputMaybe<Order_By>;
-  name_aggregate?: InputMaybe<Users_Aggregate_Order_By>;
   note?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -391,7 +367,7 @@ export type Bookings_Set_Input = {
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['bpchar']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   user_id?: InputMaybe<Scalars['Int']['input']>;
@@ -457,7 +433,7 @@ export type Bookings_Stream_Cursor_Value_Input = {
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['bpchar']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   user_id?: InputMaybe<Scalars['Int']['input']>;
@@ -551,6 +527,39 @@ export type Bookings_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
   itinerary_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
+export type Bpchar_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['bpchar']['input']>;
+  _gt?: InputMaybe<Scalars['bpchar']['input']>;
+  _gte?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column match the given case-insensitive pattern */
+  _ilike?: InputMaybe<Scalars['bpchar']['input']>;
+  _in?: InputMaybe<Array<Scalars['bpchar']['input']>>;
+  /** does the column match the given POSIX regular expression, case insensitive */
+  _iregex?: InputMaybe<Scalars['bpchar']['input']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  /** does the column match the given pattern */
+  _like?: InputMaybe<Scalars['bpchar']['input']>;
+  _lt?: InputMaybe<Scalars['bpchar']['input']>;
+  _lte?: InputMaybe<Scalars['bpchar']['input']>;
+  _neq?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column NOT match the given case-insensitive pattern */
+  _nilike?: InputMaybe<Scalars['bpchar']['input']>;
+  _nin?: InputMaybe<Array<Scalars['bpchar']['input']>>;
+  /** does the column NOT match the given POSIX regular expression, case insensitive */
+  _niregex?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column NOT match the given pattern */
+  _nlike?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column NOT match the given POSIX regular expression, case sensitive */
+  _nregex?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column NOT match the given SQL regular expression */
+  _nsimilar?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column match the given POSIX regular expression, case sensitive */
+  _regex?: InputMaybe<Scalars['bpchar']['input']>;
+  /** does the column match the given SQL regular expression */
+  _similar?: InputMaybe<Scalars['bpchar']['input']>;
 };
 
 /** columns and relationships of "cities" */
@@ -1915,8 +1924,6 @@ export type Mutation_Root = {
   __typename?: 'mutation_root';
   /** actionLogin */
   actionLogin?: Maybe<AuthOutput>;
-  /** actionAdminLogin */
-  actionLoginAdmin?: Maybe<SampleOutput>;
   /** delete data from the table: "bookings" */
   delete_bookings?: Maybe<Bookings_Mutation_Response>;
   /** delete single row from the table: "bookings" */
@@ -1989,6 +1996,9 @@ export type Mutation_Root = {
   insert_vehicle_types?: Maybe<Vehicle_Types_Mutation_Response>;
   /** insert a single row into the table: "vehicle_types" */
   insert_vehicle_types_one?: Maybe<Vehicle_Types>;
+  /** loginAdmin */
+  loginAdmin: AuthAdminOutput;
+  updateBookingAction?: Maybe<UpdateBookingOutput>;
   /** update data of the table: "bookings" */
   update_bookings?: Maybe<Bookings_Mutation_Response>;
   /** update single row of the table: "bookings" */
@@ -2050,13 +2060,6 @@ export type Mutation_Root = {
 export type Mutation_RootActionLoginArgs = {
   token: Scalars['String']['input'];
   tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** mutation root */
-export type Mutation_RootActionLoginAdminArgs = {
-  password?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -2291,6 +2294,19 @@ export type Mutation_RootInsert_Vehicle_TypesArgs = {
 export type Mutation_RootInsert_Vehicle_Types_OneArgs = {
   object: Vehicle_Types_Insert_Input;
   on_conflict?: InputMaybe<Vehicle_Types_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootLoginAdminArgs = {
+  password?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateBookingActionArgs = {
+  userUpdateData: UserUpdateData;
 };
 
 
@@ -3391,21 +3407,17 @@ export type Routes = {
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   end_location: Scalars['Int']['output'];
   /** An object relationship */
-  endlocation?: Maybe<Locations>;
+  endlocation: Locations;
   from_city: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
-  isactive?: Maybe<Scalars['Boolean']['output']>;
+  isactive: Scalars['Boolean']['output'];
   /** An array relationship */
   itineraries: Array<Itinerary>;
   /** An aggregate relationship */
   itineraries_aggregate: Itinerary_Aggregate;
-  /** An object relationship */
-  location: Locations;
-  /** An object relationship */
-  locationByStartLocation: Locations;
   start_location: Scalars['Int']['output'];
   /** An object relationship */
-  startlocation?: Maybe<Locations>;
+  startlocation: Locations;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3540,8 +3552,6 @@ export type Routes_Bool_Exp = {
   isactive?: InputMaybe<Boolean_Comparison_Exp>;
   itineraries?: InputMaybe<Itinerary_Bool_Exp>;
   itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Bool_Exp>;
-  location?: InputMaybe<Locations_Bool_Exp>;
-  locationByStartLocation?: InputMaybe<Locations_Bool_Exp>;
   start_location?: InputMaybe<Int_Comparison_Exp>;
   startlocation?: InputMaybe<Locations_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -3571,8 +3581,6 @@ export type Routes_Insert_Input = {
   id?: InputMaybe<Scalars['Int']['input']>;
   isactive?: InputMaybe<Scalars['Boolean']['input']>;
   itineraries?: InputMaybe<Itinerary_Arr_Rel_Insert_Input>;
-  location?: InputMaybe<Locations_Obj_Rel_Insert_Input>;
-  locationByStartLocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>;
   start_location?: InputMaybe<Scalars['Int']['input']>;
   startlocation?: InputMaybe<Locations_Obj_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -3658,8 +3666,6 @@ export type Routes_Order_By = {
   id?: InputMaybe<Order_By>;
   isactive?: InputMaybe<Order_By>;
   itineraries_aggregate?: InputMaybe<Itinerary_Aggregate_Order_By>;
-  location?: InputMaybe<Locations_Order_By>;
-  locationByStartLocation?: InputMaybe<Locations_Order_By>;
   start_location?: InputMaybe<Order_By>;
   startlocation?: InputMaybe<Locations_Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -4284,33 +4290,6 @@ export type Users_Aggregate = {
   nodes: Array<Users>;
 };
 
-export type Users_Aggregate_Bool_Exp = {
-  bool_and?: InputMaybe<Users_Aggregate_Bool_Exp_Bool_And>;
-  bool_or?: InputMaybe<Users_Aggregate_Bool_Exp_Bool_Or>;
-  count?: InputMaybe<Users_Aggregate_Bool_Exp_Count>;
-};
-
-export type Users_Aggregate_Bool_Exp_Bool_And = {
-  arguments: Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Users_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
-
-export type Users_Aggregate_Bool_Exp_Bool_Or = {
-  arguments: Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Users_Bool_Exp>;
-  predicate: Boolean_Comparison_Exp;
-};
-
-export type Users_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Users_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<Users_Bool_Exp>;
-  predicate: Int_Comparison_Exp;
-};
-
 /** aggregate fields of "users" */
 export type Users_Aggregate_Fields = {
   __typename?: 'users_aggregate_fields';
@@ -4334,37 +4313,10 @@ export type Users_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** order by aggregate values of table "users" */
-export type Users_Aggregate_Order_By = {
-  avg?: InputMaybe<Users_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Users_Max_Order_By>;
-  min?: InputMaybe<Users_Min_Order_By>;
-  stddev?: InputMaybe<Users_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Users_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Users_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Users_Sum_Order_By>;
-  var_pop?: InputMaybe<Users_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Users_Var_Samp_Order_By>;
-  variance?: InputMaybe<Users_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "users" */
-export type Users_Arr_Rel_Insert_Input = {
-  data: Array<Users_Insert_Input>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<Users_On_Conflict>;
-};
-
 /** aggregate avg on columns */
 export type Users_Avg_Fields = {
   __typename?: 'users_avg_fields';
   id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by avg() on columns of table "users" */
-export type Users_Avg_Order_By = {
-  id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
@@ -4430,20 +4382,6 @@ export type Users_Max_Fields = {
   zalo_id?: Maybe<Scalars['String']['output']>;
 };
 
-/** order by max() on columns of table "users" */
-export type Users_Max_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  password?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-  role?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  zalo_id?: InputMaybe<Order_By>;
-};
-
 /** aggregate min on columns */
 export type Users_Min_Fields = {
   __typename?: 'users_min_fields';
@@ -4457,20 +4395,6 @@ export type Users_Min_Fields = {
   role?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   zalo_id?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "users" */
-export type Users_Min_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  deleted_at?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  name?: InputMaybe<Order_By>;
-  password?: InputMaybe<Order_By>;
-  phone_number?: InputMaybe<Order_By>;
-  role?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-  zalo_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "users" */
@@ -4542,16 +4466,6 @@ export type Users_Select_Column =
   /** column name */
   | 'zalo_id';
 
-/** select "users_aggregate_bool_exp_bool_and_arguments_columns" columns of table "users" */
-export type Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
-  /** column name */
-  | 'isactive';
-
-/** select "users_aggregate_bool_exp_bool_or_arguments_columns" columns of table "users" */
-export type Users_Select_Column_Users_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
-  /** column name */
-  | 'isactive';
-
 /** input type for updating data in table "users" */
 export type Users_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -4573,31 +4487,16 @@ export type Users_Stddev_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** order by stddev() on columns of table "users" */
-export type Users_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
 /** aggregate stddev_pop on columns */
 export type Users_Stddev_Pop_Fields = {
   __typename?: 'users_stddev_pop_fields';
   id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** order by stddev_pop() on columns of table "users" */
-export type Users_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
 /** aggregate stddev_samp on columns */
 export type Users_Stddev_Samp_Fields = {
   __typename?: 'users_stddev_samp_fields';
   id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_samp() on columns of table "users" */
-export type Users_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
 };
 
 /** Streaming cursor of the table "users" */
@@ -4627,11 +4526,6 @@ export type Users_Stream_Cursor_Value_Input = {
 export type Users_Sum_Fields = {
   __typename?: 'users_sum_fields';
   id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** order by sum() on columns of table "users" */
-export type Users_Sum_Order_By = {
-  id?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "users" */
@@ -4674,31 +4568,16 @@ export type Users_Var_Pop_Fields = {
   id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** order by var_pop() on columns of table "users" */
-export type Users_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
 /** aggregate var_samp on columns */
 export type Users_Var_Samp_Fields = {
   __typename?: 'users_var_samp_fields';
   id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** order by var_samp() on columns of table "users" */
-export type Users_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
 /** aggregate variance on columns */
 export type Users_Variance_Fields = {
   __typename?: 'users_variance_fields';
   id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by variance() on columns of table "users" */
-export type Users_Variance_Order_By = {
-  id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "vehicle_types" */
@@ -4983,14 +4862,14 @@ export type GetBookingsQueryVariables = Exact<{
 }>;
 
 
-export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: string | null, status: string, user_id: number, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
+export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: any | null, status: string, user_id: number, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
 
 export type GetBookingQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetBookingQuery = { __typename?: 'query_root', bookings_by_pk?: { __typename?: 'bookings', booking_date: any, created_at?: any | null, deleted_at?: any | null, id: number, itinerary_id: number, note?: string | null, status: string, updated_at?: any | null, itinerary: { __typename?: 'itinerary', created_at?: any | null, deleted_at?: any | null, id: number, isactive?: boolean | null, note?: string | null, price: any, provider_id: number, route_id: number, updated_at?: any | null, vehicle_types_id: number, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', name: string, note?: string | null, phone_number?: string | null }, route: { __typename?: 'routes', city: { __typename?: 'cities', name: string, routes: Array<{ __typename?: 'routes', id: number, end_location: number, start_location: number, from_city: number, startlocation?: { __typename?: 'locations', name: string } | null, endlocation?: { __typename?: 'locations', name: string } | null }> } }, vehicle_type: { __typename?: 'vehicle_types', type: string } }, user: { __typename?: 'users', name?: string | null, phone_number?: string | null } } | null };
+export type GetBookingQuery = { __typename?: 'query_root', bookings_by_pk?: { __typename?: 'bookings', booking_date: any, created_at?: any | null, deleted_at?: any | null, id: number, itinerary_id: number, note?: any | null, status: string, updated_at?: any | null, itinerary: { __typename?: 'itinerary', created_at?: any | null, deleted_at?: any | null, id: number, isactive?: boolean | null, note?: string | null, price: any, provider_id: number, route_id: number, updated_at?: any | null, vehicle_types_id: number, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', name: string, note?: string | null, phone_number?: string | null }, route: { __typename?: 'routes', city: { __typename?: 'cities', name: string, routes: Array<{ __typename?: 'routes', id: number, end_location: number, start_location: number, from_city: number, startlocation: { __typename?: 'locations', name: string }, endlocation: { __typename?: 'locations', name: string } }> } }, vehicle_type: { __typename?: 'vehicle_types', type: string } }, user: { __typename?: 'users', name?: string | null, phone_number?: string | null } } | null };
 
 export type UpdateBookingMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -5050,6 +4929,14 @@ export type UpdateLocationMutationVariables = Exact<{
 
 
 export type UpdateLocationMutation = { __typename?: 'mutation_root', update_locations_by_pk?: { __typename?: 'locations', id: number } | null };
+
+export type LoginAdminMutationVariables = Exact<{
+  phone: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type LoginAdminMutation = { __typename?: 'mutation_root', loginAdmin: { __typename?: 'AuthAdminOutput', token: string, name: string, role: string } };
 
 export type GetProvidersQueryVariables = Exact<{
   where?: InputMaybe<Providers_Bool_Exp>;
@@ -5113,14 +5000,14 @@ export type GetRoutesQueryVariables = Exact<{
 }>;
 
 
-export type GetRoutesQuery = { __typename?: 'query_root', routes: Array<{ __typename?: 'routes', id: number, from_city: number, start_location: number, end_location: number, updated_at?: any | null, created_at?: any | null, deleted_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string }, startlocation?: { __typename?: 'locations', name: string } | null, endlocation?: { __typename?: 'locations', name: string } | null }>, routes_aggregate: { __typename?: 'routes_aggregate', aggregate?: { __typename?: 'routes_aggregate_fields', count: number } | null } };
+export type GetRoutesQuery = { __typename?: 'query_root', routes: Array<{ __typename?: 'routes', id: number, from_city: number, start_location: number, end_location: number, updated_at?: any | null, created_at?: any | null, deleted_at?: any | null, isactive: boolean, city: { __typename?: 'cities', name: string }, startlocation: { __typename?: 'locations', name: string, id: number }, endlocation: { __typename?: 'locations', name: string, id: number } }>, routes_aggregate: { __typename?: 'routes_aggregate', aggregate?: { __typename?: 'routes_aggregate_fields', count: number } | null } };
 
 export type GetRouteQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string }, endlocation?: { __typename?: 'locations', name: string, id: number } | null, startlocation?: { __typename?: 'locations', name: string, id: number } | null } | null };
+export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive: boolean, city: { __typename?: 'cities', id: number, name: string }, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number } } | null };
 
 export type UpdateRouteMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -5148,16 +5035,16 @@ export type InsertRouteMutationVariables = Exact<{
 }>;
 
 
-export type InsertRouteMutation = { __typename?: 'mutation_root', insert_routes_one?: { __typename?: 'routes', id: number } | null };
+export type InsertRouteMutation = { __typename?: 'mutation_root', insert_routes_one?: { __typename?: 'routes', id: number, isactive: boolean, from_city: number, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, city: { __typename?: 'cities', name: string } } | null };
 
-export type FindManyQueryVariables = Exact<{
+export type GetUsersQueryVariables = Exact<{
   where: Users_Bool_Exp;
   limit: Scalars['Int']['input'];
   offset: Scalars['Int']['input'];
 }>;
 
 
-export type FindManyQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', id: number, email?: string | null, name?: string | null, phone_number?: string | null, role?: string | null, created_at?: any | null }>, users_aggregate: { __typename?: 'users_aggregate', aggregate?: { __typename?: 'users_aggregate_fields', count: number } | null } };
+export type GetUsersQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', id: number, email?: string | null, name?: string | null, phone_number?: string | null, role?: string | null, created_at?: any | null }>, users_aggregate: { __typename?: 'users_aggregate', aggregate?: { __typename?: 'users_aggregate_fields', count: number } | null } };
 
 export type FindOneQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -5643,6 +5530,42 @@ export function useUpdateLocationMutation(baseOptions?: Apollo.MutationHookOptio
 export type UpdateLocationMutationHookResult = ReturnType<typeof useUpdateLocationMutation>;
 export type UpdateLocationMutationResult = Apollo.MutationResult<UpdateLocationMutation>;
 export type UpdateLocationMutationOptions = Apollo.BaseMutationOptions<UpdateLocationMutation, UpdateLocationMutationVariables>;
+export const LoginAdminDocument = gql`
+    mutation loginAdmin($phone: String!, $password: String!) {
+  loginAdmin(phone: $phone, password: $password) {
+    token
+    name
+    role
+  }
+}
+    `;
+export type LoginAdminMutationFn = Apollo.MutationFunction<LoginAdminMutation, LoginAdminMutationVariables>;
+
+/**
+ * __useLoginAdminMutation__
+ *
+ * To run a mutation, you first call `useLoginAdminMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginAdminMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginAdminMutation, { data, loading, error }] = useLoginAdminMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useLoginAdminMutation(baseOptions?: Apollo.MutationHookOptions<LoginAdminMutation, LoginAdminMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<LoginAdminMutation, LoginAdminMutationVariables>(LoginAdminDocument, options);
+      }
+export type LoginAdminMutationHookResult = ReturnType<typeof useLoginAdminMutation>;
+export type LoginAdminMutationResult = Apollo.MutationResult<LoginAdminMutation>;
+export type LoginAdminMutationOptions = Apollo.BaseMutationOptions<LoginAdminMutation, LoginAdminMutationVariables>;
 export const GetProvidersDocument = gql`
     query GetProviders($where: providers_bool_exp, $limit: Int, $offset: Int) {
   providers(
@@ -5920,9 +5843,11 @@ export const GetRoutesDocument = gql`
     }
     startlocation {
       name
+      id
     }
     endlocation {
       name
+      id
     }
   }
   routes_aggregate(where: $where) {
@@ -6101,6 +6026,19 @@ export const InsertRouteDocument = gql`
     object: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive}
   ) {
     id
+    isactive
+    from_city
+    endlocation {
+      name
+      id
+    }
+    startlocation {
+      name
+      id
+    }
+    city {
+      name
+    }
   }
 }
     `;
@@ -6133,8 +6071,8 @@ export function useInsertRouteMutation(baseOptions?: Apollo.MutationHookOptions<
 export type InsertRouteMutationHookResult = ReturnType<typeof useInsertRouteMutation>;
 export type InsertRouteMutationResult = Apollo.MutationResult<InsertRouteMutation>;
 export type InsertRouteMutationOptions = Apollo.BaseMutationOptions<InsertRouteMutation, InsertRouteMutationVariables>;
-export const FindManyDocument = gql`
-    query FindMany($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
+export const GetUsersDocument = gql`
+    query getUsers($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
   users(
     where: $where
     limit: $limit
@@ -6157,16 +6095,16 @@ export const FindManyDocument = gql`
     `;
 
 /**
- * __useFindManyQuery__
+ * __useGetUsersQuery__
  *
- * To run a query within a React component, call `useFindManyQuery` and pass it any options that fit your needs.
- * When your component renders, `useFindManyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFindManyQuery({
+ * const { data, loading, error } = useGetUsersQuery({
  *   variables: {
  *      where: // value for 'where'
  *      limit: // value for 'limit'
@@ -6174,22 +6112,22 @@ export const FindManyDocument = gql`
  *   },
  * });
  */
-export function useFindManyQuery(baseOptions: Apollo.QueryHookOptions<FindManyQuery, FindManyQueryVariables> & ({ variables: FindManyQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useGetUsersQuery(baseOptions: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables> & ({ variables: GetUsersQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyQuery, FindManyQueryVariables>(FindManyDocument, options);
+        return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
       }
-export function useFindManyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyQuery, FindManyQueryVariables>) {
+export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyQuery, FindManyQueryVariables>(FindManyDocument, options);
+          return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
         }
-export function useFindManySuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindManyQuery, FindManyQueryVariables>) {
+export function useGetUsersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FindManyQuery, FindManyQueryVariables>(FindManyDocument, options);
+          return Apollo.useSuspenseQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
         }
-export type FindManyQueryHookResult = ReturnType<typeof useFindManyQuery>;
-export type FindManyLazyQueryHookResult = ReturnType<typeof useFindManyLazyQuery>;
-export type FindManySuspenseQueryHookResult = ReturnType<typeof useFindManySuspenseQuery>;
-export type FindManyQueryResult = Apollo.QueryResult<FindManyQuery, FindManyQueryVariables>;
+export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
+export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
+export type GetUsersSuspenseQueryHookResult = ReturnType<typeof useGetUsersSuspenseQuery>;
+export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
 export const FindOneDocument = gql`
     query FindOne($id: Int!) {
   users_by_pk(id: $id) {

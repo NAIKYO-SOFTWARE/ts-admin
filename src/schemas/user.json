@@ -80,7 +80,10 @@
           "name": "email",
           "size": 6,
           "type": "string",
-          "regex": ["^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "i"],
+          "regex": [
+            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "i"
+          ],
           "required": true
         }
       ],
@@ -91,7 +94,10 @@
           "name": "phone_number",
           "size": 6,
           "type": "string",
-          "regex": ["^\\d{8,16}$", "i"],
+          "regex": [
+            "^\\d{8,16}$",
+            "i"
+          ],
           "required": true
         },
         {
@@ -100,7 +106,11 @@
           "size": 6,
           "multiple": true,
           "type": "enumeration",
-          "enum": ["user", "admin"]
+          "enum": [
+            "user",
+            "admin"
+          ],
+          "disabled": true
         }
       ]
     ],

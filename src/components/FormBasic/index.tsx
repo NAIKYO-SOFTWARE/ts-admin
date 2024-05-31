@@ -465,12 +465,12 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
             variables: {
               id: Number(lastPath),
               ...values
-            } as any
+            }
           })
         : onCreate({
             variables: {
               ...values
-            } as any
+            }
           })
 
       action

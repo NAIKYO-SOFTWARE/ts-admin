@@ -7,7 +7,7 @@ import Notification from 'antd/es/notification'
 import Button from '../Button'
 import Filter from './Filter'
 
-import queries, { dataHandlers, queryStrings } from '../../constants/queries'
+import queries, { dataHandlers, documentNodes, queryStrings } from '../../constants/queries'
 import DataRow from './DataRow'
 import './dataTable.scss'
 
@@ -78,7 +78,7 @@ const generateWhereClause = (uid: string, queryParams: any, filterable: any) => 
 const DataTable = (props: Props) => {
   const layouts = useAppStore((store) => (store.layouts?.has(props.uid) ? store.layouts?.get(props.uid) : null))
   const location = useLocation()
-  const { setLoading, onSetDataSource, onRemoveRow, onSetNotification } = useTableStore()
+  const { setLoading, onCopyRow, onSetDataSource, onRemoveRow, onSetNotification } = useTableStore()
 
   const [variables, setVariables] = useState({
     where: {},
@@ -94,8 +94,16 @@ const DataTable = (props: Props) => {
 
   const useFindMany = queries[props.uid]?.findMany
   const useDeleteOne = queries[props.uid]?.deleteOne
+  const useCopyOne = queries[props.uid]?.copyOne
 
-  const [onRemove] = useDeleteOne()
+  const [onRemove] = useDeleteOne ? useDeleteOne() : [null]
+  const [onCopy] = useCopyOne
+    ? useCopyOne({
+        refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
+        awaitRefetchQueries: true
+      })
+    : [null]
+
   const { data, loading, error } = useFindMany({
     variables
   })
@@ -164,6 +172,28 @@ const DataTable = (props: Props) => {
       })
   }
 
+  const handleCopy = (data: any) => {
+    const result = dataHandlers[props.uid].copy?.(data)
+    return onCopy({
+      variables: {
+        ...result
+      }
+    })
+      .then(({ data }: any) => {
+        const returnResult = dataHandlers[props.uid].insertOne?.(data)
+        onCopyRow?.(returnResult)
+        return !!data
+      })
+      .catch((e: any) => {
+        onSetNotification?.(
+          'error',
+          'Error',
+          e?.response?.data?.message || 'Error! An error occurred. Please try again later'
+        )
+        return
+      })
+  }
+
   const handleExport = async () => {
     try {
     } catch {
@@ -189,8 +219,10 @@ const DataTable = (props: Props) => {
           columns={layouts?.list as any}
           uid={props.uid}
           onDelete={handleDelete}
+          onCopy={handleCopy}
           deletable={!!layouts?.deletable}
           editable={!!layouts?.editable}
+          copyable={!!layouts?.copyable}
         />
       </div>
     </div>

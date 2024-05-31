@@ -1,13 +1,12 @@
 import {
-  FindManyDocument,
   GetBookingsDocument,
   GetLocationsDocument,
   GetProvidersDocument,
   GetRoutesDocument,
+  GetUsersDocument,
   useDeleteLocationMutation,
   useDeleteRouteMutation,
   useDeleteUserMutation,
-  useFindManyQuery,
   useFindOneProviderQuery,
   useFindOneQuery,
   useGetBookingQuery,
@@ -18,6 +17,7 @@ import {
   useGetProvidersQuery,
   useGetRouteQuery,
   useGetRoutesQuery,
+  useGetUsersQuery,
   useInsertLocationMutation,
   useInsertProviderMutation,
   useInsertRouteMutation,
@@ -32,9 +32,8 @@ import {
 const queries: Record<string, Record<string, any>> = {
   users: {
     findOne: useFindOneQuery,
-    createOne: null,
     updateOne: useUpdateUserMutation,
-    findMany: useFindManyQuery,
+    findMany: useGetUsersQuery,
     deleteOne: useDeleteUserMutation
   },
   locations: {
@@ -59,11 +58,11 @@ const queries: Record<string, Record<string, any>> = {
     createOne: useInsertRouteMutation,
     updateOne: useUpdateRouteMutation,
     findMany: useGetRoutesQuery,
-    deleteOne: useDeleteRouteMutation
+    deleteOne: useDeleteRouteMutation,
+    copyOne: useInsertRouteMutation
   },
   bookings: {
     findOne: useGetBookingQuery,
-    createOne: null,
     updateOne: useUpdateBookingMutation,
     findMany: useGetBookingsQuery,
     deleteOne: useUpdateProviderEnableMutation
@@ -74,6 +73,8 @@ interface Props {
   many?: (data: any) => any[]
   select?: (data: any) => any[]
   one?: (data: any) => Object
+  copy?: (data: any) => Object
+  insertOne?: (data: any) => Object
 }
 
 export const dataHandlers: Record<string, Props> = {
@@ -95,6 +96,21 @@ export const dataHandlers: Record<string, Props> = {
         ...data.routes_by_pk,
         start_location: data.routes_by_pk.startlocation.id,
         end_location: data.routes_by_pk.endlocation.id
+      }
+    },
+    copy: (data) => {
+      return {
+        ...data,
+        start_location: data.startlocation.id,
+        end_location: data.endlocation.id
+      }
+    },
+    insertOne: (data) => {
+      return {
+        ...data.insert_routes_one,
+        start_location: data.insert_routes_one.startlocation.name,
+        end_location: data.insert_routes_one.endlocation.name,
+        city: data.insert_routes_one.city.name
       }
     }
   },
@@ -150,7 +166,7 @@ export const queryStrings: Record<string, Record<string, any>> = {
 
 export const documentNodes: Record<string, Record<string, any>> = {
   users: {
-    getDocument: FindManyDocument
+    getDocument: GetUsersDocument
   },
   locations: {
     getDocument: GetLocationsDocument
