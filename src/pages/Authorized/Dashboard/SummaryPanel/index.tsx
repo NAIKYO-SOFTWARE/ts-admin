@@ -1,10 +1,12 @@
-import { mdiCart, mdiCash, mdiCashSync, mdiCreditCardOutline } from '@mdi/js'
+import { mdiCart, mdiCash } from '@mdi/js'
 import Icon from '@mdi/react'
 import Skeleton from 'antd/es/skeleton'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Card, CardBody, Col, Row } from 'reactstrap'
-import { cancelToken } from '../../../../helper-plugin'
+import { useGetBookingsQuery } from '../../../../generated/graphql'
+import { cancelToken, currencyFormat } from '../../../../helper-plugin'
+import { formatDateRange, getDateRangeFromQueryString } from '../Filter'
 
 interface ISummaryPanel {
   label: string
@@ -15,20 +17,42 @@ const SummaryPanel = () => {
   const { search } = useLocation()
   const [summary, setSummary] = useState<ISummaryPanel[] | null>(null)
 
+  const { startDate = '', endDate = '' } = getDateRangeFromQueryString(search)
+
+  // Format the date range
+  const { data } = useGetBookingsQuery({
+    variables: {
+      where: {
+        created_at: formatDateRange(startDate, endDate)
+      },
+      limit: 1000,
+      offset: 0
+    }
+  })
+
+  console.log(data)
+
   useEffect(() => {
-    if (search.includes('?date')) {
+    if (search.includes('?date') && data) {
       setSummary(null)
       const source = cancelToken()
-      // const fetchData = [fetchClient.get('/dashboard/summary' + search, { cancelToken: source.token })]
-
-      // Promise.all(fetchData).then(([summaryData]) => {
-      //   const { amount, order } = summaryData.data
-      //   setSummary([order, amount])
-      // })
-
+      const totalBookings = data.bookings_aggregate.aggregate?.count || 0
+      const { totalAmount } = data.bookings.reduce(
+        (acc, booking) => {
+          const price = booking.itinerary.price || 0
+          acc.totalAmount += price
+          acc.count += 1
+          return acc
+        },
+        { totalAmount: 0, count: 0 }
+      )
+      setSummary([
+        { label: 'Total Bookings', value: totalBookings },
+        { label: 'Total Amount', value: currencyFormat(totalAmount || 0) as any }
+      ])
       return () => source.cancel()
     }
-  }, [search])
+  }, [search, data])
 
   if (!summary) return <SummarySkeleton />
 
@@ -57,14 +81,10 @@ const SummaryPanel = () => {
 
 const getIconByLabel = (label: string) => {
   switch (label) {
-    case 'Total Orders':
+    case 'Total Bookings':
       return <Icon className='mdi' path={mdiCart} size={2} />
     case 'Total Amount':
       return <Icon className='mdi' path={mdiCash} size={2} />
-    case 'AOV':
-      return <Icon className='mdi' path={mdiCreditCardOutline} size={2} />
-    case 'Payment Status':
-      return <Icon className='mdi' path={mdiCashSync} size={2} />
     default:
       return null
   }
