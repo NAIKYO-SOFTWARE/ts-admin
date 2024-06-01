@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts'
 import { useLocation } from 'react-router-dom'
 import { Card, CardBody, Col } from 'reactstrap'
+import { useGetBookingsQuery } from '../../../../generated/graphql'
 import { cancelToken } from '../../../../helper-plugin'
+import { formatDateRange, getDateRangeFromQueryString } from '../Filter'
 
 const colorMapping: Record<string, string> = {
-  CONFIRMED: '#2ecc71',
-  CANCELLED: '#D61B36',
-  DUPLICATED: '#FEB019',
-  UPSELL: '#1abc9c',
-  REDIAL: '#c668ff',
-  NEW: '#3d6678'
+  confirmed: '#2ecc71',
+  canceled: '#D61B36',
+  completed: '#1abc9c',
+  Pending: '#FEB019'
 }
 
 interface ICancelReason {
@@ -66,15 +66,41 @@ const OrderStatus = () => {
   const { search } = useLocation()
   const [cancelReason, setCancelReason] = useState<ICancelReason | null>(null)
 
+  const { startDate = '', endDate = '' } = getDateRangeFromQueryString(search)
+
+  // Format the date range
+  const { data } = useGetBookingsQuery({
+    variables: {
+      where: {
+        created_at: formatDateRange(startDate, endDate)
+      },
+      limit: 1000,
+      offset: 0
+    }
+  })
+
   useEffect(() => {
-    if (search.includes('?date')) {
+    if (search.includes('?date') && data) {
       setCancelReason(null)
-      // fetchClient.get('/dashboard/order-stats' + search, { cancelToken: token.token }).then(({ data }) => {
-      //   setCancelReason({ ...data, loading: false })
-      // })
+      const _map: Map<string | null, number> = new Map()
+      data['bookings'].forEach((d) => {
+        if (_map.has(d.status)) {
+          const currentVal = _map.get(d.status) || 1
+          _map.set(d.status, currentVal + 1)
+        } else {
+          _map.set(d.status, 1)
+        }
+      })
+      const series: number[] = []
+      const labels: string[] = []
+      for (let [key, value] of _map.entries()) {
+        labels.push(key as any)
+        series.push(value)
+      }
+      setCancelReason({ labels, series })
     }
     return () => token.cancel()
-  }, [search])
+  }, [search, data])
 
   return (
     <Col xl={4}>
@@ -82,7 +108,7 @@ const OrderStatus = () => {
         <CardBody>
           <div className='d-flex align-items-center'>
             <div className='flex-grow-1'>
-              <h5 className='card-title'>Order Status</h5>
+              <h5 className='card-title'>Booking Status</h5>
             </div>
           </div>
           {cancelReason ? (
