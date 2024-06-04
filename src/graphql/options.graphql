@@ -1,0 +1,13 @@
+query getOptions($where: options_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
+  options(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    round_type
+    isactive
+    created_at
+  }
+  options_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

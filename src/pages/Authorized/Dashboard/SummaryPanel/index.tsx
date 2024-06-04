@@ -30,8 +30,6 @@ const SummaryPanel = () => {
     }
   })
 
-  console.log(data)
-
   useEffect(() => {
     if (search.includes('?date') && data) {
       setSummary(null)

@@ -31,6 +31,19 @@ query getLocation($id: Int!) {
     }
     created_at
     isactive
+    routes {
+      id
+      endlocation {
+        name
+        id
+      }
+      startlocation {
+        name
+        id
+      }
+      created_at
+      isactive
+    }
   }
 }
 

@@ -9,9 +9,9 @@ import { cancelToken } from '../../../../helper-plugin'
 import { formatDateRange, getDateRangeFromQueryString } from '../Filter'
 
 const colorMapping: Record<string, string> = {
-  confirmed: '#2ecc71',
-  canceled: '#D61B36',
-  completed: '#1abc9c',
+  Confirmed: '#2ecc71',
+  Canceled: '#D61B36',
+  Completed: '#1abc9c',
   Pending: '#FEB019'
 }
 

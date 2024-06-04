@@ -1,5 +1,5 @@
 query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
-  cities(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+  cities(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc, isactive: asc }) {
     id
     name
     created_at
@@ -19,6 +19,12 @@ query getCity($id: Int!) {
     deleted_at
     name
     updated_at
+    locations {
+      name
+      id
+      created_at
+      isactive
+    }
   }
 }
 

@@ -112,6 +112,69 @@
           ],
           "disabled": true
         }
+      ],
+      [
+        {
+          "label": "Bookings",
+          "placeholder": "",
+          "name": "bookings",
+          "size": 12,
+          "type": "orders-products",
+          "columns": [
+            {
+              "key": "id",
+              "dataIndex": "id",
+              "title": "Id",
+              "align": "left"
+            },
+            {
+              "key": "route",
+              "dataIndex": "route",
+              "title": "route",
+              "align": "center",
+              "note": "render-link"
+            },
+            {
+              "key": "provider",
+              "dataIndex": "provider",
+              "title": "provider",
+              "align": "center",
+              "note": "render-link"
+            },
+            {
+              "key": "option",
+              "dataIndex": "option",
+              "title": "option",
+              "align": "center"
+            },
+            {
+              "key": "vehicle_type",
+              "dataIndex": "vehicle_type",
+              "title": "vehicle_type",
+              "align": "center"
+            },
+            {
+              "key": "booking_date",
+              "dataIndex": "booking_date",
+              "title": "Booking date",
+              "align": "center",
+              "note": "render-date"
+            },
+            {
+              "key": "status",
+              "dataIndex": "status",
+              "title": "Status",
+              "align": "left"
+            },
+            {
+              "key": "created_at",
+              "dataIndex": "created_at",
+              "title": "Created at",
+              "align": "center",
+              "note": "render-date"
+            }
+          ]
+        }
       ]
     ],
     "defaultValue": {}

@@ -1,5 +1,6 @@
 import {
   mdiAccountGroup,
+  mdiCartVariant,
   mdiCupcake,
   mdiHelpBoxMultiple,
   mdiHome,
@@ -15,12 +16,12 @@ const SidebarData = [
     isMainMenu: true,
     children: [
       { icon: mdiAccountGroup, key: 'users' },
+      { icon: mdiHelpBoxMultiple, key: 'bookings' },
       { icon: mdiInboxMultiple, key: 'cities' },
       { icon: mdiSitemapOutline, key: 'locations' },
-      { icon: mdiQuadcopter, key: 'providers' },
       { icon: mdiCupcake, key: 'routes' },
-      // { icon: mdiCupcake, key: 'rooms' },
-      { icon: mdiHelpBoxMultiple, key: 'bookings' }
+      { icon: mdiQuadcopter, key: 'providers' },
+      { icon: mdiCartVariant, key: 'itinerary' }
       // { icon: mdiStar, key: 'balance-transactions' },
       // { icon: mdiCartVariant, key: 'transactions' },
       // { icon: mdiInboxArrowDown, key: 'investments' },

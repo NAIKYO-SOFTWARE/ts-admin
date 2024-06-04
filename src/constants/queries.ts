@@ -1,10 +1,12 @@
 import {
   GetBookingsDocument,
   GetCitiesDocument,
+  GetItinerariesDocument,
   GetLocationsDocument,
   GetProvidersDocument,
   GetRoutesDocument,
   GetUsersDocument,
+  useDeleteItineraryMutation,
   useDeleteLocationMutation,
   useDeleteRouteMutation,
   useDeleteUserMutation,
@@ -14,17 +16,23 @@ import {
   useGetBookingsQuery,
   useGetCitiesQuery,
   useGetCityQuery,
+  useGetItinerariesQuery,
+  useGetItineraryQuery,
   useGetLocationQuery,
   useGetLocationsQuery,
+  useGetOptionsQuery,
   useGetProvidersQuery,
   useGetRouteQuery,
   useGetRoutesQuery,
   useGetUsersQuery,
+  useGetVehicleTypesQuery,
+  useInsertItineraryMutation,
   useInsertLocationMutation,
   useInsertProviderMutation,
   useInsertRouteMutation,
   useUpdateBookingMutation,
   useUpdateCityMutation,
+  useUpdateItineraryMutation,
   useUpdateLocationMutation,
   useUpdateProviderEnableMutation,
   useUpdateProviderMutation,
@@ -73,6 +81,19 @@ const queries: Record<string, Record<string, any>> = {
     updateOne: useUpdateBookingMutation,
     findMany: useGetBookingsQuery,
     deleteOne: useUpdateProviderEnableMutation
+  },
+  itinerary: {
+    findOne: useGetItineraryQuery,
+    createOne: useInsertItineraryMutation,
+    updateOne: useUpdateItineraryMutation,
+    findMany: useGetItinerariesQuery,
+    deleteOne: useDeleteItineraryMutation
+  },
+  options: {
+    findMany: useGetOptionsQuery
+  },
+  vehicle_types: {
+    findMany: useGetVehicleTypesQuery
   }
 }
 
@@ -87,7 +108,24 @@ interface Props {
 export const dataHandlers: Record<string, Props> = {
   users: {
     many: (data) => data,
-    one: (data) => ({ ...data.users_by_pk })
+    one: (data) => {
+      const bookings = data.users_by_pk.bookings.map((booking: any) => ({
+        ...booking,
+        route: {
+          label: `${booking.itinerary.route.startlocation.name} - ${booking.itinerary.route.endlocation.name}`,
+          path: '/routes',
+          id: booking.itinerary.route.id
+        },
+        provider: {
+          label: `${booking.itinerary.provider.name}`,
+          path: '/providers',
+          id: booking.itinerary.provider.id
+        },
+        option: booking.itinerary.option.round_type,
+        vehicle_type: booking.itinerary.vehicle_type.type
+      }))
+      return { ...data.users_by_pk, bookings }
+    }
   },
   routes: {
     many: (data) => {
@@ -119,7 +157,9 @@ export const dataHandlers: Record<string, Props> = {
         end_location: data.insert_routes_one.endlocation.name,
         city: data.insert_routes_one.city.name
       }
-    }
+    },
+    select: (data) =>
+      data.map((data: any) => ({ label: `${data.startlocation.name} - ${data.endlocation.name}`, value: data.id }))
   },
   locations: {
     many: (data) => {
@@ -128,7 +168,21 @@ export const dataHandlers: Record<string, Props> = {
         city: location.city.name
       }))
     },
-    one: (data) => ({ ...data.locations_by_pk, city_id: data.locations_by_pk.city.id }),
+    one: (data) => {
+      // const routes = data.locations_by_pk.routes.map((route: any) => ({
+      //   // ...route,
+      //   route_id: {
+      //     label: `${route.startlocation.name} - ${route.endlocation.name}`,
+      //     path: '/routes',
+      //     id: route.id
+      //   }
+      //   // start_location: route.startlocation.name,
+      //   // end_location: route.endlocation.name
+      // }))
+      // console.log(routes)
+
+      return { ...data.locations_by_pk, city_id: data.locations_by_pk.city.id }
+    },
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
   },
   cities: {
@@ -138,12 +192,21 @@ export const dataHandlers: Record<string, Props> = {
       return data
     },
     one: (data) => {
-      return { ...data.cities_by_pk, name: data.cities_by_pk.name, isactive: data.cities_by_pk.isactive }
+      const locations = data.cities_by_pk.locations.map((location: any) => ({
+        ...location,
+        name: {
+          label: `${location.name}`,
+          path: '/locations',
+          id: location.id
+        }
+      }))
+      return { ...data.cities_by_pk, name: data.cities_by_pk.name, isactive: data.cities_by_pk.isactive, locations }
     }
   },
   providers: {
     many: (data) => data,
-    one: (data) => ({ ...data.providers_by_pk })
+    one: (data) => ({ ...data.providers_by_pk }),
+    select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
   },
   bookings: {
     many: (data) => {
@@ -169,6 +232,27 @@ export const dataHandlers: Record<string, Props> = {
       orderNote: data.bookings_by_pk.note,
       bookingDate: data.bookings_by_pk.booking_date
     })
+  },
+  itinerary: {
+    many: (data) => {
+      return data.map((itinerary: any) => ({
+        ...itinerary,
+        isactive: itinerary.isactive,
+        created_at: itinerary.created_at,
+        provider: itinerary.provider.name,
+        route: `${itinerary.route.startlocation.name} - ${itinerary.route.endlocation.name}`,
+        option: itinerary.option.round_type
+      }))
+    },
+    one: (data) => ({
+      ...data.itinerary_by_pk
+    })
+  },
+  options: {
+    select: (data) => data.map((data: any) => ({ label: data.round_type, value: data.id }))
+  },
+  vehicle_types: {
+    select: (data) => data.map((data: any) => ({ label: data.type, value: data.id }))
   }
 }
 
@@ -193,6 +277,9 @@ export const documentNodes: Record<string, Record<string, any>> = {
   },
   bookings: {
     getDocument: GetBookingsDocument
+  },
+  itinerary: {
+    getDocument: GetItinerariesDocument
   },
   cities: {
     getDocument: GetCitiesDocument

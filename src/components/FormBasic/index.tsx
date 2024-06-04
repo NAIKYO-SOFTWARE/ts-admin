@@ -419,14 +419,12 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
   const useUpdateOne = queries[props.uid]?.updateOne
   const useCreateOne = queries[props.uid]?.createOne
 
-  const [onUpdate] =
-    editable && useUpdateOne
-      ? useUpdateOne({
-          refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
-          awaitRefetchQueries: true
-        })
-      : [null]
-  const [onCreate] = creatable && useCreateOne ? useCreateOne() : [null]
+  const options = {
+    refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
+    awaitRefetchQueries: true
+  }
+  const [onUpdate] = editable && useUpdateOne ? useUpdateOne(options) : [null]
+  const [onCreate] = creatable && useCreateOne ? useCreateOne(options) : [null]
 
   const { loading } = useFindOne({
     variables: {
@@ -464,12 +462,14 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
         ? onUpdate({
             variables: {
               id: Number(lastPath),
-              ...values
+              ...values,
+              updated_at: new Date()
             }
           })
         : onCreate({
             variables: {
-              ...values
+              ...values,
+              created_at: new Date()
             }
           })
 
@@ -478,16 +478,15 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
           formErrors.set({})
           api.success({ message: 'Success', description: `${label} item successful.` })
           if (!isEdit) {
-            props.navigate(`/${props.uid}/${data.update_users_by_pk.id}`, { replace: true })
+            props.navigate(`/${props.uid}/${data[`insert_${props.uid}_one`].id}`, { replace: true })
           }
         })
         .catch((error: any) => {
           if (error.response && error.response.status === 400) {
             const errors = bindErrorMessage(error.response.data)
             formErrors.set(errors)
-          } else {
-            api.error({ message: 'Error', description: `${label} item unsuccessful.` })
           }
+          api.error({ message: 'Error', description: `${label} item unsuccessful.` })
         })
         .finally(() => form.isSubmit.set(false))
     }
