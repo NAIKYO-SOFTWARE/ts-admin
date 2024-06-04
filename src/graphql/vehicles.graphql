@@ -1,0 +1,13 @@
+query getVehicleTypes($where: vehicle_types_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
+  vehicle_types(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    type
+    isactive
+    created_at
+  }
+  vehicle_types_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

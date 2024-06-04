@@ -1,4 +1,4 @@
-query getUsers($where: users_bool_exp!, $limit: Int!, $offset: Int!) {
+query getUsers($where: users_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
   users(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
     id
     email
@@ -23,6 +23,41 @@ query FindOne($id: Int!) {
     email
     created_at
     zalo_id
+    bookings {
+      id
+      booking_date
+      note
+      status
+      created_at
+      itinerary {
+        provider {
+          id
+          name
+        }
+        provider {
+          id
+          name
+        }
+        vehicle_type {
+          type
+        }
+        option {
+          round_type
+        }
+        route {
+          id
+          endlocation {
+            name
+          }
+          startlocation {
+            name
+          }
+        }
+        vehicle_type {
+          type
+        }
+      }
+    }
   }
 }
 

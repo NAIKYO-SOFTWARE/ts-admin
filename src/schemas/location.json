@@ -4,6 +4,7 @@
     "displayName": "Locations",
     "creatable": true,
     "editable": true,
+    "deletable": true,
     "aggregateField": "locations_aggregate",
     "filterable": [
       [
@@ -41,6 +42,13 @@
         "title": "Enable",
         "align": "left",
         "note": "render-bool"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created At",
+        "align": "center",
+        "note": "render-date"
       }
     ],
     "edit": [

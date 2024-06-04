@@ -44,6 +44,13 @@
         "title": "Enable",
         "align": "left",
         "note": "render-bool"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created at",
+        "align": "center",
+        "note": "render-date"
       }
     ],
     "edit": [
@@ -61,6 +68,38 @@
           "name": "isactive",
           "size": 2,
           "type": "boolean"
+        }
+      ],
+      [
+        {
+          "label": "Locations",
+          "placeholder": "",
+          "name": "locations",
+          "size": 12,
+          "type": "orders-products",
+          "columns": [
+            {
+              "key": "name",
+              "dataIndex": "name",
+              "title": "Name",
+              "align": "left",
+              "note": "render-link"
+            },
+            {
+              "key": "isactive",
+              "dataIndex": "isactive",
+              "title": "Enable",
+              "align": "left",
+              "note": "render-bool"
+            },
+            {
+              "key": "created_at",
+              "dataIndex": "created_at",
+              "title": "Created At",
+              "align": "center",
+              "note": "render-date"
+            }
+          ]
         }
       ]
     ],

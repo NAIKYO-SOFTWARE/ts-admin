@@ -4,7 +4,7 @@
     "displayName": "Providers",
     "creatable": true,
     "editable": true,
-    "deletable": false,
+    "deletable": true,
     "aggregateField": "providers_aggregate",
     "filterable": [
       [
@@ -53,7 +53,6 @@
         "title": "Phone",
         "align": "left"
       },
-
       {
         "key": "isactive",
         "dataIndex": "isactive",
@@ -84,7 +83,10 @@
           "name": "phone_number",
           "size": 6,
           "type": "string",
-          "regex": ["^\\d{8,16}$", "i"]
+          "regex": [
+            "^\\d{8,16}$",
+            "i"
+          ]
         }
       ],
       [

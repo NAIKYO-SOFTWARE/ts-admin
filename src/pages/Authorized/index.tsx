@@ -4,6 +4,7 @@ import Layout from '../../components/Layout'
 import menu from '../../constants/menu'
 import bookingSchema from '../../schemas/booking.json'
 import citySchema from '../../schemas/city.json'
+import itinerarySchema from '../../schemas/itinerary.json'
 import locationSchema from '../../schemas/location.json'
 import providerSchema from '../../schemas/provider.json'
 import routeSchema from '../../schemas/route.json'
@@ -61,7 +62,8 @@ const Authorized: FC = memo(
         citySchema,
         routeSchema,
         providerSchema,
-        bookingSchema
+        bookingSchema,
+        itinerarySchema
       ]
       setSchemas?.(shemas)
     }, [])

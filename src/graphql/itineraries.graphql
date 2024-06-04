@@ -1,0 +1,129 @@
+query getItineraries($where: itinerary_bool_exp! = {}, $limit: Int = 10, $offset: Int = 0) {
+  itinerary(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    isactive
+    id
+    provider {
+      name
+      id
+    }
+    route {
+      endlocation {
+        name
+        id
+      }
+      startlocation {
+        name
+        id
+      }
+      created_at
+      city {
+        name
+        id
+      }
+    }
+    vehicle_type {
+      type
+    }
+    option {
+      id
+      round_type
+    }
+    vehicle_types_id
+    created_at
+  }
+  itinerary_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query getItinerary($id: Int!) {
+  itinerary_by_pk(id: $id) {
+    bookings {
+      booking_date
+      created_at
+      status
+    }
+    isactive
+    option {
+      id
+      round_type
+    }
+    price
+    route {
+      id
+    }
+    route_id
+    vehicle_type {
+      id
+      type
+    }
+    note
+    created_at
+    provider_id
+    vehicle_types_id
+    option_id
+    price
+  }
+}
+
+mutation deleteItinerary($id: Int!) {
+  delete_itinerary_by_pk(id: $id) {
+    id
+  }
+}
+
+mutation insertItinerary(
+  $note: String!
+  $isactive: Boolean!
+  $option_id: Int!
+  $route_id: Int!
+  $provider_id: Int!
+  $price: numeric!
+  $vehicle_types_id: Int!
+  $created_at: timestamptz!
+) {
+  insert_itinerary_one(
+    object: {
+      isactive: $isactive
+      note: $note
+      option_id: $option_id
+      route_id: $route_id
+      provider_id: $provider_id
+      price: $price
+      vehicle_types_id: $vehicle_types_id
+      created_at: $created_at
+    }
+  ) {
+    id
+  }
+}
+
+mutation updateItinerary(
+  $id: Int!
+  $note: String!
+  $isactive: Boolean!
+  $option_id: Int!
+  $route_id: Int!
+  $provider_id: Int!
+  $price: numeric!
+  $vehicle_types_id: Int!
+  $updated_at: timestamptz!
+) {
+  update_itinerary_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      isactive: $isactive
+      note: $note
+      option_id: $option_id
+      route_id: $route_id
+      provider_id: $provider_id
+      price: $price
+      vehicle_types_id: $vehicle_types_id
+      updated_at: $updated_at
+    }
+  ) {
+    id
+  }
+}

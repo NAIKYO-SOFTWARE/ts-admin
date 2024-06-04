@@ -21,7 +21,10 @@
           "name": "userPhoneNumber",
           "size": 5,
           "type": "string",
-          "regex": ["^\\d{8,16}$", "i"]
+          "regex": [
+            "^\\d{8,16}$",
+            "i"
+          ]
         }
       ],
       [
@@ -32,7 +35,12 @@
           "size": 5,
           "multiple": true,
           "type": "enumeration",
-          "enum": ["Pending", "Cancelled", "Completed", "Confirmed"]
+          "enum": [
+            "Pending",
+            "Cancelled",
+            "Completed",
+            "Confirmed"
+          ]
         },
         {
           "label": "Price",
@@ -69,7 +77,6 @@
         "align": "center",
         "note": "render-date"
       },
-
       {
         "key": "status",
         "dataIndex": "status",
@@ -100,7 +107,10 @@
           "name": "userPhoneNumber",
           "size": 4,
           "type": "string",
-          "regex": ["^\\d{8,16}$", "i"],
+          "regex": [
+            "^\\d{8,16}$",
+            "i"
+          ],
           "disabled": true
         }
       ],
@@ -190,7 +200,12 @@
           "size": 4,
           "multiple": true,
           "type": "enumeration",
-          "enum": ["Pending", "Cancelled", "Completed", "Confirmed"]
+          "enum": [
+            "Pending",
+            "Cancelled",
+            "Completed",
+            "Confirmed"
+          ]
         },
         {
           "label": "Booking date",
