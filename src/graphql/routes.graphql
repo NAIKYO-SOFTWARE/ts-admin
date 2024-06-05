@@ -45,6 +45,22 @@ query getRoute($id: Int!) {
       name
       id
     }
+    itineraries {
+      id
+      isactive
+      created_at
+      option {
+        round_type
+      }
+      price
+      provider {
+        id
+        name
+      }
+      vehicle_type {
+        type
+      }
+    }
   }
 }
 

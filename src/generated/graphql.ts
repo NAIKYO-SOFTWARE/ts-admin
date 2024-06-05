@@ -5089,7 +5089,7 @@ export type GetRouteQueryVariables = Exact<{
 }>;
 
 
-export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive: boolean, city: { __typename?: 'cities', id: number, name: string }, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number } } | null };
+export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive: boolean, city: { __typename?: 'cities', id: number, name: string }, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, itineraries: Array<{ __typename?: 'itinerary', id: number, isactive?: boolean | null, created_at?: any | null, price: any, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', id: number, name: string }, vehicle_type: { __typename?: 'vehicle_types', type: string } }> } | null };
 
 export type UpdateRouteMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -6438,6 +6438,22 @@ export const GetRouteDocument = gql`
     startlocation {
       name
       id
+    }
+    itineraries {
+      id
+      isactive
+      created_at
+      option {
+        round_type
+      }
+      price
+      provider {
+        id
+        name
+      }
+      vehicle_type {
+        type
+      }
     }
   }
 }

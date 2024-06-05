@@ -94,6 +94,38 @@
           "size": 2,
           "type": "boolean"
         }
+      ],
+      [
+        {
+          "label": "Routes",
+          "placeholder": "",
+          "name": "routes",
+          "size": 12,
+          "type": "orders-products",
+          "columns": [
+            {
+              "key": "id",
+              "dataIndex": "id",
+              "title": "Id",
+              "align": "left",
+              "note": "render-link"
+            },
+            {
+              "key": "created_at",
+              "dataIndex": "created_at",
+              "title": "Created at",
+              "align": "center",
+              "note": "render-date"
+            },
+            {
+              "key": "isactive",
+              "dataIndex": "isactive",
+              "title": "Enable",
+              "align": "center",
+              "note": "render-bool"
+            }
+          ]
+        }
       ]
     ],
     "defaultValue": {
