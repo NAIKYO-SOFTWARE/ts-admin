@@ -4862,7 +4862,7 @@ export type GetBookingsQueryVariables = Exact<{
 }>;
 
 
-export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: any | null, status: string, user_id: number, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
+export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: any | null, status: string, user_id: number, updated_at?: any | null, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
 
 export type GetBookingQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -4874,6 +4874,7 @@ export type GetBookingQuery = { __typename?: 'query_root', bookings_by_pk?: { __
 export type UpdateBookingMutationVariables = Exact<{
   id: Scalars['Int']['input'];
   status?: InputMaybe<Scalars['String']['input']>;
+  updated_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -4886,7 +4887,7 @@ export type GetCitiesQueryVariables = Exact<{
 }>;
 
 
-export type GetCitiesQuery = { __typename?: 'query_root', cities: Array<{ __typename?: 'cities', id: number, name: string, created_at?: any | null, isactive?: boolean | null }>, cities_aggregate: { __typename?: 'cities_aggregate', aggregate?: { __typename?: 'cities_aggregate_fields', count: number } | null } };
+export type GetCitiesQuery = { __typename?: 'query_root', cities: Array<{ __typename?: 'cities', id: number, name: string, created_at?: any | null, updated_at?: any | null, isactive?: boolean | null }>, cities_aggregate: { __typename?: 'cities_aggregate', aggregate?: { __typename?: 'cities_aggregate_fields', count: number } | null } };
 
 export type GetCityQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -4898,6 +4899,7 @@ export type GetCityQuery = { __typename?: 'query_root', cities_by_pk?: { __typen
 export type UpdateCityMutationVariables = Exact<{
   id: Scalars['Int']['input'];
   isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  updated_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -4910,7 +4912,7 @@ export type GetItinerariesQueryVariables = Exact<{
 }>;
 
 
-export type GetItinerariesQuery = { __typename?: 'query_root', itinerary: Array<{ __typename?: 'itinerary', isactive?: boolean | null, id: number, vehicle_types_id: number, created_at?: any | null, provider: { __typename?: 'providers', name: string, id: number }, route: { __typename?: 'routes', created_at?: any | null, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, city: { __typename?: 'cities', name: string, id: number } }, vehicle_type: { __typename?: 'vehicle_types', type: string }, option: { __typename?: 'options', id: number, round_type: string } }>, itinerary_aggregate: { __typename?: 'itinerary_aggregate', aggregate?: { __typename?: 'itinerary_aggregate_fields', count: number } | null } };
+export type GetItinerariesQuery = { __typename?: 'query_root', itinerary: Array<{ __typename?: 'itinerary', isactive?: boolean | null, id: number, vehicle_types_id: number, created_at?: any | null, updated_at?: any | null, provider: { __typename?: 'providers', name: string, id: number }, route: { __typename?: 'routes', created_at?: any | null, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, city: { __typename?: 'cities', name: string, id: number } }, vehicle_type: { __typename?: 'vehicle_types', type: string }, option: { __typename?: 'options', id: number, round_type: string } }>, itinerary_aggregate: { __typename?: 'itinerary_aggregate', aggregate?: { __typename?: 'itinerary_aggregate_fields', count: number } | null } };
 
 export type GetItineraryQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -4962,7 +4964,7 @@ export type GetLocationsQueryVariables = Exact<{
 }>;
 
 
-export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
+export type GetLocationsQuery = { __typename?: 'query_root', locations: Array<{ __typename?: 'locations', id: number, name: string, created_at?: any | null, updated_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string } }>, locations_aggregate: { __typename?: 'locations_aggregate', aggregate?: { __typename?: 'locations_aggregate_fields', count: number } | null } };
 
 export type DeleteLocationMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -4982,6 +4984,7 @@ export type InsertLocationMutationVariables = Exact<{
   city_id: Scalars['Int']['input'];
   isactive: Scalars['Boolean']['input'];
   name: Scalars['String']['input'];
+  created_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -4992,6 +4995,7 @@ export type UpdateLocationMutationVariables = Exact<{
   city_id: Scalars['Int']['input'];
   isactive: Scalars['Boolean']['input'];
   name: Scalars['String']['input'];
+  updated_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -5021,7 +5025,7 @@ export type GetProvidersQueryVariables = Exact<{
 }>;
 
 
-export type GetProvidersQuery = { __typename?: 'query_root', providers: Array<{ __typename?: 'providers', id: number, address?: string | null, created_at?: any | null, name: string, note?: string | null, phone_number?: string | null, telegram_id?: string | null, isactive: boolean }>, providers_aggregate: { __typename?: 'providers_aggregate', aggregate?: { __typename?: 'providers_aggregate_fields', count: number } | null } };
+export type GetProvidersQuery = { __typename?: 'query_root', providers: Array<{ __typename?: 'providers', id: number, address?: string | null, created_at?: any | null, updated_at?: any | null, name: string, note?: string | null, phone_number?: string | null, telegram_id?: string | null, isactive: boolean }>, providers_aggregate: { __typename?: 'providers_aggregate', aggregate?: { __typename?: 'providers_aggregate_fields', count: number } | null } };
 
 export type InsertProviderMutationVariables = Exact<{
   address?: InputMaybe<Scalars['String']['input']>;
@@ -5030,6 +5034,7 @@ export type InsertProviderMutationVariables = Exact<{
   phone_number?: InputMaybe<Scalars['String']['input']>;
   telegram_id?: InputMaybe<Scalars['String']['input']>;
   isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  created_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -5050,6 +5055,7 @@ export type UpdateProviderMutationVariables = Exact<{
   phone_number?: InputMaybe<Scalars['String']['input']>;
   telegram_id?: InputMaybe<Scalars['String']['input']>;
   isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  updated_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -5091,6 +5097,7 @@ export type UpdateRouteMutationVariables = Exact<{
   start_location?: InputMaybe<Scalars['Int']['input']>;
   end_location?: InputMaybe<Scalars['Int']['input']>;
   isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  updated_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -5108,6 +5115,7 @@ export type InsertRouteMutationVariables = Exact<{
   start_location?: InputMaybe<Scalars['Int']['input']>;
   end_location?: InputMaybe<Scalars['Int']['input']>;
   isactive?: InputMaybe<Scalars['Boolean']['input']>;
+  created_at: Scalars['timestamptz']['input'];
 }>;
 
 
@@ -5172,6 +5180,7 @@ export const GetBookingsDocument = gql`
     note
     status
     user_id
+    updated_at
     user {
       name
       phone_number
@@ -5314,8 +5323,11 @@ export type GetBookingLazyQueryHookResult = ReturnType<typeof useGetBookingLazyQ
 export type GetBookingSuspenseQueryHookResult = ReturnType<typeof useGetBookingSuspenseQuery>;
 export type GetBookingQueryResult = Apollo.QueryResult<GetBookingQuery, GetBookingQueryVariables>;
 export const UpdateBookingDocument = gql`
-    mutation updateBooking($id: Int!, $status: String) {
-  update_bookings_by_pk(pk_columns: {id: $id}, _set: {status: $status}) {
+    mutation updateBooking($id: Int!, $status: String, $updated_at: timestamptz!) {
+  update_bookings_by_pk(
+    pk_columns: {id: $id}
+    _set: {status: $status, updated_at: $updated_at}
+  ) {
     id
   }
 }
@@ -5337,6 +5349,7 @@ export type UpdateBookingMutationFn = Apollo.MutationFunction<UpdateBookingMutat
  *   variables: {
  *      id: // value for 'id'
  *      status: // value for 'status'
+ *      updated_at: // value for 'updated_at'
  *   },
  * });
  */
@@ -5358,6 +5371,7 @@ export const GetCitiesDocument = gql`
     id
     name
     created_at
+    updated_at
     isactive
   }
   cities_aggregate(where: $where) {
@@ -5454,8 +5468,11 @@ export type GetCityLazyQueryHookResult = ReturnType<typeof useGetCityLazyQuery>;
 export type GetCitySuspenseQueryHookResult = ReturnType<typeof useGetCitySuspenseQuery>;
 export type GetCityQueryResult = Apollo.QueryResult<GetCityQuery, GetCityQueryVariables>;
 export const UpdateCityDocument = gql`
-    mutation updateCity($id: Int!, $isactive: Boolean) {
-  update_cities_by_pk(pk_columns: {id: $id}, _set: {isactive: $isactive}) {
+    mutation updateCity($id: Int!, $isactive: Boolean, $updated_at: timestamptz!) {
+  update_cities_by_pk(
+    pk_columns: {id: $id}
+    _set: {isactive: $isactive, updated_at: $updated_at}
+  ) {
     id
   }
 }
@@ -5477,6 +5494,7 @@ export type UpdateCityMutationFn = Apollo.MutationFunction<UpdateCityMutation, U
  *   variables: {
  *      id: // value for 'id'
  *      isactive: // value for 'isactive'
+ *      updated_at: // value for 'updated_at'
  *   },
  * });
  */
@@ -5525,6 +5543,7 @@ export const GetItinerariesDocument = gql`
     }
     vehicle_types_id
     created_at
+    updated_at
   }
   itinerary_aggregate(where: $where) {
     aggregate {
@@ -5762,6 +5781,7 @@ export const GetLocationsDocument = gql`
     id
     name
     created_at
+    updated_at
     city {
       name
     }
@@ -5903,9 +5923,9 @@ export type GetLocationLazyQueryHookResult = ReturnType<typeof useGetLocationLaz
 export type GetLocationSuspenseQueryHookResult = ReturnType<typeof useGetLocationSuspenseQuery>;
 export type GetLocationQueryResult = Apollo.QueryResult<GetLocationQuery, GetLocationQueryVariables>;
 export const InsertLocationDocument = gql`
-    mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!) {
+    mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!, $created_at: timestamptz!) {
   insert_locations_one(
-    object: {city_id: $city_id, isactive: $isactive, name: $name}
+    object: {city_id: $city_id, isactive: $isactive, name: $name, created_at: $created_at}
   ) {
     id
   }
@@ -5929,6 +5949,7 @@ export type InsertLocationMutationFn = Apollo.MutationFunction<InsertLocationMut
  *      city_id: // value for 'city_id'
  *      isactive: // value for 'isactive'
  *      name: // value for 'name'
+ *      created_at: // value for 'created_at'
  *   },
  * });
  */
@@ -5940,10 +5961,10 @@ export type InsertLocationMutationHookResult = ReturnType<typeof useInsertLocati
 export type InsertLocationMutationResult = Apollo.MutationResult<InsertLocationMutation>;
 export type InsertLocationMutationOptions = Apollo.BaseMutationOptions<InsertLocationMutation, InsertLocationMutationVariables>;
 export const UpdateLocationDocument = gql`
-    mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!) {
+    mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!, $updated_at: timestamptz!) {
   update_locations_by_pk(
     pk_columns: {id: $id}
-    _set: {city_id: $city_id, isactive: $isactive, name: $name}
+    _set: {city_id: $city_id, isactive: $isactive, name: $name, updated_at: $updated_at}
   ) {
     id
   }
@@ -5968,6 +5989,7 @@ export type UpdateLocationMutationFn = Apollo.MutationFunction<UpdateLocationMut
  *      city_id: // value for 'city_id'
  *      isactive: // value for 'isactive'
  *      name: // value for 'name'
+ *      updated_at: // value for 'updated_at'
  *   },
  * });
  */
@@ -6080,6 +6102,7 @@ export const GetProvidersDocument = gql`
     id
     address
     created_at
+    updated_at
     name
     note
     phone_number
@@ -6129,9 +6152,9 @@ export type GetProvidersLazyQueryHookResult = ReturnType<typeof useGetProvidersL
 export type GetProvidersSuspenseQueryHookResult = ReturnType<typeof useGetProvidersSuspenseQuery>;
 export type GetProvidersQueryResult = Apollo.QueryResult<GetProvidersQuery, GetProvidersQueryVariables>;
 export const InsertProviderDocument = gql`
-    mutation InsertProvider($address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean) {
+    mutation InsertProvider($address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean, $created_at: timestamptz!) {
   insert_providers_one(
-    object: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive}
+    object: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive, created_at: $created_at}
   ) {
     id
   }
@@ -6158,6 +6181,7 @@ export type InsertProviderMutationFn = Apollo.MutationFunction<InsertProviderMut
  *      phone_number: // value for 'phone_number'
  *      telegram_id: // value for 'telegram_id'
  *      isactive: // value for 'isactive'
+ *      created_at: // value for 'created_at'
  *   },
  * });
  */
@@ -6202,10 +6226,10 @@ export type DeleteProviderMutationHookResult = ReturnType<typeof useDeleteProvid
 export type DeleteProviderMutationResult = Apollo.MutationResult<DeleteProviderMutation>;
 export type DeleteProviderMutationOptions = Apollo.BaseMutationOptions<DeleteProviderMutation, DeleteProviderMutationVariables>;
 export const UpdateProviderDocument = gql`
-    mutation UpdateProvider($id: Int!, $address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean) {
+    mutation UpdateProvider($id: Int!, $address: String, $name: String, $note: String, $phone_number: String, $telegram_id: String, $isactive: Boolean, $updated_at: timestamptz!) {
   update_providers_by_pk(
     pk_columns: {id: $id}
-    _set: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive}
+    _set: {address: $address, name: $name, note: $note, phone_number: $phone_number, telegram_id: $telegram_id, isactive: $isactive, updated_at: $updated_at}
   ) {
     id
   }
@@ -6233,6 +6257,7 @@ export type UpdateProviderMutationFn = Apollo.MutationFunction<UpdateProviderMut
  *      phone_number: // value for 'phone_number'
  *      telegram_id: // value for 'telegram_id'
  *      isactive: // value for 'isactive'
+ *      updated_at: // value for 'updated_at'
  *   },
  * });
  */
@@ -6451,10 +6476,10 @@ export type GetRouteLazyQueryHookResult = ReturnType<typeof useGetRouteLazyQuery
 export type GetRouteSuspenseQueryHookResult = ReturnType<typeof useGetRouteSuspenseQuery>;
 export type GetRouteQueryResult = Apollo.QueryResult<GetRouteQuery, GetRouteQueryVariables>;
 export const UpdateRouteDocument = gql`
-    mutation updateRoute($id: Int!, $from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
+    mutation updateRoute($id: Int!, $from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean, $updated_at: timestamptz!) {
   update_routes_by_pk(
     pk_columns: {id: $id}
-    _set: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive}
+    _set: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive, updated_at: $updated_at}
   ) {
     id
   }
@@ -6480,6 +6505,7 @@ export type UpdateRouteMutationFn = Apollo.MutationFunction<UpdateRouteMutation,
  *      start_location: // value for 'start_location'
  *      end_location: // value for 'end_location'
  *      isactive: // value for 'isactive'
+ *      updated_at: // value for 'updated_at'
  *   },
  * });
  */
@@ -6524,9 +6550,9 @@ export type DeleteRouteMutationHookResult = ReturnType<typeof useDeleteRouteMuta
 export type DeleteRouteMutationResult = Apollo.MutationResult<DeleteRouteMutation>;
 export type DeleteRouteMutationOptions = Apollo.BaseMutationOptions<DeleteRouteMutation, DeleteRouteMutationVariables>;
 export const InsertRouteDocument = gql`
-    mutation InsertRoute($from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
+    mutation InsertRoute($from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean, $created_at: timestamptz!) {
   insert_routes_one(
-    object: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive}
+    object: {from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive, created_at: $created_at}
   ) {
     id
     isactive
@@ -6564,6 +6590,7 @@ export type InsertRouteMutationFn = Apollo.MutationFunction<InsertRouteMutation,
  *      start_location: // value for 'start_location'
  *      end_location: // value for 'end_location'
  *      isactive: // value for 'isactive'
+ *      created_at: // value for 'created_at'
  *   },
  * });
  */

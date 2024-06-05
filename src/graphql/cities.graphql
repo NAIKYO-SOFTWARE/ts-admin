@@ -3,6 +3,7 @@ query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int!
     id
     name
     created_at
+    updated_at
     isactive
   }
   cities_aggregate(where: $where) {
@@ -28,8 +29,8 @@ query getCity($id: Int!) {
   }
 }
 
-mutation updateCity($id: Int!, $isactive: Boolean) {
-  update_cities_by_pk(pk_columns: { id: $id }, _set: { isactive: $isactive }) {
+mutation updateCity($id: Int!, $isactive: Boolean, $updated_at: timestamptz!) {
+  update_cities_by_pk(pk_columns: { id: $id }, _set: { isactive: $isactive, updated_at: $updated_at }) {
     id
   }
 }

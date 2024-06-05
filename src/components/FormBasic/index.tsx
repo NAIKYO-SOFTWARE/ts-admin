@@ -424,7 +424,7 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
     awaitRefetchQueries: true
   }
   const [onUpdate] = editable && useUpdateOne ? useUpdateOne(options) : [null]
-  const [onCreate] = creatable && useCreateOne ? useCreateOne(options) : [null]
+  const [onCreate] = creatable && useCreateOne && lastPath === 'new' ? useCreateOne(options) : [null]
 
   const { loading } = useFindOne({
     variables: {
@@ -445,50 +445,47 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
     return <Forbidden />
   }
 
-  const doSubmit = () => {
+  const doSubmit = async () => {
     const { isSubmit, ...values } = form.peek()
     if (isSubmit) {
       return
     }
-    // validate form
+
     const { isValid, errors } = validateForm(values, edit)
     if (!isValid) {
       formErrors.set(errors)
-    } else {
-      form.isSubmit.set(true)
-      const isEdit = lastPath !== 'new'
-      const label = isEdit ? 'Update' : 'Create'
-      const action = isEdit
-        ? onUpdate({
-            variables: {
-              id: Number(lastPath),
-              ...values,
-              updated_at: new Date()
-            }
-          })
-        : onCreate({
-            variables: {
-              ...values,
-              created_at: new Date()
-            }
-          })
+      return
+    }
 
-      action
-        ?.then(({ data }: any) => {
-          formErrors.set({})
-          api.success({ message: 'Success', description: `${label} item successful.` })
-          if (!isEdit) {
-            props.navigate(`/${props.uid}/${data[`insert_${props.uid}_one`].id}`, { replace: true })
+    form.isSubmit.set(true)
+    const isEdit = lastPath !== 'new'
+    const label = isEdit ? 'Update' : 'Create'
+    isEdit
+      ? onUpdate({
+          variables: {
+            id: Number(lastPath),
+            ...values,
+            updated_at: new Date()
           }
         })
-        .catch((error: any) => {
-          if (error.response && error.response.status === 400) {
-            const errors = bindErrorMessage(error.response.data)
-            formErrors.set(errors)
+      : onCreate({
+          variables: {
+            ...values,
+            created_at: new Date()
           }
-          api.error({ message: 'Error', description: `${label} item unsuccessful.` })
         })
-        .finally(() => form.isSubmit.set(false))
+
+    try {
+      formErrors.set({})
+      api.success({ message: 'Success', description: `${label} item successful.` })
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        const errors = bindErrorMessage(error.response.data)
+        formErrors.set(errors)
+      }
+      api.error({ message: 'Error', description: `${label} item unsuccessful.` })
+    } finally {
+      form.isSubmit.set(false)
     }
   }
 

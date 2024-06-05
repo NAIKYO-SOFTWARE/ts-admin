@@ -12,30 +12,21 @@
           "label": "Name",
           "placeholder": "Name",
           "name": "name",
-          "size": 5,
+          "size": 4,
           "type": "string"
         },
         {
           "label": "Phone",
           "placeholder": "Phone",
           "name": "phone_number",
-          "size": 5,
-          "type": "string"
-        }
-      ],
-      [
-        {
-          "label": "Address",
-          "placeholder": "Address",
-          "name": "address",
-          "size": 5,
+          "size": 4,
           "type": "string"
         },
         {
           "label": "Enable",
           "placeholder": "Enable",
           "name": "isactive",
-          "size": 5,
+          "size": 2,
           "type": "boolean"
         }
       ]
@@ -64,6 +55,13 @@
         "key": "created_at",
         "dataIndex": "created_at",
         "title": "Created At",
+        "align": "center",
+        "note": "render-date"
+      },
+      {
+        "key": "updated_at",
+        "dataIndex": "updated_at",
+        "title": "Updated At",
         "align": "center",
         "note": "render-date"
       }

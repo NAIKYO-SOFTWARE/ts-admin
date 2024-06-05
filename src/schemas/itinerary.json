@@ -11,8 +11,15 @@
         {
           "label": "Created At",
           "name": "created_at",
-          "size": 6,
+          "size": 4,
           "type": "date"
+        },
+        {
+          "label": "Enable",
+          "placeholder": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
         }
       ]
     ],
@@ -46,6 +53,13 @@
         "key": "created_at",
         "dataIndex": "created_at",
         "title": "Created At",
+        "align": "center",
+        "note": "render-date"
+      },
+      {
+        "key": "updated_at",
+        "dataIndex": "updated_at",
+        "title": "Updated At",
         "align": "center",
         "note": "render-date"
       }
@@ -117,18 +131,18 @@
           "required": true
         },
         {
-          "label": "Note",
-          "placeholder": "Note",
-          "name": "note",
-          "size": 6,
-          "type": "textarea",
-          "max": 512
-        },
-        {
           "label": "Enable",
           "name": "isactive",
           "size": 2,
           "type": "boolean"
+        },
+        {
+          "label": "Note",
+          "placeholder": "Note",
+          "name": "note",
+          "size": 8,
+          "type": "textarea",
+          "max": 512
         }
       ]
     ],

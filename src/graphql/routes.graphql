@@ -48,10 +48,23 @@ query getRoute($id: Int!) {
   }
 }
 
-mutation updateRoute($id: Int!, $from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
+mutation updateRoute(
+  $id: Int!
+  $from_city: Int
+  $start_location: Int
+  $end_location: Int
+  $isactive: Boolean
+  $updated_at: timestamptz!
+) {
   update_routes_by_pk(
     pk_columns: { id: $id }
-    _set: { from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive }
+    _set: {
+      from_city: $from_city
+      start_location: $start_location
+      end_location: $end_location
+      isactive: $isactive
+      updated_at: $updated_at
+    }
   ) {
     id
   }
@@ -62,9 +75,21 @@ mutation DeleteRoute($id: Int!) {
   }
 }
 
-mutation InsertRoute($from_city: Int, $start_location: Int, $end_location: Int, $isactive: Boolean) {
+mutation InsertRoute(
+  $from_city: Int
+  $start_location: Int
+  $end_location: Int
+  $isactive: Boolean
+  $created_at: timestamptz!
+) {
   insert_routes_one(
-    object: { from_city: $from_city, start_location: $start_location, end_location: $end_location, isactive: $isactive }
+    object: {
+      from_city: $from_city
+      start_location: $start_location
+      end_location: $end_location
+      isactive: $isactive
+      created_at: $created_at
+    }
   ) {
     id
     isactive

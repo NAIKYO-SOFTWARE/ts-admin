@@ -8,6 +8,7 @@ import {
   GetUsersDocument,
   useDeleteItineraryMutation,
   useDeleteLocationMutation,
+  useDeleteProviderMutation,
   useDeleteRouteMutation,
   useDeleteUserMutation,
   useFindOneProviderQuery,
@@ -66,7 +67,7 @@ const queries: Record<string, Record<string, any>> = {
     createOne: useInsertProviderMutation,
     updateOne: useUpdateProviderMutation,
     findMany: useGetProvidersQuery,
-    deleteOne: useUpdateProviderEnableMutation
+    deleteOne: useDeleteProviderMutation
   },
   routes: {
     findOne: useGetRouteQuery,
