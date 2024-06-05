@@ -7,6 +7,7 @@ query getBookings($where: bookings_bool_exp! = {}, $limit: Int = 10, $offset: In
     note
     status
     user_id
+    updated_at
     user {
       name
       phone_number
@@ -79,8 +80,8 @@ query getBooking($id: Int!) {
   }
 }
 
-mutation updateBooking($id: Int!, $status: String) {
-  update_bookings_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
+mutation updateBooking($id: Int!, $status: String, $updated_at: timestamptz!) {
+  update_bookings_by_pk(pk_columns: { id: $id }, _set: { status: $status, updated_at: $updated_at }) {
     id
   }
 }

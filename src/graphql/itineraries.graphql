@@ -30,6 +30,7 @@ query getItineraries($where: itinerary_bool_exp! = {}, $limit: Int = 10, $offset
     }
     vehicle_types_id
     created_at
+    updated_at
   }
   itinerary_aggregate(where: $where) {
     aggregate {

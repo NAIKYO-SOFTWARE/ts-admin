@@ -3,6 +3,7 @@ query getLocations($where: locations_bool_exp! = {}, $limit: Int! = 10, $offset:
     id
     name
     created_at
+    updated_at
     city {
       name
     }
@@ -47,14 +48,17 @@ query getLocation($id: Int!) {
   }
 }
 
-mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!) {
-  insert_locations_one(object: { city_id: $city_id, isactive: $isactive, name: $name }) {
+mutation insertLocation($city_id: Int!, $isactive: Boolean!, $name: String!, $created_at: timestamptz!) {
+  insert_locations_one(object: { city_id: $city_id, isactive: $isactive, name: $name, created_at: $created_at }) {
     id
   }
 }
 
-mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!) {
-  update_locations_by_pk(pk_columns: { id: $id }, _set: { city_id: $city_id, isactive: $isactive, name: $name }) {
+mutation updateLocation($id: Int!, $city_id: Int!, $isactive: Boolean!, $name: String!, $updated_at: timestamptz!) {
+  update_locations_by_pk(
+    pk_columns: { id: $id }
+    _set: { city_id: $city_id, isactive: $isactive, name: $name, updated_at: $updated_at }
+  ) {
     id
   }
 }

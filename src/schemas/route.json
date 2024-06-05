@@ -13,8 +13,14 @@
           "label": "City",
           "placeholder": "City",
           "name": "city",
-          "size": 10,
+          "size": 4,
           "type": "string"
+        },
+        {
+          "label": "Created At",
+          "name": "createdAt",
+          "size": 4,
+          "type": "date"
         },
         {
           "label": "Enable",
@@ -27,23 +33,15 @@
           "label": "Start",
           "placeholder": "Start",
           "name": "start_location",
-          "size": 5,
+          "size": 4,
           "type": "string"
         },
         {
           "label": "End",
           "placeholder": "End",
           "name": "end",
-          "size": 5,
+          "size": 4,
           "type": "string"
-        }
-      ],
-      [
-        {
-          "label": "Created At",
-          "name": "createdAt",
-          "size": 10,
-          "type": "date"
         }
       ]
     ],
@@ -100,7 +98,7 @@
           "type": "relation",
           "relation": "cities",
           "name": "from_city",
-          "size": 10,
+          "size": 5,
           "required": true
         },
         {
@@ -108,7 +106,9 @@
           "name": "isactive",
           "size": 2,
           "type": "boolean"
-        },
+        }
+      ],
+      [
         {
           "label": "Start",
           "key": "start",
