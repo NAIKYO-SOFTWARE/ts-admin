@@ -20,8 +20,8 @@ const SidebarData = [
       { icon: mdiInboxMultiple, key: 'cities' },
       { icon: mdiSitemapOutline, key: 'locations' },
       { icon: mdiCupcake, key: 'routes' },
-      { icon: mdiQuadcopter, key: 'providers' },
-      { icon: mdiCartVariant, key: 'itinerary' }
+      { icon: mdiCartVariant, key: 'itinerary' },
+      { icon: mdiQuadcopter, key: 'providers' }
       // { icon: mdiStar, key: 'balance-transactions' },
       // { icon: mdiCartVariant, key: 'transactions' },
       // { icon: mdiInboxArrowDown, key: 'investments' },

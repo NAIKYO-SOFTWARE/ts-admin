@@ -138,10 +138,22 @@ export const dataHandlers: Record<string, Props> = {
       }))
     },
     one: (data) => {
+      const itineraries = data.routes_by_pk.itineraries.map((itinerary: any, idx: number) => ({
+        ...itinerary,
+        id: {
+          label: `Itineraries ${idx}`,
+          path: '/itinerary',
+          id: itinerary.id
+        },
+        option: itinerary.option.round_type,
+        provider: itinerary.provider.name,
+        vehicle_type: itinerary.vehicle_type.type
+      }))
       return {
         ...data.routes_by_pk,
         start_location: data.routes_by_pk.startlocation.id,
-        end_location: data.routes_by_pk.endlocation.id
+        end_location: data.routes_by_pk.endlocation.id,
+        itineraries
       }
     },
     copy: (data) => {
@@ -170,28 +182,22 @@ export const dataHandlers: Record<string, Props> = {
       }))
     },
     one: (data) => {
-      // const routes = data.locations_by_pk.routes.map((route: any) => ({
-      //   // ...route,
-      //   route_id: {
-      //     label: `${route.startlocation.name} - ${route.endlocation.name}`,
-      //     path: '/routes',
-      //     id: route.id
-      //   }
-      //   // start_location: route.startlocation.name,
-      //   // end_location: route.endlocation.name
-      // }))
-      // console.log(routes)
+      const routes = data.locations_by_pk.routes.map((route: any) => ({
+        ...route,
+        id: {
+          label: `${route.startlocation.name} - ${route.endlocation.name}`,
+          path: '/routes',
+          id: route.id
+        }
+      }))
 
-      return { ...data.locations_by_pk, city_id: data.locations_by_pk.city.id }
+      return { ...data.locations_by_pk, city_id: data.locations_by_pk.city.id, routes }
     },
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id }))
   },
   cities: {
     select: (data) => data.map((data: any) => ({ label: data.name, value: data.id })),
-    many: (data) => {
-      console.log(data)
-      return data
-    },
+    many: (data) => data,
     one: (data) => {
       const locations = data.cities_by_pk.locations.map((location: any) => ({
         ...location,
