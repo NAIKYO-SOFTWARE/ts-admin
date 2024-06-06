@@ -9,25 +9,12 @@
     "filterable": [
       [
         {
-          "label": "Name",
-          "placeholder": "Name",
-          "name": "name",
+          "label": "id",
+          "placeholder": "id",
+          "name": "id",
           "size": 5,
-          "type": "string"
+          "type": "number"
         },
-        {
-          "label": "User phone number",
-          "placeholder": "User phone number",
-          "name": "userPhoneNumber",
-          "size": 5,
-          "type": "string",
-          "regex": [
-            "^\\d{8,16}$",
-            "i"
-          ]
-        }
-      ],
-      [
         {
           "label": "Status",
           "placeholder": "Status",
@@ -41,13 +28,6 @@
             "Completed",
             "Confirmed"
           ]
-        },
-        {
-          "label": "Price",
-          "placeholder": "Price",
-          "name": "price",
-          "size": 5,
-          "type": "string"
         }
       ]
     ],
