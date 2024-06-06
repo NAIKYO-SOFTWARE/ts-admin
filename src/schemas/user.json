@@ -128,7 +128,8 @@
               "key": "id",
               "dataIndex": "id",
               "title": "Id",
-              "align": "left"
+              "align": "left",
+              "note": "render-link"
             },
             {
               "key": "route",

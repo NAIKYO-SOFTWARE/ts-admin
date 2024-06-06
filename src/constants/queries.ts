@@ -117,6 +117,11 @@ export const dataHandlers: Record<string, Props> = {
           path: '/routes',
           id: booking.itinerary.route.id
         },
+        id: {
+          label: `Booking order - ${booking.id}`,
+          path: '/bookings',
+          id: booking.id
+        },
         provider: {
           label: `${booking.itinerary.provider.name}`,
           path: '/providers',
