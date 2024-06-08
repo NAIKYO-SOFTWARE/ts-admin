@@ -19,7 +19,6 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  bpchar: { input: any; output: any; }
   numeric: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
 };
@@ -49,6 +48,31 @@ export type Boolean_Comparison_Exp = {
   _lte?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<Scalars['Boolean']['input']>;
   _nin?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+};
+
+export type CancelBookingOutput = {
+  __typename?: 'CancelBookingOutput';
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id: Scalars['Int']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+export type DataInsertBookingInput = {
+  bookingDate?: InputMaybe<Scalars['timestamptz']['input']>;
+  itineraryId?: InputMaybe<Scalars['Int']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type DataInsertBookingOutput = {
+  __typename?: 'DataInsertBookingOutput';
+  bookingDate?: Maybe<Scalars['timestamptz']['output']>;
+  createdAt?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
@@ -97,15 +121,20 @@ export type String_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UpdateBookingOutput = {
-  __typename?: 'UpdateBookingOutput';
-  message?: Maybe<Scalars['String']['output']>;
-  success?: Maybe<Scalars['Boolean']['output']>;
+export type UpdateBookingInput = {
+  bookingDate?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UserUpdateData = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
+export type UpdateBookingOutput = {
+  __typename?: 'UpdateBookingOutput';
+  bookingDate?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** columns and relationships of "bookings" */
@@ -118,7 +147,7 @@ export type Bookings = {
   /** An object relationship */
   itinerary: Itinerary;
   itinerary_id: Scalars['Int']['output'];
-  note?: Maybe<Scalars['bpchar']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
   status: Scalars['String']['output'];
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   /** An object relationship */
@@ -215,7 +244,7 @@ export type Bookings_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   itinerary?: InputMaybe<Itinerary_Bool_Exp>;
   itinerary_id?: InputMaybe<Int_Comparison_Exp>;
-  note?: InputMaybe<Bpchar_Comparison_Exp>;
+  note?: InputMaybe<String_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
@@ -242,7 +271,7 @@ export type Bookings_Insert_Input = {
   id?: InputMaybe<Scalars['Int']['input']>;
   itinerary?: InputMaybe<Itinerary_Obj_Rel_Insert_Input>;
   itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['bpchar']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
@@ -257,7 +286,7 @@ export type Bookings_Max_Fields = {
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   itinerary_id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['bpchar']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   user_id?: Maybe<Scalars['Int']['output']>;
@@ -284,7 +313,7 @@ export type Bookings_Min_Fields = {
   deleted_at?: Maybe<Scalars['timestamptz']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   itinerary_id?: Maybe<Scalars['Int']['output']>;
-  note?: Maybe<Scalars['bpchar']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   user_id?: Maybe<Scalars['Int']['output']>;
@@ -367,7 +396,7 @@ export type Bookings_Set_Input = {
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['bpchar']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   user_id?: InputMaybe<Scalars['Int']['input']>;
@@ -433,7 +462,7 @@ export type Bookings_Stream_Cursor_Value_Input = {
   deleted_at?: InputMaybe<Scalars['timestamptz']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   itinerary_id?: InputMaybe<Scalars['Int']['input']>;
-  note?: InputMaybe<Scalars['bpchar']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   user_id?: InputMaybe<Scalars['Int']['input']>;
@@ -527,39 +556,6 @@ export type Bookings_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
   itinerary_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-};
-
-/** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
-export type Bpchar_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['bpchar']['input']>;
-  _gt?: InputMaybe<Scalars['bpchar']['input']>;
-  _gte?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['bpchar']['input']>;
-  _in?: InputMaybe<Array<Scalars['bpchar']['input']>>;
-  /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['bpchar']['input']>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['bpchar']['input']>;
-  _lt?: InputMaybe<Scalars['bpchar']['input']>;
-  _lte?: InputMaybe<Scalars['bpchar']['input']>;
-  _neq?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['bpchar']['input']>;
-  _nin?: InputMaybe<Array<Scalars['bpchar']['input']>>;
-  /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['bpchar']['input']>;
-  /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['bpchar']['input']>;
 };
 
 /** columns and relationships of "cities" */
@@ -1922,8 +1918,12 @@ export type Locations_Variance_Order_By = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** actionInsertBooking */
+  actionInsertBooking?: Maybe<DataInsertBookingOutput>;
   /** actionLogin */
   actionLogin?: Maybe<AuthOutput>;
+  /** cancelBooking */
+  cancelBooking?: Maybe<CancelBookingOutput>;
   /** delete data from the table: "bookings" */
   delete_bookings?: Maybe<Bookings_Mutation_Response>;
   /** delete single row from the table: "bookings" */
@@ -2057,9 +2057,22 @@ export type Mutation_Root = {
 
 
 /** mutation root */
+export type Mutation_RootActionInsertBookingArgs = {
+  dataInsertBooking: DataInsertBookingInput;
+};
+
+
+/** mutation root */
 export type Mutation_RootActionLoginArgs = {
   token: Scalars['String']['input'];
   tokenGetPhone?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** mutation root */
+export type Mutation_RootCancelBookingArgs = {
+  bookingId: Scalars['Int']['input'];
+  reason: Scalars['String']['input'];
 };
 
 
@@ -2306,7 +2319,7 @@ export type Mutation_RootLoginAdminArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdateBookingActionArgs = {
-  userUpdateData: UserUpdateData;
+  updateBookingData: UpdateBookingInput;
 };
 
 
@@ -3410,7 +3423,7 @@ export type Routes = {
   endlocation: Locations;
   from_city: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
-  isactive: Scalars['Boolean']['output'];
+  isactive?: Maybe<Scalars['Boolean']['output']>;
   /** An array relationship */
   itineraries: Array<Itinerary>;
   /** An aggregate relationship */
@@ -4862,23 +4875,24 @@ export type GetBookingsQueryVariables = Exact<{
 }>;
 
 
-export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: any | null, status: string, user_id: number, updated_at?: any | null, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
+export type GetBookingsQuery = { __typename?: 'query_root', bookings: Array<{ __typename?: 'bookings', booking_date: any, id: number, created_at?: any | null, itinerary_id: number, note?: string | null, status: string, user_id: number, updated_at?: any | null, user: { __typename?: 'users', name?: string | null, phone_number?: string | null }, itinerary: { __typename?: 'itinerary', price: any } }>, bookings_aggregate: { __typename?: 'bookings_aggregate', aggregate?: { __typename?: 'bookings_aggregate_fields', count: number } | null } };
 
 export type GetBookingQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetBookingQuery = { __typename?: 'query_root', bookings_by_pk?: { __typename?: 'bookings', booking_date: any, created_at?: any | null, deleted_at?: any | null, id: number, itinerary_id: number, note?: any | null, status: string, updated_at?: any | null, itinerary: { __typename?: 'itinerary', created_at?: any | null, deleted_at?: any | null, id: number, isactive?: boolean | null, note?: string | null, price: any, provider_id: number, route_id: number, updated_at?: any | null, vehicle_types_id: number, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', name: string, note?: string | null, phone_number?: string | null }, route: { __typename?: 'routes', city: { __typename?: 'cities', name: string, routes: Array<{ __typename?: 'routes', id: number, end_location: number, start_location: number, from_city: number, startlocation: { __typename?: 'locations', name: string }, endlocation: { __typename?: 'locations', name: string } }> } }, vehicle_type: { __typename?: 'vehicle_types', type: string } }, user: { __typename?: 'users', name?: string | null, phone_number?: string | null } } | null };
+export type GetBookingQuery = { __typename?: 'query_root', bookings_by_pk?: { __typename?: 'bookings', booking_date: any, created_at?: any | null, deleted_at?: any | null, id: number, itinerary_id: number, note?: string | null, status: string, updated_at?: any | null, itinerary: { __typename?: 'itinerary', created_at?: any | null, deleted_at?: any | null, id: number, isactive?: boolean | null, note?: string | null, price: any, provider_id: number, route_id: number, updated_at?: any | null, vehicle_types_id: number, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', name: string, note?: string | null, phone_number?: string | null }, route: { __typename?: 'routes', city: { __typename?: 'cities', name: string, routes: Array<{ __typename?: 'routes', id: number, end_location: number, start_location: number, from_city: number, startlocation: { __typename?: 'locations', name: string }, endlocation: { __typename?: 'locations', name: string } }> } }, vehicle_type: { __typename?: 'vehicle_types', type: string } }, user: { __typename?: 'users', name?: string | null, phone_number?: string | null } } | null };
 
 export type UpdateBookingMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
+  bookingDate?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
-  updated_at: Scalars['timestamptz']['input'];
 }>;
 
 
-export type UpdateBookingMutation = { __typename?: 'mutation_root', update_bookings_by_pk?: { __typename?: 'bookings', id: number } | null };
+export type UpdateBookingMutation = { __typename?: 'mutation_root', updateBookingAction?: { __typename?: 'UpdateBookingOutput', id?: number | null, bookingDate?: any | null, note?: string | null, status?: string | null, updatedAt?: any | null } | null };
 
 export type GetCitiesQueryVariables = Exact<{
   where?: Cities_Bool_Exp;
@@ -4978,7 +4992,7 @@ export type GetLocationQueryVariables = Exact<{
 }>;
 
 
-export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string }, routes: Array<{ __typename?: 'routes', id: number, created_at?: any | null, isactive: boolean, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number } }> } | null };
+export type GetLocationQuery = { __typename?: 'query_root', locations_by_pk?: { __typename?: 'locations', name: string, id: number, created_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string }, routes: Array<{ __typename?: 'routes', id: number, created_at?: any | null, isactive?: boolean | null, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number } }> } | null };
 
 export type InsertLocationMutationVariables = Exact<{
   city_id: Scalars['Int']['input'];
@@ -5082,14 +5096,14 @@ export type GetRoutesQueryVariables = Exact<{
 }>;
 
 
-export type GetRoutesQuery = { __typename?: 'query_root', routes: Array<{ __typename?: 'routes', id: number, from_city: number, start_location: number, end_location: number, updated_at?: any | null, created_at?: any | null, deleted_at?: any | null, isactive: boolean, city: { __typename?: 'cities', name: string }, startlocation: { __typename?: 'locations', name: string, id: number }, endlocation: { __typename?: 'locations', name: string, id: number } }>, routes_aggregate: { __typename?: 'routes_aggregate', aggregate?: { __typename?: 'routes_aggregate_fields', count: number } | null } };
+export type GetRoutesQuery = { __typename?: 'query_root', routes: Array<{ __typename?: 'routes', id: number, from_city: number, start_location: number, end_location: number, updated_at?: any | null, created_at?: any | null, deleted_at?: any | null, isactive?: boolean | null, city: { __typename?: 'cities', name: string }, startlocation: { __typename?: 'locations', name: string, id: number }, endlocation: { __typename?: 'locations', name: string, id: number } }>, routes_aggregate: { __typename?: 'routes_aggregate', aggregate?: { __typename?: 'routes_aggregate_fields', count: number } | null } };
 
 export type GetRouteQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive: boolean, city: { __typename?: 'cities', id: number, name: string }, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, itineraries: Array<{ __typename?: 'itinerary', id: number, isactive?: boolean | null, created_at?: any | null, price: any, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', id: number, name: string }, vehicle_type: { __typename?: 'vehicle_types', type: string } }> } | null };
+export type GetRouteQuery = { __typename?: 'query_root', routes_by_pk?: { __typename?: 'routes', id: number, created_at?: any | null, from_city: number, isactive?: boolean | null, city: { __typename?: 'cities', id: number, name: string }, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, itineraries: Array<{ __typename?: 'itinerary', id: number, isactive?: boolean | null, created_at?: any | null, price: any, option: { __typename?: 'options', round_type: string }, provider: { __typename?: 'providers', id: number, name: string }, vehicle_type: { __typename?: 'vehicle_types', type: string } }> } | null };
 
 export type UpdateRouteMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -5119,7 +5133,7 @@ export type InsertRouteMutationVariables = Exact<{
 }>;
 
 
-export type InsertRouteMutation = { __typename?: 'mutation_root', insert_routes_one?: { __typename?: 'routes', id: number, isactive: boolean, from_city: number, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, city: { __typename?: 'cities', name: string } } | null };
+export type InsertRouteMutation = { __typename?: 'mutation_root', insert_routes_one?: { __typename?: 'routes', id: number, isactive?: boolean | null, from_city: number, endlocation: { __typename?: 'locations', name: string, id: number }, startlocation: { __typename?: 'locations', name: string, id: number }, city: { __typename?: 'cities', name: string } } | null };
 
 export type GetUsersQueryVariables = Exact<{
   where?: Users_Bool_Exp;
@@ -5135,7 +5149,7 @@ export type FindOneQueryVariables = Exact<{
 }>;
 
 
-export type FindOneQuery = { __typename?: 'query_root', users_by_pk?: { __typename?: 'users', name?: string | null, id: number, phone_number?: string | null, role?: string | null, email?: string | null, created_at?: any | null, zalo_id?: string | null, bookings: Array<{ __typename?: 'bookings', id: number, booking_date: any, note?: any | null, status: string, created_at?: any | null, itinerary: { __typename?: 'itinerary', provider: { __typename?: 'providers', id: number, name: string }, vehicle_type: { __typename?: 'vehicle_types', type: string }, option: { __typename?: 'options', round_type: string }, route: { __typename?: 'routes', id: number, endlocation: { __typename?: 'locations', name: string }, startlocation: { __typename?: 'locations', name: string } } } }> } | null };
+export type FindOneQuery = { __typename?: 'query_root', users_by_pk?: { __typename?: 'users', name?: string | null, id: number, phone_number?: string | null, role?: string | null, email?: string | null, created_at?: any | null, zalo_id?: string | null, bookings: Array<{ __typename?: 'bookings', id: number, booking_date: any, note?: string | null, status: string, created_at?: any | null, itinerary: { __typename?: 'itinerary', provider: { __typename?: 'providers', id: number, name: string }, vehicle_type: { __typename?: 'vehicle_types', type: string }, option: { __typename?: 'options', round_type: string }, route: { __typename?: 'routes', id: number, endlocation: { __typename?: 'locations', name: string }, startlocation: { __typename?: 'locations', name: string } } } }> } | null };
 
 export type DeleteUserMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -5322,17 +5336,20 @@ export type GetBookingQueryHookResult = ReturnType<typeof useGetBookingQuery>;
 export type GetBookingLazyQueryHookResult = ReturnType<typeof useGetBookingLazyQuery>;
 export type GetBookingSuspenseQueryHookResult = ReturnType<typeof useGetBookingSuspenseQuery>;
 export type GetBookingQueryResult = Apollo.QueryResult<GetBookingQuery, GetBookingQueryVariables>;
-export const UpdateBookingDocument = gql`
-    mutation updateBooking($id: Int!, $status: String, $updated_at: timestamptz!) {
-  update_bookings_by_pk(
-    pk_columns: {id: $id}
-    _set: {status: $status, updated_at: $updated_at}
+export const UpdateBookingMutationDocument = gql`
+    mutation UpdateBookingMutation($bookingDate: timestamptz, $id: Int, $note: String, $status: String) {
+  updateBookingAction(
+    updateBookingData: {bookingDate: $bookingDate, id: $id, note: $note, status: $status}
   ) {
     id
+    bookingDate
+    note
+    status
+    updatedAt
   }
 }
     `;
-export type UpdateBookingMutationFn = Apollo.MutationFunction<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export type UpdateBookingMutationMutationFn = Apollo.MutationFunction<UpdateBookingMutation, UpdateBookingMutationVariables>;
 
 /**
  * __useUpdateBookingMutation__
@@ -5347,19 +5364,20 @@ export type UpdateBookingMutationFn = Apollo.MutationFunction<UpdateBookingMutat
  * @example
  * const [updateBookingMutation, { data, loading, error }] = useUpdateBookingMutation({
  *   variables: {
+ *      bookingDate: // value for 'bookingDate'
  *      id: // value for 'id'
+ *      note: // value for 'note'
  *      status: // value for 'status'
- *      updated_at: // value for 'updated_at'
  *   },
  * });
  */
 export function useUpdateBookingMutation(baseOptions?: Apollo.MutationHookOptions<UpdateBookingMutation, UpdateBookingMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateBookingMutation, UpdateBookingMutationVariables>(UpdateBookingDocument, options);
+        return Apollo.useMutation<UpdateBookingMutation, UpdateBookingMutationVariables>(UpdateBookingMutationDocument, options);
       }
 export type UpdateBookingMutationHookResult = ReturnType<typeof useUpdateBookingMutation>;
-export type UpdateBookingMutationResult = Apollo.MutationResult<UpdateBookingMutation>;
-export type UpdateBookingMutationOptions = Apollo.BaseMutationOptions<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export type UpdateBookingMutationMutationResult = Apollo.MutationResult<UpdateBookingMutation>;
+export type UpdateBookingMutationMutationOptions = Apollo.BaseMutationOptions<UpdateBookingMutation, UpdateBookingMutationVariables>;
 export const GetCitiesDocument = gql`
     query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
   cities(
