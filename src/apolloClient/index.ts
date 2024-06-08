@@ -1,10 +1,30 @@
 // apolloClient.js
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import { onError } from '@apollo/client/link/error'
 import { auth } from '../helper-plugin'
 
 const httpLink = new HttpLink({
-  uri: 'https://hasura-transfer-services-develop.onrender.com/v1/graphql'
+  uri: import.meta.env.VITE_HASURA_ENDPOINT
+})
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    for (let err of graphQLErrors) {
+      switch (err.extensions.code) {
+        case 'invalid-jwt':
+          auth.clearToken()
+          auth.clearUserInfo()
+          window.location.href = '/auth/login'
+          break
+        default:
+          console.log(`[GraphQL error]: Message: ${err.message}, Location: ${err.locations}, Path: ${err.path}`)
+      }
+    }
+  }
+  if (networkError) {
+    console.log(`[Network error]: ${networkError}`)
+  }
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -18,7 +38,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: errorLink.concat(authLink.concat(httpLink)),
   cache: new InMemoryCache()
 })
 
