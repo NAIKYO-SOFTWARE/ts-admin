@@ -98,6 +98,13 @@ const queries: Record<string, Record<string, any>> = {
   }
 }
 
+export const paramHandlers = {
+  bookings: {
+    dataHandler: (data: any) => ({
+      updateData: { id: data.id, status: data.status, bookingDate: data.bookingDate, note: data.note }
+    })
+  }
+}
 interface Props {
   many?: (data: any) => any[]
   select?: (data: any) => any[]

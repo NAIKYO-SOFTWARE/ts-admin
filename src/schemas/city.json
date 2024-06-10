@@ -31,6 +31,13 @@
     ],
     "list": [
       {
+        "key": "img",
+        "dataIndex": "img",
+        "title": "Image",
+        "align": "left",
+        "note": "render-img"
+      },
+      {
         "key": "name",
         "dataIndex": "name",
         "title": "Name",
@@ -64,9 +71,16 @@
           "label": "Name",
           "placeholder": "Name",
           "name": "name",
-          "size": 6,
+          "size": 5,
           "type": "string",
           "disabled": true
+        },
+        {
+          "label": "Image",
+          "placeholder": "Image",
+          "name": "img",
+          "size": 5,
+          "type": "string"
         },
         {
           "label": "Enable",
