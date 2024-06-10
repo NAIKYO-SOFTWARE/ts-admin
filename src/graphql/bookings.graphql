@@ -80,8 +80,11 @@ query getBooking($id: Int!) {
   }
 }
 
-mutation updateBooking($id: Int!, $status: String, $updated_at: timestamptz!) {
-  update_bookings_by_pk(pk_columns: { id: $id }, _set: { status: $status, updated_at: $updated_at }) {
+mutation updateBooking($updateData: UpdateBookingInput!) {
+  updateBookingAction(updateBookingData: $updateData) {
     id
+    status
+    note
+    updatedAt
   }
 }

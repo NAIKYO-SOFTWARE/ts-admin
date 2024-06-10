@@ -25,7 +25,7 @@ import TextArea from 'antd/es/input/TextArea'
 import Notification from 'antd/es/notification'
 import Skeleton from 'antd/es/skeleton'
 import dayjs from 'dayjs'
-import queries, { dataHandlers, documentNodes } from '../../constants/queries'
+import queries, { dataHandlers, documentNodes, paramHandlers } from '../../constants/queries'
 import Button from '../Button'
 import Checkbox from '../Checkbox'
 import Currencies from '../Currencies'
@@ -460,22 +460,25 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
     form.isSubmit.set(true)
     const isEdit = lastPath !== 'new'
     const label = isEdit ? 'Update' : 'Create'
-    isEdit
-      ? onUpdate({
-          variables: {
-            id: Number(lastPath),
-            ...values,
-            updated_at: new Date()
-          }
-        })
-      : onCreate({
-          variables: {
-            ...values,
-            created_at: new Date()
-          }
-        })
+
+    const data = {
+      id: Number(lastPath),
+      ...values,
+      updated_at: new Date()
+    }
+    const params = props.uid === 'bookings' ? paramHandlers[props.uid].dataHandler(data) : data
 
     try {
+      isEdit
+        ? await onUpdate({
+            variables: params
+          })
+        : await onCreate({
+            variables: {
+              ...values,
+              created_at: new Date()
+            }
+          })
       formErrors.set({})
       api.success({ message: 'Success', description: `${label} item successful.` })
     } catch (error: any) {

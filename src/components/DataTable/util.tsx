@@ -27,14 +27,8 @@ const renderDate = (value: any) => {
 }
 
 const renderImage = (_: unknown, col: Record<string, string>) => {
-  if (!col.images) return <Avatar src={'/noavatar.png'} key={'no_image_' + col.id} />
-  return (
-    <Avatar.Group maxCount={3} className='col-images' size={100} maxStyle={{ backgroundColor: '#0bb197' }}>
-      {col.images.split(',').map((img, idx) => (
-        <Image src={img} key={'image_' + col.id + idx} alt='' size={100} />
-      ))}
-    </Avatar.Group>
-  )
+  if (!col.img) return <Avatar src={'/noavatar.png'} key={'no_image_' + col.id} />
+  return <Image src={col.img} key={'image_' + col.id} alt='' size={100} />
 }
 
 const renderColor = (value: string) => {
