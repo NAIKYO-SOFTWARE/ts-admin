@@ -5,7 +5,7 @@ import { onError } from '@apollo/client/link/error'
 import { auth } from '../helper-plugin'
 
 const httpLink = new HttpLink({
-  uri: 'https://hasura-transfer-services-develop.onrender.com/v1/graphql'
+  uri: import.meta.env.BASE_URL
 })
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
