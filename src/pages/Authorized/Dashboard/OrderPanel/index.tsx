@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts'
 import { useLocation } from 'react-router-dom'
 import { Card, CardBody, Col } from 'reactstrap'
-import { cancelToken } from '../../../../helper-plugin'
+import { useGetBookingsQuery } from '../../../../generated/graphql'
+import { cancelToken, currencyFormat } from '../../../../helper-plugin'
+import { formatDateRange, generateDateLabels, getDateRangeFromQueryString } from '../Filter'
 
 const lineChartColor = 'rgb(251, 77, 83)'
 const barChartColor = '#0ab39c'
@@ -80,19 +82,13 @@ const LineColumnAreaOption: ApexOptions = {
   }
 }
 
-const currencyFormat = (number: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'PHP',
-    maximumFractionDigits: 0
-  }).format(number)
-}
-
 const Empty = () => (
   <Col className='empty' style={{ height: 360 }}>
     <h3>No Data</h3>
   </Col>
 )
+
+// Function to format dates to the required format
 
 const LineColumnArea = (props: IOrderPanels) => {
   const { labels, series } = props
@@ -103,7 +99,7 @@ const LineColumnArea = (props: IOrderPanels) => {
     ...s,
     opposite: idx === 0,
     min: 0,
-    seriesName: idx === 0 ? 'Total Orders' : 'Total Amount',
+    seriesName: idx === 0 ? 'Total Bookings' : 'Total Amount',
     forceNiceScale: true,
     showAlways: true,
     labels: {
@@ -137,16 +133,55 @@ const OrderPanel = () => {
   const { search } = useLocation()
   const [orderPanels, setOrderPanels] = useState<IOrderPanels | null>(null)
 
+  const { startDate = '', endDate = '' } = getDateRangeFromQueryString(search)
+
+  // Format the date range
+  const { data } = useGetBookingsQuery({
+    variables: {
+      where: {
+        created_at: formatDateRange(startDate, endDate)
+      },
+      limit: 1000,
+      offset: 0
+    }
+  })
+
+  const labels = generateDateLabels(startDate, endDate)
+
+  const series = [
+    {
+      name: 'Total Bookings',
+      type: 'column',
+      data: Array(labels.length).fill(0)
+    },
+    {
+      name: 'Total Amount',
+      type: 'line',
+      data: Array(labels.length).fill(0)
+    },
+    {
+      name: 'Revenue',
+      type: 'column',
+      data: Array(labels.length).fill(0)
+    }
+  ]
+
   useEffect(() => {
-    if (search.includes('?date')) {
+    if (search.includes('?date') && data) {
       setOrderPanels(null)
-      // fetchClient.get('/dashboard/order-analytics' + search, { cancelToken: token.token }).then(({ data }) => {
-      //   const isEmpty = data.series.every(({ data }: { data: number[] }) => data.every((d) => d == 0))
-      //   setOrderPanels(!isEmpty ? data : { labels: [], series: [] })
-      // })
+      data['bookings'].forEach((booking) => {
+        const date = new Date(booking.created_at).toISOString().split('T')[0]
+        const index = labels.indexOf(date)
+        if (index !== -1) {
+          series[0].data[index] += 1
+          series[1].data[index] += booking.itinerary.price
+          series[2].data[index] += booking.itinerary.price
+        }
+      })
+      setOrderPanels({ labels, series })
     }
     return () => token.cancel()
-  }, [search])
+  }, [search, data])
 
   return (
     <Col xl={8}>
@@ -154,7 +189,7 @@ const OrderPanel = () => {
         <CardBody>
           <div className='d-flex align-items-center'>
             <div className='flex-grow-1'>
-              <h5 className='card-title'>Order Analytics</h5>
+              <h5 className='card-title'>Booking Analytics</h5>
             </div>
           </div>
           {orderPanels ? (

@@ -70,11 +70,34 @@ const DeleteRow = (props: { onOk: () => string | undefined }) => {
   )
 }
 
+const CopyRow = (props: { onOk: () => string | undefined }) => {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Modal
+        className='modal'
+        title='Confirm Copy'
+        open={open}
+        onOk={() => setOpen(!props.onOk())}
+        onCancel={() => setOpen(false)}
+        centered>
+        <span>Are you sure you want to copy this row?</span>
+      </Modal>
+      <div className='delete' onClick={() => setOpen(!open)}>
+        <img src='/copy.svg' alt='' />
+      </div>
+    </>
+  )
+}
+
 const DataRow = (props: {
   uid: string
   columns: ColumnsType<any>
   onDelete: (id: string) => string | undefined
+  onCopy: (id: string) => string | undefined
   deletable: boolean
+  editable: boolean
+  copyable: boolean
 }) => {
   const loading = useTableStore((store) => store.loading)
   const dataSource = useTableStore((store) => store.dataSource)
@@ -102,13 +125,14 @@ const DataRow = (props: {
         render: (_, record) => {
           return (
             <div className='action'>
-              {!record.editable && (
+              {props.editable && (
                 <Link to={`/${props.uid}/${record.id}`}>
                   <img src='/view.svg' alt='' />
                 </Link>
               )}
 
               {props.deletable && <DeleteRow onOk={() => props.onDelete(record.id)} />}
+              {props.copyable && <CopyRow onOk={() => props.onCopy(record)} />}
             </div>
           )
         }

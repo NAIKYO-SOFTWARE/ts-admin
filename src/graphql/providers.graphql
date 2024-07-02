@@ -3,6 +3,7 @@ query GetProviders($where: providers_bool_exp, $limit: Int, $offset: Int) {
     id
     address
     created_at
+    updated_at
     name
     note
     phone_number
@@ -23,6 +24,7 @@ mutation InsertProvider(
   $phone_number: String
   $telegram_id: String
   $isactive: Boolean
+  $created_at: timestamptz!
 ) {
   insert_providers_one(
     object: {
@@ -32,6 +34,7 @@ mutation InsertProvider(
       phone_number: $phone_number
       telegram_id: $telegram_id
       isactive: $isactive
+      created_at: $created_at
     }
   ) {
     id
@@ -52,6 +55,7 @@ mutation UpdateProvider(
   $phone_number: String
   $telegram_id: String
   $isactive: Boolean
+  $updated_at: timestamptz!
 ) {
   update_providers_by_pk(
     pk_columns: { id: $id }
@@ -62,6 +66,7 @@ mutation UpdateProvider(
       phone_number: $phone_number
       telegram_id: $telegram_id
       isactive: $isactive
+      updated_at: $updated_at
     }
   ) {
     id

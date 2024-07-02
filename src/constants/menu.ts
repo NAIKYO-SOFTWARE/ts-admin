@@ -2,7 +2,11 @@ const MENU = [
   { key: '/', label: 'Dashboard', path: '/' },
   { key: 'users', label: 'Users', path: '/users', viewable: true, creatable: false, exportable: false },
   { key: 'locations', label: 'Locations', path: '/locations', viewable: true, creatable: true, exportable: false },
-  { key: 'providers', label: 'Providers', path: '/providers', viewable: true, creatable: true, exportable: false }
+  { key: 'providers', label: 'Providers', path: '/providers', viewable: true, creatable: true, exportable: false },
+  { key: 'routes', label: 'Routes', path: '/routes', viewable: true, creatable: true, exportable: false },
+  { key: 'bookings', label: 'Bookings', path: '/bookings', viewable: true, creatable: true, exportable: false },
+  { key: 'itinerary', label: 'Itinerary', path: '/itinerary', viewable: true, creatable: true, exportable: false },
+  { key: 'cities', label: 'Cities', path: '/cities', viewable: true, creatable: true, exportable: false }
 ]
 
 // const STATIC_PAGES_MENU = [

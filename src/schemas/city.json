@@ -1,16 +1,15 @@
 {
-  "uid": "locations",
+  "uid": "cities",
   "layouts": {
-    "displayName": "Locations",
-    "creatable": true,
+    "displayName": "Cities",
+    "creatable": false,
     "editable": true,
-    "deletable": true,
-    "aggregateField": "locations_aggregate",
+    "aggregateField": "cities_aggregate",
     "filterable": [
       [
         {
-          "label": "name",
-          "placeholder": "Name",
+          "label": "City",
+          "placeholder": "City",
           "name": "name",
           "size": 4,
           "type": "string"
@@ -25,22 +24,23 @@
           "label": "Enable",
           "placeholder": "Enable",
           "name": "isactive",
-          "size": 2,
+          "size": 4,
           "type": "boolean"
         }
       ]
     ],
     "list": [
       {
+        "key": "img",
+        "dataIndex": "img",
+        "title": "Image",
+        "align": "left",
+        "note": "render-img"
+      },
+      {
         "key": "name",
         "dataIndex": "name",
         "title": "Name",
-        "align": "left"
-      },
-      {
-        "key": "city",
-        "dataIndex": "city",
-        "title": "City",
         "align": "left"
       },
       {
@@ -53,14 +53,14 @@
       {
         "key": "created_at",
         "dataIndex": "created_at",
-        "title": "Created At",
+        "title": "Created at",
         "align": "center",
         "note": "render-date"
       },
       {
         "key": "updated_at",
         "dataIndex": "updated_at",
-        "title": "Updated At",
+        "title": "Updated at",
         "align": "center",
         "note": "render-date"
       }
@@ -71,22 +71,16 @@
           "label": "Name",
           "placeholder": "Name",
           "name": "name",
-          "size": 6,
+          "size": 5,
           "type": "string",
-          "required": true
+          "disabled": true
         },
         {
-          "label": "City",
-          "key": "city",
-          "dataIndex": "city",
-          "title": "City",
-          "align": "left",
-          "multiple": true,
-          "type": "relation",
-          "relation": "cities",
-          "name": "city_id",
-          "required": true,
-          "placeholder": "Select City"
+          "label": "Image",
+          "placeholder": "Image",
+          "name": "img",
+          "size": 5,
+          "type": "string"
         },
         {
           "label": "Enable",
@@ -97,39 +91,37 @@
       ],
       [
         {
-          "label": "Routes",
+          "label": "Locations",
           "placeholder": "",
-          "name": "routes",
+          "name": "locations",
           "size": 12,
           "type": "orders-products",
           "columns": [
             {
-              "key": "id",
-              "dataIndex": "id",
-              "title": "Id",
+              "key": "name",
+              "dataIndex": "name",
+              "title": "Name",
               "align": "left",
               "note": "render-link"
-            },
-            {
-              "key": "created_at",
-              "dataIndex": "created_at",
-              "title": "Created at",
-              "align": "center",
-              "note": "render-date"
             },
             {
               "key": "isactive",
               "dataIndex": "isactive",
               "title": "Enable",
-              "align": "center",
+              "align": "left",
               "note": "render-bool"
+            },
+            {
+              "key": "created_at",
+              "dataIndex": "created_at",
+              "title": "Created At",
+              "align": "center",
+              "note": "render-date"
             }
           ]
         }
       ]
     ],
-    "defaultValue": {
-      "isactive": true
-    }
+    "defaultValue": {}
   }
 }

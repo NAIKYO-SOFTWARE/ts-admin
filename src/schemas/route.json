@@ -1,0 +1,200 @@
+{
+  "uid": "routes",
+  "layouts": {
+    "displayName": "Routes",
+    "creatable": true,
+    "editable": true,
+    "deletable": true,
+    "copyable": true,
+    "aggregateField": "routes_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "City",
+          "placeholder": "City",
+          "name": "city",
+          "size": 4,
+          "type": "string"
+        },
+        {
+          "label": "Created At",
+          "name": "createdAt",
+          "size": 4,
+          "type": "date"
+        },
+        {
+          "label": "Enable",
+          "placeholder": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        },
+        {
+          "label": "Start",
+          "placeholder": "Start",
+          "name": "start_location",
+          "size": 4,
+          "type": "string"
+        },
+        {
+          "label": "End",
+          "placeholder": "End",
+          "name": "end",
+          "size": 4,
+          "type": "string"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "city",
+        "dataIndex": "city",
+        "title": "City",
+        "align": "left"
+      },
+      {
+        "key": "start_location",
+        "dataIndex": "start_location",
+        "title": "Start",
+        "align": "left"
+      },
+      {
+        "key": "end_location",
+        "dataIndex": "end_location",
+        "title": "End",
+        "align": "left"
+      },
+      {
+        "key": "isactive",
+        "dataIndex": "isactive",
+        "title": "Enable",
+        "align": "left",
+        "note": "render-bool"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created",
+        "align": "left",
+        "note": "render-date"
+      },
+      {
+        "key": "updated_at",
+        "dataIndex": "updated_at",
+        "title": "Updated",
+        "align": "left",
+        "note": "render-date"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "City",
+          "key": "city",
+          "dataIndex": "from_city",
+          "title": "City",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "cities",
+          "name": "from_city",
+          "size": 5,
+          "required": true
+        },
+        {
+          "label": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        }
+      ],
+      [
+        {
+          "label": "Start",
+          "key": "start",
+          "dataIndex": "start",
+          "title": "Start",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "locations",
+          "name": "start_location",
+          "size": 5,
+          "required": true
+        },
+        {
+          "label": "End",
+          "key": "end",
+          "dataIndex": "end",
+          "title": "end",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "relation": "locations",
+          "name": "end_location",
+          "size": 5,
+          "required": true
+        }
+      ],
+      [
+        {
+          "label": "Itineraries",
+          "placeholder": "",
+          "name": "itineraries",
+          "size": 12,
+          "type": "orders-products",
+          "columns": [
+            {
+              "key": "id",
+              "dataIndex": "id",
+              "title": "Id",
+              "align": "left",
+              "note": "render-link"
+            },
+            {
+              "key": "option",
+              "dataIndex": "option",
+              "title": "Option",
+              "align": "center"
+            },
+            {
+              "key": "price",
+              "dataIndex": "price",
+              "title": "Price",
+              "align": "center"
+            },
+            {
+              "key": "provider",
+              "dataIndex": "provider",
+              "title": "Provider",
+              "align": "center"
+            },
+            {
+              "key": "vehicle_type",
+              "dataIndex": "vehicle_type",
+              "title": "Vehicle type",
+              "align": "center"
+            },
+            {
+              "key": "isactive",
+              "dataIndex": "isactive",
+              "title": "Enable",
+              "align": "center",
+              "note": "render-bool"
+            },
+            {
+              "key": "created_at",
+              "dataIndex": "created_at",
+              "title": "Created at",
+              "align": "center",
+              "note": "render-date"
+            }
+          ]
+        }
+      ]
+    ],
+    "defaultValue": {
+      "isactive": true
+    }
+  }
+}

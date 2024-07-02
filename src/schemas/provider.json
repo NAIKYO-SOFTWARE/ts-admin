@@ -4,7 +4,7 @@
     "displayName": "Providers",
     "creatable": true,
     "editable": true,
-    "deletable": false,
+    "deletable": true,
     "aggregateField": "providers_aggregate",
     "filterable": [
       [
@@ -12,30 +12,21 @@
           "label": "Name",
           "placeholder": "Name",
           "name": "name",
-          "size": 5,
+          "size": 4,
           "type": "string"
         },
         {
           "label": "Phone",
           "placeholder": "Phone",
           "name": "phone_number",
-          "size": 5,
-          "type": "string"
-        }
-      ],
-      [
-        {
-          "label": "Address",
-          "placeholder": "Address",
-          "name": "address",
-          "size": 5,
+          "size": 4,
           "type": "string"
         },
         {
           "label": "Enable",
           "placeholder": "Enable",
           "name": "isactive",
-          "size": 5,
+          "size": 2,
           "type": "boolean"
         }
       ]
@@ -53,7 +44,6 @@
         "title": "Phone",
         "align": "left"
       },
-
       {
         "key": "isactive",
         "dataIndex": "isactive",
@@ -65,6 +55,13 @@
         "key": "created_at",
         "dataIndex": "created_at",
         "title": "Created At",
+        "align": "center",
+        "note": "render-date"
+      },
+      {
+        "key": "updated_at",
+        "dataIndex": "updated_at",
+        "title": "Updated At",
         "align": "center",
         "note": "render-date"
       }
@@ -84,7 +81,10 @@
           "name": "phone_number",
           "size": 6,
           "type": "string",
-          "regex": ["^\\d{8,16}$", "i"]
+          "regex": [
+            "^\\d{8,16}$",
+            "i"
+          ]
         }
       ],
       [

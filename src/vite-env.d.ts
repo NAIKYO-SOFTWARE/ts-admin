@@ -27,4 +27,5 @@ declare interface ILayouts {
   defaultValue: Record<string, unknown>
   aggregateField: string
   deletable?: boolean
+  copyable: boolean
 }

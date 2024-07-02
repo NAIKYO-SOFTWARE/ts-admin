@@ -1,12 +1,38 @@
 query getCities($where: cities_bool_exp! = {}, $limit: Int! = 100, $offset: Int! = 0) {
-  cities(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+  cities(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc, isactive: asc }) {
     id
     name
     created_at
+    updated_at
+    isactive
+    img
   }
   cities_aggregate(where: $where) {
     aggregate {
       count
     }
+  }
+}
+query getCity($id: Int!) {
+  cities_by_pk(id: $id) {
+    id
+    created_at
+    isactive
+    deleted_at
+    name
+    updated_at
+    img
+    locations {
+      name
+      id
+      created_at
+      isactive
+    }
+  }
+}
+
+mutation updateCity($id: Int!, $isactive: Boolean, $updated_at: timestamptz!, $img: String) {
+  update_cities_by_pk(pk_columns: { id: $id }, _set: { isactive: $isactive, updated_at: $updated_at, img: $img }) {
+    id
   }
 }

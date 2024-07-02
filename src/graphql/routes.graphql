@@ -1,0 +1,125 @@
+query getRoutes($where: routes_bool_exp, $limit: Int, $offset: Int) {
+  routes(where: $where, limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+    id
+    from_city
+    start_location
+    end_location
+    updated_at
+    created_at
+    deleted_at
+    isactive
+    city {
+      name
+    }
+    startlocation {
+      name
+      id
+    }
+    endlocation {
+      name
+      id
+    }
+  }
+  routes_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query getRoute($id: Int!) {
+  routes_by_pk(id: $id) {
+    id
+    city {
+      id
+      name
+    }
+    created_at
+    from_city
+    isactive
+    endlocation {
+      name
+      id
+    }
+    startlocation {
+      name
+      id
+    }
+    itineraries {
+      id
+      isactive
+      created_at
+      option {
+        round_type
+      }
+      price
+      provider {
+        id
+        name
+      }
+      vehicle_type {
+        type
+      }
+    }
+  }
+}
+
+mutation updateRoute(
+  $id: Int!
+  $from_city: Int
+  $start_location: Int
+  $end_location: Int
+  $isactive: Boolean
+  $updated_at: timestamptz!
+) {
+  update_routes_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      from_city: $from_city
+      start_location: $start_location
+      end_location: $end_location
+      isactive: $isactive
+      updated_at: $updated_at
+    }
+  ) {
+    id
+  }
+}
+mutation DeleteRoute($id: Int!) {
+  delete_routes_by_pk(id: $id) {
+    id
+  }
+}
+
+mutation InsertRoute(
+  $from_city: Int
+  $start_location: Int
+  $end_location: Int
+  $isactive: Boolean
+  $created_at: timestamptz!
+) {
+  insert_routes_one(
+    object: {
+      from_city: $from_city
+      start_location: $start_location
+      end_location: $end_location
+      isactive: $isactive
+      created_at: $created_at
+    }
+  ) {
+    id
+    isactive
+    from_city
+    endlocation {
+      name
+      id
+    }
+    startlocation {
+      name
+      id
+    }
+    city {
+      name
+    }
+  }
+}

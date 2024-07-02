@@ -5,6 +5,7 @@ import utc from 'dayjs/plugin/utc'
 import { ChangeEvent, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Col, Form, FormGroup, Label, Row } from 'reactstrap'
+import { InputType } from 'reactstrap/types/lib/Input'
 import { parseQs, updateQs } from '../../helper-plugin'
 import Button from '../Button'
 import Checkbox from '../Checkbox'
@@ -35,6 +36,7 @@ const FilterInput = observer((props: IFilterBase) => {
       name={props.name}
       value={props.form[props.name].get() || ''}
       placeholder={props.placeholder}
+      type={props.type as InputType}
       onKeyDown={(evt) => {
         if (evt.key === 'Enter') {
           props.onRefresh?.()
@@ -47,6 +49,7 @@ const FilterInput = observer((props: IFilterBase) => {
 
 const FilterControl = observer((props: IFilterBase) => {
   switch (props.type) {
+    case 'number':
     case 'string':
       return <FilterInput {...props} />
     case 'boolean':

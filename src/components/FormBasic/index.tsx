@@ -25,7 +25,7 @@ import TextArea from 'antd/es/input/TextArea'
 import Notification from 'antd/es/notification'
 import Skeleton from 'antd/es/skeleton'
 import dayjs from 'dayjs'
-import queries, { dataHandlers, documentNodes } from '../../constants/queries'
+import queries, { dataHandlers, documentNodes, paramHandlers } from '../../constants/queries'
 import Button from '../Button'
 import Checkbox from '../Checkbox'
 import Currencies from '../Currencies'
@@ -419,13 +419,12 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
   const useUpdateOne = queries[props.uid]?.updateOne
   const useCreateOne = queries[props.uid]?.createOne
 
-  const [onUpdate] = editable
-    ? useUpdateOne({
-        refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
-        awaitRefetchQueries: true
-      })
-    : [null]
-  const [onCreate] = creatable ? useCreateOne() : [null]
+  const options = {
+    refetchQueries: [{ query: documentNodes[props.uid].getDocument }],
+    awaitRefetchQueries: true
+  }
+  const [onUpdate] = editable && useUpdateOne ? useUpdateOne(options) : [null]
+  const [onCreate] = creatable && useCreateOne && lastPath === 'new' ? useCreateOne(options) : [null]
 
   const { loading } = useFindOne({
     variables: {
@@ -446,49 +445,50 @@ const FormBasic = (props: { uid: string; layouts: ILayouts; navigate: NavigateFu
     return <Forbidden />
   }
 
-  const doSubmit = () => {
+  const doSubmit = async () => {
     const { isSubmit, ...values } = form.peek()
     if (isSubmit) {
       return
     }
-    // validate form
+
     const { isValid, errors } = validateForm(values, edit)
     if (!isValid) {
       formErrors.set(errors)
-    } else {
-      form.isSubmit.set(true)
-      const isEdit = lastPath !== 'new'
-      const label = isEdit ? 'Update' : 'Create'
-      const action = isEdit
-        ? onUpdate({
-            variables: {
-              id: Number(lastPath),
-              ...values
-            } as any
-          })
-        : onCreate({
-            variables: {
-              ...values
-            } as any
-          })
+      return
+    }
 
-      action
-        ?.then(({ data }: any) => {
-          formErrors.set({})
-          api.success({ message: 'Success', description: `${label} item successful.` })
-          if (!isEdit) {
-            props.navigate(`/${props.uid}/${data.update_users_by_pk.id}`, { replace: true })
-          }
-        })
-        .catch((error: any) => {
-          if (error.response && error.response.status === 400) {
-            const errors = bindErrorMessage(error.response.data)
-            formErrors.set(errors)
-          } else {
-            api.error({ message: 'Error', description: `${label} item unsuccessful.` })
-          }
-        })
-        .finally(() => form.isSubmit.set(false))
+    form.isSubmit.set(true)
+    const isEdit = lastPath !== 'new'
+    const label = isEdit ? 'Update' : 'Create'
+
+    const data = {
+      id: Number(lastPath),
+      ...values,
+      updated_at: new Date()
+    }
+    const params = props.uid === 'bookings' ? paramHandlers[props.uid].dataHandler(data) : data
+
+    try {
+      isEdit
+        ? await onUpdate({
+            variables: params
+          })
+        : await onCreate({
+            variables: {
+              ...values,
+              created_at: new Date()
+            }
+          })
+      formErrors.set({})
+      api.success({ message: 'Success', description: `${label} item successful.` })
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        const errors = bindErrorMessage(error.response.data)
+        formErrors.set(errors)
+      }
+      api.error({ message: 'Error', description: `${label} item unsuccessful.` })
+    } finally {
+      form.isSubmit.set(false)
     }
   }
 

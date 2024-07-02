@@ -1,0 +1,153 @@
+{
+  "uid": "itinerary",
+  "layouts": {
+    "displayName": "itinerary",
+    "creatable": true,
+    "editable": true,
+    "deletable": true,
+    "aggregateField": "itinerary_aggregate",
+    "filterable": [
+      [
+        {
+          "label": "Created At",
+          "name": "created_at",
+          "size": 4,
+          "type": "date"
+        },
+        {
+          "label": "Enable",
+          "placeholder": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        }
+      ]
+    ],
+    "list": [
+      {
+        "key": "provider",
+        "dataIndex": "provider",
+        "title": "Provider",
+        "align": "left"
+      },
+      {
+        "key": "route",
+        "dataIndex": "route",
+        "title": "Route",
+        "align": "left"
+      },
+      {
+        "key": "option",
+        "dataIndex": "option",
+        "title": "Option",
+        "align": "left"
+      },
+      {
+        "key": "isactive",
+        "dataIndex": "isactive",
+        "title": "Enable",
+        "align": "left",
+        "note": "render-bool"
+      },
+      {
+        "key": "created_at",
+        "dataIndex": "created_at",
+        "title": "Created At",
+        "align": "center",
+        "note": "render-date"
+      },
+      {
+        "key": "updated_at",
+        "dataIndex": "updated_at",
+        "title": "Updated At",
+        "align": "center",
+        "note": "render-date"
+      }
+    ],
+    "edit": [
+      [
+        {
+          "label": "Provider",
+          "key": "provider_id",
+          "dataIndex": "provider_id",
+          "title": "Provider",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "size": 4,
+          "relation": "providers",
+          "name": "provider_id",
+          "required": true,
+          "placeholder": "Select Provider"
+        },
+        {
+          "label": "Route",
+          "key": "route_id",
+          "dataIndex": "route_id",
+          "title": "Route",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "size": 4,
+          "relation": "routes",
+          "name": "route_id",
+          "required": true,
+          "placeholder": "Select Route"
+        },
+        {
+          "label": "Option",
+          "key": "option_id",
+          "dataIndex": "option_id",
+          "title": "Option",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "size": 4,
+          "relation": "options",
+          "name": "option_id",
+          "required": true,
+          "placeholder": "Select option"
+        },
+        {
+          "label": "Vehicle",
+          "key": "vehicle_types_id",
+          "dataIndex": "vehicle_types_id",
+          "title": "Vehicle",
+          "align": "left",
+          "multiple": true,
+          "type": "relation",
+          "size": 4,
+          "relation": "vehicle_types",
+          "name": "vehicle_types_id",
+          "required": true,
+          "placeholder": "Select Vehicle Type"
+        },
+        {
+          "label": "Price",
+          "placeholder": "Price",
+          "name": "price",
+          "size": 4,
+          "type": "string",
+          "required": true
+        },
+        {
+          "label": "Enable",
+          "name": "isactive",
+          "size": 2,
+          "type": "boolean"
+        },
+        {
+          "label": "Note",
+          "placeholder": "Note",
+          "name": "note",
+          "size": 8,
+          "type": "textarea",
+          "max": 512
+        }
+      ]
+    ],
+    "defaultValue": {
+      "isactive": true
+    }
+  }
+}

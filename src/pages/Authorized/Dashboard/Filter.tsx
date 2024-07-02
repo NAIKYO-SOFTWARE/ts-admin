@@ -1,7 +1,6 @@
 import dayjs from 'dayjs'
-import isoWeek from 'dayjs/plugin/isoWeek'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
-import qs from 'qs'
+import isoWeek from 'dayjs/plugin/isoWeek'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Col, Form, FormGroup, Row } from 'reactstrap'
@@ -31,6 +30,32 @@ const TIME_RANGES: Record<string, [string, string]> = {
 
 const checkRangeValid = (dates: [string, string]) => {
   return dates && dates.every((d) => dayjs(d).isValid())
+}
+
+export function formatDateRange(startDate: string | null, endDate: string | null) {
+  const startDateTime = `${startDate}T00:00:00`
+  const endDateTime = `${endDate}T23:59:59`
+  return { _gte: startDateTime, _lte: endDateTime }
+}
+
+export function generateDateLabels(startDate: string | null, endDate: string | null) {
+  const labels = []
+  const currentDate = new Date(startDate || new Date())
+  const finalDate = new Date(endDate || new Date())
+
+  while (currentDate <= finalDate) {
+    labels.push(currentDate.toISOString().split('T')[0])
+    currentDate.setDate(currentDate.getDate() + 1)
+  }
+
+  return labels
+}
+
+export function getDateRangeFromQueryString(querystring: string) {
+  const params = new URLSearchParams(querystring)
+  const startDate = params.get('date[0]')
+  const endDate = params.get('date[1]')
+  return { startDate, endDate }
 }
 
 const initialValue = () => {
