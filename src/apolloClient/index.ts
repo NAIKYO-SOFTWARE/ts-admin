@@ -5,7 +5,7 @@ import { onError } from '@apollo/client/link/error'
 import { auth } from '../helper-plugin'
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:8080/v1/graphql'
+  uri: 'https://ts-hasura.laptrinhwebapp.com/v1/graphql'
 })
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {

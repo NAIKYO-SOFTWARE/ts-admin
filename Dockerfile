@@ -29,7 +29,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PORT=3001
 
 COPY --from=builder /app/dist ./dist
 COPY --from=prod_deps /app/node_modules ./node_modules
@@ -41,6 +41,6 @@ RUN chmod 755 /app
 
 USER 1001
 
-EXPOSE 3000
+EXPOSE 3001
 
 CMD ["yarn", "start"]

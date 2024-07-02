@@ -11,6 +11,6 @@ app.use('*', (_, res) => {
   res.sendFile(path.join(process.cwd(), 'dist', 'index.html'))
 })
 
-app.listen(3000, '0.0.0.0', () => {
-  console.log('Application is running at http://0.0.0.0:3000')
+app.listen(3001, '0.0.0.0', () => {
+  console.log('Application is running at http://0.0.0.0:3001')
 })
