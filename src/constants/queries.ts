@@ -236,13 +236,14 @@ export const dataHandlers: Record<string, Props> = {
         userPhoneNumber: booking.user.phone_number
       }))
     },
+
     one: (data) => ({
       ...data.bookings_by_pk,
       userName: data.bookings_by_pk.user.name,
       userPhoneNumber: data.bookings_by_pk.user.phone_number,
       city: data.bookings_by_pk.itinerary.route.city.name,
-      startLocation: data.bookings_by_pk.itinerary.route.city.routes[0].startlocation.name,
-      endLocation: data.bookings_by_pk.itinerary.route.city.routes[0].endlocation.name,
+      startLocation: data.bookings_by_pk.itinerary.route.startlocation.name,
+      endLocation: data.bookings_by_pk.itinerary.route.endlocation.name,
       option: data.bookings_by_pk.itinerary.option.round_type,
       vehicleType: data.bookings_by_pk.itinerary.vehicle_type.type,
       price: data.bookings_by_pk.itinerary.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }),

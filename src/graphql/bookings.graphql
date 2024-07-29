@@ -55,18 +55,13 @@ query getBooking($id: Int!) {
       route {
         city {
           name
-          routes {
-            id
-            end_location
-            start_location
-            from_city
-            startlocation {
-              name
-            }
-            endlocation {
-              name
-            }
-          }
+        }
+        endlocation {
+          name
+        }
+        end_location
+        startlocation {
+          name
         }
       }
       vehicle_type {
