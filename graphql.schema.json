@@ -2034,7 +2034,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "bpchar",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2846,7 +2846,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "bpchar_comparison_exp",
+              "name": "String_comparison_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -3053,7 +3053,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "bpchar",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -3184,7 +3184,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "bpchar",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3422,7 +3422,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "bpchar",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4009,7 +4009,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "bpchar",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -4449,7 +4449,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "bpchar",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -4978,271 +4978,6 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "bpchar",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "bpchar_comparison_exp",
-        "description": "Boolean expression to compare columns of type \"bpchar\". All fields are combined with logical 'AND'.",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_ilike",
-            "description": "does the column match the given case-insensitive pattern",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "bpchar",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_iregex",
-            "description": "does the column match the given POSIX regular expression, case insensitive",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_is_null",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_like",
-            "description": "does the column match the given pattern",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_neq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_nilike",
-            "description": "does the column NOT match the given case-insensitive pattern",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "bpchar",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_niregex",
-            "description": "does the column NOT match the given POSIX regular expression, case insensitive",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_nlike",
-            "description": "does the column NOT match the given pattern",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_nregex",
-            "description": "does the column NOT match the given POSIX regular expression, case sensitive",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_nsimilar",
-            "description": "does the column NOT match the given SQL regular expression",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_regex",
-            "description": "does the column match the given POSIX regular expression, case sensitive",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "_similar",
-            "description": "does the column match the given SQL regular expression",
-            "type": {
-              "kind": "SCALAR",
-              "name": "bpchar",
               "ofType": null
             },
             "defaultValue": null,
@@ -15154,6 +14889,35 @@
         "description": "mutation root",
         "fields": [
           {
+            "name": "actionInsertBooking",
+            "description": "actionInsertBooking",
+            "args": [
+              {
+                "name": "dataInsertBooking",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "DataInsertBookingInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "DataInsertBookingOutput",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "actionLogin",
             "description": "actionLogin",
             "args": [
@@ -15189,6 +14953,51 @@
             "type": {
               "kind": "OBJECT",
               "name": "AuthOutput",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cancelBooking",
+            "description": "cancelBooking",
+            "args": [
+              {
+                "name": "bookingId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "reason",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CancelBookingOutput",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24199,13 +24008,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -34570,7 +34375,9 @@
         "name": "cached",
         "description": "whether this query should be cached (Hasura Cloud only)",
         "isRepeatable": false,
-        "locations": ["QUERY"],
+        "locations": [
+          "QUERY"
+        ],
         "args": [
           {
             "name": "refresh",
@@ -34610,7 +34417,11 @@
         "name": "include",
         "description": "whether this query should be included",
         "isRepeatable": false,
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
         "args": [
           {
             "name": "if",
@@ -34634,7 +34445,11 @@
         "name": "skip",
         "description": "whether this query should be skipped",
         "isRepeatable": false,
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
         "args": [
           {
             "name": "if",
